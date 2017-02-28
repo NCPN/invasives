@@ -10,13 +10,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =6660
+    Width =7800
     DatasheetFontHeight =9
-    ItemSuffix =45
-    Left =3810
-    Top =495
-    Right =10785
-    Bottom =6930
+    ItemSuffix =47
+    Left =-135
+    Top =1155
+    Right =6840
+    Bottom =7560
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x43f03470521ee340
@@ -112,7 +112,7 @@ Begin Form
             BorderLineStyle =0
         End
         Begin FormHeader
-            Height =480
+            Height =540
             BackColor =-2147483633
             Name ="FormHeader"
             Begin
@@ -184,6 +184,21 @@ Begin Form
                     LayoutCachedWidth =4860
                     LayoutCachedHeight =480
                 End
+                Begin Label
+                    OverlapFlags =85
+                    TextAlign =2
+                    Left =5820
+                    Top =60
+                    Width =840
+                    Height =420
+                    Name ="lblIsDead"
+                    Caption ="Dead or Alive?"
+                    Tag ="DetachedLabel"
+                    LayoutCachedLeft =5820
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =6660
+                    LayoutCachedHeight =480
+                End
             End
         End
         Begin Section
@@ -244,7 +259,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5820
+                    Left =6960
                     Top =60
                     Width =705
                     Height =300
@@ -254,6 +269,10 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
+                    LayoutCachedLeft =6960
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =7665
+                    LayoutCachedHeight =360
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -337,6 +356,43 @@ Begin Form
                     ColumnWidths ="0;1728;2592"
                     BeforeUpdate ="[Event Procedure]"
 
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    OverlapFlags =85
+                    TextAlign =2
+                    IMESentenceMode =3
+                    ColumnCount =2
+                    ListRows =21
+                    Left =5760
+                    Top =60
+                    Width =900
+                    TabIndex =8
+                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"510\""
+                    ConditionalFormat = Begin
+                        0x010000008a000000020000000000000002000000000000000300000001000000 ,
+                        0x00000000fff20000010000000000000004000000140000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x22002200000000005b006300620078004900730044006500610064005d003c00 ,
+                        0x3e002200220000000000
+                    End
+                    Name ="cbxIsDead"
+                    ControlSource ="IsDead"
+                    RowSourceType ="Table/Query"
+                    RowSource ="qry_IsDead_Plus_Flags"
+                    ColumnWidths ="0;1440"
+                    ControlTipText ="Indicate if species is alive or dead (or the appropriate missing data flag)"
+                    LayoutCachedLeft =5760
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =6660
+                    LayoutCachedHeight =300
+                    ConditionalFormat14 = Begin
+                        0x01000200000000000000020000000100000000000000fff20000020000002200 ,
+                        0x2200000000000000000000000000000000000000000000010000000000000001 ,
+                        0x00000000000000ffffff000f0000005b00630062007800490073004400650061 ,
+                        0x0064005d003c003e002200220000000000000000000000000000000000000000 ,
+                        0x0000
+                    End
                 End
             End
         End

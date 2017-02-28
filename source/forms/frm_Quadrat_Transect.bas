@@ -18,10 +18,10 @@ Begin Form
     Width =13680
     DatasheetFontHeight =9
     ItemSuffix =43
-    Left =570
-    Top =90
-    Right =14085
-    Bottom =7665
+    Left =-2340
+    Top =2790
+    Right =11085
+    Bottom =13260
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -126,7 +126,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =9360
+            Height =8640
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -374,29 +374,33 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =93
                     TextAlign =2
-                    Left =840
+                    Left =120
                     Top =1620
                     Width =1860
                     Height =480
                     FontWeight =700
                     Name ="Label55"
                     Caption ="Microhabitat"
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =1620
+                    LayoutCachedWidth =1980
+                    LayoutCachedHeight =2100
                 End
                 Begin Label
                     OldBorderStyle =1
                     BorderWidth =1
                     OverlapFlags =95
                     TextAlign =2
-                    Left =2700
+                    Left =1980
                     Top =1860
                     Width =778
                     Height =240
                     FontWeight =700
                     Name ="Label57"
                     Caption ="Q1"
-                    LayoutCachedLeft =2700
+                    LayoutCachedLeft =1980
                     LayoutCachedTop =1860
-                    LayoutCachedWidth =3478
+                    LayoutCachedWidth =2758
                     LayoutCachedHeight =2100
                 End
                 Begin Label
@@ -404,16 +408,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =95
                     TextAlign =2
-                    Left =3480
+                    Left =2760
                     Top =1860
                     Width =780
                     Height =240
                     FontWeight =700
                     Name ="Label73"
                     Caption ="Q2"
-                    LayoutCachedLeft =3480
+                    LayoutCachedLeft =2760
                     LayoutCachedTop =1860
-                    LayoutCachedWidth =4260
+                    LayoutCachedWidth =3540
                     LayoutCachedHeight =2100
                 End
                 Begin Label
@@ -421,16 +425,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =95
                     TextAlign =2
-                    Left =4259
+                    Left =3539
                     Top =1860
                     Width =780
                     Height =240
                     FontWeight =700
                     Name ="Label74"
                     Caption ="Q3"
-                    LayoutCachedLeft =4259
+                    LayoutCachedLeft =3539
                     LayoutCachedTop =1860
-                    LayoutCachedWidth =5039
+                    LayoutCachedWidth =4319
                     LayoutCachedHeight =2100
                 End
                 Begin Label
@@ -438,20 +442,24 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =87
                     TextAlign =2
-                    Left =2700
+                    Left =1980
                     Top =1620
                     Width =2340
                     Height =240
                     FontWeight =700
                     Name ="Label76"
                     Caption ="% cover"
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =1620
+                    LayoutCachedWidth =4320
+                    LayoutCachedHeight =1860
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =2100
                     Width =778
                     TabIndex =9
@@ -462,16 +470,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =2100
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =2340
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =2100
                             Width =1860
                             Height =240
                             Name ="Label289"
                             Caption ="Dead Wood:"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =2100
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =2340
                         End
                     End
                 End
@@ -480,7 +496,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =2100
                     Width =778
                     TabIndex =10
@@ -491,13 +507,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =2100
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =2340
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =2100
                     Width =778
                     TabIndex =11
@@ -508,13 +528,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =2100
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =2340
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =2340
                     Width =778
                     TabIndex =12
@@ -525,16 +549,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =2340
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =2580
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =2340
                             Width =1860
                             Height =240
                             Name ="Label292"
                             Caption ="Dung"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =2340
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =2580
                         End
                     End
                 End
@@ -543,7 +575,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =2340
                     Width =778
                     TabIndex =13
@@ -554,13 +586,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =2340
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =2580
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =2340
                     Width =778
                     TabIndex =14
@@ -571,13 +607,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =2340
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =2580
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =2580
                     Width =778
                     TabIndex =15
@@ -588,16 +628,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =2580
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =2820
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =2580
                             Width =1860
                             Height =240
                             Name ="Label295"
                             Caption ="Fungus"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =2580
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =2820
                         End
                     End
                 End
@@ -606,7 +654,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =2580
                     Width =778
                     TabIndex =16
@@ -617,13 +665,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =2580
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =2820
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =2580
                     Width =778
                     TabIndex =17
@@ -634,13 +686,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =2580
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =2820
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =2820
                     Width =778
                     TabIndex =18
@@ -651,16 +707,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =2820
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =3060
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =2820
                             Width =1860
                             Height =240
                             Name ="Label298"
                             Caption ="Lichen"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =2820
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =3060
                         End
                     End
                 End
@@ -669,7 +733,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =2820
                     Width =778
                     TabIndex =19
@@ -680,13 +744,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =2820
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =3060
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =2820
                     Width =778
                     TabIndex =20
@@ -697,13 +765,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =2820
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =3060
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =3060
                     Width =778
                     TabIndex =21
@@ -714,16 +786,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =3060
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =3300
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =3060
                             Width =1860
                             Height =240
                             Name ="Label301"
                             Caption ="Litter Duff"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =3060
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =3300
                         End
                     End
                 End
@@ -732,7 +812,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =3060
                     Width =778
                     TabIndex =22
@@ -743,13 +823,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =3060
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =3300
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =3060
                     Width =778
                     TabIndex =23
@@ -760,13 +844,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =3060
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =3300
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =3300
                     Width =778
                     TabIndex =24
@@ -777,16 +865,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =3300
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =3540
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =95
-                            Left =840
+                            Left =120
                             Top =3300
                             Width =1860
                             Height =240
                             Name ="Label304"
                             Caption ="Live root/Bole"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =3300
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =3540
                         End
                     End
                 End
@@ -795,7 +891,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =3300
                     Width =778
                     TabIndex =25
@@ -806,13 +902,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =3300
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =3540
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =3300
                     Width =778
                     TabIndex =26
@@ -823,13 +923,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =3300
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =3540
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =3780
                     Width =778
                     Height =300
@@ -841,16 +945,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =3780
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =4080
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =93
-                            Left =840
+                            Left =120
                             Top =3780
                             Width =1858
                             Height =240
                             Name ="Label307"
                             Caption ="Mineral Soil/Sediment"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =3780
+                            LayoutCachedWidth =1978
+                            LayoutCachedHeight =4020
                         End
                     End
                 End
@@ -859,7 +971,7 @@ Begin Form
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =3780
                     Width =778
                     Height =300
@@ -871,13 +983,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =3780
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =4080
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =3780
                     Width =778
                     Height =300
@@ -889,13 +1005,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =3780
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =4080
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =4020
                     Width =778
                     TabIndex =33
@@ -906,16 +1026,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =4020
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =4260
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =840
+                            Left =120
                             Top =4020
                             Width =1860
                             Height =240
                             Name ="Label310"
                             Caption ="Moss"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =4020
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =4260
                         End
                     End
                 End
@@ -924,7 +1052,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =4020
                     Width =778
                     TabIndex =34
@@ -935,13 +1063,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =4020
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =4260
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =4020
                     Width =778
                     TabIndex =35
@@ -952,13 +1084,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =4020
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =4260
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =4260
                     Width =778
                     TabIndex =36
@@ -969,16 +1105,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =4260
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =4500
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =4260
                             Width =1860
                             Height =240
                             Name ="Label313"
                             Caption ="Biological Soil Crust"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =4260
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =4500
                         End
                     End
                 End
@@ -987,7 +1131,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =4260
                     Width =778
                     TabIndex =37
@@ -998,13 +1142,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =4260
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =4500
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =4260
                     Width =778
                     TabIndex =38
@@ -1015,13 +1163,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =4260
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =4500
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =4500
                     Width =778
                     TabIndex =39
@@ -1032,16 +1184,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =4500
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =4740
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =4500
                             Width =1860
                             Height =240
                             Name ="Label316"
                             Caption ="Road"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =4500
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =4740
                         End
                     End
                 End
@@ -1050,7 +1210,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =4500
                     Width =778
                     TabIndex =40
@@ -1061,13 +1221,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =4500
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =4740
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =4500
                     Width =778
                     TabIndex =41
@@ -1078,13 +1242,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =4500
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =4740
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =4740
                     Width =778
                     TabIndex =42
@@ -1095,16 +1263,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =4980
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =4740
                             Width =1860
                             Height =240
                             Name ="Label319"
                             Caption ="Rock"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =4740
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =4980
                         End
                     End
                 End
@@ -1113,7 +1289,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =4740
                     Width =778
                     TabIndex =43
@@ -1124,13 +1300,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =4980
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =4740
                     Width =778
                     TabIndex =44
@@ -1141,13 +1321,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =4980
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =4980
                     Width =778
                     TabIndex =45
@@ -1158,16 +1342,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =4980
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =5220
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =4980
                             Width =1860
                             Height =240
                             Name ="Label322"
                             Caption ="Standing Water/Flooded"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =4980
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =5220
                         End
                     End
                 End
@@ -1176,7 +1368,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =4980
                     Width =778
                     TabIndex =46
@@ -1187,13 +1379,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =4980
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =5220
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =4980
                     Width =778
                     TabIndex =47
@@ -1204,13 +1400,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =4980
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =5220
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =5220
                     Width =778
                     TabIndex =48
@@ -1221,16 +1421,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =5220
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =5460
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =5220
                             Width =1860
                             Height =240
                             Name ="Label325"
                             Caption ="Stream"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =5220
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =5460
                         End
                     End
                 End
@@ -1239,7 +1447,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =5220
                     Width =778
                     TabIndex =49
@@ -1250,13 +1458,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =5220
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =5460
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =5220
                     Width =778
                     TabIndex =50
@@ -1267,13 +1479,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =5220
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =5460
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =5460
                     Width =778
                     TabIndex =51
@@ -1284,16 +1500,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =5460
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =5700
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =127
-                            Left =840
+                            Left =120
                             Top =5460
                             Width =1860
                             Height =240
                             Name ="Label328"
                             Caption ="Trash/Junk"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =5460
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =5700
                         End
                     End
                 End
@@ -1302,7 +1526,7 @@ Begin Form
                     OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =5460
                     Width =778
                     TabIndex =52
@@ -1313,13 +1537,17 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =5460
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =5700
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
                     OverlapFlags =119
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =5460
                     Width =778
                     TabIndex =53
@@ -1330,12 +1558,16 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =5460
+                    LayoutCachedWidth =4328
+                    LayoutCachedHeight =5700
                 End
                 Begin Subform
                     OverlapFlags =93
-                    Left =5760
+                    Left =4620
                     Top =1080
-                    Width =7200
+                    Width =8580
                     Height =6718
                     TabIndex =54
                     Name ="fsub_Species"
@@ -1343,6 +1575,10 @@ Begin Form
                     LinkChildFields ="Transect_ID"
                     LinkMasterFields ="Transect_ID"
 
+                    LayoutCachedLeft =4620
+                    LayoutCachedTop =1080
+                    LayoutCachedWidth =13200
+                    LayoutCachedHeight =7798
                 End
                 Begin Subform
                     OverlapFlags =255
@@ -1356,19 +1592,27 @@ Begin Form
                     LinkChildFields ="Transect_ID"
                     LinkMasterFields ="Transect_ID"
 
+                    LayoutCachedLeft =5760
+                    LayoutCachedTop =1080
+                    LayoutCachedWidth =12960
+                    LayoutCachedHeight =7797
                 End
                 Begin Subform
                     OverlapFlags =247
-                    Left =5760
+                    Left =5700
                     Top =1080
-                    Width =7200
-                    Height =6718
+                    Width =7320
+                    Height =6598
                     TabIndex =56
                     Name ="fsub_Species_2009"
                     SourceObject ="Form.fsub_Species_2009"
                     LinkChildFields ="Transect_ID"
                     LinkMasterFields ="Transect_ID"
 
+                    LayoutCachedLeft =5700
+                    LayoutCachedTop =1080
+                    LayoutCachedWidth =13020
+                    LayoutCachedHeight =7678
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1376,7 +1620,7 @@ Begin Form
                     OverlapFlags =215
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2700
+                    Left =1980
                     Top =3540
                     Width =778
                     TabIndex =27
@@ -1387,16 +1631,24 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
 
+                    LayoutCachedLeft =1980
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =2758
+                    LayoutCachedHeight =3780
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =840
+                            Left =120
                             Top =3540
                             Width =1860
                             Height =240
                             Name ="Label40"
                             Caption ="Dead root/Bole"
+                            LayoutCachedLeft =120
+                            LayoutCachedTop =3540
+                            LayoutCachedWidth =1980
+                            LayoutCachedHeight =3780
                         End
                     End
                 End
@@ -1406,7 +1658,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3490
+                    Left =2770
                     Top =3540
                     Width =778
                     TabIndex =28
@@ -1417,6 +1669,10 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
 
+                    LayoutCachedLeft =2770
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =3548
+                    LayoutCachedHeight =3780
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1424,7 +1680,7 @@ Begin Form
                     OverlapFlags =215
                     IMESentenceMode =3
                     ListRows =21
-                    Left =4270
+                    Left =3550
                     Top =3540
                     Width =763
                     TabIndex =29
@@ -1435,6 +1691,10 @@ Begin Form
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
 
+                    LayoutCachedLeft =3550
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =4313
+                    LayoutCachedHeight =3780
                 End
             End
         End
