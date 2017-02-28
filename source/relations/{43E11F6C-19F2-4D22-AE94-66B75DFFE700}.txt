@@ -1,0 +1,8 @@
+0
+{43E11F6C-19F2-4D22-AE94-66B75DFFE700}
+tbl_master_version
+tbl_SOP_version
+Field = Begin
+version_key_number
+version_key_number
+End
