@@ -108,7 +108,7 @@ Option Compare Database
 Option Explicit
 
 Private Sub cmcCancel_Click()
-DoCmd.Close acForm, Me.name, acSaveNo
+DoCmd.Close acForm, Me.Name, acSaveNo
 End Sub
 
 Private Sub cmdLink_Click()
@@ -126,7 +126,7 @@ Dim strValues As String
 
 On Error GoTo Err_Handler
 
-If Me!lstTables.ItemsSelected.Count = 0 Then
+If Me!lstTables.ItemsSelected.count = 0 Then
     MsgBox "There are no tables selected.", vbExclamation, "No Tables Selected"
 Else
     strFileName = XML_Read("FileName", Nz(Me.OpenArgs, ""))
@@ -164,7 +164,7 @@ Else
     Next varItem
     
     MsgBox "Tables linked successfully!", vbOKOnly, "Tables Linked"
-    DoCmd.Close acForm, Me.name, acSaveNo
+    DoCmd.Close acForm, Me.Name, acSaveNo
 End If
 
 Exit_Handler:

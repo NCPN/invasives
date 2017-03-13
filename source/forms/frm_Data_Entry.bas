@@ -19,7 +19,7 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =14565
+    Width =14280
     DatasheetFontHeight =10
     ItemSuffix =200
     Left =210
@@ -48,6 +48,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =255
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -57,54 +60,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -114,13 +128,15 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Section
             CanGrow = NotDefault
-            Height =12780
+            Height =11160
             BackColor =12574431
             Name ="Detail"
             Begin
@@ -139,6 +155,11 @@ Begin Form
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -194,6 +215,7 @@ Begin Form
                     StatusBarText ="M. Starting date for the event (Start_Date)"
                     AfterUpdate ="[Event Procedure]"
                     InputMask ="99/99/0000;0;_"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -221,6 +243,7 @@ Begin Form
                     Width =840
                     TabIndex =5
                     Name ="txtUnit_Code"
+
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -246,30 +269,48 @@ Begin Form
                     OverlapFlags =85
                     Left =45
                     Top =1260
-                    Width =14520
-                    Height =11475
+                    Width =14130
+                    Height =9795
                     TabIndex =6
                     Name ="pgTabs"
+
+                    LayoutCachedLeft =45
+                    LayoutCachedTop =1260
+                    LayoutCachedWidth =14175
+                    LayoutCachedHeight =11055
                     Begin
                         Begin Page
-                            OverlapFlags =215
+                            OverlapFlags =87
                             Left =180
                             Top =1665
-                            Width =14250
-                            Height =10935
+                            Width =13860
+                            Height =9255
                             Name ="pgCoords_and_loc_details"
                             Caption ="Monitoring Transects"
+                            LayoutCachedLeft =180
+                            LayoutCachedTop =1665
+                            LayoutCachedWidth =14040
+                            LayoutCachedHeight =10920
+                            WebImagePaddingLeft =2
+                            WebImagePaddingTop =2
+                            WebImagePaddingRight =2
+                            WebImagePaddingBottom =2
                             Begin
                                 Begin Subform
                                     OverlapFlags =215
                                     Left =180
                                     Top =1665
                                     Width =13710
-                                    Height =10755
+                                    Height =9075
                                     Name ="frm_Quadrat_Transect"
                                     SourceObject ="Form.frm_Quadrat_Transect"
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
+
+                                    LayoutCachedLeft =180
+                                    LayoutCachedTop =1665
+                                    LayoutCachedWidth =13890
+                                    LayoutCachedHeight =10740
                                 End
                             End
                         End
@@ -296,6 +337,7 @@ Begin Form
                     Name ="txtLocation_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
+
                 End
                 Begin CheckBox
                     Visible = NotDefault
@@ -306,6 +348,7 @@ Begin Form
                     Name ="Site_Selection"
                     ControlSource ="Site_Selection"
                     StatusBarText ="Site accepted or rejected"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -318,6 +361,7 @@ Begin Form
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Master protocol version key"
+
                 End
                 Begin Label
                     OverlapFlags =247
@@ -343,6 +387,7 @@ Begin Form
                     TabIndex =10
                     Name ="SiteDisplay"
                     ControlSource ="Plot_ID"
+
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
@@ -357,6 +402,7 @@ Begin Form
                     Name ="Comments"
                     ControlSource ="Comments"
                     StatusBarText ="Plot revisit comments."
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -411,6 +457,7 @@ Begin Form
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
+
                 End
                 Begin TextBox
                     OverlapFlags =247
@@ -425,6 +472,7 @@ Begin Form
                     Format ="Short Time"
                     StatusBarText ="M. Starting date for the event (Start_Date)"
                     InputMask ="00:00;0;_"
+
                     Begin
                         Begin Label
                             OverlapFlags =247
@@ -513,16 +561,16 @@ End Sub
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
 
-        Dim Db As DAO.Database
+        Dim db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler
     
     ' Set master version number on event record
-    Set Db = CurrentDb
+    Set db = CurrentDb
     strSQL = "SELECT [version_key_number] FROM [tbl_master_version] ORDER BY [version_key_number] DESC"
-    Set Versions = Db.OpenRecordset(strSQL)
+    Set Versions = db.OpenRecordset(strSQL)
     Versions.MoveFirst
     Me![version_key_number] = Versions![version_key_number]
     Versions.Close
@@ -571,14 +619,14 @@ Dim strCriteria As String
 If IsNull(Me!txtLocation_ID) Then
     Me!txtUnit_Code = Null
 Else
-    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.Name, "txtLocation_ID")
     Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
 End If
 End Sub
 
 
 Private Sub txtStart_Date_AfterUpdate()
-        Dim Db As DAO.Database
+        Dim db As DAO.Database
         Dim Events As DAO.Recordset
         Dim strSQL As String
         
@@ -587,8 +635,8 @@ Private Sub txtStart_Date_AfterUpdate()
     ' Check for duplicate date
     strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
 '    MsgBox strSQL
-    Set Db = CurrentDb
-    Set Events = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set Events = db.OpenRecordset(strSQL)
     If Not Events.EOF Then
       MsgBox " Duplicate visit date - update cancelled."
       Me.Undo

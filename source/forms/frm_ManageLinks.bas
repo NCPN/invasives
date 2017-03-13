@@ -284,7 +284,7 @@ Dim strfilter As String
 
 strfilter = adhAddFilterItem(strfilter, "MS Access databases", "*.mdb")
 
-varFileName = adhCommonFileOpenSave(, GetPath(CurrentDb.name), strfilter, , , , "Select MS Access Database", True)
+varFileName = adhCommonFileOpenSave(, GetPath(CurrentDb.Name), strfilter, , , , "Select MS Access Database", True)
 
 Me!txtCurrentPath = varFileName
 Me!txtCurrentName = GetFileName(Nz(varFileName, ""))

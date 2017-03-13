@@ -13,10 +13,10 @@ Begin Form
     Width =7800
     DatasheetFontHeight =9
     ItemSuffix =47
-    Left =-135
-    Top =1155
-    Right =6840
-    Bottom =7560
+    Left =10410
+    Top =3060
+    Right =18960
+    Bottom =9465
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x43f03470521ee340
@@ -24,7 +24,12 @@ Begin Form
     RecordSource ="tbl_Quadrat_Species"
     Caption ="fsub_Species"
     BeforeInsert ="[Event Procedure]"
+    OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
     FilterOnLoad =255
     DatasheetGridlinesColor12 =12632256
     Begin
@@ -265,9 +270,8 @@ Begin Form
                     Height =300
                     TabIndex =7
                     ForeColor =255
-                    Name ="ButtonDelete"
+                    Name ="btnDelete"
                     Caption ="Delete"
-                    OnClick ="[Event Procedure]"
 
                     LayoutCachedLeft =6960
                     LayoutCachedTop =60
@@ -409,41 +413,85 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
-Public Function CalcAvgCover() As Single
-' Calculate average cover for a species - 9/22/2010 - Russ DenBleyker
-' Northern Colorado Plateau Network
-    On Error GoTo Err_Handler
-    
-    Dim AvgCover As Single
-    Dim TotCover As Single
-   
-    AvgCover = 0
-    TotCover = 0
-    If Not IsNull(Me!Q1_hm) Or Not IsNull(Me!Q2_5m) Or Not IsNull(Me!Q3_10m) Then
-      If Not IsNull(Me!Q1_hm) Then
-        TotCover = Me!Q1_hm
-      End If
-      If Not IsNull(Me!Q2_5m) Then
-        TotCover = TotCover + Me!Q2_5m
-      End If
-      If Not IsNull(Me!Q3_10m) Then
-        TotCover = TotCover + Me!Q3_10m
-      End If
-      AvgCover = TotCover / 3
-    End If
-    CalcAvgCover = AvgCover
-Exit_Procedure_1M:
-    Exit Function
+Option Explicit
 
+' =================================
+' Form:         fsub_Species
+' Level:        Application form
+' Version:      1.01
+' Basis:        -
+'
+' Description:  Species subform object related properties, functions & procedures for UI display
+'
+' Source/date:  Russ DenBleyker, Unknown - for NCPN tools
+' References:   -
+' Revisions:    RDB - Unknown - 1.00 - initial version
+'               BLC - 3/8/2017 - 1.01 - added documentation, error handling
+' =================================
+
+'---------------------
+' Simulated Inheritance
+'---------------------
+
+'---------------------
+' Declarations
+'---------------------
+
+'---------------------
+' Event Declarations
+'---------------------
+
+'---------------------
+' Properties
+'---------------------
+
+'---------------------
+' Methods
+'---------------------
+
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Open(Cancel As Integer)
+On Error GoTo Err_Handler
+    
+  
+Exit_Handler:
+    Exit Sub
 Err_Handler:
     Select Case Err.Number
-        Case Else
-            MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-                "Error encountered (CalcAvgCover)"
-            Resume Exit_Procedure_1M
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[fsub_Species form])"
     End Select
+    Resume Exit_Handler
+End Sub
 
-End Function
+' ---------------------------------
+' Sub:          Form_BeforeInsert
+' Description:  form before insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
     On Error GoTo Err_Handler
 
@@ -451,7 +499,7 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
       MsgBox "You must enter Observer first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
     ' Create the GUID primary key value
     If IsNull(Me!Species_ID) Then
@@ -460,32 +508,69 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonDelete_Click()
-On Error GoTo Err_ButtonDelete_Click
+' ---------------------------------
+' Sub:          btnDelete_Click
+' Description:  Delete button actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnDelete_Click()
+On Error GoTo Err_Handler
+
   Dim Reply As Integer
   Reply = MsgBox("Are you sure you want to delete this record?", vbYesNo, "Species Delete")
   If Reply = 6 Then
     DoCmd.DoMenuItem acFormBar, acEditMenu, 8, , acMenuVer70
     DoCmd.DoMenuItem acFormBar, acEditMenu, 6, , acMenuVer70
   End If
-Exit_ButtonDelete_Click:
-    Exit Sub
 
-Err_ButtonDelete_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonDelete_Click
-    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnDelete_Click[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' Sub:          Plant_Code_BeforeUdpate
+' Description:  Plant_Code combobox actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Plant_Code_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
   If Not IsNull(Me!Plant_Code) Then
     If Not IsNull(DLookup("[Species_ID]", "tbl_Quadrat_Species", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Plant_Code] = '" & Me!Plant_Code & "'")) Then
       MsgBox "Duplicate species for this quadrat."
@@ -493,41 +578,291 @@ Private Sub Plant_Code_BeforeUpdate(Cancel As Integer)
       SendKeys "{ESC}"
     End If
   End If
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Plant_Code_BeforeUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub Q1_hm_AfterUpdate()
-  Me!Average_Cover = CalcAvgCover
-End Sub
-
+' ---------------------------------
+' Sub:          Q1_hm_BeforeUpdate
+' Description:  Q1_hm combobox actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Q1_hm_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
   If IsNull(Me!Plant_Code) Then
       MsgBox "You must enter species first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
   End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q1_hm_BeforeUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub Q2_5m_AfterUpdate()
-  Me!Average_Cover = CalcAvgCover
-End Sub
-
+' ---------------------------------
+' Sub:          Q2_5m_BeforeUpdate
+' Description:  Q2_5m combobox actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Q2_5m_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
   If IsNull(Me!Plant_Code) Then
       MsgBox "You must enter species first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
   End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q2_5m_BeforeUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub Q3_10m_AfterUpdate()
-  Me!Average_Cover = CalcAvgCover
-End Sub
-
-
+' ---------------------------------
+' Sub:          Q3_10m_BeforeUpdate
+' Description:  Q3_10m combobox actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Q3_10m_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
   If IsNull(Me!Plant_Code) Then
       MsgBox "You must enter species first."
       DoCmd.CancelEvent
       SendKeys "{ESC}"
   End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q3_10m_BeforeUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          Q1_hm_AfterUpdate
+' Description:  Q1_hm combobox actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Q1_hm_AfterUpdate()
+On Error GoTo Err_Handler
+
+  Me!Average_Cover = CalcAvgCover
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q1_hm_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Q2_5m_AfterUpdate
+' Description:  Q2_5m combobox actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Q2_5m_AfterUpdate()
+On Error GoTo Err_Handler
+
+  Me!Average_Cover = CalcAvgCover
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q2_5m_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Q3_10m_AfterUpdate
+' Description:  Q3_10m combobox actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 3/8/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Q3_10m_AfterUpdate()
+On Error GoTo Err_Handler
+
+  Me!Average_Cover = CalcAvgCover
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Q3_10m_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          CalcAvgCover
+' Description:  Calculate the average cover
+' Assumptions:  Percent cover controls for quadrats that are
+'               not sampled are DISABLED in the user interface
+'               if control enabled  --> include it in average
+'                          disabled --> exclude from average
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Russ DenBleyker, 9/22/2010 - for Northern Colorado Plateau Network
+' Adapted:      -
+' Revisions:
+'   RDB - 9/22/2010 - initial version
+'   BLC - 3/8/2017  - added documentation, error handling,
+'                     revised to address non-sampled quadrats
+' ---------------------------------
+Public Function CalcAvgCover() As Single
+    On Error GoTo Err_Handler
+    
+    Dim AvgCover As Single
+    Dim TotalCover As Single
+    Dim count As Integer, i As Integer
+    Dim strControl As String, strPosition As String
+   
+    count = 0
+    AvgCover = 0
+    TotalCover = 0
+    
+'    If Not IsNull(Me!Q1_hm) Or Not IsNull(Me!Q2_5m) Or Not IsNull(Me!Q3_10m) Then
+'      If Not IsNull(Me!Q1_hm) Then
+'        TotCover = Me!Q1_hm
+'      End If
+'      If Not IsNull(Me!Q2_5m) Then
+'        TotCover = TotCover + Me!Q2_5m
+'      End If
+'      If Not IsNull(Me!Q3_10m) Then
+'        TotCover = TotCover + Me!Q3_10m
+'      End If
+'      AvgCover = TotCover / 3
+'    End If
+    
+    
+    '---------------------------------------------------
+        '---------------------------------------------------
+    For i = 1 To 3
+        'determine quadrat control
+        Select Case i
+            Case 1
+                strPosition = "h"
+            Case 2
+                strPosition = "5"
+            Case 3
+                strPosition = "10"
+        End Select
+    
+        strControl = "Q" & i & "_" & strPosition & "m"
+    
+        If Me.Controls(strControl).Enabled Then
+            If Not IsNull(Me.Controls(strControl)) Then
+                TotalCover = TotalCover + Me.Controls(strControl)
+                count = count + 1
+            End If
+        End If
+    Next
+    
+    If count > 0 Then
+        'calculate the average
+        AvgCover = TotalCover / count
+    End If
+
+    CalcAvgCover = AvgCover
+
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - CalcAvgCover[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Function

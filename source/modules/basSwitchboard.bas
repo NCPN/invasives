@@ -35,7 +35,7 @@ Option Explicit
 Public Function fxnOpenDbChecks()
     On Error GoTo Err_Handler
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rst As DAO.Recordset
     Dim strSysTable As String
     Dim strDataFileName As String
@@ -43,14 +43,14 @@ Public Function fxnOpenDbChecks()
     Dim strErrorMsg As String
     Dim varConnected As Variant
 
-    Set Db = CurrentDb
+    Set db = CurrentDb
     strSysTable = "tsys_Link_Files"     ' System table listing linked tables
 
     ' Verify that each linked database file is where it should be.
     '   Loops through multiple back-end files in case there is more than one
 
     ' Set the recordset to the system table
-    Set rst = Db.OpenRecordset(strSysTable, dbOpenTable, dbReadOnly)
+    Set rst = db.OpenRecordset(strSysTable, dbOpenTable, dbReadOnly)
 
     Do Until rst.EOF
         strDataFileName = rst![Link_file_path]
@@ -108,7 +108,7 @@ Exit_Procedure:
     On Error Resume Next
     rst.Close
     Set rst = Nothing
-    Set Db = Nothing
+    Set db = Nothing
     Exit Function
 
 Err_Handler:
@@ -236,7 +236,7 @@ Public Function fxnMakeBackup()
         GoTo Exit_Procedure
     Else
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rst As DAO.Recordset
     Dim fs As Variant
     Dim strSysTable As String
@@ -246,11 +246,11 @@ Public Function fxnMakeBackup()
     Dim strFileName As String
     Dim strBackupDate As String
 
-    Set Db = CurrentDb
+    Set db = CurrentDb
     strSysTable = "tsys_Link_Files"     ' System table listing linked tables
     strLinkType = "Back-end data"       ' Initialized string for primary back-end file
 
-    Set rst = Db.OpenRecordset(strSysTable, dbOpenTable, dbReadOnly)
+    Set rst = db.OpenRecordset(strSysTable, dbOpenTable, dbReadOnly)
     Set fs = CreateObject("Scripting.FileSystemObject")
 
     ' Loops through multiple back-end files in case there is more than one
@@ -312,7 +312,7 @@ Exit_Procedure:
     Set fs = Nothing
     rst.Close
     Set rst = Nothing
-    Set Db = Nothing
+    Set db = Nothing
     Exit Function
 
 Err_Handler:

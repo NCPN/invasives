@@ -595,17 +595,17 @@ ListCompare = strNewList
 End Function
 
 Public Function UnrecognizedDatabaseFormat(strFileName As String) As Boolean
-Dim Db As Database
+Dim db As Database
 
 On Error GoTo Err_UnrecognizedDatabaseFormat
 
-Set Db = OpenDatabase(strFileName)
+Set db = OpenDatabase(strFileName)
 
 UnrecognizedDatabaseFormat = False
 
 Exit_UnrecognizedDatabaseFormat:
     On Error Resume Next
-    Set Db = Nothing
+    Set db = Nothing
     Exit Function
 
 Err_UnrecognizedDatabaseFormat:
@@ -620,19 +620,19 @@ Err_UnrecognizedDatabaseFormat:
 End Function
 
 Public Function TableNamesAndRecordCounts() As String
-Dim Db As Database
+Dim db As Database
 Dim tdf As TableDef
 
-Set Db = CurrentDb
+Set db = CurrentDb
 
-For Each tdf In Db.TableDefs
-    If Not Left(tdf.name, 4) = "MSys" Then
-        Debug.Print tdf.name & ": " & tdf.RecordCount
+For Each tdf In db.TableDefs
+    If Not Left(tdf.Name, 4) = "MSys" Then
+        Debug.Print tdf.Name & ": " & tdf.RecordCount
     End If
 Next
 
 Set tdf = Nothing
-Set Db = Nothing
+Set db = Nothing
 End Function
 
 Public Function FiscalYear(datDate As Date) As Integer
@@ -659,7 +659,7 @@ CharacterCount = intCount
 End Function
 
 Public Sub PrintFields(strObjectName)
-Dim Db As Database
+Dim db As Database
 Dim tdf As TableDef
 Dim qdf As QueryDef
 Dim fld As Field
@@ -667,27 +667,27 @@ Dim strOutput As String
 
 On Error Resume Next
 
-Set Db = CurrentDb
-Set tdf = Db.TableDefs(strObjectName)
+Set db = CurrentDb
+Set tdf = db.TableDefs(strObjectName)
 
 If Err.Number = 3265 Then
     Err.Clear
     On Error GoTo Err_PrintFields
-    Set qdf = Db.QueryDefs(strObjectName)
+    Set qdf = db.QueryDefs(strObjectName)
     
     For Each fld In qdf.Fields
-        Debug.Print fld.name
+        Debug.Print fld.Name
     Next
 Else
     For Each fld In tdf.Fields
-        Debug.Print fld.name
+        Debug.Print fld.Name
     Next
 End If
 
 Exit_PrintFields:
     Set tdf = Nothing
     Set qdf = Nothing
-    Set Db = Nothing
+    Set db = Nothing
     Exit Sub
 
 Err_PrintFields:
@@ -996,7 +996,7 @@ Function IsObjectInDB_TSB(strDatabase As String, strType As String, strName As S
     Case "Module", "Modules": strCon = "Modules"
   End Select
   
-  varDummy = dbsTemp.Containers(strCon).Documents(strName).name
+  varDummy = dbsTemp.Containers(strCon).Documents(strName).Name
   IsObjectInDB_TSB = True
 
   dbsTemp.Close
