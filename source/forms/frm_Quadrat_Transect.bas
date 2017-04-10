@@ -19,10 +19,10 @@ Begin Form
     Width =13320
     DatasheetFontHeight =9
     ItemSuffix =59
-    Left =4200
-    Top =1245
-    Right =17880
-    Bottom =10290
+    Left =-2010
+    Top =525
+    Right =11670
+    Bottom =9570
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -3482,6 +3482,9 @@ On Error GoTo Err_Handler
     
     If Me.Controls(ToggleSet.Name).Caption = strCheck Then _
         blnON = True
+    
+    'default
+    strToggle = ToggleSet.Name
        
     Select Case Replace(ToggleSet.Name, "tgl", "")
     
@@ -3504,6 +3507,9 @@ On Error GoTo Err_Handler
             'recurse for NoExotics
             Controls("tglNoExoticsT").Caption = strCheck
             SetToggles Me.tglNoExoticsT
+            
+            'disable NoExotics @ Transect level IF NotSampled @ Transect level checked
+            Controls("tglNoExoticsT").Enabled = IIf(blnON, False, True)
         
         Case "NotSampledQ1"
             strLabel = "lblQ1"
@@ -3525,6 +3531,7 @@ On Error GoTo Err_Handler
             
             'recurse for NoExotics
             SetToggles Me.tglNoExoticsQ3
+            
     '------------------------------------------
     ' NoExotics
     '   transect ON --> quadrats ON
@@ -3543,6 +3550,8 @@ On Error GoTo Err_Handler
             If Not tglNotSampledQ1.Caption = strCheck Then
                 Controls(strToggle).Enabled = IIf(blnON, False, True)
                 Controls(strToggle).Caption = IIf(blnON, strCheck, "")
+            Else
+                
             End If
         Case "NoExoticsQ2"
             If Not tglNotSampledQ2.Caption = strCheck Then
@@ -3555,7 +3564,7 @@ On Error GoTo Err_Handler
                 Controls(strToggle).Caption = IIf(blnON, strCheck, "")
             End If
     End Select
-        
+
     If Me.Controls(ToggleSet.Name).Caption = strCheck Then
  
         With fsub_Species_Current
@@ -3569,6 +3578,70 @@ On Error GoTo Err_Handler
             !cbxIsDead.Enabled = IIf(blnON, False, True)
         End With
     End If
+    
+    ' ---------------------------------------------
+    ' NotSampled Q1|Q2|Q3 --> set NoExotics Q1|Q2|Q3
+    '                         Q1|Q2|Q3 label "disabled" (grayed out)
+    '                         Q1_hm|Q2_5m|Q3_10m fields disabled
+    '                         if all --> Species & IsDead fields disabled
+    ' ---------------------------------------------
+    Dim count As Integer
+    Dim strControl As String, strControlQ As String
+    
+    'quadrat level?
+    If InStr(strToggle, "Q", "") Then
+        strControl = Left(strToggle, Len(strToggle) - 1) 'remove last 1|2|3
+    
+        count = 0
+        
+        For i = 1 To 3
+            strControlQ = strControl & i
+            If Controls(strControlQ).Caption = strCheck Then
+                count = count + 1
+            End If
+        Next
+    
+        'all quadrats set? (if so, count = 1 + 2 + 3 = 6)
+        '
+        If count < 6 Then
+            
+            Debug.Print strControlQ & "6"
+        
+        End If
+    
+    End If
+    
+'            If Controls(strControl).Caption = strCheck Or _
+'               Controls(strControl2).Caption = strCheck Then
+'
+'                Select Case i
+'                    Case 1
+'                        Me.fsub_Species_Current!Q1_hm.Enabled = False
+'                    Case 2
+'                        Me.fsub_Species_Current!Q2_5m.Enabled = False
+'                    Case 3
+'                        Me.fsub_Species_Current!Q3_10m.Enabled = False
+'                End Select
+'
+'            ElseIf Controls(strControl).Caption <> strCheck And _
+'                Controls(strControl2).Caption <> strCheck Then
+'
+'                Select Case i
+'                    Case 1
+'                        Me.fsub_Species_Current!Q1_hm.Enabled = True
+'                    Case 2
+'                        Me.fsub_Species_Current!Q2_5m.Enabled = True
+'                    Case 3
+'                        Me.fsub_Species_Current!Q3_10m.Enabled = True
+'                End Select
+'
+'                'enable fsub & controls
+'                Me.fsub_Species_Current.Enabled = True
+'
+'                Me.fsub_Species_Current!Plant_Code.Enabled = True
+'                Me.fsub_Species_Current!cbxIsDead.Enabled = True
+'
+'            End If
     
 Exit_Handler:
     Exit Sub
