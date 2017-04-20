@@ -115,7 +115,7 @@ Private Sub cmdLink_Click()
 
 Dim varItem As Variant
 Dim strTableName As String
-Dim strFileName As String
+Dim strFilename As String
 Dim strLinkType As String
 Dim tdf As DAO.TableDef
 Dim dbExternal As DAO.Database
@@ -126,10 +126,10 @@ Dim strValues As String
 
 On Error GoTo Err_Handler
 
-If Me!lstTables.ItemsSelected.count = 0 Then
+If Me!lstTables.ItemsSelected.Count = 0 Then
     MsgBox "There are no tables selected.", vbExclamation, "No Tables Selected"
 Else
-    strFileName = XML_Read("FileName", Nz(Me.OpenArgs, ""))
+    strFilename = XML_Read("FileName", Nz(Me.OpenArgs, ""))
     strLinkType = CorrectText(XML_Read("LinkType", Nz(Me.OpenArgs, "")))
     
     ' Enumerate through selected items.
@@ -139,13 +139,13 @@ Else
         If Not IsNull(DLookup("Name", "MSysObjects", "Name=" & CorrectText(strTableName))) Then
             MsgBox "A table with the name " & strTableName & " already exists in the database.  That table will not be linked.", vbInformation + vbOKOnly, "Cannot Link Table"
         Else
-            Set dbExternal = DBEngine.OpenDatabase(strFileName)
+            Set dbExternal = DBEngine.OpenDatabase(strFilename)
             Set tdfExternal = dbExternal.TableDefs(strTableName)
             strDescription = Nz(tdfExternal.Properties("Description"), "")
             'add table link
             Set tdf = CurrentDb.CreateTableDef(strTableName)
             tdf.SourceTableName = strTableName
-            tdf.connect = ";DATABASE=" & strFileName
+            tdf.connect = ";DATABASE=" & strFilename
             CurrentDb.TableDefs.Append tdf
             
             'add table link record to link table
@@ -186,11 +186,11 @@ End Sub
 
 Private Sub Form_Load()
 Dim strSQL As String
-Dim strFileName As String
+Dim strFilename As String
 
-strFileName = XML_Read("FileName", Nz(Me.OpenArgs, ""))
+strFilename = XML_Read("FileName", Nz(Me.OpenArgs, ""))
 
-strSQL = "SELECT Name FROM MSysObjects IN " & CorrectText(strFileName) & " WHERE Type=1 and Name NOT LIKE 'MSys*' and Name NOT LIKE 'tSys*' ORDER BY Name;"
+strSQL = "SELECT Name FROM MSysObjects IN " & CorrectText(strFilename) & " WHERE Type=1 and Name NOT LIKE 'MSys*' and Name NOT LIKE 'tSys*' ORDER BY Name;"
 Me!lstTables.RowSource = strSQL
 Me!lstTables.Requery
 End Sub

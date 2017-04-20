@@ -280,11 +280,11 @@ End Sub
 
 Private Sub cmdBrowse_Click()
 Dim varFileName As Variant
-Dim strfilter As String
+Dim strFilter As String
 
-strfilter = adhAddFilterItem(strfilter, "MS Access databases", "*.mdb")
+strFilter = adhAddFilterItem(strFilter, "MS Access databases", "*.mdb")
 
-varFileName = adhCommonFileOpenSave(, GetPath(CurrentDb.Name), strfilter, , , , "Select MS Access Database", True)
+varFileName = adhCommonFileOpenSave(, GetPath(CurrentDb.Name), strFilter, , , , "Select MS Access Database", True)
 
 Me!txtCurrentPath = varFileName
 Me!txtCurrentName = GetFileName(Nz(varFileName, ""))

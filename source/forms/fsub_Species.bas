@@ -805,10 +805,10 @@ Public Function CalcAvgCover() As Single
     
     Dim AvgCover As Single
     Dim TotalCover As Single
-    Dim count As Integer, i As Integer
+    Dim Count As Integer, i As Integer
     Dim strControl As String, strPosition As String
    
-    count = 0
+    Count = 0
     AvgCover = 0
     TotalCover = 0
     
@@ -844,14 +844,14 @@ Public Function CalcAvgCover() As Single
         If Me.Controls(strControl).Enabled Then
             If Not IsNull(Me.Controls(strControl)) Then
                 TotalCover = TotalCover + Me.Controls(strControl)
-                count = count + 1
+                Count = Count + 1
             End If
         End If
     Next
     
-    If count > 0 Then
+    If Count > 0 Then
         'calculate the average
-        AvgCover = TotalCover / count
+        AvgCover = TotalCover / Count
     End If
 
     CalcAvgCover = AvgCover

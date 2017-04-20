@@ -3215,12 +3215,12 @@ End Sub
 Private Sub CheckTransectLevel(strToggle As String)
 On Error GoTo Err_Handler
 
-    Dim i As Integer, count As Integer
+    Dim i As Integer, Count As Integer
     Dim strControl As String, strLabel As String, _
          strToggle2 As String, strControl2 As String
 
     'default
-    count = 0
+    Count = 0
 '    strCheck = StringFromCodepoint(uCheck)
 
     'check @ quadrat's checkbox toggle
@@ -3229,7 +3229,7 @@ On Error GoTo Err_Handler
         strControl = "tgl" & strToggle & "Q" & i
     
         If Controls(strControl).Caption = strCheck Then
-            count = count + i
+            Count = Count + i
             
             'disable species cover field
             Select Case i
@@ -3248,7 +3248,7 @@ On Error GoTo Err_Handler
     strControl = "tgl" & strToggle + "T"
     
     'check if all quadrats are set (if so, count = 1 + 2 + 3 = 6)
-    If count = 6 Then
+    If Count = 6 Then
         
         Controls(strControl).Caption = strCheck
         
@@ -3585,25 +3585,25 @@ On Error GoTo Err_Handler
     '                         Q1_hm|Q2_5m|Q3_10m fields disabled
     '                         if all --> Species & IsDead fields disabled
     ' ---------------------------------------------
-    Dim count As Integer
+    Dim Count As Integer
     Dim strControl As String, strControlQ As String
     
     'quadrat level?
     If InStr(strToggle, "Q", "") Then
         strControl = Left(strToggle, Len(strToggle) - 1) 'remove last 1|2|3
     
-        count = 0
+        Count = 0
         
         For i = 1 To 3
             strControlQ = strControl & i
             If Controls(strControlQ).Caption = strCheck Then
-                count = count + 1
+                Count = Count + 1
             End If
         Next
     
         'all quadrats set? (if so, count = 1 + 2 + 3 = 6)
         '
-        If count < 6 Then
+        If Count < 6 Then
             
             Debug.Print strControlQ & "6"
         

@@ -8,7 +8,7 @@ Dim booHasData As Boolean
 
 For Each ctl In frm.Controls
     If InStr(ctl.tag, "<data>") > 0 Then
-        If Not IsNothing(ctl.Value) Then
+        If Not IsNothing(ctl.value) Then
             booHasData = True
             Exit For
         End If

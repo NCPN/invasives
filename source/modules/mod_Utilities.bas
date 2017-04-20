@@ -485,10 +485,10 @@ Loop
 GetFileName = strFilePath
 End Function
 
-Public Function FileIsReadOnly(strFileName As String) As Boolean
+Public Function FileIsReadOnly(strFilename As String) As Boolean
 On Error GoTo Err_FileIsReadOnly
 
-FileIsReadOnly = ((GetAttr(strFileName) And vbReadOnly) <> 0)
+FileIsReadOnly = ((GetAttr(strFilename) And vbReadOnly) <> 0)
 
 Exit_FileIsReadOnly:
     Exit Function
@@ -496,7 +496,7 @@ Exit_FileIsReadOnly:
 Err_FileIsReadOnly:
     Select Case Err.Number
         Case 76  'file not found
-            MsgBox "Unable to locate file " & strFileName & "."
+            MsgBox "Unable to locate file " & strFilename & "."
         Case Else
             MsgBox Err.Number & " - " & Err.Description
             Resume Exit_FileIsReadOnly
@@ -594,12 +594,12 @@ strNewList = DelimiterCleanup(strListMain, strDelimiter)
 ListCompare = strNewList
 End Function
 
-Public Function UnrecognizedDatabaseFormat(strFileName As String) As Boolean
+Public Function UnrecognizedDatabaseFormat(strFilename As String) As Boolean
 Dim db As Database
 
 On Error GoTo Err_UnrecognizedDatabaseFormat
 
-Set db = OpenDatabase(strFileName)
+Set db = OpenDatabase(strFilename)
 
 UnrecognizedDatabaseFormat = False
 
@@ -638,7 +638,7 @@ End Function
 Public Function FiscalYear(datDate As Date) As Integer
 Dim intYear As Integer
 
-intYear = Year(datDate)
+intYear = year(datDate)
 If Month(datDate) >= 10 Then
     intYear = intYear + 1
 End If
@@ -662,7 +662,7 @@ Public Sub PrintFields(strObjectName)
 Dim db As Database
 Dim tdf As TableDef
 Dim qdf As QueryDef
-Dim fld As Field
+Dim fld As field
 Dim strOutput As String
 
 On Error Resume Next

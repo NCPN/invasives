@@ -4,12 +4,14 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Strings
 ' Level:        Framework module
-' Version:      1.10
+' Version:      1.11
 ' Description:  String related functions & subroutines
+' Requires:     Microsoft VBScript Regular Expressions 5.5 library for RemoveChars() oReg
 '
 ' Source/date:  Bonnie Campbell, April 2015
 ' Revisions:    BLC, 4/30/2015 - 1.00 - initial version
 '               BLC, 5/12/2016 - 1.01 - added Unicode strings, GetUnicode()
+'              *BLC, 3/16/2016 - 1.02 - added ReplaceMulti() [Uplands 2016 preseason mods]
 '               BLC, 5/13/2016 - 1.02 - StringFromCodePoint()
 '               BLC, 6/7/2016  - 1.03 - added InternalTrim()
 '               BLC, 6/10/2016 - 1.04 - added SplitInt()
@@ -19,7 +21,19 @@ Option Explicit
 '               BLC, 8/30/2016 - 1.07 - added ParseString()
 '               BLC, 10/25/2016 - 1.08 - added InsertSpaceBeforeCaps()
 '               BLC, 2/21/2017 - 1.09 - added PadString()
-'               BLC, 3/8/2017 - 1.10 - imported into invasives
+' --------------------------------------------------------------------
+'               BLC, 3/8/2017          added updated version to Invasives db
+' --------------------------------------------------------------------
+'               BLC, 3/8/2017 - 1.10a - imported into invasives
+' --------------------------------------------------------------------
+'               BLC, 3/22/2017          added updated version to Upland db
+' --------------------------------------------------------------------
+'               BLC, 3/22/2017 - 1.10 - added ReplaceMulti() from uplands & inserted missing version
+' --------------------------------------------------------------------
+'               BLC, 4/18/2017          re-added updated version to Invasives db
+' --------------------------------------------------------------------
+'               BLC, 4/18/2017 - 1.11 - added updated version to Invasives db, added Requires documentation
+'                                       for regular expressions
 ' =================================
 
 '---------------------
@@ -265,6 +279,59 @@ Err_Handler:
     Resume Exit_Handler
 End Function
 
+' ---------------------------------
+' SUB:          ReplaceMulti
+' Description:  Replaces multiple strings found in a string
+' Assumptions:  params() is a string array where the search string & its replacement are within
+'               the item value separated by a pipe (|) character
+'                   ex:      my_original_value|my_replacement_string
+'               the pipe(|) separator is used to delineate the searched & replacement strings
+'                   ex:     split(params(0),"|)    yields the first term to search for & its replacement (0 index = search text, 1 index = replacement text)
+' Parameters:   strOriginal - original string value
+'               params() - string array for strings to replace & what to replace them with
+' Returns:      -
+' Throws:       none
+' References:   none
+' Source/date:  Bonnie Campbell, March 16, 2016 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/16/2016  - initial version
+' ---------------------------------
+Public Function ReplaceMulti(strOriginal As String, params() As String)
+On Error GoTo Err_Handler
+
+    Dim strNew As String, aryText() As String
+    Dim i As Integer
+
+    'default
+    strNew = strOriginal
+
+    'check all params for length, then do replacement
+    For i = 0 To UBound(params)
+        
+        'get search & replacement text array
+        aryText = Split(params(i), "|")
+        
+        'replace if original strlen is > 0 and search & replacement strings exist
+        If Len(strOriginal) > 0 And UBound(aryText) = 1 Then
+            strNew = Replace(strNew, aryText(0), aryText(1))
+        End If
+    
+    Next
+
+Exit_Handler:
+    ReplaceMulti = strNew
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ReplaceMulti[mod_Strings])"
+    End Select
+    Resume Exit_Handler
+End Function
+
 ' =================================
 ' FUNCTION:     ChangeDelimiter
 ' Description:  Replaces delimiters in an input string; default is to change double-quotes
@@ -386,7 +453,7 @@ End Function
 ' Assumptions:  -
 ' Parameters:   strInspect - string to check
 '               strFind - string to count
-' Returns:      count - number o instances strFind is found in strInspect
+' Returns:      count - number of instances strFind is found in strInspect
 ' Throws:       none
 ' References:   none
 ' Source/date:
@@ -401,16 +468,16 @@ End Function
 ' ---------------------------------
 Public Function CountInString(ByVal strInspect As String, ByVal strFind As String) As Integer
 On Error GoTo Err_Handler:
-     Dim count As Integer
+     Dim Count As Integer
 
     'default
-    count = 0
+    Count = 0
     
     If Len(strInspect) > 0 Then
-        count = UBound(Split(strInspect, strFind))
+        Count = UBound(Split(strInspect, strFind))
     End If
     
-    CountInString = count
+    CountInString = Count
 
 Exit_Handler:
     Exit Function
@@ -522,53 +589,53 @@ Err_Handler:
     Resume Exit_Handler
 End Function
 
-' COMMENTED OUT IN INVASIVES
-'' ---------------------------------
-'' FUNCTION:     RemoveChars
-'' Description:  Removes non-numeric or numeric values from a string
-'' Assumptions:  -
-'' Parameters:   strInspect - string to remove non-numerics from
-''               blnNumeric - whether numbers or non-numerics are returned (boolean),
-''                            (true - return numbers only, false - return non-numerics only)
-'' Returns:      string - numeric or non-numeric portion of string depending on blnNumeric
-'' Throws:       none
-'' References:
-''   Ivan F. Moala, June 12, 2004
-''   http://www.xtremevbtalk.com/archive/index.php/t-172627.html
-'' Source/date:  Bonnie Campbell, June 24, 2016 for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC, 6/24/2016 - initial version
-'' ---------------------------------
-'Public Function RemoveChars(ByVal strInspect As String, blnNumeric As Boolean) As String
-'On Error GoTo Err_Handler:
-'
-'    Dim oReg As RegExp
-'
-'    Set oReg = CreateObject("vbScript.regexp")
-'
-'    With oReg
-'        If blnNumeric Then
-'            .Pattern = "[^\d]+" '\d -> digit character of any length
-'        Else
-'            .Pattern = "[^\D]+" '\D -> non-digit character of any length
-'        End If
-'        .Global = True
-'    End With
-'
-'    RemoveChars = oReg.Replace(strInspect, "")
-'
-'Exit_Handler:
-'    Exit Function
-'
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - RemoveNonNumerics[mod_Strings])"
-'    End Select
-'    Resume Exit_Handler
-'End Function
+' ---------------------------------
+' FUNCTION:     RemoveChars
+' Description:  Removes non-numeric or numeric values from a string
+' Assumptions:  -
+' Parameters:   strInspect - string to remove non-numerics from
+'               blnNumeric - whether numbers or non-numerics are returned (boolean),
+'                            (true - return numbers only, false - return non-numerics only)
+' Returns:      string - numeric or non-numeric portion of string depending on blnNumeric
+' Throws:       none
+' Dependency:
+' References:
+'   Ivan F. Moala, June 12, 2004
+'   http://www.xtremevbtalk.com/archive/index.php/t-172627.html
+' Source/date:  Bonnie Campbell, June 24, 2016 for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 6/24/2016 - initial version
+' ---------------------------------
+Public Function RemoveChars(ByVal strInspect As String, blnNumeric As Boolean) As String
+On Error GoTo Err_Handler:
+
+    Dim oReg As RegExp
+
+    Set oReg = CreateObject("vbScript.regexp")
+
+    With oReg
+        If blnNumeric Then
+            .Pattern = "[^\d]+" '\d -> digit character of any length
+        Else
+            .Pattern = "[^\D]+" '\D -> non-digit character of any length
+        End If
+        .Global = True
+    End With
+
+    RemoveChars = oReg.Replace(strInspect, "")
+
+Exit_Handler:
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - RemoveNonNumerics[mod_Strings])"
+    End Select
+    Resume Exit_Handler
+End Function
 
 ' ---------------------------------
 ' FUNCTION:     ExtractString
@@ -626,17 +693,17 @@ End Function
 Public Function ParseString(str As String, idx As Integer, Optional delimiter As String = "|") As String
 On Error GoTo Err_Handler
 
-    Dim items() As String
-    Dim item As String
+    Dim Items() As String
+    Dim Item As String
         
-    items() = Split(str, delimiter)
+    Items() = Split(str, delimiter)
     
-    If UBound(items) + 1 > idx Then
-        item = items(idx)
+    If UBound(Items) + 1 > idx Then
+        Item = Items(idx)
     End If
     
 Exit_Handler:
-    ParseString = item
+    ParseString = Item
     Exit Function
     
 Err_Handler:

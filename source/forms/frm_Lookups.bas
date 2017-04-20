@@ -299,7 +299,7 @@ Private Sub selTable_AfterUpdate()
     Else:
     ' If a table is selected ...
         booAllowEdits = DLookup("[Allow_edits_lookup]", "tsys_Link_Tables", "[Link_table]=" & CorrectText(Me.selTable))
-        Me.subLookupTables.SourceObject = "Table." & Me.selTable.Value
+        Me.subLookupTables.SourceObject = "Table." & Me.selTable.value
         Me.subLookupTables.Locked = Not booAllowEdits
         Me.subLookupTables.Form.AllowDeletions = booAllowEdits
         Me.subLookupTables.Form.AllowEdits = booAllowEdits

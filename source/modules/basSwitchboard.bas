@@ -243,7 +243,7 @@ Public Function fxnMakeBackup()
     Dim strLinkType As String
     Dim strSourceFileName As String
     Dim strCopyFileName As Variant
-    Dim strFileName As String
+    Dim strFilename As String
     Dim strBackupDate As String
 
     Set db = CurrentDb
@@ -271,10 +271,10 @@ Public Function fxnMakeBackup()
     Else
       If Right(strSourceFileName, 4) = ".mdb" Then
         ' Backup for 2003 back end
-        strFileName = Left(strSourceFileName, Len(strSourceFileName) - 4) & _
+        strFilename = Left(strSourceFileName, Len(strSourceFileName) - 4) & _
             "_" & strBackupDate & ".mdb"
         ' Open the save file dialog and update to the actual name given by the user
-        strCopyFileName = fxnSaveFile(strFileName, "Access (*.mdb)", "*.mdb")
+        strCopyFileName = fxnSaveFile(strFilename, "Access (*.mdb)", "*.mdb")
 
         If IsNull(strCopyFileName) Then
             ' User canceled save operation
@@ -287,10 +287,10 @@ Public Function fxnMakeBackup()
         End If
       Else
         ' Backup for 2010 back end
-        strFileName = Left(strSourceFileName, Len(strSourceFileName) - 6) & _
+        strFilename = Left(strSourceFileName, Len(strSourceFileName) - 6) & _
             "_" & strBackupDate & ".accdb"
         ' Open the save file dialog and update to the actual name given by the user
-        strCopyFileName = fxnSaveFile(strFileName, "Access (*.accdb)", "*.accdb")
+        strCopyFileName = fxnSaveFile(strFilename, "Access (*.accdb)", "*.accdb")
 
         If IsNull(strCopyFileName) Then
             ' User canceled save operation
@@ -350,26 +350,26 @@ End Function
 ' Revisions:    JRB, May 16, 2006 - updated documentation, error traps
 ' =================================
 
-Public Function fxnSaveFile(strFileName As String, strFileType As String, _
+Public Function fxnSaveFile(strFilename As String, strFileType As String, _
     strFileExt As String) As Variant
 
     On Error GoTo Err_Handler
 
-    Dim strfilter As String
+    Dim strFilter As String
     Dim lngFlags As Long
 
     ' Use the save file dialog to interactively select the save file name and location
-    strfilter = adhAddFilterItem(strfilter, strFileType, strFileExt)
+    strFilter = adhAddFilterItem(strFilter, strFileType, strFileExt)
 
     lngFlags = adhOFN_HIDEREADONLY Or adhOFN_OVERWRITEPROMPT Or _
         adhOFN_HIDEREADONLY Or adhOFN_NOCHANGEDIR
 
     fxnSaveFile = adhCommonFileOpenSave( _
         OpenFile:=False, _
-        Filter:=strfilter, _
+        Filter:=strFilter, _
         flags:=lngFlags, _
         DialogTitle:="Save As", _
-        fileName:=strFileName)
+        fileName:=strFilename)
 
 Exit_Procedure:
     Exit Function

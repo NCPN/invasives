@@ -342,9 +342,9 @@ On Error GoTo Err_Handler
 
     For Each QDef In CurrentDb.QueryDefs
         If QDef.Name Like QryName Then
-            If InStr(QDef.sql, SearchText) > 0 Then
+            If InStr(QDef.SQL, SearchText) > 0 Then
                 Debug.Print QDef.Name
-                If ShowSQL Then Debug.Print QDef.sql & vbCrLf
+                If ShowSQL Then Debug.Print QDef.SQL & vbCrLf
             End If
         End If
     Next QDef
@@ -423,11 +423,11 @@ On Error GoTo Err_Handler
                         Set frm = Application.Forms(obj.Name)
                         For Each prop In frm.Properties
                             Err.Clear
-                            If InStr(prop.Value, SearchText) > 0 Then
+                            If InStr(prop.value, SearchText) > 0 Then
                                 If Err.Number = 0 Then
                                     Debug.Print "Form: " & frm.Name & _
                                                 "  Property: " & prop.Name & _
-                                                "  Value: " & prop.Value
+                                                "  Value: " & prop.value
                                 End If
                             End If
                         Next prop
@@ -446,12 +446,12 @@ On Error GoTo Err_Handler
                         For Each ctl In frm.Controls
                             For Each prop In ctl.Properties
                                 Err.Clear
-                                If InStr(prop.Value, SearchText) > 0 Then
+                                If InStr(prop.value, SearchText) > 0 Then
                                     If Err.Number = 0 Then
                                         Debug.Print "Form: " & frm.Name & _
                                                     "  Control: " & ctl.Name & _
                                                     "  Property: " & prop.Name & _
-                                                    "  Value: " & prop.Value
+                                                    "  Value: " & prop.value
                                     End If
                                 End If
                             Next prop
@@ -502,11 +502,11 @@ On Error GoTo Err_Handler
                         Set rpt = Application.Reports(obj.Name)
                         For Each prop In rpt.Properties
                             Err.Clear
-                            If InStr(prop.Value, SearchText) > 0 Then
+                            If InStr(prop.value, SearchText) > 0 Then
                                 If Err.Number = 0 Then
                                     Debug.Print "Report: " & rpt.Name & _
                                                 "  Property: " & prop.Name & _
-                                                "  Value: " & prop.Value
+                                                "  Value: " & prop.value
                                 End If
                             End If
                         Next prop
@@ -524,11 +524,11 @@ On Error GoTo Err_Handler
                         End If
                         For Each ctl In rpt.Controls
                             For Each prop In ctl.Properties
-                                If InStr(prop.Value, SearchText) > 0 Then
+                                If InStr(prop.value, SearchText) > 0 Then
                                     Debug.Print "Report: " & rpt.Name & _
                                                 "  Control: " & ctl.Name & _
                                                 "  Property: " & prop.Name & _
-                                                "  Value: " & prop.Value
+                                                "  Value: " & prop.value
                                 End If
                             Next prop
                         Next ctl
@@ -561,6 +561,11 @@ End Sub
 
 Public Sub runtest()
     'SearchDB "tbl_Quadrat_Species"
-    SearchDB "tbl_Quadrat_Transect"
+    'SearchDB "tbl_Quadrat_Transect"
+
+    Dim sfc As New Surface
+    
+    sfc.ID = 3
+    sfc.Init 3
 
 End Sub
