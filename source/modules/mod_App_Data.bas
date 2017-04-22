@@ -966,6 +966,18 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     .Parameters("sid") = TempVars("SurfaceID")
                 
+                Case "s_speciescover_by_transect"
+                    '-- required parameters --
+                    .Parameters("pkcode") = TempVars("ParkCode")
+                    .Parameters("eid") = TempVars("Event_ID")
+                    .Parameters("tid") = TempVars("Transect_ID")
+                
+                Case "s_surfacecover_by_transect"
+                    '-- required parameters --
+                    .Parameters("pkcode") = TempVars("ParkCode")
+                    .Parameters("eid") = TempVars("Event_ID")
+                    .Parameters("tid") = TempVars("Transect_ID")
+                
                 Case Else
                     'handle other non-parameterized queries
                     

@@ -23,15 +23,23 @@ Option Explicit
 Private m_CoverSpecies As New CoverSpecies
 
 Private m_IsDead As Byte
+Private m_AverageCover As Single
+Private m_PctCoverQ1 As Single
+Private m_PctCoverQ2 As Single
+Private m_PctCoverQ3 As Single
 
 '---------------------
 ' Events
 '---------------------
 Public Event InvalidIsDead(value As Byte)
+Public Event InvalidAverageCover(value As Single)
+Public Event InvalidPctCoverQ1(values As Single)
+Public Event InvalidPctCoverQ2(values As Single)
+Public Event InvalidPctCoverQ3(values As Single)
 
 '-- base events (coverspecies)
 Public Event InvalidQuadratID(value As String)
-Public Event InvalidPercentCover(value As Integer)
+Public Event InvalidPctCover(value As Integer)
 
 '-- base events (species) --
 Public Event InvalidMasterPlantCode(value As String)
@@ -55,6 +63,54 @@ Public Property Get IsDead() As Byte
     IsDead = m_IsDead
 End Property
 
+Public Property Let AverageCover(value As Single)
+    If varType(value) = vbSingle Then
+        m_AverageCover = value
+    Else
+        RaiseEvent InvalidAverageCover(value)
+    End If
+End Property
+
+Public Property Get AverageCover() As Single
+    AverageCover = m_AverageCover
+End Property
+
+Public Property Let PctCoverQ1(value As Single)
+    If IsBetween(value, 0, 100, True) Then
+        PctCoverQ1 = value
+    Else
+        RaiseEvent InvalidPctCoverQ1(value)
+    End If
+End Property
+
+Public Property Get PctCoverQ1() As Single
+    PctCoverQ1 = PctCoverQ1
+End Property
+
+Public Property Let PctCoverQ2(value As Single)
+    If IsBetween(value, 0, 100, True) Then
+        PctCoverQ2 = value
+    Else
+        RaiseEvent InvalidPctCoverQ2(value)
+    End If
+End Property
+
+Public Property Get PctCoverQ2() As Single
+    PctCoverQ2 = PctCoverQ2
+End Property
+
+Public Property Let PctCoverQ3(value As Single)
+    If IsBetween(value, 0, 100, True) Then
+        PctCoverQ3 = value
+    Else
+        RaiseEvent InvalidPctCoverQ3(value)
+    End If
+End Property
+
+Public Property Get PctCoverQ3() As Single
+    PctCoverQ3 = PctCoverQ3
+End Property
+
 ' ---------------------------
 ' -- base class properties --
 ' ---------------------------
@@ -71,16 +127,16 @@ Public Property Get QuadratID() As Long
     QuadratID = m_CoverSpecies.QuadratID
 End Property
 
-Public Property Let PercentCover(value As Integer)
+Public Property Let PctCover(value As Integer)
     If IsBetween(value, 0, 100, True) Then
-        m_CoverSpecies.PercentCover = value
+        m_CoverSpecies.PctCover = value
     Else
-        RaiseEvent InvalidPercentCover(value)
+        RaiseEvent InvalidPctCover(value)
     End If
 End Property
 
-Public Property Get PercentCover() As Integer
-    PercentCover = m_CoverSpecies.PercentCover
+Public Property Get PctCover() As Integer
+    PctCover = m_CoverSpecies.PctCover
 End Property
 
 ' ---------------------------
@@ -472,7 +528,7 @@ On Error GoTo Err_Handler
         params(0) = "InvasiveCoverSpecies"
         params(1) = .QuadratID
         params(2) = .MasterPlantCode
-        params(3) = .PercentCover
+        params(3) = .PctCover
         params(4) = .IsDead
         
         If IsUpdate Then

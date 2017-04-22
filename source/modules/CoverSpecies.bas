@@ -22,14 +22,14 @@ Option Explicit
 '---------------------
 Private m_Species As New Species
 
-Private m_PercentCover As Integer
+Private m_PctCover As Integer
 Private m_QuadratID As Long
 
 '---------------------
 ' Events
 '---------------------
 Public Event InvalidQuadratID(value As String)
-Public Event InvalidPercentCover(value As Integer)
+Public Event InvalidPctCover(value As Integer)
 
 '-- base events --
 Public Event InvalidMasterPlantCode(value As String)
@@ -49,16 +49,16 @@ Public Property Get QuadratID() As Long
     QuadratID = m_QuadratID
 End Property
 
-Public Property Let PercentCover(value As Integer)
+Public Property Let PctCover(value As Integer)
     If IsBetween(value, 0, 100, True) Then
-        m_PercentCover = value
+        m_PctCover = value
     Else
-        RaiseEvent InvalidPercentCover(value)
+        RaiseEvent InvalidPctCover(value)
     End If
 End Property
 
-Public Property Get PercentCover() As Integer
-    PercentCover = m_PercentCover
+Public Property Get PctCover() As Integer
+    PctCover = m_PctCover
 End Property
 
 ' ---------------------------
@@ -437,7 +437,7 @@ On Error GoTo Err_Handler
         params(0) = "CoverSpecies"
         params(1) = .QuadratID
         params(2) = .MasterPlantCode
-        params(3) = .PercentCover
+        params(3) = .PctCover
         
         If IsUpdate Then
             Template = "u_cover_species"

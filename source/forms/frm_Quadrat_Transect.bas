@@ -19,10 +19,10 @@ Begin Form
     Width =13320
     DatasheetFontHeight =9
     ItemSuffix =59
-    Left =-2010
-    Top =525
-    Right =11670
-    Bottom =9570
+    Left =-2040
+    Top =1215
+    Right =11640
+    Bottom =10260
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -2351,7 +2351,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.02
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -2365,6 +2365,7 @@ Option Explicit
 '                                       revised subform control to NOT match form name it contains
 '                                       therefore fsub_Current is the container for fsub_Species subform
 '                                       (handles 2010 & later species)
+'               BLC - 4/21/2017 - 1.02 - added check for if species subform has records
 ' =================================
 
 '---------------------
@@ -2448,6 +2449,7 @@ End Sub
 '                    revised subform control to NOT match form name it contains
 '                    therefore fsub_Current is the container for fsub_Species subform
 '                    (handles 2010 & later species)
+'   BLC - 4/21/2017 - added check for if species subform has records
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
@@ -2468,6 +2470,17 @@ On Error GoTo Err_Handler
 
     'update AvgCover
     Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
+
+    'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
+    If Me.fsub_Species_Current.Form.HasRecords = True Then
+        
+        'check if Q1,Q2,Q3 % Cover values are set
+       
+        
+        'disable transect & quadrat toggles
+        DisableToggles
+        
+    End If
 
 Exit_Handler:
     Exit Sub
@@ -3650,6 +3663,132 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - SetToggles[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          DisableToggles
+' Description:  Disables NotSampled & NoExotics toggles @ all levels (Transect & Quadrat)
+' Assumptions:  When disabled, all toggle values should be cleared
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 21, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/21/2016 - initial version
+' ---------------------------------
+Private Sub DisableToggles()
+On Error GoTo Err_Handler
+    
+    '------------------------------------------
+    ' Species in subform ==> clear & disable toggles
+    '   NotSampled
+    '       transect OFF --> quadrats & NoExotics OFF
+    '   NoExotics
+    '       transect OFF --> quadrats OFF
+    '------------------------------------------
+    Dim aryToggles() As String
+    Dim tgl As Variant
+    Dim tglName As String, tglNameT As String
+    Dim strToggle As String, strLabel As String
+    Dim i As Integer
+    
+    'use split for string (vs. variant) array
+    aryToggles = Split("NotSampled,NoExotics", ",")
+    
+    For Each tgl In aryToggles
+        'set toggle name
+        tglName = "tgl" & tgl
+    
+        'clear & disable transect toggles
+        tglNameT = tglName & "T"
+        Controls(tglNameT).Enabled = False
+        Controls(tglNameT).Caption = ""
+        Controls("lblTransect").ForeColor = lngGray50
+    
+        'clear & disable quadrat toggles
+        For i = 1 To 3
+            'NotSampled/NoExotics
+            strToggle = tglName & "Q" & i
+            Controls(strToggle).Enabled = False
+            Controls(strToggle).Caption = ""
+            strLabel = "lblQ" & i
+            Controls(strLabel).ForeColor = lngGray50
+        Next
+    Next
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - DisableToggles[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          EnableToggles
+' Description:  Enables NotSampled & NoExotics toggles @ all levels (Transect & Quadrat)
+' Assumptions:  When enabled, all toggle values are left alone
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 21, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/21/2016 - initial version
+' ---------------------------------
+Private Sub EnableToggles()
+On Error GoTo Err_Handler
+    
+    '------------------------------------------
+    ' No Species in subform ==> enable toggles
+    '   NotSampled
+    '       transect ON --> quadrats & NoExotics ON
+    '   NoExotics
+    '       transect ON --> quadrats ON
+    '------------------------------------------
+    Dim aryToggles() As String
+    Dim tgl As Variant
+    Dim tglName As String, tglNameT As String
+    Dim strToggle As String, strLabel As String
+    Dim i As Integer
+    
+    'use split for string (vs. variant) array
+    aryToggles = Split("NotSampled,NoExotics", ",")
+    
+    For Each tgl In aryToggles
+        'set toggle name
+        tglName = "tgl" & tgl
+    
+        'clear & Enable transect toggles
+        tglNameT = tglName & "T"
+        Controls(tglNameT).Enabled = True
+        Controls("lblTransect").ForeColor = lngBlack
+    
+        'enable quadrat toggles
+        For i = 1 To 3
+            'NotSampled/NoExotics
+            strToggle = tglName & "Q" & i
+            Controls(strToggle).Enabled = True
+            strLabel = "lblQ" & i
+            Controls(strLabel).ForeColor = lngBlack
+        Next
+    Next
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - EnableToggles[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub

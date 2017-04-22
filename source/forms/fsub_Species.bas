@@ -15,7 +15,7 @@ Begin Form
     ItemSuffix =47
     Left =10410
     Top =3060
-    Right =18960
+    Right =12495
     Bottom =9465
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -427,6 +427,7 @@ Option Explicit
 ' References:   -
 ' Revisions:    RDB - Unknown - 1.00 - initial version
 '               BLC - 3/8/2017 - 1.01 - added documentation, error handling
+'               BLC - 4/21/2017 - 1.02 - added HasRecords properties
 ' =================================
 
 '---------------------
@@ -436,14 +437,70 @@ Option Explicit
 '---------------------
 ' Declarations
 '---------------------
+Private m_HasRecords As Boolean
+Private m_HasRecordsQ1 As Boolean
+Private m_HasRecordsQ2 As Boolean
+Private m_HasRecordsQ3 As Boolean
 
 '---------------------
 ' Event Declarations
 '---------------------
+Public Event InvalidHasRecords(value As Boolean)
+Public Event InvalidHasRecordsQ1(value As Boolean)
+Public Event InvalidHasRecordsQ2(value As Boolean)
+Public Event InvalidHasRecordsQ3(value As Boolean)
 
 '---------------------
 ' Properties
 '---------------------
+Public Property Let HasRecords(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecords = value
+    Else
+        RaiseEvent InvalidHasRecords(value)
+    End If
+End Property
+
+Public Property Get HasRecords() As Boolean
+    HasRecords = m_HasRecords
+End Property
+
+Public Property Let HasRecordsQ1(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ1 = value
+    Else
+        RaiseEvent InvalidHasRecordsQ1(value)
+    End If
+End Property
+
+Public Property Get HasRecordsQ1() As Boolean
+    HasRecordsQ1 = m_HasRecordsQ1
+End Property
+
+Public Property Let HasRecordsQ2(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ2 = value
+    Else
+        RaiseEvent InvalidHasRecordsQ2(value)
+    End If
+End Property
+
+Public Property Get HasRecordsQ2() As Boolean
+    HasRecordsQ2 = m_HasRecordsQ2
+End Property
+
+Public Property Let HasRecordsQ3(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ3 = value
+    Else
+        RaiseEvent InvalidHasRecordsQ3(value)
+    End If
+End Property
+
+Public Property Get HasRecordsQ3() As Boolean
+    HasRecordsQ3 = m_HasRecordsQ3
+End Property
+
 
 '---------------------
 ' Methods
@@ -462,11 +519,17 @@ Option Explicit
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 4/21/2017 - added setting HasRecordsQ1-3 properties
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
-  
+    'default
+    Me.HasRecords = False
+    
+    'determine if Q1-3 have records
+    If Me.Form.Recordset.RecordCount > 0 Then Me.HasRecords = True
+
 Exit_Handler:
     Exit Sub
 Err_Handler:
