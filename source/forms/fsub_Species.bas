@@ -13,16 +13,17 @@ Begin Form
     Width =7800
     DatasheetFontHeight =9
     ItemSuffix =47
-    Left =10410
-    Top =3060
-    Right =12495
-    Bottom =9465
+    Left =2580
+    Top =2235
+    Right =11130
+    Bottom =8640
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x43f03470521ee340
     End
     RecordSource ="tbl_Quadrat_Species"
     Caption ="fsub_Species"
+    OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
@@ -427,7 +428,7 @@ Option Explicit
 ' References:   -
 ' Revisions:    RDB - Unknown - 1.00 - initial version
 '               BLC - 3/8/2017 - 1.01 - added documentation, error handling
-'               BLC - 4/21/2017 - 1.02 - added HasRecords properties
+'               BLC - 4/21/2017 - 1.02 - added HasRecords, ParentForm properties
 ' =================================
 
 '---------------------
@@ -437,6 +438,7 @@ Option Explicit
 '---------------------
 ' Declarations
 '---------------------
+'Private WithEvents m_ParentForm As Form 'Form_frm_Quadrat_Transect
 Private m_HasRecords As Boolean
 Private m_HasRecordsQ1 As Boolean
 Private m_HasRecordsQ2 As Boolean
@@ -453,6 +455,14 @@ Public Event InvalidHasRecordsQ3(value As Boolean)
 '---------------------
 ' Properties
 '---------------------
+'Public Property Let ParentForm(value As Form) '_frm_Quadrat_Transect)
+'    m_ParentForm = value
+'End Property
+'
+'Public Property Get ParentForm() As Form '_frm_Quadrat_Transect
+'    Set ParentForm = m_ParentForm
+'End Property
+
 Public Property Let HasRecords(value As Boolean)
     If varType(value) = vbBoolean Then
         m_HasRecords = value
@@ -524,11 +534,30 @@ End Property
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
-    'default
+    'defaults
     Me.HasRecords = False
-    
+    Me.HasRecordsQ1 = False
+    Me.HasRecordsQ2 = False
+    Me.HasRecordsQ3 = False
+
     'determine if Q1-3 have records
-    If Me.Form.Recordset.RecordCount > 0 Then Me.HasRecords = True
+    If Me.Form.Recordset.RecordCount > 0 And Not IsNull(Me.Plant_Code) Then Me.HasRecords = True
+
+'    'determine if any Q1-3 has values
+'    If Not IsNull(Me.Q1_hm) Then
+'        Debug.Print "Q1_hm: " & Q1_hm
+'        HasRecordsQ1 = True
+'    End If
+'
+'    If Not IsNull(Me.Q2_8m) Then
+'        Debug.Print "Q2_8m: " & Q2_8m
+'        HasRecordsQ2 = True
+'    End If
+'
+'    If Not IsNull(Me.Q3_13m) Then
+'        Debug.Print "Q3_13m: " & Q3_13m
+'        HasRecordsQ3 = True
+'    End If
 
 Exit_Handler:
     Exit Sub
@@ -537,6 +566,59 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_Open[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_Current
+' Description:  form current actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 21, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/21/2017 - initial version
+' ---------------------------------
+Private Sub Form_Current()
+    On Error GoTo Err_Handler
+
+    'defaults
+    HasRecords = False
+    HasRecordsQ1 = False
+    HasRecordsQ2 = False
+    HasRecordsQ3 = False
+    
+    If Me.Form.Recordset.RecordCount > 0 And Not IsNull(Me.Plant_Code) Then _
+        Me.HasRecords = True
+    
+    'determine if any Q1-3 has values
+    
+    Debug.Print "Q1_hm: " & Q1_hm
+    If Not IsNull(Me.Q1_hm) Then
+        HasRecordsQ1 = True
+    End If
+
+    Debug.Print "Q2_8m: " & Q2_8m
+    If Not IsNull(Me.Q2_8m) Then
+        HasRecordsQ2 = True
+    End If
+
+    Debug.Print "Q3_13m: " & Q3_13m
+    If Not IsNull(Me.Q3_13m) Then
+        HasRecordsQ3 = True
+    End If
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Current[fsub_Species form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -578,6 +660,38 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_BeforeInsert[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          ParentForm_Current
+' Description:  Parent form current actions
+' Assumptions:  parent form is frm_Quadrat_Transect
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:
+'   Harvey French, July 31, 2015
+'   http://stackoverflow.com/questions/31611912/how-best-to-call-a-public-sub-routine-declared-in-a-form-used-as-the-source-obje
+' Source/date:  Bonnie Campbell, April 21, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/21/2017 - initial version
+' ---------------------------------
+Private Sub ParentForm_Current(Cancel As Integer)
+    On Error GoTo Err_Handler
+
+'respond to parent form current action
+
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - ParentForm_Current[fsub_Species form])"
     End Select
     Resume Exit_Handler
 End Sub

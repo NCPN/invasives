@@ -1722,6 +1722,7 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =4155
                     Top =2025
@@ -1780,7 +1781,7 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =0
+                            ForeColor =8355711
                             Name ="lblQ3"
                             Caption ="Q3"
                             FontName ="Calibri"
@@ -1794,13 +1795,13 @@ Begin Form
                             BackThemeColorIndex =1
                             BorderThemeColorIndex =0
                             BorderTint =50.0
-                            ForeThemeColorIndex =0
                             GridlineThemeColorIndex =1
                             GridlineShade =65.0
                         End
                     End
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =3720
                     Top =2025
@@ -1832,8 +1833,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -1860,7 +1860,7 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =0
+                            ForeColor =8355711
                             Name ="lblQ2"
                             Caption ="Q2"
                             FontName ="Calibri"
@@ -1874,13 +1874,13 @@ Begin Form
                             BackThemeColorIndex =1
                             BorderThemeColorIndex =0
                             BorderTint =50.0
-                            ForeThemeColorIndex =0
                             GridlineThemeColorIndex =1
                             GridlineShade =65.0
                         End
                     End
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =3285
                     Top =2025
@@ -1912,8 +1912,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -1940,7 +1939,7 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =0
+                            ForeColor =8355711
                             Name ="lblQ1"
                             Caption ="Q1"
                             FontName ="Calibri"
@@ -1954,13 +1953,13 @@ Begin Form
                             BackThemeColorIndex =1
                             BorderThemeColorIndex =0
                             BorderTint =50.0
-                            ForeThemeColorIndex =0
                             GridlineThemeColorIndex =1
                             GridlineShade =65.0
                         End
                     End
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =2520
                     Top =2040
@@ -1992,8 +1991,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -2020,7 +2018,7 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =0
+                            ForeColor =8355711
                             Name ="lblTransect"
                             Caption ="Transect"
                             FontName ="Calibri"
@@ -2034,7 +2032,6 @@ Begin Form
                             BackThemeColorIndex =1
                             BorderThemeColorIndex =0
                             BorderTint =50.0
-                            ForeThemeColorIndex =0
                             GridlineThemeColorIndex =1
                             GridlineShade =65.0
                         End
@@ -2070,6 +2067,7 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =4155
                     Top =1605
@@ -2119,6 +2117,7 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =3720
                     Top =1605
@@ -2150,8 +2149,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -2169,6 +2167,7 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =3285
                     Top =1605
@@ -2200,8 +2199,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -2219,6 +2217,7 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
+                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =2520
                     Top =1620
@@ -2250,8 +2249,7 @@ Begin Form
                     BorderColor =12419407
                     BorderThemeColorIndex =4
                     ThemeFontIndex =1
-                    HoverColor =13277810
-                    HoverThemeColorIndex =4
+                    HoverColor =65280
                     HoverTint =80.0
                     PressedColor =10250042
                     PressedThemeColorIndex =4
@@ -2315,6 +2313,7 @@ Begin Form
                     LayoutCachedHeight =7738
                 End
                 Begin Subform
+                    Visible = NotDefault
                     OverlapFlags =247
                     SpecialEffect =0
                     Left =7080
@@ -2351,7 +2350,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.02
+' Version:      1.03
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -2366,6 +2365,8 @@ Option Explicit
 '                                       therefore fsub_Current is the container for fsub_Species subform
 '                                       (handles 2010 & later species)
 '               BLC - 4/21/2017 - 1.02 - added check for if species subform has records
+'               BLC - 4/23/2017 - 1.03 - revised Next/Previous to cycle through transects vs. presenting
+'                                        error message (Error 2105 - can't go to specified record)
 ' =================================
 
 '---------------------
@@ -2396,12 +2397,16 @@ Dim strCheck As String
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   Harvey French, July 31, 2015
+'   http://stackoverflow.com/questions/31611912/how-best-to-call-a-public-sub-routine-declared-in-a-form-used-as-the-source-obje
 ' Source/date:  NCPN, Unknown - for NCPN tools
 ' Adapted:      -
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 4/23/2017 - added initialization for transect # since Next/Previous
+'                     buttons now cycle through the transects vs. stopping w/ 2105 error message
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -2421,6 +2426,24 @@ On Error GoTo Err_Handler
     
     'defaults
     Me.fsub_Message.Visible = False
+    
+    'initialize toggles (all toggles begin w/ tgl)
+    Dim ctl As Control
+    
+    For Each ctl In Me.Controls
+        If Left(ctl.Name, 3) = "tgl" Then
+            ctl.Enabled = True
+            ctl.ForeColor = lngBlack
+        End If
+    Next
+  
+    'initialize subform properties
+'    If Me.fsub_Species_Current.Form.ParentForm Is Nothing Then _
+'        Me.fsub_Species_Current.Form.ParentForm = Me
+  
+    'set starting transect # to red
+    '(1st & last transects are red for bounding since Next/Previous cycle)
+    Me.Transect.ForeColor = lngRed
   
 Exit_Handler:
     Exit Sub
@@ -2440,7 +2463,9 @@ End Sub
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   Patrick Lepelletier, April 19, 2016
+'   http://stackoverflow.com/questions/7000334/deleting-elements-in-an-array-if-element-is-a-certain-value-vba
 ' Source/date:  NCPN, Unknown - for NCPN tools
 ' Adapted:      -
 ' Revisions:
@@ -2469,18 +2494,45 @@ On Error GoTo Err_Handler
   End If
 
     'update AvgCover
-    Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
-
-    'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
-    If Me.fsub_Species_Current.Form.HasRecords = True Then
+    'Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
+    
+    'set up toggles depending on species data
+    With Me.fsub_Species_Current.Form
+    
+        Debug.Print .HasRecords
+        'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
+        If .HasRecords = True Then
+            
+            'check if Q1,Q2,Q3 % Cover values are set
+           Debug.Print .Plant_Code
+           Debug.Print .HasRecordsQ1 & "-"; .HasRecordsQ2 & "-"; .HasRecordsQ3
+            'disable transect & quadrat toggles
+            DisableToggles
+            
+            
+            'enable select toggles depending on which quadrats have records
+            Dim colToggles As New Collection
+            Dim i As Integer
+            Dim tgl As Variant
+            
+            For i = 1 To 3
+                colToggles.Add i
+            Next
+            
+            If .HasRecordsQ1 Then colToggles.Remove 1 'remove 1
+            If .HasRecordsQ2 Then colToggles.Remove 2 'remove 2
+            If .HasRecordsQ3 Then colToggles.Remove 3 'remove 3
+            
+            For Each tgl In colToggles
+                EnableToggles CInt(tgl)
+            Next
+        Else
+            
+            'enable transect & quadrat toggles
+            EnableToggles
         
-        'check if Q1,Q2,Q3 % Cover values are set
-       
-        
-        'disable transect & quadrat toggles
-        DisableToggles
-        
-    End If
+        End If
+    End With
 
 Exit_Handler:
     Exit Sub
@@ -2602,21 +2654,64 @@ End Sub
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
-' References:   -
+' References:
+'   https://access-programmers.co.uk/forums/showthread.php?t=104478
+'   Strike_Eagle, March 21, 2014
 ' Source/date:  NCPN, Unknown - for NCPN tools
 ' Adapted:      -
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 4/23/2017 - revised Next/Previous to cycle through transects vs. presenting
+'                     error message (Error 2105: can't go to specified record)
 ' ---------------------------------
 Private Sub btnPrevious_Click()
 On Error GoTo Err_Handler
 
-  If Me!Transect = 1 Then
-    MsgBox "Already on first transect"
-  Else
-    DoCmd.GoToRecord , , acPrevious
-  End If
+    'determine # of records
+    Dim rs As DAO.Recordset
+    Dim NumRecords As Integer
+    
+    Set rs = Me.RecordsetClone
+    If Not rs.EOF And rs.BOF Then
+        rs.MoveLast
+    End If
+    
+    NumRecords = rs.RecordCount
+    
+    'use recordset absolute position to determine
+    'if on first/last record or in between
+    With Me.Recordset
+    
+        'test for zero point (before 1st record)
+        If .AbsolutePosition = 0 Then
+            'go to last record if on first
+            DoCmd.GoToRecord , , acLast
+        Else
+            'go to previous record if not on first
+            DoCmd.GoToRecord , , acPrevious
+        End If
+        
+        'identify the record as 1st or last
+        'AbsolutePosition zero based, so + 1
+        If .AbsolutePosition + 1 = NumRecords Then
+            Transect.ForeColor = lngRed
+            Transect.ControlTipText = "Last Transect"
+        ElseIf .AbsolutePosition = 0 Then
+            Transect.ForeColor = lngRed
+            Transect.ControlTipText = "First Transect"
+        Else
+            Transect.ForeColor = lngBlack
+            Transect.ControlTipText = ""
+        End If
+    
+    End With
+        
+'    If Me!Transect = 1 Then
+'      MsgBox "Already on first transect"
+'    Else
+'      DoCmd.GoToRecord , , acPrevious
+'    End If
   
 Exit_Handler:
     Exit Sub
@@ -2642,14 +2737,55 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 4/23/2017 - revised Next/Previous to cycle through transects vs. presenting
+'                     error message (Error 2105: can't go to specified record)
 ' ---------------------------------
 Private Sub btnNext_Click()
 On Error GoTo Err_Handler
 
-    Dim intTransect As Byte
+'    Dim intTransect As Byte
+'
+'    DoCmd.GoToRecord , , acNext
 
-    DoCmd.GoToRecord , , acNext
+    'determine # of records
+    Dim rs As DAO.Recordset
+    Dim NumRecords As Integer
     
+    Set rs = Me.RecordsetClone
+    If Not rs.EOF And rs.BOF Then
+        rs.MoveLast
+    End If
+    
+    NumRecords = rs.RecordCount
+    
+    'use recordset absolute position to determine
+    'if on first/last record or in between
+    With Me.Recordset
+    
+        'test for zero point (before 1st record)
+        If .AbsolutePosition + 1 = NumRecords Then
+            'go to first record if on last
+            DoCmd.GoToRecord , , acFirst
+        Else
+            'go to next record if not on last
+            DoCmd.GoToRecord , , acNext
+        End If
+        
+        'identify the record as 1st or last
+        'AbsolutePosition is zero based so +1
+        If .AbsolutePosition + 1 = NumRecords Then
+            Transect.ForeColor = lngRed
+            Transect.ControlTipText = "Last Transect"
+        ElseIf .AbsolutePosition = 0 Then
+            Transect.ForeColor = lngRed
+            Transect.ControlTipText = "First Transect"
+        Else
+            Transect.ForeColor = lngBlack
+            Transect.ControlTipText = ""
+        End If
+    
+    End With
+
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -3707,6 +3843,7 @@ On Error GoTo Err_Handler
         tglNameT = tglName & "T"
         Controls(tglNameT).Enabled = False
         Controls(tglNameT).Caption = ""
+        Controls(tglNameT).ForeColor = lngGray50
         Controls("lblTransect").ForeColor = lngGray50
     
         'clear & disable quadrat toggles
@@ -3715,6 +3852,7 @@ On Error GoTo Err_Handler
             strToggle = tglName & "Q" & i
             Controls(strToggle).Enabled = False
             Controls(strToggle).Caption = ""
+            Controls(strToggle).ForeColor = lngGray50
             strLabel = "lblQ" & i
             Controls(strLabel).ForeColor = lngGray50
         Next
@@ -3735,7 +3873,7 @@ End Sub
 ' Sub:          EnableToggles
 ' Description:  Enables NotSampled & NoExotics toggles @ all levels (Transect & Quadrat)
 ' Assumptions:  When enabled, all toggle values are left alone
-' Parameters:   -
+' Parameters:   quadrat - number of the quadrat toggles to enable (integer, optional)
 ' Returns:      -
 ' Throws:       none
 ' References:   -
@@ -3744,7 +3882,7 @@ End Sub
 ' Revisions:
 '   BLC - 4/21/2016 - initial version
 ' ---------------------------------
-Private Sub EnableToggles()
+Private Sub EnableToggles(Optional quadrat As Integer)
 On Error GoTo Err_Handler
     
     '------------------------------------------
@@ -3770,16 +3908,35 @@ On Error GoTo Err_Handler
         'clear & Enable transect toggles
         tglNameT = tglName & "T"
         Controls(tglNameT).Enabled = True
+        Controls(tglNameT).ForeColor = lngBlack
         Controls("lblTransect").ForeColor = lngBlack
     
-        'enable quadrat toggles
-        For i = 1 To 3
+        'handle individual quadrats if specified
+        'or all quadrats if not
+        If quadrat > 0 Then
+            
+            'disable transect level (can't use if there's a quadrat w/ data)
+            Controls(tglNameT).Enabled = False
+            Controls(tglNameT).ForeColor = lngGray50
+            
             'NotSampled/NoExotics
-            strToggle = tglName & "Q" & i
+            strToggle = tglName & "Q" & quadrat
             Controls(strToggle).Enabled = True
-            strLabel = "lblQ" & i
+            Controls(strToggle).ForeColor = lngBlack
+            strLabel = "lblQ" & quadrat
             Controls(strLabel).ForeColor = lngBlack
-        Next
+        
+        Else
+            'enable all quadrat toggles
+            For i = 1 To 3
+                'NotSampled/NoExotics
+                strToggle = tglName & "Q" & i
+                Controls(strToggle).Enabled = True
+                Controls(strToggle).ForeColor = lngBlack
+                strLabel = "lblQ" & i
+                Controls(strLabel).ForeColor = lngBlack
+            Next
+        End If
     Next
     
 Exit_Handler:

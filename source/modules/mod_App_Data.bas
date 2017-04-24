@@ -1803,7 +1803,7 @@ End Function
 ' Revisions:
 '   BLC - 3/30/2017 - initial version
 ' ---------------------------------
-Public Function UpdateNumRecords(iRecord As Integer, numRecords As Integer)
+Public Function UpdateNumRecords(iRecord As Integer, NumRecords As Integer)
 On Error GoTo Err_Handler
 
     'add values to numrecords
@@ -1813,7 +1813,7 @@ Debug.Print "UpdateNumRecords"
     
     params(0) = "u_num_records"
     params(1) = iRecord
-    params(2) = numRecords
+    params(2) = NumRecords
             
     SetRecord "u_num_records", params
     
