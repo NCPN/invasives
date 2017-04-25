@@ -6,7 +6,6 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,11 +17,11 @@ Begin Form
     GridY =24
     Width =13320
     DatasheetFontHeight =9
-    ItemSuffix =59
-    Left =-2040
-    Top =1215
-    Right =11640
-    Bottom =10260
+    ItemSuffix =65
+    Left =60
+    Top =1350
+    Right =11700
+    Bottom =10395
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -135,7 +134,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =7860
+            Height =8325
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -514,10 +513,10 @@ Begin Form
                     TabIndex =9
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q1"
-                    ControlSource ="Dead_Wood_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3360
@@ -551,10 +550,10 @@ Begin Form
                     TabIndex =10
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q2"
-                    ControlSource ="Dead_Wood_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3360
@@ -572,10 +571,10 @@ Begin Form
                     TabIndex =11
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q3"
-                    ControlSource ="Dead_Wood_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =3360
@@ -593,10 +592,10 @@ Begin Form
                     TabIndex =12
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q1"
-                    ControlSource ="Dung_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3600
@@ -630,10 +629,10 @@ Begin Form
                     TabIndex =13
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q2"
-                    ControlSource ="Dung_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3600
@@ -651,10 +650,10 @@ Begin Form
                     TabIndex =14
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q3"
-                    ControlSource ="Dung_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =3600
@@ -672,10 +671,10 @@ Begin Form
                     TabIndex =15
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q1"
-                    ControlSource ="Fungus_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3840
@@ -709,10 +708,10 @@ Begin Form
                     TabIndex =16
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q2"
-                    ControlSource ="Fungus_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3840
@@ -730,10 +729,10 @@ Begin Form
                     TabIndex =17
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q3"
-                    ControlSource ="Fungus_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =3840
@@ -751,10 +750,10 @@ Begin Form
                     TabIndex =18
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q1"
-                    ControlSource ="Lichen_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4080
@@ -788,10 +787,10 @@ Begin Form
                     TabIndex =19
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q2"
-                    ControlSource ="Lichen_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4080
@@ -809,10 +808,10 @@ Begin Form
                     TabIndex =20
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q3"
-                    ControlSource ="Lichen_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =4080
@@ -830,10 +829,10 @@ Begin Form
                     TabIndex =21
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q1"
-                    ControlSource ="Litter_Duff_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4320
@@ -867,10 +866,10 @@ Begin Form
                     TabIndex =22
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q2"
-                    ControlSource ="Litter_Duff_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4320
@@ -888,10 +887,10 @@ Begin Form
                     TabIndex =23
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q3"
-                    ControlSource ="Litter_Duff_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =4320
@@ -909,10 +908,10 @@ Begin Form
                     TabIndex =24
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q1"
-                    ControlSource ="Root_Bole_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4560
@@ -946,10 +945,10 @@ Begin Form
                     TabIndex =25
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q2"
-                    ControlSource ="Root_Bole_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4560
@@ -967,10 +966,10 @@ Begin Form
                     TabIndex =26
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q3"
-                    ControlSource ="Root_Bole_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =4560
@@ -989,10 +988,10 @@ Begin Form
                     TabIndex =30
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q1"
-                    ControlSource ="Mineral_Soil_Sediment_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =5040
@@ -1027,10 +1026,10 @@ Begin Form
                     TabIndex =31
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q2"
-                    ControlSource ="Mineral_Soil_Sediment_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =5040
@@ -1049,10 +1048,10 @@ Begin Form
                     TabIndex =32
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q3"
-                    ControlSource ="Mineral_Soil_Sediment_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =5040
@@ -1070,10 +1069,10 @@ Begin Form
                     TabIndex =33
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q1"
-                    ControlSource ="Moss_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =5280
@@ -1107,10 +1106,10 @@ Begin Form
                     TabIndex =34
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q2"
-                    ControlSource ="Moss_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =5280
@@ -1128,10 +1127,10 @@ Begin Form
                     TabIndex =35
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q3"
-                    ControlSource ="Moss_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =5280
@@ -1149,10 +1148,10 @@ Begin Form
                     TabIndex =36
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q1"
-                    ControlSource ="Cryptogram_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =5520
@@ -1186,10 +1185,10 @@ Begin Form
                     TabIndex =37
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q2"
-                    ControlSource ="Cryptogram_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =5520
@@ -1207,10 +1206,10 @@ Begin Form
                     TabIndex =38
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q3"
-                    ControlSource ="Cryptogram_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =5520
@@ -1228,10 +1227,10 @@ Begin Form
                     TabIndex =39
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q1"
-                    ControlSource ="Road_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =5760
@@ -1265,10 +1264,10 @@ Begin Form
                     TabIndex =40
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q2"
-                    ControlSource ="Road_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =5760
@@ -1286,10 +1285,10 @@ Begin Form
                     TabIndex =41
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q3"
-                    ControlSource ="Road_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =5760
@@ -1307,10 +1306,10 @@ Begin Form
                     TabIndex =42
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q1"
-                    ControlSource ="Rock_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =6000
@@ -1344,10 +1343,10 @@ Begin Form
                     TabIndex =43
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q2"
-                    ControlSource ="Rock_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =6000
@@ -1365,10 +1364,10 @@ Begin Form
                     TabIndex =44
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q3"
-                    ControlSource ="Rock_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =6000
@@ -1386,10 +1385,10 @@ Begin Form
                     TabIndex =45
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q1"
-                    ControlSource ="Standing_Water_Flooded_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =6240
@@ -1423,10 +1422,10 @@ Begin Form
                     TabIndex =46
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q2"
-                    ControlSource ="Standing_Water_Flooded_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =6240
@@ -1444,10 +1443,10 @@ Begin Form
                     TabIndex =47
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q3"
-                    ControlSource ="Standing_Water_Flooded_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =6240
@@ -1465,10 +1464,10 @@ Begin Form
                     TabIndex =48
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q1"
-                    ControlSource ="Stream_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =6480
@@ -1502,10 +1501,10 @@ Begin Form
                     TabIndex =49
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q2"
-                    ControlSource ="Stream_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =6480
@@ -1523,10 +1522,10 @@ Begin Form
                     TabIndex =50
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q3"
-                    ControlSource ="Stream_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =6480
@@ -1544,10 +1543,10 @@ Begin Form
                     TabIndex =51
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q1"
-                    ControlSource ="Trash_Junk_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =6720
@@ -1581,10 +1580,10 @@ Begin Form
                     TabIndex =52
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q2"
-                    ControlSource ="Trash_Junk_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =6720
@@ -1602,10 +1601,10 @@ Begin Form
                     TabIndex =53
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q3"
-                    ControlSource ="Trash_Junk_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =6720
@@ -1624,10 +1623,10 @@ Begin Form
                     TabIndex =27
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q1"
-                    ControlSource ="Dead_Root_Bole_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4800
@@ -1662,10 +1661,10 @@ Begin Form
                     TabIndex =28
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q2"
-                    ControlSource ="Dead_Root_Bole_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4800
@@ -1684,10 +1683,10 @@ Begin Form
                     TabIndex =29
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q3"
-                    ControlSource ="Dead_Root_Bole_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3550
                     LayoutCachedTop =4800
@@ -2330,6 +2329,91 @@ Begin Form
                     LayoutCachedWidth =10380
                     LayoutCachedHeight =3191
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =60
+                    Top =420
+                    Width =3180
+                    Height =255
+                    TabIndex =66
+                    ForeColor =8355711
+                    Name ="tbxTransectID"
+                    ControlSource ="Transect_ID"
+
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =3240
+                    LayoutCachedHeight =675
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =240
+                    Top =7320
+                    Width =1200
+                    Height =255
+                    TabIndex =67
+                    ForeColor =8355711
+                    Name ="tbxQ1"
+
+                    LayoutCachedLeft =240
+                    LayoutCachedTop =7320
+                    LayoutCachedWidth =1440
+                    LayoutCachedHeight =7575
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =1680
+                    Top =7320
+                    Width =1200
+                    Height =255
+                    TabIndex =68
+                    ForeColor =8355711
+                    Name ="tbxQ2"
+
+                    LayoutCachedLeft =1680
+                    LayoutCachedTop =7320
+                    LayoutCachedWidth =2880
+                    LayoutCachedHeight =7575
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3120
+                    Top =7320
+                    Width =1200
+                    Height =255
+                    TabIndex =69
+                    ForeColor =8355711
+                    Name ="tbxQ3"
+
+                    LayoutCachedLeft =3120
+                    LayoutCachedTop =7320
+                    LayoutCachedWidth =4320
+                    LayoutCachedHeight =7575
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
             End
         End
         Begin FormFooter
@@ -2366,7 +2450,9 @@ Option Explicit
 '                                       (handles 2010 & later species)
 '               BLC - 4/21/2017 - 1.02 - added check for if species subform has records
 '               BLC - 4/23/2017 - 1.03 - revised Next/Previous to cycle through transects vs. presenting
-'                                        error message (Error 2105 - can't go to specified record)
+'                                        error message (Error 2105 - can't go to specified record),
+'                                        pull microhabitats, species cover from respective SurfaceCover,
+'                                        SpeciesCover tables
 ' =================================
 
 '---------------------
@@ -2406,7 +2492,8 @@ Dim strCheck As String
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 4/23/2017 - added initialization for transect # since Next/Previous
-'                     buttons now cycle through the transects vs. stopping w/ 2105 error message
+'                     buttons now cycle through the transects vs. stopping w/ 2105 error message,
+'                     added call to PopulateMicrohabitats to pull them from SurfaceCover
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -2440,10 +2527,18 @@ On Error GoTo Err_Handler
     'initialize subform properties
 '    If Me.fsub_Species_Current.Form.ParentForm Is Nothing Then _
 '        Me.fsub_Species_Current.Form.ParentForm = Me
+
+    'initialize Quadrat # temp vars
+    Me.tbxQ1 = 0
+    Me.tbxQ2 = 0
+    Me.tbxQ3 = 0
   
     'set starting transect # to red
     '(1st & last transects are red for bounding since Next/Previous cycle)
     Me.Transect.ForeColor = lngRed
+    
+    'populate the microhabitats from SurfaceCover
+    PopulateMicrohabitats
   
 Exit_Handler:
     Exit Sub
@@ -2496,6 +2591,11 @@ On Error GoTo Err_Handler
     'update AvgCover
     'Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
     
+    'update Quadrat IDs
+'    Me.tbxQ1 = Nz(TempVars("Q1_ID"), 0)
+'    Me.tbxQ2 = Nz(TempVars("Q2_ID"), 0)
+'    Me.tbxQ3 = Nz(TempVars("Q3_ID"), 0)
+    
     'set up toggles depending on species data
     With Me.fsub_Species_Current.Form
     
@@ -2508,7 +2608,6 @@ On Error GoTo Err_Handler
            Debug.Print .HasRecordsQ1 & "-"; .HasRecordsQ2 & "-"; .HasRecordsQ3
             'disable transect & quadrat toggles
             DisableToggles
-            
             
             'enable select toggles depending on which quadrats have records
             Dim colToggles As New Collection
@@ -2663,21 +2762,23 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 4/23/2017 - revised Next/Previous to cycle through transects vs. presenting
-'                     error message (Error 2105: can't go to specified record)
+'                     error message (Error 2105: can't go to specified record),
+'                     added calls to populate SurfaceCover & SpeciesCover
+'                     from their respective tables
 ' ---------------------------------
 Private Sub btnPrevious_Click()
 On Error GoTo Err_Handler
 
     'determine # of records
     Dim rs As DAO.Recordset
-    Dim NumRecords As Integer
+    Dim numRecords As Integer
     
     Set rs = Me.RecordsetClone
     If Not rs.EOF And rs.BOF Then
         rs.MoveLast
     End If
     
-    NumRecords = rs.RecordCount
+    numRecords = rs.RecordCount
     
     'use recordset absolute position to determine
     'if on first/last record or in between
@@ -2694,7 +2795,7 @@ On Error GoTo Err_Handler
         
         'identify the record as 1st or last
         'AbsolutePosition zero based, so + 1
-        If .AbsolutePosition + 1 = NumRecords Then
+        If .AbsolutePosition + 1 = numRecords Then
             Transect.ForeColor = lngRed
             Transect.ControlTipText = "Last Transect"
         ElseIf .AbsolutePosition = 0 Then
@@ -2706,13 +2807,10 @@ On Error GoTo Err_Handler
         End If
     
     End With
-        
-'    If Me!Transect = 1 Then
-'      MsgBox "Already on first transect"
-'    Else
-'      DoCmd.GoToRecord , , acPrevious
-'    End If
-  
+    
+    'populate w/ current transect's data
+    PopulateMicrohabitats
+      
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -2738,32 +2836,30 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 4/23/2017 - revised Next/Previous to cycle through transects vs. presenting
-'                     error message (Error 2105: can't go to specified record)
+'                     error message (Error 2105: can't go to specified record),
+'                     added calls to populate SurfaceCover & SpeciesCover
+'                     from their respective tables
 ' ---------------------------------
 Private Sub btnNext_Click()
 On Error GoTo Err_Handler
 
-'    Dim intTransect As Byte
-'
-'    DoCmd.GoToRecord , , acNext
-
     'determine # of records
     Dim rs As DAO.Recordset
-    Dim NumRecords As Integer
+    Dim numRecords As Integer
     
     Set rs = Me.RecordsetClone
     If Not rs.EOF And rs.BOF Then
         rs.MoveLast
     End If
     
-    NumRecords = rs.RecordCount
+    numRecords = rs.RecordCount
     
     'use recordset absolute position to determine
     'if on first/last record or in between
     With Me.Recordset
     
         'test for zero point (before 1st record)
-        If .AbsolutePosition + 1 = NumRecords Then
+        If .AbsolutePosition + 1 = numRecords Then
             'go to first record if on last
             DoCmd.GoToRecord , , acFirst
         Else
@@ -2773,7 +2869,7 @@ On Error GoTo Err_Handler
         
         'identify the record as 1st or last
         'AbsolutePosition is zero based so +1
-        If .AbsolutePosition + 1 = NumRecords Then
+        If .AbsolutePosition + 1 = numRecords Then
             Transect.ForeColor = lngRed
             Transect.ControlTipText = "Last Transect"
         ElseIf .AbsolutePosition = 0 Then
@@ -2785,6 +2881,12 @@ On Error GoTo Err_Handler
         End If
     
     End With
+
+    'populate w/ current transect's data
+    PopulateMicrohabitats
+    
+    'repaint?
+    Me.Repaint
 
 Exit_Handler:
     Exit Sub
@@ -3882,7 +3984,7 @@ End Sub
 ' Revisions:
 '   BLC - 4/21/2016 - initial version
 ' ---------------------------------
-Private Sub EnableToggles(Optional quadrat As Integer)
+Private Sub EnableToggles(Optional Quadrat As Integer)
 On Error GoTo Err_Handler
     
     '------------------------------------------
@@ -3913,17 +4015,17 @@ On Error GoTo Err_Handler
     
         'handle individual quadrats if specified
         'or all quadrats if not
-        If quadrat > 0 Then
+        If Quadrat > 0 Then
             
             'disable transect level (can't use if there's a quadrat w/ data)
             Controls(tglNameT).Enabled = False
             Controls(tglNameT).ForeColor = lngGray50
             
             'NotSampled/NoExotics
-            strToggle = tglName & "Q" & quadrat
+            strToggle = tglName & "Q" & Quadrat
             Controls(strToggle).Enabled = True
             Controls(strToggle).ForeColor = lngBlack
-            strLabel = "lblQ" & quadrat
+            strLabel = "lblQ" & Quadrat
             Controls(strLabel).ForeColor = lngBlack
         
         Else
@@ -3946,6 +4048,67 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - EnableToggles[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          PopulateMicrohabitats
+' Description:  Checks if form is ready for save
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/24/2016 - initial version
+' ---------------------------------
+Private Sub PopulateMicrohabitats()
+On Error GoTo Err_Handler
+
+    Dim rs As DAO.Recordset
+    Dim strField As String
+    
+    'skip if NULL
+    If IsNull(Me.tbxTransectID) Then GoTo Exit_Handler
+    
+    'set the transect ID
+    SetTempVar "Transect_ID", CStr(Me.tbxTransectID)
+    
+    Set rs = GetRecords("s_surfacecover_by_transect")
+    
+    If Not (rs.BOF And rs.EOF) Then
+        Do Until rs.EOF
+        
+            'set field name
+            'strField = rs("ControlName")
+            
+            'Debug.Print strField
+        
+            'populate the field
+            Me.Controls(rs("ControlName")) = rs("PercentCover")
+            
+            'set the tempvar for Quadrat ID (1,2,3)
+            SetTempVar "Q" & rs("Quadrat") & "_ID", CInt(rs("Quadrat_ID"))
+            
+            rs.MoveNext
+        Loop
+    End If
+        
+    'populate Q1-3 IDs
+    tbxQ1 = Nz(TempVars("Q1_ID"), 0)
+    tbxQ2 = Nz(TempVars("Q2_ID"), 0)
+    tbxQ3 = Nz(TempVars("Q3_ID"), 0)
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - PopulateMicrohabitats[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub

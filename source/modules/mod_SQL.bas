@@ -102,7 +102,7 @@ End Function
 ' Revisions:    BLC, 8/11/2014 - initial version
 '               BLC, 6/30/2015 - rename from get... to Get...
 ' ---------------------------------
-Public Function GetWhereSQL(strWhere As String, params As Variant) As String
+Public Function GetWhereSQL(strWhere As String, Params As Variant) As String
 On Error GoTo Err_Handler:
 Dim blnCheck As Boolean
 Dim strParam As String
@@ -111,27 +111,27 @@ Dim i As Integer
     'default
     blnCheck = False
 
-    For i = 0 To UBound(params) - 1
+    For i = 0 To UBound(Params) - 1
     
         'handle empty field values
-        If Len(params(i, 2)) > 0 Then
+        If Len(Params(i, 2)) > 0 Then
     
             'handle when param isn't the only parameter (need ' AND ' in SQL WHERE clause)
             If Len(strWhere) > 0 Then strWhere = strWhere & " AND"
     
             'check if parameter is is non-empty (string) or non-zero (integer)
-            Select Case params(i, 1)
+            Select Case Params(i, 1)
                 Case "string"
-                    If Len(Trim(params(i, 0))) > 0 Then blnCheck = True
-                    strParam = "'" & params(i, 0) & "'"
+                    If Len(Trim(Params(i, 0))) > 0 Then blnCheck = True
+                    strParam = "'" & Params(i, 0) & "'"
                 Case "integer"
-                    If params(i, 0) > 0 Then blnCheck = True
-                    strParam = params(i, 0)
+                    If Params(i, 0) > 0 Then blnCheck = True
+                    strParam = Params(i, 0)
             End Select
         
             'prepare SQL
-            If Not IsNull(params(i, 0)) And blnCheck Then
-             strWhere = strWhere & " " & params(i, 2) & " = " & strParam
+            If Not IsNull(Params(i, 0)) And blnCheck Then
+             strWhere = strWhere & " " & Params(i, 2) & " = " & strParam
             End If
         
         Else
@@ -213,7 +213,7 @@ On Error GoTo Err_Handler
 
     Dim db As DAO.Database
     Dim rst As DAO.Recordset
-    Dim strSQL As String, strSQLWhere As String, key As String, value As String
+    Dim strSQL As String, strSQLWhere As String, key As String, Value As String
     
     'handle default
     strSQLWhere = " WHERE Is_Supported > 0"
@@ -253,12 +253,12 @@ On Error GoTo Err_Handler
         For i = 1 To UBound(ary)
             key = ary(i)
             If (ary(i) = "SQLstring") Then
-                value = rst!Template
+                Value = rst!Template
             Else
-                value = rst.Fields(ary(i))
+                Value = rst.Fields(ary(i))
             End If
             If Not dict.Exists(key) Then
-                dict.Add key, value
+                dict.Add key, Value
             End If
         Next
         rst.MoveNext
@@ -436,7 +436,7 @@ On Error GoTo Err_Handler
     Do While Not rs.EOF
         If bIsMultiValue Then
             'For multi-valued field, loop through the values
-            Set rsMV = rs(0).value
+            Set rsMV = rs(0).Value
             Do While Not rsMV.EOF
                 If Not IsNull(rsMV(0)) Then
                     strOut = strOut & rsMV(0) & strSeparator
@@ -545,7 +545,7 @@ End Function
 ' Revisions:
 '   BLC - 3/8/2016  - initial version
 ' ---------------------------------
-Public Function PrepareWhereClause(params() As String)
+Public Function PrepareWhereClause(Params() As String)
 On Error GoTo Err_Handler
     
     Dim strWhere As String
@@ -555,16 +555,16 @@ On Error GoTo Err_Handler
     strWhere = ""
 
     'check all params for length, then insert an " AND " if there's a new non-empty clause
-    For i = 0 To UBound(params)
+    For i = 0 To UBound(Params)
         
         'add to clause
-        If Len(strWhere) > 0 And Len(params(i)) > 0 Then
+        If Len(strWhere) > 0 And Len(Params(i)) > 0 Then
             strWhere = strWhere & " AND "
         End If
         
         'add param to where clause
-        If Len(params(i)) > 0 Then
-            strWhere = strWhere & params(i)
+        If Len(Params(i)) > 0 Then
+            strWhere = strWhere & Params(i)
         End If
     Next
     

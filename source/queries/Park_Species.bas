@@ -16,11 +16,6 @@ dbBoolean "FilterOnLoad" ="0"
 dbBoolean "OrderByOnLoad" ="-1"
 Begin
     Begin
-        dbText "Name" ="tbl_Quadrat_Species.Plant_Code"
-        dbText "Description" ="Query all species by park"
-        dbLong "AggregateType" ="-1"
-    End
-    Begin
         dbText "Name" ="tbl_Locations.Unit_Code"
         dbLong "AggregateType" ="-1"
     End

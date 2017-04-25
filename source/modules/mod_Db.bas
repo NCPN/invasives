@@ -229,7 +229,7 @@ On Error GoTo Err_Handler
         'add rsB values as new rsOut records
         rsOut.AddNew
         For iCount = 0 To rsB.Fields.Count - 1
-            rsOut.Fields(iCount).value = rsB.Fields(iCount).value
+            rsOut.Fields(iCount).Value = rsB.Fields(iCount).Value
         Next
         rsOut.Update
         rsB.MoveNext
@@ -1069,12 +1069,12 @@ End Function
 '               BLC, 4/18/2017 - revised Dim to set dictTemplates as Scripting.Dictionary vs. Dictionary (latter
 '                                produces compile error on .Add - Method or Data Member not found)
 ' ---------------------------------
-Public Sub GetTemplates(Optional strSyntax As String = "", Optional params As String = "")
+Public Sub GetTemplates(Optional strSyntax As String = "", Optional Params As String = "")
 
     Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String, strSQLWhere As String, key As String
-    Dim value As Variant
+    Dim Value As Variant
     
     'handle default
     strSQLWhere = " WHERE IsSupported > 0"
@@ -1169,17 +1169,17 @@ Public Sub GetTemplates(Optional strSyntax As String = "", Optional params As St
                 
                 Next
                 
-                Set value = dictParam
+                Set Value = dictParam
 
             Else
-                value = Nz(rs.Fields(ary(i)), "")
+                Value = Nz(rs.Fields(ary(i)), "")
             End If
             
             'add key if it isn't already there
             If Not dict.Exists(key) Then
-                If IsNull(value) Then MsgBox key, vbOKCancel, "is NULL"
+                If IsNull(Value) Then MsgBox key, vbOKCancel, "is NULL"
                 'Debug.Print Nz(Value, key & "-NULL")
-                dict.Add key, value
+                dict.Add key, Value
             End If
         
         Next
@@ -1326,7 +1326,7 @@ End Function
 ' Revisions:    BLC, 5/19/2016 - initial version
 '               BLC, 6/6/2016  - added error handling for duplicate templates, renamed global to g_AppTemplates
 ' ---------------------------------
-Public Function GetTemplate(strTemplate As String, Optional params As String = "") As String
+Public Function GetTemplate(strTemplate As String, Optional Params As String = "") As String
 On Error GoTo Err_Handler
 
     Dim aryParams() As Variant
@@ -1341,15 +1341,15 @@ Debug.Print strTemplate
 
     Template = g_AppTemplates(strTemplate).Item("Template")
     
-    If Len(params) > 0 Then
+    If Len(Params) > 0 Then
     
         'prepare passed in param array --> array contains param:value pairs
         'ary = Split(params, "|")
-        If InStr(params, "|") Then
-            ary = Split(params, "|")
+        If InStr(Params, "|") Then
+            ary = Split(Params, "|")
         Else
             ReDim Preserve ary(0) 'avoid Error #9 subscript out of range
-            ary(0) = params
+            ary(0) = Params
             'ary = Split(params, PARAM_SEPARATOR)
         End If
         
@@ -1974,35 +1974,35 @@ End Sub
 Public Function GetParamsFromSQL(SQL As String) As String
 On Error GoTo Err_Handler
 
-    Dim params As String
+    Dim Params As String
     
     'default
-    params = ""
+    Params = ""
     
     If Len(SQL) > 0 Then
         If InStr(SQL, "PARAMETERS ") Then
             Dim delimPos As Integer
             
-            params = Replace(SQL, "PARAMETERS ", "")
-            delimPos = InStr(params, ";")
-            params = Left(params, delimPos - 1)
-            params = Replace(params, ", ", "|")
-            params = Replace(params, " ", ":")
+            Params = Replace(SQL, "PARAMETERS ", "")
+            delimPos = InStr(Params, ";")
+            Params = Left(Params, delimPos - 1)
+            Params = Replace(Params, ", ", "|")
+            Params = Replace(Params, " ", ":")
             
             'convert TEXT(#) values to STRING
-            If InStr(params, "TEXT(") Then
+            If InStr(Params, "TEXT(") Then
                 'remove TEXT( )
-                params = Replace(params, "TEXT(", "STRING")
-                params = Replace(params, ")", "")
+                Params = Replace(Params, "TEXT(", "STRING")
+                Params = Replace(Params, ")", "")
                 'remove numerics
-                params = RemoveChars(params, False)
+                Params = RemoveChars(Params, False)
             End If
             
         End If
     End If
     
 Exit_Handler:
-    GetParamsFromSQL = params
+    GetParamsFromSQL = Params
     Exit Function
 
 Err_Handler:
@@ -2622,7 +2622,7 @@ On Error Resume Next
             Set prp = .CreateProperty(prop, dbText, val)
             .Properties.Append prp
         Else
-            prp.value = val
+            prp.Value = val
         End If
     End With
     

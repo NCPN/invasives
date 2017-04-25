@@ -347,7 +347,7 @@ On Error GoTo Err_Handler
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
-        State = rs.Fields("ParkState").value
+        State = rs.Fields("ParkState").Value
     End If
    
     'return value
@@ -810,13 +810,13 @@ On Error GoTo Err_Handler
             
     End Select
     
-    Dim params(0 To 3) As Variant
+    Dim Params(0 To 3) As Variant
     
-    params(0) = Template
-    params(1) = ID
-    params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
+    Params(0) = Template
+    Params(1) = ID
+    Params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
         
-    SetRecord Template, params
+    SetRecord Template, Params
     
 Exit_Handler:
     Exit Sub
@@ -871,13 +871,13 @@ On Error GoTo Err_Handler
 '    DoCmd.RunSQL (strSQL)
 '    DoCmd.SetWarnings True
     
-    Dim params(0 To 3) As Variant
+    Dim Params(0 To 3) As Variant
     
-    params(0) = Template
-    params(1) = ID
-    params(2) = Sensitive
+    Params(0) = Template
+    Params(1) = ID
+    Params(2) = Sensitive
         
-    SetRecord Template, params
+    SetRecord Template, Params
     
 Exit_Handler:
     Exit Sub
@@ -914,6 +914,7 @@ End Sub
 '   BLC - 4/18/2017 - added updated version to Invasives db
 ' --------------------------------------------------------------------
 '   BLC - 4/18/2017 - adjusted for invasives templates
+'   BLC - 4/24/2017 - added microhabitat surface & species templates
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -962,6 +963,9 @@ On Error GoTo Err_Handler
                 Case "s_tsys_datasheet_defaults"
                     '-- required parameters --
                 
+                Case "s_surface"
+                    '-- required parameters --
+                
                 Case "s_surface_by_ID"
                     '-- required parameters --
                     .Parameters("sid") = TempVars("SurfaceID")
@@ -974,8 +978,8 @@ On Error GoTo Err_Handler
                 
                 Case "s_surfacecover_by_transect"
                     '-- required parameters --
-                    .Parameters("pkcode") = TempVars("ParkCode")
-                    .Parameters("eid") = TempVars("Event_ID")
+                    '.Parameters("pkcode") = TempVars("ParkCode")
+                    '.Parameters("eid") = TempVars("Event_ID")
                     .Parameters("tid") = TempVars("Transect_ID")
                 
                 Case Else
@@ -1022,8 +1026,9 @@ End Function
 '   BLC - 3/24/2017 - set SkipRecordAction = False for uplands, removed unused big rivers cases,
 '                     added uplands cases, delete cases
 '   BLC - 3/29/2017 - added FieldOK, FieldCheck, Dependencies parameters for templates
+'   BLC - 4/24/2017 - add surface/species cover, set SkipRecordAction = false (invasives, uplands)
 ' ---------------------------------
-Public Function SetRecord(Template As String, params As Variant) As Long
+Public Function SetRecord(Template As String, Params As Variant) As Long
 On Error GoTo Err_Handler
     
     Dim db As DAO.Database
@@ -1032,9 +1037,9 @@ On Error GoTo Err_Handler
     Dim ID As Long
     
     'exit w/o values
-    If Not IsArray(params) Then GoTo Exit_Handler
+    If Not IsArray(Params) Then GoTo Exit_Handler
     
-    'default <-- upland does not have RecordAction table implemented so skip!
+    'default <-- upland/invasives donot have RecordAction table implemented so skip!
     SkipRecordAction = True 'False
             
     'default ID (if not set as param)
@@ -1066,44 +1071,61 @@ On Error GoTo Err_Handler
         '-----------------------
                 Case "i_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = params(1)  'record ID
-                    .Parameters("num") = params(2)  'number of records
-                    .Parameters("fok") = params(3)  'field ok? (QC pass/fail)
+                    .Parameters("rid") = Params(1)  'record ID
+                    .Parameters("num") = Params(2)  'number of records
+                    .Parameters("fok") = Params(3)  'field ok? (QC pass/fail)
                     
                 Case "i_template"
                     '-- required parameters --
-                    .Parameters("tname") = params(1)        'TemplateName
-                    .Parameters("contxt") = params(2)       'Context
+                    .Parameters("tname") = Params(1)        'TemplateName
+                    .Parameters("contxt") = Params(2)       'Context
                     '.Parameters("tmpl").Type = dbMemo       'set it to a memo field
                     'Limit template SQL to 255 characters to avoid
                     'error 3271 SetRecord mod_App_Data Invalid property value.
                     'templates > 255 characters must be edited directly in the table
-                    .Parameters("tmpl") = Left(params(3), 255) 'TemplateSQL
-                    .Parameters("rmks") = params(4)         'Remarks
-                    .Parameters("effdate") = params(5)      'EffectiveDate
-                    .Parameters("cid") = params(6)          'CreatedBy_ID (contactID)
-                    .Parameters("prms") = params(7)         'Params
-                    .Parameters("syntx") = params(8)        'Syntax
-                    .Parameters("vers") = params(9)         'Version
-                    .Parameters("sflag") = params(10)       'IsSupported
+                    .Parameters("tmpl") = Left(Params(3), 255) 'TemplateSQL
+                    .Parameters("rmks") = Params(4)         'Remarks
+                    .Parameters("effdate") = Params(5)      'EffectiveDate
+                    .Parameters("cid") = Params(6)          'CreatedBy_ID (contactID)
+                    .Parameters("prms") = Params(7)         'Params
+                    .Parameters("syntx") = Params(8)        'Syntax
+                    .Parameters("vers") = Params(9)         'Version
+                    .Parameters("sflag") = Params(10)       'IsSupported
                     .Parameters("lmid") = TempVars("AppUserID") 'lastmodifiedID
-                    .Parameters("fqc") = params(11)         'FieldCheck
-                    .Parameters("fok") = params(12)         'FieldOK
-                    .Parameters("dep") = params(13)         'Dependencies
+                    .Parameters("fqc") = Params(11)         'FieldCheck
+                    .Parameters("fok") = Params(12)         'FieldOK
+                    .Parameters("dep") = Params(13)         'Dependencies
+                
+                Case "i_surface_cover"
+                    '-- required parameters --
+                    .Parameters("qid") = Params(1)
+                    .Parameters("sid") = Params(2)
+                    .Parameters("pct") = Params(3)
+                    
+'                    .Parameters("") = Params(1)
+'                    .Parameters("") = Params(2)
+'                    .Parameters("") = Params(3)
                 
         '-----------------------
         '  UPDATES
         '-----------------------
                 Case "u_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = params(1)
-                    .Parameters("num") = params(2)
-                    .Parameters("fok") = params(3)
+                    .Parameters("rid") = Params(1)
+                    .Parameters("num") = Params(2)
+                    .Parameters("fok") = Params(3)
                     
                 Case "u_template"
                     '-- required parameters --
-                    .Parameters("id") = params(1)
+                    .Parameters("id") = Params(1)
                 
+                Case "u_surface_cover"
+                    '-- required parameters --
+                    .Parameters("qid") = Params(1)
+                    .Parameters("sid") = Params(2)
+                    .Parameters("pct") = Params(3)
+                    '.Parameters("sfcid") = Params(4)
+                    
         '-----------------------
         '  DELETES
         '-----------------------
@@ -1112,7 +1134,7 @@ On Error GoTo Err_Handler
                 
                 Case "d_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = params(1)
+                    .Parameters("rid") = Params(1)
             
             End Select
             
@@ -1133,7 +1155,7 @@ On Error GoTo Err_Handler
             .SQL = GetTemplate("i_record_action")
                                             
             '-- required parameters --
-            .Parameters("RefTable") = params(0)
+            .Parameters("RefTable") = Params(0)
             .Parameters("RefID") = ID
             .Parameters("ID") = TempVars("AppUserID") 'TempVars("ContactID")
             .Parameters("Activity") = "DE"
@@ -1278,7 +1300,7 @@ On Error GoTo Err_Handler
         End Select
                 
         'set insert/update based on whether its an edit or new entry
-        DoAction = IIf(frm!tbxID.value > 0, "u", "i")
+        DoAction = IIf(frm!tbxID.Value > 0, "u", "i")
         
         If NoList Then
                     
@@ -1305,7 +1327,7 @@ On Error GoTo Err_Handler
                 'record already exists & ID > 0
                 
                 'retrieve ID
-                If frm!tbxID.value = rs("ID") Then 'rs("Contact.ID") Then
+                If frm!tbxID.Value = rs("ID") Then 'rs("Contact.ID") Then
                     'IDs are equivalent, just change the data
                     frm!lblMsg.ForeColor = lngLime
                     frm!lblMsgIcon.ForeColor = lngLime
@@ -1733,11 +1755,11 @@ On Error GoTo Err_Handler
     isOK = 0
         
     'add values to numrecords
-    Dim params(0 To 3) As Variant
+    Dim Params(0 To 3) As Variant
     
-    params(0) = LCase(Left(action, 1)) & "_num_records"
-    params(1) = iTemplate
-    params(2) = rs.RecordCount
+    Params(0) = LCase(Left(action, 1)) & "_num_records"
+    Params(1) = iTemplate
+    Params(2) = rs.RecordCount
     
     If Len(strFieldOK) > 0 Then
         'assess if field check is fulfilled
@@ -1769,14 +1791,14 @@ On Error GoTo Err_Handler
     
     End If
     
-    params(3) = IIf(isOK = True, 1, 0) 'convert to 1/0 as true/false instead of 0/-1
+    Params(3) = IIf(isOK = True, 1, 0) 'convert to 1/0 as true/false instead of 0/-1
     
     'clear original value
     DeleteRecord "NumRecords", iTemplate, False
     
-    SetRecord "i_num_records", params
+    SetRecord "i_num_records", Params
     
-    Debug.Print params(1) & " " & strTemplate & " " & params(2) & " " & params(3)
+    Debug.Print Params(1) & " " & strTemplate & " " & Params(2) & " " & Params(3)
     
 Exit_Handler:
     Exit Function
@@ -1803,19 +1825,19 @@ End Function
 ' Revisions:
 '   BLC - 3/30/2017 - initial version
 ' ---------------------------------
-Public Function UpdateNumRecords(iRecord As Integer, NumRecords As Integer)
+Public Function UpdateNumRecords(iRecord As Integer, numRecords As Integer)
 On Error GoTo Err_Handler
 
     'add values to numrecords
-    Dim params(0 To 3) As Variant
+    Dim Params(0 To 3) As Variant
 
 Debug.Print "UpdateNumRecords"
     
-    params(0) = "u_num_records"
-    params(1) = iRecord
-    params(2) = NumRecords
+    Params(0) = "u_num_records"
+    Params(1) = iRecord
+    Params(2) = numRecords
             
-    SetRecord "u_num_records", params
+    SetRecord "u_num_records", Params
     
 Exit_Handler:
     Exit Function
@@ -2021,6 +2043,316 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - PrepareSpeciesQuery[mod_App_Data form])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          GetSurfaceIDs
+' Description:  Sets a collection of surface IDs where IDs can be retrieved
+'               from column names
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/24/2016 - initial version
+' ---------------------------------
+Public Function GetSurfaceIDs() As Scripting.Dictionary
+On Error GoTo Err_Handler
+
+    Dim rs As DAO.Recordset
+    Dim strKey As String, strItem As String
+
+    'prepare dictionary
+    Dim dict As Scripting.Dictionary
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    'retrieve surfaces & surface IDs
+    Set rs = GetRecords("s_surface")
+    
+    If Not (rs.BOF And rs.EOF) Then
+        Do Until rs.EOF
+            
+            With dict
+            
+                strKey = rs("ColName")
+                strItem = rs("ID")
+                
+                If Not .Exists(strKey) Then
+                    'add the ColName (key) & ID (value)
+                    '--------------------------------------
+                    ' NOTE:
+                    '   Cannot use notation w/ rs("fieldname")
+                    '   notation because as soon as you leave
+                    '   the Do Until the dictionary forgets
+                    '   the values since rs("fieldname") is
+                    '   out of scope.
+                    '   -> Error 3420: Object invalid or no longer set
+                    '   Use:
+                    '       .Add strKey, strItem
+                    '   Not:
+                    '       .Add strKey, rs("ID")
+                    '--------------------------------------
+                    .Add strKey, strItem
+                End If
+            
+            End With
+            
+            'Debug.Print strKey & ": " & strItem & " = " & dict(strKey)
+            
+            rs.MoveNext
+        Loop
+    End If
+    
+    'set global dictionary
+    Set g_AppSurfaces = dict
+    
+    'return dictionary
+    Set GetSurfaceIDs = dict
+    
+Exit_Handler:
+    'Set dict = Nothing
+    Set rs = Nothing
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - GetSurfaceIDs[mod_App_Data])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          GetQuadratPositions
+' Description:  Sets a collection of quadrat positions where positions can be retrieved
+'               from quadrat control names
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, April 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/24/2016 - initial version
+' ---------------------------------
+Public Function GetQuadratPositions() As Scripting.Dictionary
+On Error GoTo Err_Handler
+
+    Dim ctrl As Variant 'control name
+    Dim strKey As String, strItem As String
+
+    'prepare dictionary
+    Dim dict As Scripting.Dictionary
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    Dim aryControls() As String
+    
+    'prepare positions
+    aryControls = Split("Q1,Q2,Q3,Q1_3m,Q2_8m,Q3_13m,Q1_hm,Q2_5m,Q3_10m", ",")
+    
+    For Each ctrl In aryControls
+        
+        With dict
+        
+            strKey = ctrl
+            
+            Select Case ctrl
+                Case "Q1", "Q2", "Q3"
+                    strItem = vbNullString 'position NULL
+                Case "Q1_3m"
+                    strItem = 3
+                Case "Q1_hm"
+                    strItem = 0
+                Case "Q2_8m", "Q2_5m"
+                    strItem = Replace(Right(ctrl, 2), "m", "")
+                Case "Q3_13m", "Q3_10m"
+                    strItem = Replace(Right(ctrl, 3), "m", "")
+            End Select
+            
+            If Not .Exists(strKey) Then
+                    'add the ctrl name (key) & position (value)
+                    .Add strKey, strItem
+            End If
+            
+            Debug.Print strKey & ": " & strItem & " = " & dict(strKey)
+            
+        End With
+    
+    Next
+    
+    'set global dictionary
+    Set g_AppQuadratPositions = dict
+    
+    'return dictionary
+    Set GetQuadratPositions = dict
+    
+Exit_Handler:
+    'Set dict = Nothing
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - GetQuadratPositions[mod_App_Data])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+
+' ---------------------------------
+' Sub:          UpdateMicrohabitat
+' Description:  Updates microhabitat surface cover values (Invasives)
+'               and returns the submitted value (single)
+' Assumptions:  Comboboxes of surface microhabitats set the
+'               calling control using:
+'                   =UpdateMicrohabitat([Screen].[ActiveControl])
+'               in their change event properties
+' Parameters:   caller - calling control (control)
+' Returns:      if successful - submitted cover value (single)
+'               or 0 if not
+' Throws:       none
+' References:
+'   Douglas J Steele, Dec 5, 2005
+'   https://www.pcreview.co.uk/threads/get-control-name-in-click-event-procedure.2274312/
+' Source/date:  Bonnie Campbell, April 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/24/2016 - initial version
+' ---------------------------------
+Public Function UpdateMicrohabitat(caller As Control) As Single
+', transectID As String) As Single
+', sfcID As Long, pctCover As Single)
+On Error GoTo Err_Handler
+
+'    Dim caller As Control
+    Dim strSurface As String, strControl As String
+    Dim sfcID As Integer
+    Dim pctCover As Single
+    Dim rs As DAO.Recordset
+
+    'retrieve calling control
+'    caller = Screen.ActiveControl
+      
+'    'set the transect ID
+'    SetTempVar "Transect_ID", CInt(Right(CStr(transectID), 1))
+    
+    'set surface ID (pull from global dictionary using control name - _Q#)
+    strSurface = Left(caller.Name, Len(caller.Name) - 3)
+    
+    'if global dictionary not available, set it
+    If IsNothing(g_AppSurfaces) Then GetSurfaceIDs
+    sfcID = g_AppSurfaces(strSurface)
+    
+    'retrieve values
+    pctCover = Nz(caller.Value, 0) 'TempVars("SfcPercentCover"), 0)
+    
+    'skip if NULL
+    If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
+    
+    Dim sfc As New SurfaceCover
+    
+    With sfc
+        '.QuadratID = CInt(Right(CStr(caller.Name), 1))
+        .PercentCover = pctCover
+        .SurfaceID = sfcID
+        
+        'fetch the appropriate QuadratID
+        strControl = "tbxQ" & Right(CStr(caller.Name), 1)
+        .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
+        
+        'update values
+        .SaveToDb True
+    End With
+    
+    'SetRecord "u_surfacecover", params
+    
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - UpdateMicrohabitat[mod_App_Data])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          UpdateCoverSpecies
+' Description:  Updates microhabitat surface cover values (Invasives)
+'               and returns the submitted value (single)
+' Assumptions:  Comboboxes of surface microhabitats set the
+'               calling control using:
+'                   =UpdateCoverSpecies([Screen].[ActiveControl])
+'               in their change event properties
+' Parameters:   caller - calling control (control)
+' Returns:      if successful - submitted cover value (single)
+'               or 0 if not
+' Throws:       none
+' References:
+'   Douglas J Steele, Dec 5, 2005
+'   https://www.pcreview.co.uk/threads/get-control-name-in-click-event-procedure.2274312/
+' Source/date:  Bonnie Campbell, April 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 4/24/2016 - initial version
+' ---------------------------------
+Public Function UpdateCoverSpecies(caller As Control) As Single
+On Error GoTo Err_Handler
+
+'    Dim caller As Control
+    Dim strQuadrat As String, strControl As String
+    Dim sfcID As Integer
+    Dim pctCover As Single
+    Dim rs As DAO.Recordset
+
+    'retrieve calling control
+    
+    'set quadrat # (pull from global dictionary using control name - _Q#)
+    strQuadrat = Replace(Left(caller.Name, 2), "Q", "")
+    
+    'retrieve values
+    pctCover = Nz(caller.Value, 0)
+    
+    'skip if NULL
+    If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
+    
+    Dim sp As New InvasiveCoverSpecies
+    
+    With sp
+        '.QuadratID = CInt(Right(CStr(caller.Name), 1))
+        .pctCover = pctCover
+        '.IsDead = cbxIsDead
+        '.Position =
+        
+        'fetch the appropriate QuadratID
+        strControl = "tbxQ" & strQuadrat
+        .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
+        
+        'determine quadrat position (pull from global dictionary using control name)
+        strPosition = g_AppQuadratPositions(caller.Name)
+        
+        
+        
+        'update values
+        .SaveToDb True
+    End With
+    
+    'SetRecord "u_surfacecover", params
+    
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - UpdateCoverSpecies[mod_App_Data])"
     End Select
     Resume Exit_Handler
 End Function

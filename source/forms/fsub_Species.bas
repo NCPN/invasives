@@ -13,15 +13,15 @@ Begin Form
     Width =7800
     DatasheetFontHeight =9
     ItemSuffix =47
-    Left =2580
-    Top =2235
-    Right =11130
-    Bottom =8640
+    Left =900
+    Top =555
+    Right =12750
+    Bottom =12000
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x43f03470521ee340
+        0x3d9c36b74cece440
     End
-    RecordSource ="tbl_Quadrat_Species"
+    RecordSource ="usys_temp_speciescover"
     Caption ="fsub_Species"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
@@ -257,7 +257,7 @@ Begin Form
                     ColumnWidth =465
                     TabIndex =6
                     Name ="Average_Cover"
-                    ControlSource ="Average_Cover"
+                    ControlSource ="AvgCover"
                     Format ="General Number"
                     StatusBarText ="Percent cover in 10 m2 quadrat"
                     AfterUpdate ="[Event Procedure]"
@@ -295,7 +295,7 @@ Begin Form
                     TabIndex =3
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Q1_hm"
-                    ControlSource ="Q1_hm"
+                    ControlSource ="Q1_0m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Percent cover Q1 @ 3m"
@@ -354,7 +354,7 @@ Begin Form
                     TabIndex =2
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"50\""
                     Name ="Plant_Code"
-                    ControlSource ="Plant_Code"
+                    ControlSource ="PlantCode"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qry_sel_Species_Lookup.Master_PLANT_Code, qry_sel_Species_Lookup.LU_Code,"
                         " qry_sel_Species_Lookup.Utah_Species FROM qry_sel_Species_Lookup; "
@@ -419,7 +419,7 @@ Option Explicit
 ' =================================
 ' Form:         fsub_Species
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.02
 ' Basis:        -
 '
 ' Description:  Species subform object related properties, functions & procedures for UI display
@@ -447,10 +447,10 @@ Private m_HasRecordsQ3 As Boolean
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidHasRecords(value As Boolean)
-Public Event InvalidHasRecordsQ1(value As Boolean)
-Public Event InvalidHasRecordsQ2(value As Boolean)
-Public Event InvalidHasRecordsQ3(value As Boolean)
+Public Event InvalidHasRecords(Value As Boolean)
+Public Event InvalidHasRecordsQ1(Value As Boolean)
+Public Event InvalidHasRecordsQ2(Value As Boolean)
+Public Event InvalidHasRecordsQ3(Value As Boolean)
 
 '---------------------
 ' Properties
@@ -463,11 +463,11 @@ Public Event InvalidHasRecordsQ3(value As Boolean)
 '    Set ParentForm = m_ParentForm
 'End Property
 
-Public Property Let HasRecords(value As Boolean)
-    If varType(value) = vbBoolean Then
-        m_HasRecords = value
+Public Property Let HasRecords(Value As Boolean)
+    If varType(Value) = vbBoolean Then
+        m_HasRecords = Value
     Else
-        RaiseEvent InvalidHasRecords(value)
+        RaiseEvent InvalidHasRecords(Value)
     End If
 End Property
 
@@ -475,11 +475,11 @@ Public Property Get HasRecords() As Boolean
     HasRecords = m_HasRecords
 End Property
 
-Public Property Let HasRecordsQ1(value As Boolean)
-    If varType(value) = vbBoolean Then
-        m_HasRecordsQ1 = value
+Public Property Let HasRecordsQ1(Value As Boolean)
+    If varType(Value) = vbBoolean Then
+        m_HasRecordsQ1 = Value
     Else
-        RaiseEvent InvalidHasRecordsQ1(value)
+        RaiseEvent InvalidHasRecordsQ1(Value)
     End If
 End Property
 
@@ -487,11 +487,11 @@ Public Property Get HasRecordsQ1() As Boolean
     HasRecordsQ1 = m_HasRecordsQ1
 End Property
 
-Public Property Let HasRecordsQ2(value As Boolean)
-    If varType(value) = vbBoolean Then
-        m_HasRecordsQ2 = value
+Public Property Let HasRecordsQ2(Value As Boolean)
+    If varType(Value) = vbBoolean Then
+        m_HasRecordsQ2 = Value
     Else
-        RaiseEvent InvalidHasRecordsQ2(value)
+        RaiseEvent InvalidHasRecordsQ2(Value)
     End If
 End Property
 
@@ -499,11 +499,11 @@ Public Property Get HasRecordsQ2() As Boolean
     HasRecordsQ2 = m_HasRecordsQ2
 End Property
 
-Public Property Let HasRecordsQ3(value As Boolean)
-    If varType(value) = vbBoolean Then
-        m_HasRecordsQ3 = value
+Public Property Let HasRecordsQ3(Value As Boolean)
+    If varType(Value) = vbBoolean Then
+        m_HasRecordsQ3 = Value
     Else
-        RaiseEvent InvalidHasRecordsQ3(value)
+        RaiseEvent InvalidHasRecordsQ3(Value)
     End If
 End Property
 
@@ -596,21 +596,31 @@ Private Sub Form_Current()
         Me.HasRecords = True
     
     'determine if any Q1-3 has values
-    
-    Debug.Print "Q1_hm: " & Q1_hm
-    If Not IsNull(Me.Q1_hm) Then
+    ' NOTE: must use Me.Controls("XX") to handle controls w/ underscore
+    Debug.Print "Q1_hm: " & Me.Controls("Q1_hm")
+    If Not IsNull(Me.Controls("Q1_hm")) Then
         HasRecordsQ1 = True
     End If
 
-    Debug.Print "Q2_8m: " & Q2_8m
-    If Not IsNull(Me.Q2_8m) Then
+    Debug.Print "Q2_5m: " & Me.Controls("Q2_5m")
+    If Not IsNull(Me.Controls("Q2_5m")) Then
         HasRecordsQ2 = True
     End If
 
-    Debug.Print "Q3_13m: " & Q3_13m
-    If Not IsNull(Me.Q3_13m) Then
+    Debug.Print "Q3_10m: " & Me.Controls("Q3_10m")
+    If Not IsNull(Me.Controls("Q3_10m")) Then
         HasRecordsQ3 = True
     End If
+
+'    Debug.Print "Q2_8m: " & Q2_8m
+'    If Not IsNull(Me.Q2_8m) Then
+'        HasRecordsQ2 = True
+'    End If
+'
+'    Debug.Print "Q3_13m: " & Q3_13m
+'    If Not IsNull(Me.Q3_13m) Then
+'        HasRecordsQ3 = True
+'    End If
     
 Exit_Handler:
     Exit Sub

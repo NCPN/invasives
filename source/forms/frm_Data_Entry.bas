@@ -22,10 +22,10 @@ Begin Form
     Width =14280
     DatasheetFontHeight =10
     ItemSuffix =200
-    Left =1095
-    Top =1320
-    Right =15375
-    Bottom =12465
+    Left =4080
+    Top =2610
+    Right =18360
+    Bottom =14355
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20121121125102-961953163.146973' AND [Event_ID]='20151107154044-7"
         "60723590.85083'"
