@@ -29,22 +29,22 @@ Private m_OrigColumnName As String
 '---------------------
 ' Events
 '---------------------
-Public Event InvalidID(Value As Long)
-Public Event InvalidSfcID(Value As Long)
-Public Event InvalidSfcName(Value As String)
-Public Event InvalidSfcDescription(Value As String)
-Public Event InvalidOrigColumnName(Value As String)
+Public Event InvalidID(value As Long)
+Public Event InvalidSfcID(value As Long)
+Public Event InvalidSfcName(value As String)
+Public Event InvalidSfcDescription(value As String)
+Public Event InvalidOrigColumnName(value As String)
 
 '---------------------
 ' Properties
 '---------------------
-Public Property Let ID(Value As Long)
-    If varType(Value) = vbLong Then
-        m_ID = Value
+Public Property Let ID(value As Long)
+    If varType(value) = vbLong Then
+        m_ID = value
         'also set surfaceID value
-        m_SurfaceID = Value
+        m_SurfaceID = value
     Else
-        RaiseEvent InvalidID(Value)
+        RaiseEvent InvalidID(value)
     End If
 End Property
 
@@ -52,11 +52,11 @@ Public Property Get ID() As Long
     ID = m_ID
 End Property
 
-Public Property Let SurfaceID(Value As Long)
-    If varType(Value) = vbLong Then
-        m_SurfaceID = Value
+Public Property Let SurfaceID(value As Long)
+    If varType(value) = vbLong Then
+        m_SurfaceID = value
     Else
-        RaiseEvent InvalidSfcID(Value)
+        RaiseEvent InvalidSfcID(value)
     End If
 End Property
 
@@ -64,12 +64,12 @@ Public Property Get SurfaceID() As Long
     SurfaceID = m_SurfaceID
 End Property
 
-Public Property Let SfcName(Value As String)
+Public Property Let SfcName(value As String)
     'valid length varchar(25) or ZLS
-    If IsBetween(Len(Value), 1, 25, True) Then
-        m_SfcName = Value
+    If IsBetween(Len(value), 1, 25, True) Then
+        m_SfcName = value
     Else
-        RaiseEvent InvalidSfcName(Value)
+        RaiseEvent InvalidSfcName(value)
     End If
 End Property
 
@@ -77,12 +77,12 @@ Public Property Get SfcName() As String
     SfcName = m_SfcName
 End Property
 
-Public Property Let SfcDescription(Value As String)
+Public Property Let SfcDescription(value As String)
     'valid length varchar(255) or ZLS
-    If IsBetween(Len(Value), 1, 255, True) Then
-        m_SfcDescription = Value
+    If IsBetween(Len(value), 1, 255, True) Then
+        m_SfcDescription = value
     Else
-        RaiseEvent InvalidSfcDescription(Value)
+        RaiseEvent InvalidSfcDescription(value)
     End If
 End Property
 
@@ -90,12 +90,12 @@ Public Property Get SfcDescription() As String
     SfcDescription = m_SfcDescription
 End Property
 
-Public Property Let OrigColumnName(Value As String)
+Public Property Let OrigColumnName(value As String)
     'valid length varchar(25) or ZLS
-    If IsBetween(Len(Value), 1, 25, True) Then
-        m_OrigColumnName = Value
+    If IsBetween(Len(value), 1, 25, True) Then
+        m_OrigColumnName = value
     Else
-        RaiseEvent InvalidOrigColumnName(Value)
+        RaiseEvent InvalidOrigColumnName(value)
     End If
 End Property
 

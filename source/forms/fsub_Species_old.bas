@@ -447,10 +447,10 @@ Private m_HasRecordsQ3 As Boolean
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidHasRecords(Value As Boolean)
-Public Event InvalidHasRecordsQ1(Value As Boolean)
-Public Event InvalidHasRecordsQ2(Value As Boolean)
-Public Event InvalidHasRecordsQ3(Value As Boolean)
+Public Event InvalidHasRecords(value As Boolean)
+Public Event InvalidHasRecordsQ1(value As Boolean)
+Public Event InvalidHasRecordsQ2(value As Boolean)
+Public Event InvalidHasRecordsQ3(value As Boolean)
 
 '---------------------
 ' Properties
@@ -463,11 +463,11 @@ Public Event InvalidHasRecordsQ3(Value As Boolean)
 '    Set ParentForm = m_ParentForm
 'End Property
 
-Public Property Let HasRecords(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecords = Value
+Public Property Let HasRecords(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecords = value
     Else
-        RaiseEvent InvalidHasRecords(Value)
+        RaiseEvent InvalidHasRecords(value)
     End If
 End Property
 
@@ -475,11 +475,11 @@ Public Property Get HasRecords() As Boolean
     HasRecords = m_HasRecords
 End Property
 
-Public Property Let HasRecordsQ1(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ1 = Value
+Public Property Let HasRecordsQ1(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ1 = value
     Else
-        RaiseEvent InvalidHasRecordsQ1(Value)
+        RaiseEvent InvalidHasRecordsQ1(value)
     End If
 End Property
 
@@ -487,11 +487,11 @@ Public Property Get HasRecordsQ1() As Boolean
     HasRecordsQ1 = m_HasRecordsQ1
 End Property
 
-Public Property Let HasRecordsQ2(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ2 = Value
+Public Property Let HasRecordsQ2(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ2 = value
     Else
-        RaiseEvent InvalidHasRecordsQ2(Value)
+        RaiseEvent InvalidHasRecordsQ2(value)
     End If
 End Property
 
@@ -499,11 +499,11 @@ Public Property Get HasRecordsQ2() As Boolean
     HasRecordsQ2 = m_HasRecordsQ2
 End Property
 
-Public Property Let HasRecordsQ3(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ3 = Value
+Public Property Let HasRecordsQ3(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ3 = value
     Else
-        RaiseEvent InvalidHasRecordsQ3(Value)
+        RaiseEvent InvalidHasRecordsQ3(value)
     End If
 End Property
 

@@ -1,10 +1,9 @@
 CREATE TABLE [usys_temp_speciescover] (
   [Transect_ID] VARCHAR (50),
-  [IsSampled] SHORT ,
-  [NoExotics] SHORT ,
   [PlantCode] VARCHAR (50),
   [IsDead] SHORT ,
   [NumSampledQuads] DOUBLE ,
+  [SumOfPercentCover] DOUBLE ,
   [AvgCover] DOUBLE ,
   [Q1] DOUBLE ,
   [Q1_0m] DOUBLE ,

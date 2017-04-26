@@ -3,6 +3,7 @@ VersionRequired =20
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    DividingLines = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -12,11 +13,11 @@ Begin Form
     GridY =24
     Width =7800
     DatasheetFontHeight =9
-    ItemSuffix =47
-    Left =900
-    Top =555
-    Right =12750
-    Bottom =12000
+    ItemSuffix =51
+    Left =1650
+    Top =2190
+    Right =10200
+    Bottom =8595
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x3d9c36b74cece440
@@ -402,9 +403,79 @@ Begin Form
             End
         End
         Begin FormFooter
-            Height =0
+            Height =360
             BackColor =-2147483633
             Name ="FormFooter"
+            Begin
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =2040
+                    Top =60
+                    Width =900
+                    Height =255
+                    ForeColor =8355711
+                    Name ="tbxQ1_Sampled"
+                    ControlSource ="=Count(IIf(Len([Q1_0m])>0,1,Null))"
+
+                    LayoutCachedLeft =2040
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2940
+                    LayoutCachedHeight =315
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3000
+                    Top =60
+                    Width =900
+                    Height =255
+                    TabIndex =1
+                    ForeColor =8355711
+                    Name ="tbxQ2_Sampled"
+                    ControlSource ="=Count(IIf(Len([Q2_5m])>0,1,Null))"
+
+                    LayoutCachedLeft =3000
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3900
+                    LayoutCachedHeight =315
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3960
+                    Top =60
+                    Width =900
+                    Height =255
+                    TabIndex =2
+                    ForeColor =8355711
+                    Name ="tbxQ3_Sampled"
+                    ControlSource ="=Count(IIf(Len([Q3_10m])>0,1,Null))"
+
+                    LayoutCachedLeft =3960
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4860
+                    LayoutCachedHeight =315
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+            End
         End
     End
 End
@@ -447,10 +518,10 @@ Private m_HasRecordsQ3 As Boolean
 '---------------------
 ' Event Declarations
 '---------------------
-Public Event InvalidHasRecords(Value As Boolean)
-Public Event InvalidHasRecordsQ1(Value As Boolean)
-Public Event InvalidHasRecordsQ2(Value As Boolean)
-Public Event InvalidHasRecordsQ3(Value As Boolean)
+Public Event InvalidHasRecords(value As Boolean)
+Public Event InvalidHasRecordsQ1(value As Boolean)
+Public Event InvalidHasRecordsQ2(value As Boolean)
+Public Event InvalidHasRecordsQ3(value As Boolean)
 
 '---------------------
 ' Properties
@@ -463,11 +534,11 @@ Public Event InvalidHasRecordsQ3(Value As Boolean)
 '    Set ParentForm = m_ParentForm
 'End Property
 
-Public Property Let HasRecords(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecords = Value
+Public Property Let HasRecords(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecords = value
     Else
-        RaiseEvent InvalidHasRecords(Value)
+        RaiseEvent InvalidHasRecords(value)
     End If
 End Property
 
@@ -475,11 +546,11 @@ Public Property Get HasRecords() As Boolean
     HasRecords = m_HasRecords
 End Property
 
-Public Property Let HasRecordsQ1(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ1 = Value
+Public Property Let HasRecordsQ1(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ1 = value
     Else
-        RaiseEvent InvalidHasRecordsQ1(Value)
+        RaiseEvent InvalidHasRecordsQ1(value)
     End If
 End Property
 
@@ -487,11 +558,11 @@ Public Property Get HasRecordsQ1() As Boolean
     HasRecordsQ1 = m_HasRecordsQ1
 End Property
 
-Public Property Let HasRecordsQ2(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ2 = Value
+Public Property Let HasRecordsQ2(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ2 = value
     Else
-        RaiseEvent InvalidHasRecordsQ2(Value)
+        RaiseEvent InvalidHasRecordsQ2(value)
     End If
 End Property
 
@@ -499,18 +570,17 @@ Public Property Get HasRecordsQ2() As Boolean
     HasRecordsQ2 = m_HasRecordsQ2
 End Property
 
-Public Property Let HasRecordsQ3(Value As Boolean)
-    If varType(Value) = vbBoolean Then
-        m_HasRecordsQ3 = Value
+Public Property Let HasRecordsQ3(value As Boolean)
+    If varType(value) = vbBoolean Then
+        m_HasRecordsQ3 = value
     Else
-        RaiseEvent InvalidHasRecordsQ3(Value)
+        RaiseEvent InvalidHasRecordsQ3(value)
     End If
 End Property
 
 Public Property Get HasRecordsQ3() As Boolean
     HasRecordsQ3 = m_HasRecordsQ3
 End Property
-
 
 '---------------------
 ' Methods
@@ -597,17 +667,17 @@ Private Sub Form_Current()
     
     'determine if any Q1-3 has values
     ' NOTE: must use Me.Controls("XX") to handle controls w/ underscore
-    Debug.Print "Q1_hm: " & Me.Controls("Q1_hm")
+    'Debug.Print "Q1_hm: " & Me.Controls("Q1_hm")
     If Not IsNull(Me.Controls("Q1_hm")) Then
         HasRecordsQ1 = True
     End If
 
-    Debug.Print "Q2_5m: " & Me.Controls("Q2_5m")
+    'Debug.Print "Q2_5m: " & Me.Controls("Q2_5m")
     If Not IsNull(Me.Controls("Q2_5m")) Then
         HasRecordsQ2 = True
     End If
 
-    Debug.Print "Q3_10m: " & Me.Controls("Q3_10m")
+    'Debug.Print "Q3_10m: " & Me.Controls("Q3_10m")
     If Not IsNull(Me.Controls("Q3_10m")) Then
         HasRecordsQ3 = True
     End If

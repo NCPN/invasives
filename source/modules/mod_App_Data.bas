@@ -347,7 +347,7 @@ On Error GoTo Err_Handler
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
-        State = rs.Fields("ParkState").Value
+        State = rs.Fields("ParkState").value
     End If
    
     'return value
@@ -1300,7 +1300,7 @@ On Error GoTo Err_Handler
         End Select
                 
         'set insert/update based on whether its an edit or new entry
-        DoAction = IIf(frm!tbxID.Value > 0, "u", "i")
+        DoAction = IIf(frm!tbxID.value > 0, "u", "i")
         
         If NoList Then
                     
@@ -1327,7 +1327,7 @@ On Error GoTo Err_Handler
                 'record already exists & ID > 0
                 
                 'retrieve ID
-                If frm!tbxID.Value = rs("ID") Then 'rs("Contact.ID") Then
+                If frm!tbxID.value = rs("ID") Then 'rs("Contact.ID") Then
                     'IDs are equivalent, just change the data
                     frm!lblMsg.ForeColor = lngLime
                     frm!lblMsgIcon.ForeColor = lngLime
@@ -2250,7 +2250,7 @@ On Error GoTo Err_Handler
     sfcID = g_AppSurfaces(strSurface)
     
     'retrieve values
-    pctCover = Nz(caller.Value, 0) 'TempVars("SfcPercentCover"), 0)
+    pctCover = Nz(caller.value, 0) 'TempVars("SfcPercentCover"), 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2307,18 +2307,19 @@ Public Function UpdateCoverSpecies(caller As Control) As Single
 On Error GoTo Err_Handler
 
 '    Dim caller As Control
-    Dim strQuadrat As String, strControl As String
+    Dim strQuadrat As String, strControl As String, strPosition As String
     Dim sfcID As Integer
     Dim pctCover As Single
     Dim rs As DAO.Recordset
 
     'retrieve calling control
     
+    
     'set quadrat # (pull from global dictionary using control name - _Q#)
     strQuadrat = Replace(Left(caller.Name, 2), "Q", "")
     
     'retrieve values
-    pctCover = Nz(caller.Value, 0)
+    pctCover = Nz(caller.value, 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler

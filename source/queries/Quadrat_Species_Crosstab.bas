@@ -1,34 +1,11 @@
-﻿Operation =6
-Option =0
-Begin InputTables
-    Name ="Quadrat_Species"
-End
-Begin OutputColumns
-    Expression ="Quadrat_Species.Transect_ID"
-    GroupLevel =2
-    Expression ="Quadrat_Species.PlantCode"
-    GroupLevel =2
-    Expression ="Quadrat_Species.IsDead"
-    GroupLevel =2
-    Expression ="Quadrat_Species.NumSampledQuads"
-    GroupLevel =2
-    Expression ="Quadrat_Species.Quad_Pos"
-    GroupLevel =1
-    Alias ="MinOfPercentCover"
-    Expression ="Min(Quadrat_Species.PercentCover)"
-End
-Begin Groups
-    Expression ="Quadrat_Species.Transect_ID"
-    GroupLevel =2
-    Expression ="Quadrat_Species.PlantCode"
-    GroupLevel =2
-    Expression ="Quadrat_Species.IsDead"
-    GroupLevel =2
-    Expression ="Quadrat_Species.NumSampledQuads"
-    GroupLevel =2
-    Expression ="Quadrat_Species.Quad_Pos"
-    GroupLevel =1
-End
+﻿dbMemo "SQL" ="TRANSFORM Min(Quadrat_Species.PercentCover) AS MinOfPercentCover\015\012SELECT Q"
+    "uadrat_Species.Transect_ID, Quadrat_Species.PlantCode, Quadrat_Species.IsDead, Q"
+    "uadrat_Species.NumSampledQuads, Sum(Quadrat_Species.PercentCover) AS SumOfPercen"
+    "tCover, SumOfPercentCover/(IIf(NumSampledQuads=0,1,NumSampledQuads)) AS AvgCover"
+    "\015\012FROM Quadrat_Species\015\012GROUP BY Quadrat_Species.Transect_ID, Quadra"
+    "t_Species.PlantCode, Quadrat_Species.IsDead, Quadrat_Species.NumSampledQuads\015"
+    "\012PIVOT Quadrat_Species.Quad_Pos;\015\012"
+dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
 dbByte "RecordsetType" ="0"
@@ -230,27 +207,14 @@ Begin
         dbBoolean "ColumnHidden" ="0"
         dbLong "AggregateType" ="-1"
     End
-End
-Begin
-    State =0
-    Left =11
-    Top =52
-    Right =843
-    Bottom =478
-    Left =-1
-    Top =-1
-    Right =800
-    Bottom =220
-    Left =0
-    Top =0
-    ColumnsShown =559
     Begin
-        Left =48
-        Top =12
-        Right =249
-        Bottom =251
-        Top =0
-        Name ="Quadrat_Species"
-        Name =""
+        dbText "Name" ="Quadrat_Species.PercentCover"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="SumOfPercentCover"
+        dbInteger "ColumnWidth" ="2070"
+        dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
     End
 End

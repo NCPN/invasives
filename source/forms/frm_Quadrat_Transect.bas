@@ -6,6 +6,7 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,10 +19,10 @@ Begin Form
     Width =13320
     DatasheetFontHeight =9
     ItemSuffix =65
-    Left =60
-    Top =1350
-    Right =11700
-    Bottom =10395
+    Left =-2970
+    Top =1170
+    Right =10710
+    Bottom =10215
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xb5100b474c2ee340
@@ -2599,7 +2600,7 @@ On Error GoTo Err_Handler
     'set up toggles depending on species data
     With Me.fsub_Species_Current.Form
     
-        Debug.Print .HasRecords
+        'Debug.Print .HasRecords
         'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
         If .HasRecords = True Then
             
@@ -2610,21 +2611,65 @@ On Error GoTo Err_Handler
             DisableToggles
             
             'enable select toggles depending on which quadrats have records
-            Dim colToggles As New Collection
+'            Dim colToggles As New Collection
+'            Dim colRemoveToggles As New Collection
+            Dim aryToggles() As String
+            Dim strToggles As String
             Dim i As Integer
             Dim tgl As Variant
             
-            For i = 1 To 3
-                colToggles.Add i
-            Next
+'            For i = 1 To 3
+'                colToggles.Add i
+'            Next
             
-            If .HasRecordsQ1 Then colToggles.Remove 1 'remove 1
-            If .HasRecordsQ2 Then colToggles.Remove 2 'remove 2
-            If .HasRecordsQ3 Then colToggles.Remove 3 'remove 3
+            strToggles = "1,2,3"
+
+            With Me.fsub_Species_Current.Form
             
-            For Each tgl In colToggles
-                EnableToggles CInt(tgl)
-            Next
+                If .Controls("tbxQ1_Sampled") > 0 Then _
+                    strToggles = Replace(strToggles, "1,", "")
+                If .Controls("tbxQ2_Sampled") > 0 Then _
+                    strToggles = Replace(strToggles, "2,", "")
+                If .Controls("tbxQ3_Sampled") > 0 Then _
+                    strToggles = Replace(strToggles, "3", "")
+            
+            End With
+Debug.Print "PreTrim: " & strToggles
+
+            If Len(strToggles) > 0 Then
+
+                'trim any ending commas
+                strToggles = IIf(Right(strToggles, 1) = ",", Left(strToggles, Len(strToggles) - 1), strToggles)
+            
+Debug.Print "PostTrim: " & strToggles
+                aryToggles = Split(strToggles, ",")
+    '
+    '
+    '
+    '            If .HasRecordsQ1 Then colToggles.Remove 1 'remove 1
+    '            If .HasRecordsQ2 Then colToggles.Remove 2 'remove 2
+    '            If .HasRecordsQ3 Then
+    '                'remove if > 1 left, otherwise eliminate collection
+    '                If colToggles.Count > 1 Then
+    '                    colToggles.Remove 3 'remove 3
+    '                Else
+    '                    Set colToggles = Nothing
+    '                End If
+    '            End If
+                
+                'iterate to enable IF any toggles are left
+    '            If Not colToggles Is Nothing Then
+    '                For Each tgl In colToggles
+                If IsArray(aryToggles) Then
+                    For Each tgl In aryToggles
+                        
+Debug.Print "tgl: " & tgl
+                        EnableToggles CInt(tgl)
+                    Next
+                End If
+    '                Next
+    '            End If
+            End If
         Else
             
             'enable transect & quadrat toggles

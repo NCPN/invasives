@@ -19,20 +19,4 @@ Begin
         dbText "Name" ="Transect_ID"
         dbLong "AggregateType" ="-1"
     End
-    Begin
-        dbText "Name" ="ID"
-        dbLong "AggregateType" ="-1"
-    End
-    Begin
-        dbText "Name" ="Quadrat"
-        dbLong "AggregateType" ="-1"
-    End
-    Begin
-        dbText "Name" ="IsSampled"
-        dbLong "AggregateType" ="-1"
-    End
-    Begin
-        dbText "Name" ="NoExotics"
-        dbLong "AggregateType" ="-1"
-    End
 End
