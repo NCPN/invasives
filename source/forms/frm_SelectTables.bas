@@ -108,7 +108,7 @@ Option Compare Database
 Option Explicit
 
 Private Sub cmcCancel_Click()
-DoCmd.Close acForm, Me.Name, acSaveNo
+DoCmd.Close acForm, Me.name, acSaveNo
 End Sub
 
 Private Sub cmdLink_Click()
@@ -164,7 +164,7 @@ Else
     Next varItem
     
     MsgBox "Tables linked successfully!", vbOKOnly, "Tables Linked"
-    DoCmd.Close acForm, Me.Name, acSaveNo
+    DoCmd.Close acForm, Me.name, acSaveNo
 End If
 
 Exit_Handler:

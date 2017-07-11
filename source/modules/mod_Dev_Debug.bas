@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Dev_Debug
 ' Level:        Development module
-' Version:      1.02
+' Version:      1.03
 '
 ' Description:  Debugging related functions & procedures for version control
 '
@@ -12,6 +12,7 @@ Option Explicit
 ' Revisions:    BLC - 5/27/2015 - 1.00 - initial version
 '               BLC - 7/7/2015  - 1.01 - added GetErrorTrappingOption()
 '               BLC - 4/6/2017 - 1.02 - added SearchQueries(), SearchDB()
+'               BLC - 5/3/2017 - 1.03 - added RunVCS() for running VCS db code
 ' =================================
 
 ' ===================================================================================
@@ -44,19 +45,19 @@ Option Explicit
 Public Sub ChangeMSysConnection(ByVal strTable As String, ByVal strConn As String)
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim tdf As DAO.TableDef
 
-    Set db = CurrentDb()
-    Set tdf = db.TableDefs(strTable)
+    Set Db = CurrentDb()
+    Set tdf = Db.TableDefs(strTable)
 
     'Change the connect value
     tdf.connect = strConn '"ODBC;DATABASE=pubs;UID=sa;PWD=;DSN=Publishers"
     
 Exit_Sub:
     Set tdf = Nothing
-    db.Close
-    Set db = Nothing
+    Db.Close
+    Set Db = Nothing
     
     Exit Sub
     
@@ -88,11 +89,11 @@ End Sub
 Public Sub ChangeMSysDb(ByVal strTable As String, ByVal strDbPath As String)
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim tdf As DAO.TableDef
 
-    Set db = CurrentDb()
-    Set tdf = db.TableDefs(strTable)
+    Set Db = CurrentDb()
+    Set tdf = Db.TableDefs(strTable)
 
     'Change the database value
     tdf.connect = ";DATABASE=" & strDbPath
@@ -101,8 +102,8 @@ On Error GoTo Err_Handler
     
 Exit_Sub:
     Set tdf = Nothing
-    db.Close
-    Set db = Nothing
+    Db.Close
+    Set Db = Nothing
     
     Exit Sub
     
@@ -341,10 +342,10 @@ On Error GoTo Err_Handler
     Dim QDef As QueryDef
 
     For Each QDef In CurrentDb.QueryDefs
-        If QDef.Name Like QryName Then
-            If InStr(QDef.SQL, SearchText) > 0 Then
-                Debug.Print QDef.Name
-                If ShowSQL Then Debug.Print QDef.SQL & vbCrLf
+        If QDef.name Like QryName Then
+            If InStr(QDef.sql, SearchText) > 0 Then
+                Debug.Print QDef.name
+                If ShowSQL Then Debug.Print QDef.sql & vbCrLf
             End If
         End If
     Next QDef
@@ -380,17 +381,17 @@ End Sub
 '   BLC - 4/6/2017   - initial version for NCPN tools, added casing
 ' ---------------------------------
 Sub SearchDB(SearchText As String, _
-             Optional ObjType As AcObjectType = acDefault, _
+             Optional objType As AcObjectType = acDefault, _
              Optional ObjName As String = "*")
 On Error GoTo Err_Handler
 
-    Dim db As Database, obj As AccessObject, ctl As Control, prop As Property
+    Dim Db As Database, obj As AccessObject, ctl As Control, prop As Property
     Dim frm As Form, rpt As Report, mdl As Module
-    Dim oLoaded As Boolean, found As Boolean, instances As Long
+    Dim oLoaded As Boolean, Found As Boolean, instances As Long
     Dim sline As Long, scol As Long, eline As Long, ecol As Long
     Dim ary() As Variant, oType As Variant
 
-    Set db = CurrentDb
+    Set Db = CurrentDb
     Application.Echo False
 
     'set array
@@ -398,7 +399,7 @@ On Error GoTo Err_Handler
         'do for all
         ary = Array(acQuery, acForm, acMacro, acModule, acReport)
     Else
-        ary = Array(ObjType)
+        ary = Array(objType)
     End If
     
     'iterate
@@ -417,47 +418,47 @@ On Error GoTo Err_Handler
                 Debug.Print "Forms:"
                 On Error Resume Next
                 For Each obj In CurrentProject.AllForms
-                    If obj.Name Like ObjName Then
+                    If obj.name Like ObjName Then
                         oLoaded = obj.IsLoaded
-                        If Not oLoaded Then DoCmd.OpenForm obj.Name, acDesign, , , , acHidden
-                        Set frm = Application.Forms(obj.Name)
+                        If Not oLoaded Then DoCmd.OpenForm obj.name, acDesign, , , , acHidden
+                        Set frm = Application.Forms(obj.name)
                         For Each prop In frm.Properties
                             Err.Clear
-                            If InStr(prop.value, SearchText) > 0 Then
+                            If InStr(prop.Value, SearchText) > 0 Then
                                 If Err.Number = 0 Then
-                                    Debug.Print "Form: " & frm.Name & _
-                                                "  Property: " & prop.Name & _
-                                                "  Value: " & prop.value
+                                    Debug.Print "Form: " & frm.name & _
+                                                "  Property: " & prop.name & _
+                                                "  Value: " & prop.Value
                                 End If
                             End If
                         Next prop
                         If frm.HasModule Then
                             sline = 0: scol = 0: eline = 0: ecol = 0: instances = 0
-                            found = frm.Module.Find(SearchText, sline, scol, eline, ecol)
-                            Do Until Not found
+                            Found = frm.Module.Find(SearchText, sline, scol, eline, ecol)
+                            Do Until Not Found
                                 instances = instances + 1
                                 sline = eline + 1: scol = 0: eline = 0: ecol = 0
-                                found = frm.Module.Find(SearchText, sline, scol, eline, ecol)
+                                Found = frm.Module.Find(SearchText, sline, scol, eline, ecol)
                             Loop
-                            If instances > 0 Then Debug.Print "Form: " & frm.Name & _
+                            If instances > 0 Then Debug.Print "Form: " & frm.name & _
                                "  Module: " & instances & " instances"
         
                         End If
                         For Each ctl In frm.Controls
                             For Each prop In ctl.Properties
                                 Err.Clear
-                                If InStr(prop.value, SearchText) > 0 Then
+                                If InStr(prop.Value, SearchText) > 0 Then
                                     If Err.Number = 0 Then
-                                        Debug.Print "Form: " & frm.Name & _
-                                                    "  Control: " & ctl.Name & _
-                                                    "  Property: " & prop.Name & _
-                                                    "  Value: " & prop.value
+                                        Debug.Print "Form: " & frm.name & _
+                                                    "  Control: " & ctl.name & _
+                                                    "  Property: " & prop.name & _
+                                                    "  Value: " & prop.Value
                                     End If
                                 End If
                             Next prop
                         Next ctl
                         Set frm = Nothing
-                        If Not oLoaded Then DoCmd.Close acForm, obj.Name, acSaveNo
+                        If Not oLoaded Then DoCmd.Close acForm, obj.name, acSaveNo
                         DoEvents
                     End If
                 Next obj
@@ -468,20 +469,20 @@ On Error GoTo Err_Handler
             Case acModule
                 Debug.Print "Modules:"
                 For Each obj In CurrentProject.AllModules
-                    If obj.Name Like ObjName Then
+                    If obj.name Like ObjName Then
                         oLoaded = obj.IsLoaded
-                        If Not oLoaded Then DoCmd.OpenModule obj.Name
-                        Set mdl = Application.Modules(obj.Name)
+                        If Not oLoaded Then DoCmd.OpenModule obj.name
+                        Set mdl = Application.Modules(obj.name)
                         sline = 0: scol = 0: eline = 0: ecol = 0: instances = 0
-                        found = mdl.Find(SearchText, sline, scol, eline, ecol)
-                        Do Until Not found
+                        Found = mdl.Find(SearchText, sline, scol, eline, ecol)
+                        Do Until Not Found
                             instances = instances + 1
                             sline = eline + 1: scol = 0: eline = 0: ecol = 0
-                            found = mdl.Find(SearchText, sline, scol, eline, ecol)
+                            Found = mdl.Find(SearchText, sline, scol, eline, ecol)
                         Loop
-                        If instances > 0 Then Debug.Print obj.Name & ": " & instances & " instances"
+                        If instances > 0 Then Debug.Print obj.name & ": " & instances & " instances"
                         Set mdl = Nothing
-                        If Not oLoaded Then DoCmd.Close acModule, obj.Name
+                        If Not oLoaded Then DoCmd.Close acModule, obj.name
                     End If
                 Next obj
                 Debug.Print vbCrLf
@@ -496,44 +497,44 @@ On Error GoTo Err_Handler
                 Debug.Print "Reports:"
                 On Error Resume Next
                 For Each obj In CurrentProject.AllReports
-                    If obj.Name Like ObjName Then
+                    If obj.name Like ObjName Then
                         oLoaded = obj.IsLoaded
-                        If Not oLoaded Then DoCmd.OpenReport obj.Name, acDesign
-                        Set rpt = Application.Reports(obj.Name)
+                        If Not oLoaded Then DoCmd.OpenReport obj.name, acDesign
+                        Set rpt = Application.Reports(obj.name)
                         For Each prop In rpt.Properties
                             Err.Clear
-                            If InStr(prop.value, SearchText) > 0 Then
+                            If InStr(prop.Value, SearchText) > 0 Then
                                 If Err.Number = 0 Then
-                                    Debug.Print "Report: " & rpt.Name & _
-                                                "  Property: " & prop.Name & _
-                                                "  Value: " & prop.value
+                                    Debug.Print "Report: " & rpt.name & _
+                                                "  Property: " & prop.name & _
+                                                "  Value: " & prop.Value
                                 End If
                             End If
                         Next prop
                         If rpt.HasModule Then
                             sline = 0: scol = 0: eline = 0: ecol = 0: instances = 0
-                            found = rpt.Module.Find(SearchText, sline, scol, eline, ecol)
-                            Do Until Not found
+                            Found = rpt.Module.Find(SearchText, sline, scol, eline, ecol)
+                            Do Until Not Found
                                 instances = instances + 1
                                 sline = eline + 1: scol = 0: eline = 0: ecol = 0
-                                found = rpt.Module.Find(SearchText, sline, scol, eline, ecol)
+                                Found = rpt.Module.Find(SearchText, sline, scol, eline, ecol)
                             Loop
-                            If instances > 0 Then Debug.Print "Report: " & rpt.Name & _
+                            If instances > 0 Then Debug.Print "Report: " & rpt.name & _
                                "  Module: " & instances & " instances"
         
                         End If
                         For Each ctl In rpt.Controls
                             For Each prop In ctl.Properties
-                                If InStr(prop.value, SearchText) > 0 Then
-                                    Debug.Print "Report: " & rpt.Name & _
-                                                "  Control: " & ctl.Name & _
-                                                "  Property: " & prop.Name & _
-                                                "  Value: " & prop.value
+                                If InStr(prop.Value, SearchText) > 0 Then
+                                    Debug.Print "Report: " & rpt.name & _
+                                                "  Control: " & ctl.name & _
+                                                "  Property: " & prop.name & _
+                                                "  Value: " & prop.Value
                                 End If
                             Next prop
                         Next ctl
                         Set rpt = Nothing
-                        If Not oLoaded Then DoCmd.Close acReport, obj.Name, acSaveNo
+                        If Not oLoaded Then DoCmd.Close acReport, obj.name, acSaveNo
                         DoEvents
                     End If
                 Next obj
@@ -559,6 +560,150 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' FUNCTION:     GetAppObj
+' Description:  Create a VCS database application object
+' Assumptions:  -
+' Parameters:   AppPath - path of VCS application (string)
+'               default is VCS_FULL_PATH (set in App_Settings)
+' Returns:      application object
+' Throws:       none
+' References:   -
+' Source/date:  dsatino, October 27, 2010
+'               https://bytes.com/topic/access/answers/900155-how-run-procedure-database-code-another-db
+' Adapted:      Bonnie Campbell, May 3, 2017 - for NCPN tools
+' Revisions:
+'   BLC - 5/3/2017 - initial version
+' ---------------------------------
+Public Function GetAppObj(Optional AppPath As String = VCS_FULL_PATH) As Access.Application
+On Error GoTo Err_Handler
+    
+    Dim appAccess As Access.Application
+    Dim Db As Database
+ 
+    'Create instance of Access Application object.
+    Set appAccess = CreateObject("Access.Application")
+ 
+    'Open Test Database in Microsoft Access window.
+    'appAccess.OpenCurrentDatabase "C:\Test\Test.mdb", False
+    'Set db = appAccess.OpenCurrentDatabase(AppPath, False)
+ 
+    'Run Sub procedure.
+    'appAccess.Run "CountTablesInDB"
+ 
+    'Set appAccess = Nothing
+
+    Set GetAppObj = appAccess
+
+Exit_Handler:
+    Exit Function
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - GetAppObj[mod_Dev_Debug])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' FUNCTION:     RemoveAppObj
+' Description:  Destroys a database application object if it exists
+' Assumptions:  -
+' Parameters:   -
+' Returns:      True or False - whether the application object was removed or not (boolean)
+' Throws:       none
+' References:   -
+' Source/date:  dsatino, October 27, 2010
+'               https://bytes.com/topic/access/answers/900155-how-run-procedure-database-code-another-db
+' Adapted:      Bonnie Campbell, May 3, 2017 - for NCPN tools
+' Revisions:
+'   BLC - 5/3/2017 - initial version
+' ---------------------------------
+Public Function RemoveAppObj() As Boolean
+On Error GoTo Err_Handler
+    
+    Dim appAccess As Access.Application
+    Dim IsRemoved As Boolean
+ 
+    'default
+    IsRemoved = False
+ 
+    'check if Application object exists
+    If Not appAccess Is Nothing Then
+    
+        If varType(appAccess) = vbObject Then
+        
+            Set appAccess = Nothing
+            
+            IsRemoved = True
+            
+        End If
+    
+    End If
+    
+    'return whether object was removed or not
+    RemoveAppObj = IsRemoved
+    
+Exit_Handler:
+    Exit Function
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - RemoveAppObj[mod_Dev_Debug])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' SUB:          RunVCS
+' Description:  Run a VCS database function/sub
+' Assumptions:  -
+' Parameters:   SubOrFunction - name of sub or function to run (string)
+'               AppPath - path of VCS application (string)
+'               params - parameters for sub/function (variant)
+' Returns:      Varies depending on sub/function run
+' Throws:       none
+' References:   -
+' Source/date:  dsatino, October 27, 2010
+'               https://bytes.com/topic/access/answers/900155-how-run-procedure-database-code-another-db
+' Adapted:      Bonnie Campbell, May 3, 2017 - for NCPN tools
+' Revisions:
+'   BLC - 5/3/2017 - initial version
+' ---------------------------------
+Sub RunVCS(SubOrFunction As String, AppPath As String, Optional params As Variant)
+On Error GoTo Err_Handler
+    
+    Dim appAccess As Access.Application
+ 
+    'Create instance of Access Application object.
+    Set appAccess = CreateObject("Access.Application")
+ 
+    'Open Test Database in Microsoft Access window.
+    'appAccess.OpenCurrentDatabase "C:\Test\Test.mdb", False
+    appAccess.OpenCurrentDatabase AppPath, False
+ 
+    'Run Sub procedure.
+    appAccess.Run "CountTablesInDB"
+ 
+    Set appAccess = Nothing
+
+Exit_Handler:
+    Exit Sub
+    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - RunVCS[mod_Dev_Debug])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
 Public Sub runtest()
     'SearchDB "tbl_Quadrat_Species"
     'SearchDB "tbl_Quadrat_Transect"
@@ -580,8 +725,32 @@ Public Sub runtest()
     
 '    GetTemplate "u_surface_cover"
 
-    GetQuadratPositions
-    
-    Debug.Print g_AppQuadratPositions("Q1_hm")
+'    GetQuadratPositions
+'
+'    Debug.Print g_AppQuadratPositions("Q1_hm")
 
+'    Dim vcs As Access.Application
+'    Dim db As Database
+''
+'    Set vcs = GetAppObj
+''
+'    vcs.OpenCurrentDatabase VCS_FULL_PATH, False
+''
+'    vcs.Run "ExportAllSourceExt"
+    
+'    Dim t As New VegTransect
+''    Dim aryQuadrats As Variant
+'
+'    With t
+'        .TransectQuadratID = "20170705114218-705547511.577606"
+''        .AddQuadrats
+''        .AddSurfaceMicrohabitats
+''        .GetTransectQuadrats
+''         aryQuadrats = .TransectQuadrats
+''         Debug.Print UBound(aryQuadrats, 2) '2-dimensional (x,1 = cols, x,2 = rows)
+'
+'    End With
+    
+
+    
 End Sub

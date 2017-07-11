@@ -561,16 +561,16 @@ End Sub
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
 
-        Dim db As DAO.Database
+        Dim Db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler
     
     ' Set master version number on event record
-    Set db = CurrentDb
+    Set Db = CurrentDb
     strSQL = "SELECT [version_key_number] FROM [tbl_master_version] ORDER BY [version_key_number] DESC"
-    Set Versions = db.OpenRecordset(strSQL)
+    Set Versions = Db.OpenRecordset(strSQL)
     Versions.MoveFirst
     Me![version_key_number] = Versions![version_key_number]
     Versions.Close
@@ -619,14 +619,14 @@ Dim strCriteria As String
 If IsNull(Me!txtLocation_ID) Then
     Me!txtUnit_Code = Null
 Else
-    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.Name, "txtLocation_ID")
+    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
     Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
 End If
 End Sub
 
 
 Private Sub txtStart_Date_AfterUpdate()
-        Dim db As DAO.Database
+        Dim Db As DAO.Database
         Dim Events As DAO.Recordset
         Dim strSQL As String
         
@@ -635,8 +635,8 @@ Private Sub txtStart_Date_AfterUpdate()
     ' Check for duplicate date
     strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
 '    MsgBox strSQL
-    Set db = CurrentDb
-    Set Events = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set Events = Db.OpenRecordset(strSQL)
     If Not Events.EOF Then
       MsgBox " Duplicate visit date - update cancelled."
       Me.Undo

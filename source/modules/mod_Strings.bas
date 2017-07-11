@@ -297,7 +297,7 @@ End Function
 ' Revisions:
 '   BLC - 3/16/2016  - initial version
 ' ---------------------------------
-Public Function ReplaceMulti(strOriginal As String, Params() As String)
+Public Function ReplaceMulti(strOriginal As String, params() As String)
 On Error GoTo Err_Handler
 
     Dim strNew As String, aryText() As String
@@ -307,10 +307,10 @@ On Error GoTo Err_Handler
     strNew = strOriginal
 
     'check all params for length, then do replacement
-    For i = 0 To UBound(Params)
+    For i = 0 To UBound(params)
         
         'get search & replacement text array
-        aryText = Split(Params(i), "|")
+        aryText = Split(params(i), "|")
         
         'replace if original strlen is > 0 and search & replacement strings exist
         If Len(strOriginal) > 0 And UBound(aryText) = 1 Then
@@ -694,16 +694,16 @@ Public Function ParseString(str As String, idx As Integer, Optional delimiter As
 On Error GoTo Err_Handler
 
     Dim Items() As String
-    Dim Item As String
+    Dim item As String
         
     Items() = Split(str, delimiter)
     
     If UBound(Items) + 1 > idx Then
-        Item = Items(idx)
+        item = Items(idx)
     End If
     
 Exit_Handler:
-    ParseString = Item
+    ParseString = item
     Exit Function
     
 Err_Handler:

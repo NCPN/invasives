@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_SQL
 ' Level:        Framework module
-' VERSION:      1.06
+' VERSION:      1.07
 ' Description:  Database/SQL properties, functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, 7/24/2014
@@ -18,6 +18,7 @@ Option Explicit
 '               BLC, 4/18/2017          added updated version to Invasives db
 ' --------------------------------------------------------------------
 '               BLC, 4/18/2017 - 1.06 - adjusted for invasives
+'               BLC, 4/28/2017 - 1.07 - added SQL_encode(), GetParamsFromSQL() moved from mod_Db
 ' =================================
 
 ' ---------------------------------
@@ -68,7 +69,7 @@ End Property
 Public Function GetSQL(strQuery As String) As String
 On Error GoTo Err_Handler:
 
-   GetSQL = dbCurrent.QueryDefs(strQuery).SQL
+   GetSQL = dbCurrent.QueryDefs(strQuery).sql
    
 Exit_Function:
     Exit Function
@@ -102,7 +103,7 @@ End Function
 ' Revisions:    BLC, 8/11/2014 - initial version
 '               BLC, 6/30/2015 - rename from get... to Get...
 ' ---------------------------------
-Public Function GetWhereSQL(strWhere As String, Params As Variant) As String
+Public Function GetWhereSQL(strWhere As String, params As Variant) As String
 On Error GoTo Err_Handler:
 Dim blnCheck As Boolean
 Dim strParam As String
@@ -111,27 +112,27 @@ Dim i As Integer
     'default
     blnCheck = False
 
-    For i = 0 To UBound(Params) - 1
+    For i = 0 To UBound(params) - 1
     
         'handle empty field values
-        If Len(Params(i, 2)) > 0 Then
+        If Len(params(i, 2)) > 0 Then
     
             'handle when param isn't the only parameter (need ' AND ' in SQL WHERE clause)
             If Len(strWhere) > 0 Then strWhere = strWhere & " AND"
     
             'check if parameter is is non-empty (string) or non-zero (integer)
-            Select Case Params(i, 1)
+            Select Case params(i, 1)
                 Case "string"
-                    If Len(Trim(Params(i, 0))) > 0 Then blnCheck = True
-                    strParam = "'" & Params(i, 0) & "'"
+                    If Len(Trim(params(i, 0))) > 0 Then blnCheck = True
+                    strParam = "'" & params(i, 0) & "'"
                 Case "integer"
-                    If Params(i, 0) > 0 Then blnCheck = True
-                    strParam = Params(i, 0)
+                    If params(i, 0) > 0 Then blnCheck = True
+                    strParam = params(i, 0)
             End Select
         
             'prepare SQL
-            If Not IsNull(Params(i, 0)) And blnCheck Then
-             strWhere = strWhere & " " & Params(i, 2) & " = " & strParam
+            If Not IsNull(params(i, 0)) And blnCheck Then
+             strWhere = strWhere & " " & params(i, 2) & " = " & strParam
             End If
         
         Else
@@ -181,7 +182,7 @@ Dim qdf As DAO.QueryDef
     Set qdf = CurrentDb.QueryDefs(strQueryName)
     
     'return SQL
-    GetQuerySQL = qdf.SQL
+    GetQuerySQL = qdf.sql
  
 Exit_Function:
     Exit Function
@@ -211,9 +212,9 @@ End Function
 Public Sub GetSQLTemplates(Optional strVersion As String = "")
 On Error GoTo Err_Handler
 
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rst As DAO.Recordset
-    Dim strSQL As String, strSQLWhere As String, key As String, value As String
+    Dim strSQL As String, strSQLWhere As String, key As String, Value As String
     
     'handle default
     strSQLWhere = " WHERE Is_Supported > 0"
@@ -225,8 +226,8 @@ On Error GoTo Err_Handler
     'sql
     strSQL = "SELECT * FROM tsys_Db_Templates" & strSQLWhere
     
-    Set db = CurrentDb
-    Set rst = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rst = Db.OpenRecordset(strSQL)
     
     'handle no records
     If rst.EOF Then
@@ -253,12 +254,12 @@ On Error GoTo Err_Handler
         For i = 1 To UBound(ary)
             key = ary(i)
             If (ary(i) = "SQLstring") Then
-                value = rst!Template
+                Value = rst!Template
             Else
-                value = rst.Fields(ary(i))
+                Value = rst.Fields(ary(i))
             End If
             If Not dict.Exists(key) Then
-                dict.Add key, value
+                dict.Add key, Value
             End If
         Next
         rst.MoveNext
@@ -280,6 +281,65 @@ Err_Handler:
     End Select
     Resume Exit_Sub
 End Sub
+
+' ---------------------------------
+'   Alter SQL
+' ---------------------------------
+
+' ---------------------------------
+' FUNCTION:     SQLencode
+' Description:  sanitizes SQL to remove special characters
+' Parameters:   strSQL - SQL to sanitize (string)
+' Returns:      strSanitized - sanitized SQL (string)
+' Assumptions:
+' Throws:       none
+' References:
+'   Susan Harkins, March 2, 2011
+'   http://www.techrepublic.com/blog/microsoft-office/5-rules-for-embedding-strings-in-vba-code/
+' Source/date:  Bonnie Campbell, June 2016
+' Revisions:    BLC, 6/6/2016 - initial version
+' ---------------------------------
+Public Function SQLencode(strSQL)
+On Error GoTo Err_Handler
+    
+    Dim aryReplace(1, 2) As String
+    Dim i As Integer
+    Dim strNewSQL As String
+    
+    'default
+    strNewSQL = ""
+    
+    'exit if no description
+    If Len(strSQL) = 0 Then GoTo Exit_Handler
+    
+    '--------------------------
+    ' replacement characters
+    '--------------------------
+    '   "   Chr(34)
+    '   '   Chr(39)
+    '--------------------------
+    aryReplace(0, 0) = """"
+    aryReplace(0, 1) = 34
+    aryReplace(1, 0) = "'"
+    aryReplace(1, 1) = 39
+    
+    For i = 0 To UBound(aryReplace, 1)
+        strNewSQL = Replace(strSQL, aryReplace(i, 0), "Chr(" & aryReplace(i, 1) & ")")
+    Next
+
+    SQLencode = strNewSQL
+    
+Exit_Handler:
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SQLencode[mod_SQL])"
+    End Select
+    Resume Exit_Handler
+End Function
 
 ' ---------------------------------
 '   SQL Parameters
@@ -349,6 +409,59 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - GetParam[mod_SQL])"
     End Select
     Resume Exit_Function
+End Function
+
+' ---------------------------------
+' FUNCTION:     GetParamsFromSQL
+' Description:  extracts parameters from SQL string
+' Assumptions:  -
+' Parameters:   sql - SQL to retrieve parameters from(string)
+' Returns:      params - delimited string of parameters and parameter types (string)
+' References:   -
+' Source/date:  Bonnie Campbell, September 20 2016
+' Revisions:    BLC, 9/20/2016 - initial version
+' ---------------------------------
+Public Function GetParamsFromSQL(sql As String) As String
+On Error GoTo Err_Handler
+
+    Dim params As String
+    
+    'default
+    params = ""
+    
+    If Len(sql) > 0 Then
+        If InStr(sql, "PARAMETERS ") Then
+            Dim delimPos As Integer
+            
+            params = Replace(sql, "PARAMETERS ", "")
+            delimPos = InStr(params, ";")
+            params = Left(params, delimPos - 1)
+            params = Replace(params, ", ", "|")
+            params = Replace(params, " ", ":")
+            
+            'convert TEXT(#) values to STRING
+            If InStr(params, "TEXT(") Then
+                'remove TEXT( )
+                params = Replace(params, "TEXT(", "STRING")
+                params = Replace(params, ")", "")
+                'remove numerics
+                params = RemoveChars(params, False)
+            End If
+            
+        End If
+    End If
+    
+Exit_Handler:
+    GetParamsFromSQL = params
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - GetParamsFromSQL[mod_SQL])"
+    End Select
+    Resume Exit_Handler
 End Function
 
 ' ---------------------------------
@@ -436,7 +549,7 @@ On Error GoTo Err_Handler
     Do While Not rs.EOF
         If bIsMultiValue Then
             'For multi-valued field, loop through the values
-            Set rsMV = rs(0).value
+            Set rsMV = rs(0).Value
             Do While Not rsMV.EOF
                 If Not IsNull(rsMV(0)) Then
                     strOut = strOut & rsMV(0) & strSeparator
@@ -496,14 +609,14 @@ End Function
 Function Coalsce(strSQL As String, strDelim, ParamArray NameList() As Variant)
 On Error GoTo Err_Handler
 
-Dim db As Database
+Dim Db As Database
 Dim rs As DAO.Recordset
 Dim strList As String
 
-    Set db = CurrentDb
+    Set Db = CurrentDb
 
     If strSQL <> "" Then
-        Set rs = db.OpenRecordset(strSQL)
+        Set rs = Db.OpenRecordset(strSQL)
 
         Do While Not rs.EOF
             strList = strList & strDelim & rs.Fields(0)
@@ -545,7 +658,7 @@ End Function
 ' Revisions:
 '   BLC - 3/8/2016  - initial version
 ' ---------------------------------
-Public Function PrepareWhereClause(Params() As String)
+Public Function PrepareWhereClause(params() As String)
 On Error GoTo Err_Handler
     
     Dim strWhere As String
@@ -555,16 +668,16 @@ On Error GoTo Err_Handler
     strWhere = ""
 
     'check all params for length, then insert an " AND " if there's a new non-empty clause
-    For i = 0 To UBound(Params)
+    For i = 0 To UBound(params)
         
         'add to clause
-        If Len(strWhere) > 0 And Len(Params(i)) > 0 Then
+        If Len(strWhere) > 0 And Len(params(i)) > 0 Then
             strWhere = strWhere & " AND "
         End If
         
         'add param to where clause
-        If Len(Params(i)) > 0 Then
-            strWhere = strWhere & Params(i)
+        If Len(params(i)) > 0 Then
+            strWhere = strWhere & params(i)
         End If
     Next
     

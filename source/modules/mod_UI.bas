@@ -412,16 +412,16 @@ Dim parentControl As Object
 
     Do Until parentControl Is Nothing
 
-        If TypeName(parentControl.Name) = "String" Then
+        If TypeName(parentControl.name) = "String" Then
             'form? -> refresh the display
-            If getAccessObjectType(parentControl.Name) = -32768 Then
+            If getAccessObjectType(parentControl.name) = -32768 Then
                 parentControl.Repaint
                 Exit Do
             End If
             Set parentControl = parentControl.Parent
         Else
             'form? -> refresh the display
-            If CurrentProject.AllForms(parentControl.Name).IsLoaded Then
+            If CurrentProject.AllForms(parentControl.name).IsLoaded Then
                 parentControl.Repaint
                 Exit Do
             End If
@@ -698,12 +698,12 @@ On Error GoTo Err_Handler
     Dim pg As Page
     
     For Each pg In ctrl.Pages
-        If pg.Name = strTabName Then
+        If pg.name = strTabName Then
             If Not blnHideOnly = True Then
-                ctrl.Pages(pg.Name).Visible = True
+                ctrl.Pages(pg.name).Visible = True
             End If
         Else
-            ctrl.Pages(pg.Name).Visible = False
+            ctrl.Pages(pg.name).Visible = False
         End If
     Next pg
     
@@ -778,7 +778,7 @@ On Error GoTo Err_Handler
   Dim ctl As Control
   
   For Each ctl In frm.Controls
-    If ctl.Name = ctlName Then
+    If ctl.name = ctlName Then
       ControlExists = True
       GoTo Exit_Handler
     End If
@@ -900,7 +900,7 @@ Dim ctl As Control
         'unhighlight all other buttons
         For Each ctl In .Parent.Controls
 
-            If ctl.Name <> btn.Name And _
+            If ctl.name <> btn.name And _
                 ctl.ControlType = acLabel Then
                 With ctl
                     .backstyle = 0 'transparent
@@ -1249,7 +1249,7 @@ Public Sub PrepareCrumbs(frm As SubForm, aryCrumbs As Variant, Optional separato
                 .Caption = aryCrumbs(i)
             Else
                 'hyperlink control (displaytext vs caption)
-                .value = aryCrumbs(i)
+                .Value = aryCrumbs(i)
             End If
             
             'set control position
@@ -1464,7 +1464,7 @@ On Error GoTo Err_Handler
 '    Set c = frm.Controls.Add(progID, ctlName)
     Set c = CreateControl(frmName, ctlType, acDetail)
 
-    c.Name = ctlName
+    c.name = ctlName
     
     If Not ctlData Is Nothing Then
         Set c.Recordset = ctlData

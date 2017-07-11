@@ -180,7 +180,7 @@ On Error GoTo Err_Button_Print
 ' Added revisit comments, March, 2010.
 
     Dim objWord As Word.Application
-    Dim fld As field
+    Dim fld As Field
     Dim rst As Recordset
     Dim Mrst As Recordset
     Dim cat As ADOX.Catalog
@@ -242,122 +242,122 @@ On Error GoTo Err_Button_Print
     ' Update Word template
     With objWord.ActiveDocument.Bookmarks
       If Not IsNull(rst.Fields("Unit_Code")) Then
-        .Item("Unit_Code").Range.text = rst.Fields("Unit_Code")
+        .item("Unit_Code").Range.text = rst.Fields("Unit_Code")
       End If
       If Not IsNull(rst.Fields("Plot_ID")) Then
-        .Item("Plot_ID").Range.text = rst.Fields("Plot_ID")
+        .item("Plot_ID").Range.text = rst.Fields("Plot_ID")
       End If
       If Not IsNull(rst.Fields("E_Coord")) Then
-        .Item("E_Coord").Range.text = rst.Fields("E_Coord")
+        .item("E_Coord").Range.text = rst.Fields("E_Coord")
       End If
       If Not IsNull(rst.Fields("N_Coord")) Then
-        .Item("N_Coord").Range.text = rst.Fields("N_Coord")
+        .item("N_Coord").Range.text = rst.Fields("N_Coord")
       End If
       If Not IsNull(rst.Fields("UTM_Zone")) Then
-        .Item("UTM_Zone").Range.text = rst.Fields("UTM_Zone")
+        .item("UTM_Zone").Range.text = rst.Fields("UTM_Zone")
       End If
       If Not IsNull(rst.Fields("Plot_Slope")) Then
-        .Item("Plot_Slope").Range.text = " " & rst.Fields("Plot_Slope")
+        .item("Plot_Slope").Range.text = " " & rst.Fields("Plot_Slope")
       End If
       If Not IsNull(rst.Fields("Plot_Aspect")) Then
-        .Item("Plot_Aspect").Range.text = " " & rst.Fields("Plot_Aspect")
+        .item("Plot_Aspect").Range.text = " " & rst.Fields("Plot_Aspect")
       End If
       If Not IsNull(rst.Fields("Datum")) Then
-        .Item("Datum").Range.text = rst.Fields("Datum")
+        .item("Datum").Range.text = rst.Fields("Datum")
       End If
       If Not IsNull(rst.Fields("Azimuth")) Then
-        .Item("Azimuth").Range.text = " " & rst.Fields("Azimuth")
+        .item("Azimuth").Range.text = " " & rst.Fields("Azimuth")
       End If
       If Not IsNull(rst.Fields("T1O_UTME")) Then
-        .Item("T1O_UTME").Range.text = " " & rst.Fields("T1O_UTME")
+        .item("T1O_UTME").Range.text = " " & rst.Fields("T1O_UTME")
       End If
       If Not IsNull(rst.Fields("T1O_UTMN")) Then
-        .Item("T1O_UTMN").Range.text = " " & rst.Fields("T1O_UTMN")
+        .item("T1O_UTMN").Range.text = " " & rst.Fields("T1O_UTMN")
       End If
       If Not IsNull(rst.Fields("T2O_UTME")) Then
-        .Item("T2O_UTME").Range.text = " " & rst.Fields("T2O_UTME")
+        .item("T2O_UTME").Range.text = " " & rst.Fields("T2O_UTME")
       End If
       If Not IsNull(rst.Fields("T2O_UTMN")) Then
-        .Item("T2O_UTMN").Range.text = " " & rst.Fields("T2O_UTMN")
+        .item("T2O_UTMN").Range.text = " " & rst.Fields("T2O_UTMN")
       End If
       If Not IsNull(rst.Fields("T3O_UTME")) Then
-        .Item("T3O_UTME").Range.text = " " & rst.Fields("T3O_UTME")
+        .item("T3O_UTME").Range.text = " " & rst.Fields("T3O_UTME")
       End If
       If Not IsNull(rst.Fields("T3O_UTMN")) Then
-        .Item("T3O_UTMN").Range.text = " " & rst.Fields("T3O_UTMN")
+        .item("T3O_UTMN").Range.text = " " & rst.Fields("T3O_UTMN")
       End If
       If Not IsNull(rst.Fields("T1E_UTME")) Then
-        .Item("T1E_UTME").Range.text = " " & rst.Fields("T1E_UTME")
+        .item("T1E_UTME").Range.text = " " & rst.Fields("T1E_UTME")
       End If
       If Not IsNull(rst.Fields("T1E_UTMN")) Then
-        .Item("T1E_UTMN").Range.text = " " & rst.Fields("T1E_UTMN")
+        .item("T1E_UTMN").Range.text = " " & rst.Fields("T1E_UTMN")
       End If
       If Not IsNull(rst.Fields("T2E_UTME")) Then
-        .Item("T2E_UTME").Range.text = " " & rst.Fields("T2E_UTME")
+        .item("T2E_UTME").Range.text = " " & rst.Fields("T2E_UTME")
       End If
       If Not IsNull(rst.Fields("T2E_UTMN")) Then
-        .Item("T2E_UTMN").Range.text = " " & rst.Fields("T2E_UTMN")
+        .item("T2E_UTMN").Range.text = " " & rst.Fields("T2E_UTMN")
       End If
       If Not IsNull(rst.Fields("T3E_UTME")) Then
-        .Item("T3E_UTME").Range.text = " " & rst.Fields("T3E_UTME")
+        .item("T3E_UTME").Range.text = " " & rst.Fields("T3E_UTME")
       End If
       If Not IsNull(rst.Fields("T3E_UTMN")) Then
-        .Item("T3E_UTMN").Range.text = " " & rst.Fields("T3E_UTMN")
+        .item("T3E_UTMN").Range.text = " " & rst.Fields("T3E_UTMN")
       End If
       If Not IsNull(rst.Fields("T1O_Rebar")) Then
-        .Item("T1O_Rebar").Range.text = " " & rst.Fields("T1O_Rebar")
+        .item("T1O_Rebar").Range.text = " " & rst.Fields("T1O_Rebar")
       End If
       If Not IsNull(rst.Fields("T1E_Rebar")) Then
-        .Item("T1E_Rebar").Range.text = " " & rst.Fields("T1E_Rebar")
+        .item("T1E_Rebar").Range.text = " " & rst.Fields("T1E_Rebar")
       End If
       If Not IsNull(rst.Fields("T2O_Rebar")) Then
-        .Item("T2O_Rebar").Range.text = " " & rst.Fields("T2O_Rebar")
+        .item("T2O_Rebar").Range.text = " " & rst.Fields("T2O_Rebar")
       End If
       If Not IsNull(rst.Fields("T2E_Rebar")) Then
-        .Item("T2E_Rebar").Range.text = " " & rst.Fields("T2E_Rebar")
+        .item("T2E_Rebar").Range.text = " " & rst.Fields("T2E_Rebar")
       End If
       If Not IsNull(rst.Fields("T3O_Rebar")) Then
-        .Item("T3O_Rebar").Range.text = " " & rst.Fields("T3O_Rebar")
+        .item("T3O_Rebar").Range.text = " " & rst.Fields("T3O_Rebar")
       End If
       If Not IsNull(rst.Fields("T3E_Rebar")) Then
-        .Item("T3E_Rebar").Range.text = " " & rst.Fields("T3E_Rebar")
+        .item("T3E_Rebar").Range.text = " " & rst.Fields("T3E_Rebar")
       End If
       If Not IsNull(rst.Fields("T1_Elevation")) Then
-        .Item("T1_Elevation").Range.text = " " & rst.Fields("T1_Elevation")
+        .item("T1_Elevation").Range.text = " " & rst.Fields("T1_Elevation")
       End If
       If Not IsNull(rst.Fields("T2_Elevation")) Then
-        .Item("T2_Elevation").Range.text = " " & rst.Fields("T2_Elevation")
+        .item("T2_Elevation").Range.text = " " & rst.Fields("T2_Elevation")
       End If
       If Not IsNull(rst.Fields("T3_Elevation")) Then
-        .Item("T3_Elevation").Range.text = " " & rst.Fields("T3_Elevation")
+        .item("T3_Elevation").Range.text = " " & rst.Fields("T3_Elevation")
       End If
       If Not IsNull(rst.Fields("Plot_Directions")) Then
-        .Item("Plot_Directions").Range.text = " " & rst.Fields("Plot_Directions")
+        .item("Plot_Directions").Range.text = " " & rst.Fields("Plot_Directions")
       End If
       If rst.Fields("Vegetation_Type") <> "grassland/shrubland" Then
         If Not IsNull(rst.Fields("SlopeA")) Then
-          .Item("SlopeA").Range.text = " " & rst.Fields("SlopeA")
+          .item("SlopeA").Range.text = " " & rst.Fields("SlopeA")
         End If
         If Not IsNull(rst.Fields("SlopeAUD")) Then
-          .Item("SlopeAUD").Range.text = " " & rst.Fields("SlopeAUD")
+          .item("SlopeAUD").Range.text = " " & rst.Fields("SlopeAUD")
         End If
         If Not IsNull(rst.Fields("SlopeB")) Then
-          .Item("SlopeB").Range.text = " " & rst.Fields("SlopeB")
+          .item("SlopeB").Range.text = " " & rst.Fields("SlopeB")
         End If
         If Not IsNull(rst.Fields("SlopeBUD")) Then
-          .Item("SlopeBUD").Range.text = " " & rst.Fields("SlopeBUD")
+          .item("SlopeBUD").Range.text = " " & rst.Fields("SlopeBUD")
         End If
         If Not IsNull(rst.Fields("SlopeC")) Then
-          .Item("SlopeC").Range.text = " " & rst.Fields("SlopeC")
+          .item("SlopeC").Range.text = " " & rst.Fields("SlopeC")
         End If
         If Not IsNull(rst.Fields("SlopeCUD")) Then
-          .Item("SlopeCUD").Range.text = " " & rst.Fields("SlopeCUD")
+          .item("SlopeCUD").Range.text = " " & rst.Fields("SlopeCUD")
         End If
         If Not IsNull(rst.Fields("SlopeD")) Then
-          .Item("SlopeD").Range.text = " " & rst.Fields("SlopeD")
+          .item("SlopeD").Range.text = " " & rst.Fields("SlopeD")
         End If
         If Not IsNull(rst.Fields("SlopeDUD")) Then
-          .Item("SlopeDUD").Range.text = " " & rst.Fields("SlopeDUD")
+          .item("SlopeDUD").Range.text = " " & rst.Fields("SlopeDUD")
         End If
         strSQL = "Select * from tbl_Monument WHERE Location_ID = '" & rst.Fields("Location_ID") & "'"
         ' Get the monument tree records.
@@ -379,23 +379,23 @@ On Error GoTo Err_Button_Print
             intIndex = intIndex + 1  ' set index to correct subscript for bookmarks
             If Not IsNull(Mrst.Fields("Tag_No")) Then
               strFieldName = "Tag_No" & intIndex  ' set bookmark name
-              .Item(strFieldName).Range.text = " " & Mrst.Fields("Tag_No")
+              .item(strFieldName).Range.text = " " & Mrst.Fields("Tag_No")
             End If
             If Not IsNull(Mrst.Fields("Species")) Then
               strFieldName = "Species" & intIndex  ' set bookmark name
-              .Item(strFieldName).Range.text = " " & DLookup("[LU_Code]", "tlu_NCPN_Plants", "[Master_Plant_Code] = '" & Mrst.Fields("Species") & "'")
+              .item(strFieldName).Range.text = " " & DLookup("[LU_Code]", "tlu_NCPN_Plants", "[Master_Plant_Code] = '" & Mrst.Fields("Species") & "'")
             End If
             If Not IsNull(Mrst.Fields("DBH")) Then
               strFieldName = "DBH" & intIndex  ' set bookmark name
-              .Item(strFieldName).Range.text = " " & Mrst.Fields("DBH")
+              .item(strFieldName).Range.text = " " & Mrst.Fields("DBH")
             End If
             If Not IsNull(Mrst.Fields("Bearing")) Then
               strFieldName = "Bearing" & intIndex  ' set bookmark name
-              .Item(strFieldName).Range.text = " " & Mrst.Fields("Bearing")
+              .item(strFieldName).Range.text = " " & Mrst.Fields("Bearing")
             End If
             If Not IsNull(Mrst.Fields("Rebar_Distance")) Then
               strFieldName = "Rebar_Distance" & intIndex  ' set bookmark name
-              .Item(strFieldName).Range.text = " " & Mrst.Fields("Rebar_Distance")
+              .item(strFieldName).Range.text = " " & Mrst.Fields("Rebar_Distance")
             End If
             Mrst.MoveNext
           Loop
@@ -414,7 +414,7 @@ On Error GoTo Err_Button_Print
             strPrompt = "There are revisit comments dated " & RevisitComments.Fields("Start_Date") & " for this plot." & Chr(13) & Chr(10) & "Do you want to print them?"
             intReply = MsgBox(strPrompt, vbYesNo, "Want revisit comments?")
             If intReply = vbYes Then
-              .Item("Revisit_Comments").Range.text = " " & RevisitComments.Fields("Comments")
+              .item("Revisit_Comments").Range.text = " " & RevisitComments.Fields("Comments")
             End If
           End If
         End If  ' End if for comments eof test

@@ -2562,7 +2562,7 @@ On Error GoTo Err_Handler
     Dim ctl As Control
     
     For Each ctl In Me.Controls
-        If Left(ctl.Name, 3) = "tgl" Then
+        If Left(ctl.name, 3) = "tgl" Then
             ctl.Enabled = True
             ctl.ForeColor = lngBlack
         End If
@@ -3771,13 +3771,13 @@ On Error GoTo Err_Handler
     
     blnON = False
     
-    If Me.Controls(ToggleSet.Name).Caption = strCheck Then _
+    If Me.Controls(ToggleSet.name).Caption = strCheck Then _
         blnON = True
     
     'default
-    strToggle = ToggleSet.Name
+    strToggle = ToggleSet.name
        
-    Select Case Replace(ToggleSet.Name, "tgl", "")
+    Select Case Replace(ToggleSet.name, "tgl", "")
     
     '------------------------------------------
     ' NotSampled
@@ -3856,7 +3856,7 @@ On Error GoTo Err_Handler
             End If
     End Select
 
-    If Me.Controls(ToggleSet.Name).Caption = strCheck Then
+    If Me.Controls(ToggleSet.name).Caption = strCheck Then
  
         With fsub_Species_Current
             'form

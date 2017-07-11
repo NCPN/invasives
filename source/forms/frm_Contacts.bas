@@ -1300,7 +1300,7 @@ End Function
 Public Sub SetFilter()
 Dim strCriteria As String
 
-strCriteria = GetCriteriaString("[Contact_ID]=", "tlu_Contacts", "Contact_ID", Me.Name, "cboContact")
+strCriteria = GetCriteriaString("[Contact_ID]=", "tlu_Contacts", "Contact_ID", Me.name, "cboContact")
 Me.Filter = strCriteria
 Me.FilterOn = True
 End Sub

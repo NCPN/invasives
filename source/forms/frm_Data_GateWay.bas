@@ -577,11 +577,11 @@ Private Function fxnSortRecords(ByVal strFieldName As String, _
     Me.Form.OrderByOn = True
 
     ' Change the label format to indicate the sorted field
-    Me.Controls.Item(strSortFieldLabel).FontItalic = False
-    Me.Controls.Item(strSortFieldLabel).fontBold = False
+    Me.Controls.item(strSortFieldLabel).FontItalic = False
+    Me.Controls.item(strSortFieldLabel).fontBold = False
     strSortFieldLabel = "lab" & strFieldName
-    Me.Controls.Item(strSortFieldLabel).FontItalic = True
-    Me.Controls.Item(strSortFieldLabel).fontBold = True
+    Me.Controls.item(strSortFieldLabel).FontItalic = True
+    Me.Controls.item(strSortFieldLabel).fontBold = True
 
 Exit_Procedure:
     Exit Function

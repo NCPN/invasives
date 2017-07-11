@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.28
+' Version:      1.29
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -47,6 +47,9 @@ Option Explicit
 '               BLC, 4/17/2017          added updated version to Invasives db
 ' --------------------------------------------------------------------
 '               BLC, 4/17/2017  - 1.28 - revised for Invasives
+'               BLC, 7/5/2017   - 1.29 - SetRecords() added inserts for transect quadrats &
+'                                        surface cover records, GetRecords() added
+'                                        surface microhabitat & quadrat IDs templates
 ' =================================
 
 '' ---------------------------------
@@ -329,7 +332,7 @@ Public Function GetParkState(ParkCode As String) As String
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim State As String, strSQL As String
    
@@ -342,12 +345,12 @@ On Error GoTo Err_Handler
     strSQL = "SELECT TOP 1 ParkState FROM tlu_Parks WHERE ParkCode LIKE '" & ParkCode & "';"
             
     'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
-        State = rs.Fields("ParkState").value
+        State = rs.Fields("ParkState").Value
     End If
    
     'return value
@@ -427,7 +430,7 @@ Public Function IsUsedTargetArea(TgtAreaID As Integer) As Boolean
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -438,8 +441,8 @@ On Error GoTo Err_Handler
     strSQL = "SELECT TOP 1 Target_Area_ID FROM tbl_Target_Species WHERE Target_Area_ID = " & TgtAreaID & ";"
             
     'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -476,7 +479,7 @@ Public Sub PopulateTree(TreeType As String)
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -487,8 +490,8 @@ On Error GoTo Err_Handler
     End Select
                    
     'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -531,7 +534,7 @@ Public Sub PopulateCombobox(cbx As ComboBox, BoxType As String)
 
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -544,8 +547,8 @@ On Error GoTo Err_Handler
     End Select
  
      'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL)
  
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -588,7 +591,7 @@ End Sub
 Public Function GetProtocolVersion(Optional blnAllVersions As Boolean = False) As Variant
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String, strWhere As String
     Dim Count As Integer
@@ -607,8 +610,8 @@ On Error GoTo Err_Handler
     strSQL = GetTemplate("s_protocol_info", "strWHERE" & PARAM_SEPARATOR & strWhere)
     
     'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL)
         
     If rs.BOF And rs.EOF Then GoTo Exit_Handler
         
@@ -658,7 +661,7 @@ End Function
 Public Function GetSOPMetadata(area As String) As Variant
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
         
@@ -676,8 +679,8 @@ On Error GoTo Err_Handler
     strSQL = GetTemplate("s_sop_metadata", "area" & PARAM_SEPARATOR & LCase(area))
     
     'fetch data
-    Set db = CurrentDb
-    Set rs = db.OpenRecordset(strSQL, dbOpenDynaset)
+    Set Db = CurrentDb
+    Set rs = Db.OpenRecordset(strSQL, dbOpenDynaset)
         
     'return value
     Set GetSOPMetadata = rs
@@ -712,7 +715,7 @@ End Function
 Public Function GetParkID(ParkCode As String) As Long
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     Dim ID As Long
@@ -810,13 +813,13 @@ On Error GoTo Err_Handler
             
     End Select
     
-    Dim Params(0 To 3) As Variant
+    Dim params(0 To 3) As Variant
     
-    Params(0) = Template
-    Params(1) = ID
-    Params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
+    params(0) = Template
+    params(1) = ID
+    params(2) = IIf(InStr(Template, "wentworth") > 0, year(Date), IsActive)
         
-    SetRecord Template, Params
+    SetRecord Template, params
     
 Exit_Handler:
     Exit Sub
@@ -871,13 +874,13 @@ On Error GoTo Err_Handler
 '    DoCmd.RunSQL (strSQL)
 '    DoCmd.SetWarnings True
     
-    Dim Params(0 To 3) As Variant
+    Dim params(0 To 3) As Variant
     
-    Params(0) = Template
-    Params(1) = ID
-    Params(2) = Sensitive
+    params(0) = Template
+    params(1) = ID
+    params(2) = Sensitive
         
-    SetRecord Template, Params
+    SetRecord Template, params
     
 Exit_Handler:
     Exit Sub
@@ -915,26 +918,41 @@ End Sub
 ' --------------------------------------------------------------------
 '   BLC - 4/18/2017 - adjusted for invasives templates
 '   BLC - 4/24/2017 - added microhabitat surface & species templates
+'   BLC - 7/5/2017  - added surface microhabitat & quadrat IDs templates
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim qdf As DAO.QueryDef
     Dim rs As DAO.Recordset
     
-    Set db = CurrentDb
+    Set Db = CurrentDb
     
-    With db
+    With Db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
         
             'check if record exists in site
-            .SQL = GetTemplate(Template)
+            .sql = GetTemplate(Template)
         
             Select Case Template
-                        
+                                        
+        '-----------------------
+        '  QC
+        '-----------------------
+                Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
+                    "qc_photos_missing_by_plot_visit", _
+                    "qc_species_by_plot_visit"
+                    '-- required parameters --
+                    .Parameters("pkcode") = TempVars("ParkCode")
+                    .Parameters("pid") = TempVars("plotID")
+                    .Parameters("vdate") = TempVars("SampleDate")
+        
+        '-----------------------
+        '  SELECTS
+        '-----------------------
                 Case "s_access_level"
                     '-- required parameters --
                     .Parameters("lvl") = TempVars("tempLvl")
@@ -948,17 +966,13 @@ On Error GoTo Err_Handler
                 Case "s_park_id"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
-           
+                                
                 Case "s_template_num_records"
                     '-- required parameters --
 
-                Case "qc_ndc_notrecorded_all_methods_by_plot_visit", _
-                    "qc_photos_missing_by_plot_visit", _
-                    "qc_species_by_plot_visit"
+                Case "s_transect_quadrat_IDs"
                     '-- required parameters --
-                    .Parameters("pkcode") = TempVars("ParkCode")
-                    .Parameters("pid") = TempVars("plotID")
-                    .Parameters("vdate") = TempVars("SampleDate")
+                    .Parameters("tid") = TempVars("TransectQuadratID")
                 
                 Case "s_tsys_datasheet_defaults"
                     '-- required parameters --
@@ -969,6 +983,9 @@ On Error GoTo Err_Handler
                 Case "s_surface_by_ID"
                     '-- required parameters --
                     .Parameters("sid") = TempVars("SurfaceID")
+                
+                Case "s_surface_IDs"
+                    '-- required parameters --
                 
                 Case "s_speciescover_by_transect"
                     '-- required parameters --
@@ -1028,16 +1045,16 @@ End Function
 '   BLC - 3/29/2017 - added FieldOK, FieldCheck, Dependencies parameters for templates
 '   BLC - 4/24/2017 - add surface/species cover, set SkipRecordAction = false (invasives, uplands)
 ' ---------------------------------
-Public Function SetRecord(Template As String, Params As Variant) As Long
+Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
     
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim qdf As DAO.QueryDef
     Dim SkipRecordAction As Boolean
     Dim ID As Long
     
     'exit w/o values
-    If Not IsArray(Params) Then GoTo Exit_Handler
+    If Not IsArray(params) Then GoTo Exit_Handler
     
     'default <-- upland/invasives donot have RecordAction table implemented so skip!
     SkipRecordAction = True 'False
@@ -1045,15 +1062,15 @@ On Error GoTo Err_Handler
     'default ID (if not set as param)
     ID = 0
     
-    Set db = CurrentDb
+    Set Db = CurrentDb
     
-    With db
+    With Db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
         
             'check if record exists in site
-            .SQL = GetTemplate(Template)
+            .sql = GetTemplate(Template)
             
             '-------------------
             ' set SQL parameters --> .Parameters("") = params()
@@ -1069,38 +1086,48 @@ On Error GoTo Err_Handler
         '-----------------------
         '  INSERTS
         '-----------------------
+                Case "i_new_transect_quadrat"
+                    '-- required parameters --
+                    .Parameters("tid") = params(1)  'record ID
+                    .Parameters("qnum") = params(2) 'quadrat number (1-3)
+                
+                Case "i_new_transect_quadrat_sfccover"
+                    '-- required parameters --
+                    .Parameters("qid") = params(1)  'record ID
+                    .Parameters("sid") = params(2)  'surface microhabitat ID
+                
                 Case "i_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = Params(1)  'record ID
-                    .Parameters("num") = Params(2)  'number of records
-                    .Parameters("fok") = Params(3)  'field ok? (QC pass/fail)
+                    .Parameters("rid") = params(1)  'record ID
+                    .Parameters("num") = params(2)  'number of records
+                    .Parameters("fok") = params(3)  'field ok? (QC pass/fail)
                     
                 Case "i_template"
                     '-- required parameters --
-                    .Parameters("tname") = Params(1)        'TemplateName
-                    .Parameters("contxt") = Params(2)       'Context
+                    .Parameters("tname") = params(1)        'TemplateName
+                    .Parameters("contxt") = params(2)       'Context
                     '.Parameters("tmpl").Type = dbMemo       'set it to a memo field
                     'Limit template SQL to 255 characters to avoid
                     'error 3271 SetRecord mod_App_Data Invalid property value.
                     'templates > 255 characters must be edited directly in the table
-                    .Parameters("tmpl") = Left(Params(3), 255) 'TemplateSQL
-                    .Parameters("rmks") = Params(4)         'Remarks
-                    .Parameters("effdate") = Params(5)      'EffectiveDate
-                    .Parameters("cid") = Params(6)          'CreatedBy_ID (contactID)
-                    .Parameters("prms") = Params(7)         'Params
-                    .Parameters("syntx") = Params(8)        'Syntax
-                    .Parameters("vers") = Params(9)         'Version
-                    .Parameters("sflag") = Params(10)       'IsSupported
+                    .Parameters("tmpl") = Left(params(3), 255) 'TemplateSQL
+                    .Parameters("rmks") = params(4)         'Remarks
+                    .Parameters("effdate") = params(5)      'EffectiveDate
+                    .Parameters("cid") = params(6)          'CreatedBy_ID (contactID)
+                    .Parameters("prms") = params(7)         'Params
+                    .Parameters("syntx") = params(8)        'Syntax
+                    .Parameters("vers") = params(9)         'Version
+                    .Parameters("sflag") = params(10)       'IsSupported
                     .Parameters("lmid") = TempVars("AppUserID") 'lastmodifiedID
-                    .Parameters("fqc") = Params(11)         'FieldCheck
-                    .Parameters("fok") = Params(12)         'FieldOK
-                    .Parameters("dep") = Params(13)         'Dependencies
+                    .Parameters("fqc") = params(11)         'FieldCheck
+                    .Parameters("fok") = params(12)         'FieldOK
+                    .Parameters("dep") = params(13)         'Dependencies
                 
                 Case "i_surface_cover"
                     '-- required parameters --
-                    .Parameters("qid") = Params(1)
-                    .Parameters("sid") = Params(2)
-                    .Parameters("pct") = Params(3)
+                    .Parameters("qid") = params(1)
+                    .Parameters("sid") = params(2)
+                    .Parameters("pct") = params(3)
                     
 '                    .Parameters("") = Params(1)
 '                    .Parameters("") = Params(2)
@@ -1111,19 +1138,19 @@ On Error GoTo Err_Handler
         '-----------------------
                 Case "u_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = Params(1)
-                    .Parameters("num") = Params(2)
-                    .Parameters("fok") = Params(3)
+                    .Parameters("rid") = params(1)
+                    .Parameters("num") = params(2)
+                    .Parameters("fok") = params(3)
                     
                 Case "u_template"
                     '-- required parameters --
-                    .Parameters("id") = Params(1)
+                    .Parameters("id") = params(1)
                 
                 Case "u_surface_cover"
                     '-- required parameters --
-                    .Parameters("qid") = Params(1)
-                    .Parameters("sid") = Params(2)
-                    .Parameters("pct") = Params(3)
+                    .Parameters("qid") = params(1)
+                    .Parameters("sid") = params(2)
+                    .Parameters("pct") = params(3)
                     '.Parameters("sfcid") = Params(4)
                     
         '-----------------------
@@ -1134,7 +1161,7 @@ On Error GoTo Err_Handler
                 
                 Case "d_num_records"
                     '-- required parameters --
-                    .Parameters("rid") = Params(1)
+                    .Parameters("rid") = params(1)
             
             End Select
             
@@ -1148,14 +1175,14 @@ On Error GoTo Err_Handler
             
             If ID = 0 Then
                 'retrieve identity
-                ID = db.OpenRecordset("SELECT @@IDENTITY;")(0)
+                ID = Db.OpenRecordset("SELECT @@IDENTITY;")(0)
             End If
             
             'set record action
-            .SQL = GetTemplate("i_record_action")
+            .sql = GetTemplate("i_record_action")
                                             
             '-- required parameters --
-            .Parameters("RefTable") = Params(0)
+            .Parameters("RefTable") = params(0)
             .Parameters("RefID") = ID
             .Parameters("ID") = TempVars("AppUserID") 'TempVars("ContactID")
             .Parameters("Activity") = "DE"
@@ -1174,7 +1201,7 @@ On Error GoTo Err_Handler
 Exit_Handler:
     'cleanup
     Set qdf = Nothing
-    Set db = Nothing
+    Set Db = Nothing
 
     Exit Function
 Err_Handler:
@@ -1241,9 +1268,9 @@ On Error GoTo Err_Handler
     
         'default
         NoList = False
-        strTable = frm.Name
+        strTable = frm.name
     
-        Select Case frm.Name
+        Select Case frm.name
             
             Case "Template"
                 'Dim tpl As New Template
@@ -1300,7 +1327,7 @@ On Error GoTo Err_Handler
         End Select
                 
         'set insert/update based on whether its an edit or new entry
-        DoAction = IIf(frm!tbxID.value > 0, "u", "i")
+        DoAction = IIf(frm!tbxID.Value > 0, "u", "i")
         
         If NoList Then
                     
@@ -1327,7 +1354,7 @@ On Error GoTo Err_Handler
                 'record already exists & ID > 0
                 
                 'retrieve ID
-                If frm!tbxID.value = rs("ID") Then 'rs("Contact.ID") Then
+                If frm!tbxID.Value = rs("ID") Then 'rs("Contact.ID") Then
                     'IDs are equivalent, just change the data
                     frm!lblMsg.ForeColor = lngLime
                     frm!lblMsgIcon.ForeColor = lngLime
@@ -1368,7 +1395,7 @@ On Error GoTo Err_Handler
     
 '    If frm.Dirty Then
     If frm.Dirty And Not NoList Then
-        Debug.Print "UpsertRecord " & frm.Name & " DIRTY"
+        Debug.Print "UpsertRecord " & frm.name & " DIRTY"
         'frm.Dirty = False
         
         frm!lblMsg.ForeColor = lngYellow
@@ -1377,7 +1404,7 @@ On Error GoTo Err_Handler
         frm!lblMsg.Caption = "** DIRTY **" 'UNSAVED CHANGES! **"
         
     Else
-        Debug.Print "UpsertRecord " & frm.Name & " CLEAN"
+        Debug.Print "UpsertRecord " & frm.name & " CLEAN"
     End If
         
 ' CHECK IF POPULATING FORM IS THE ISSUE...
@@ -1525,15 +1552,15 @@ On Error GoTo Err_Handler
     If Len(tbl) = 0 Or Len(Fields) = 0 Or Not (ID > 0) Then GoTo Exit_Handler
     
     'begin retrieval
-    Dim field As String
+    Dim Field As String
     Dim strFields As String
     Dim strSQL As String
-    Dim db As DAO.Database
+    Dim Db As DAO.Database
     Dim qdf As DAO.QueryDef
     
-    Set db = CurrentDb
+    Set Db = CurrentDb
     
-    With db
+    With Db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
@@ -1561,7 +1588,7 @@ On Error GoTo Err_Handler
             strSQL = "SELECT " & strFields & " FROM " & tbl & " WHERE ID = " & ID & ";"
             
             'update the query SQL
-            .SQL = strSQL
+            .sql = strSQL
             
             Dim rs As DAO.Recordset
 
@@ -1573,7 +1600,7 @@ On Error GoTo Err_Handler
             'cleanup
             Set rs = Nothing
             Set qdf = Nothing
-            Set db = Nothing
+            Set Db = Nothing
 
         End With
     End With
@@ -1669,12 +1696,12 @@ On Error GoTo Err_Handler
  '   For i = 0 To g_AppTemplates.Count - 2
     For Each x In g_AppTemplates
     
-        With g_AppTemplates.Item(x) 'g_AppTemplates.Items()(i)
-            strTemplate = .Item("TemplateName")
+        With g_AppTemplates.item(x) 'g_AppTemplates.Items()(i)
+            strTemplate = .item("TemplateName")
             
             Debug.Print strTemplate
             
-            If Len(.Item("FieldOK")) > 0 And .Item("FieldCheck") Then _
+            If Len(.item("FieldOK")) > 0 And .item("FieldCheck") Then _
                 SetPlotCheckResult strTemplate, "insert"
 '            iTemplate = .Item("ID")
 '            strDeps = .Item("Dependencies")
@@ -1730,10 +1757,10 @@ On Error GoTo Err_Handler
 'Debug.Print strTemplate
         
     With g_AppTemplates(strTemplate)
-        iTemplate = .Item("ID")
-        strDeps = .Item("Dependencies")
-        strFieldOK = .Item("FieldOK")
-        blnFieldCheck = .Item("FieldCheck")
+        iTemplate = .item("ID")
+        strDeps = .item("Dependencies")
+        strFieldOK = .item("FieldOK")
+        blnFieldCheck = .item("FieldCheck")
     End With
         
     'handle dependencies first
@@ -1755,11 +1782,11 @@ On Error GoTo Err_Handler
     isOK = 0
         
     'add values to numrecords
-    Dim Params(0 To 3) As Variant
+    Dim params(0 To 3) As Variant
     
-    Params(0) = LCase(Left(action, 1)) & "_num_records"
-    Params(1) = iTemplate
-    Params(2) = rs.RecordCount
+    params(0) = LCase(Left(action, 1)) & "_num_records"
+    params(1) = iTemplate
+    params(2) = rs.RecordCount
     
     If Len(strFieldOK) > 0 Then
         'assess if field check is fulfilled
@@ -1791,14 +1818,14 @@ On Error GoTo Err_Handler
     
     End If
     
-    Params(3) = IIf(isOK = True, 1, 0) 'convert to 1/0 as true/false instead of 0/-1
+    params(3) = IIf(isOK = True, 1, 0) 'convert to 1/0 as true/false instead of 0/-1
     
     'clear original value
     DeleteRecord "NumRecords", iTemplate, False
     
-    SetRecord "i_num_records", Params
+    SetRecord "i_num_records", params
     
-    Debug.Print Params(1) & " " & strTemplate & " " & Params(2) & " " & Params(3)
+    Debug.Print params(1) & " " & strTemplate & " " & params(2) & " " & params(3)
     
 Exit_Handler:
     Exit Function
@@ -1829,15 +1856,15 @@ Public Function UpdateNumRecords(iRecord As Integer, numRecords As Integer)
 On Error GoTo Err_Handler
 
     'add values to numrecords
-    Dim Params(0 To 3) As Variant
+    Dim params(0 To 3) As Variant
 
 Debug.Print "UpdateNumRecords"
     
-    Params(0) = "u_num_records"
-    Params(1) = iRecord
-    Params(2) = numRecords
+    params(0) = "u_num_records"
+    params(1) = iRecord
+    params(2) = numRecords
             
-    SetRecord "u_num_records", Params
+    SetRecord "u_num_records", params
     
 Exit_Handler:
     Exit Function
@@ -1950,7 +1977,7 @@ On Error GoTo Err_Handler
     Dim strSQL As String
     
     Set qdf = CurrentDb.QueryDefs("qry_Sp_Rpt_by_Park_Complete_Create_Table")
-    strSQL = qdf.SQL
+    strSQL = qdf.sql
 
 'SELECT DISTINCT
 'qry_Sp_Rpt_All.Unit_Code,
@@ -1973,7 +2000,7 @@ On Error GoTo Err_Handler
         
         'replace ORDER with WHERE clause + ORDER
         strSQLNew = Replace(strSQL, "ORDER", " WHERE " & strWhere & " ORDER")
-        qdf.SQL = strSQLNew 'was strSQL
+        qdf.sql = strSQLNew 'was strSQL
     End If
     
     'update underlying table (temp_Sp_Rpt_by_Park_Complete is used in report's underlying table temp_Sp_Rpt_by_Park_Rollup)
@@ -1995,7 +2022,7 @@ On Error GoTo Err_Handler
     DoCmd.SetWarnings True
     
     'reset qdf SQL
-    qdf.SQL = strSQL
+    qdf.sql = strSQL
     
     'update underlying table (temp_Sp_Rpt_by_Park_Rollup)
     DoCmd.SetWarnings False
@@ -2243,14 +2270,14 @@ On Error GoTo Err_Handler
 '    SetTempVar "Transect_ID", CInt(Right(CStr(transectID), 1))
     
     'set surface ID (pull from global dictionary using control name - _Q#)
-    strSurface = Left(caller.Name, Len(caller.Name) - 3)
+    strSurface = Left(caller.name, Len(caller.name) - 3)
     
     'if global dictionary not available, set it
     If IsNothing(g_AppSurfaces) Then GetSurfaceIDs
     sfcID = g_AppSurfaces(strSurface)
     
     'retrieve values
-    pctCover = Nz(caller.value, 0) 'TempVars("SfcPercentCover"), 0)
+    pctCover = Nz(caller.Value, 0) 'TempVars("SfcPercentCover"), 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2263,7 +2290,7 @@ On Error GoTo Err_Handler
         .SurfaceID = sfcID
         
         'fetch the appropriate QuadratID
-        strControl = "tbxQ" & Right(CStr(caller.Name), 1)
+        strControl = "tbxQ" & Right(CStr(caller.name), 1)
         .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
         
         'update values
@@ -2316,10 +2343,10 @@ On Error GoTo Err_Handler
     
     
     'set quadrat # (pull from global dictionary using control name - _Q#)
-    strQuadrat = Replace(Left(caller.Name, 2), "Q", "")
+    strQuadrat = Replace(Left(caller.name, 2), "Q", "")
     
     'retrieve values
-    pctCover = Nz(caller.value, 0)
+    pctCover = Nz(caller.Value, 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2337,7 +2364,7 @@ On Error GoTo Err_Handler
         .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
         
         'determine quadrat position (pull from global dictionary using control name)
-        strPosition = g_AppQuadratPositions(caller.Name)
+        strPosition = g_AppQuadratPositions(caller.name)
         
         
         

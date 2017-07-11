@@ -673,7 +673,7 @@ On Error GoTo Err_Handler:
     
     With oRegExp
         .Global = True
-        .IgnoreCase = True
+        .ignoreCase = True
         .Pattern = strPattern
         
         IsRegExpMatch = .Test(strInspect)

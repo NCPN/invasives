@@ -49,10 +49,6 @@ Begin
         dbLong "AggregateType" ="-1"
     End
     Begin
-        dbText "Name" ="sc.Position_m"
-        dbLong "AggregateType" ="-1"
-    End
-    Begin
         dbText "Name" ="sc.PercentCover"
         dbLong "AggregateType" ="-1"
     End

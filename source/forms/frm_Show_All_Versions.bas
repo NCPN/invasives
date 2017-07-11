@@ -344,7 +344,7 @@ Private Sub Form_Load()
  On Error GoTo Err_Form_Load
 
         Dim intFID As Integer
-        Dim db As DAO.Database
+        Dim Db As DAO.Database
         Dim NewMaster As DAO.Recordset
         Dim NewSOP As DAO.Recordset
         Dim strSQL As String
@@ -369,8 +369,8 @@ Private Sub Form_Load()
            Do Until IsNumeric(varInput)
              varInput = InputBox("You must enter a numeric value.", "Initialize Protocol Versions", "1")
            Loop
-           Set db = CurrentDb
-           Set NewMaster = db.OpenRecordset("tbl_master_version") ' Open recordset for new SOP records
+           Set Db = CurrentDb
+           Set NewMaster = Db.OpenRecordset("tbl_master_version") ' Open recordset for new SOP records
            NewMaster.AddNew
            NewMaster![project_ID] = CInt(varInput)
            NewMaster![version_key_number] = 1  ' This will be the first version key
@@ -381,7 +381,7 @@ Private Sub Form_Load()
         
            ' Add new child records for SOPs
 
-           Set NewSOP = db.OpenRecordset("tbl_SOP_version") ' Open recordset for new SOP records
+           Set NewSOP = Db.OpenRecordset("tbl_SOP_version") ' Open recordset for new SOP records
            intCount = 0   ' Initialize counter
            Do Until intCount = intIndex
              NewSOP.AddNew
@@ -428,7 +428,7 @@ Private Sub ButtonAdd_Click()
 On Error GoTo Err_ButtonAdd_Click
 
         Dim intFID As Integer
-        Dim db As DAO.Database
+        Dim Db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim VersionsByDate As DAO.Recordset
         Dim CurrentSOP As DAO.Recordset
@@ -437,9 +437,9 @@ On Error GoTo Err_ButtonAdd_Click
         Dim Response As Integer
         
         DoCmd.GoToRecord , , acNewRec   ' Add new parent record for new version
-        Set db = CurrentDb
+        Set Db = CurrentDb
         strSQL = "SELECT * FROM [tbl_master_version] ORDER BY [version_key_date]"
-        Set VersionsByDate = db.OpenRecordset(strSQL)
+        Set VersionsByDate = Db.OpenRecordset(strSQL)
         VersionsByDate.MoveLast ' Check if version exists for current date
         If Format(VersionsByDate![version_key_date], "short date") = Format(Date, "short date") Then
           Response = MsgBox("There already exists a version with today's date.  Do you want to continue?", 4, "Version Add")
@@ -450,7 +450,7 @@ On Error GoTo Err_ButtonAdd_Click
         VersionsByDate.Close
         
         strSQL = "SELECT * FROM [tbl_master_version] ORDER BY [version_key_number]"
-        Set Versions = db.OpenRecordset(strSQL)
+        Set Versions = Db.OpenRecordset(strSQL)
         Versions.MoveLast  ' Move to current version - max version key number
         Me![project_ID] = Versions![project_ID]
         intFID = Versions.RecordCount   ' Set new key
@@ -462,8 +462,8 @@ On Error GoTo Err_ButtonAdd_Click
         
         ' Add new child records for SOPs
         strSQL = "SELECT * FROM [tbl_SOP_version] WHERE [version_key_number] = " & intFID
-        Set CurrentSOP = db.OpenRecordset(strSQL) ' Open recordset for current SOPs
-        Set NewSOP = db.OpenRecordset("tbl_SOP_version") ' Open recordset for new SOP records
+        Set CurrentSOP = Db.OpenRecordset(strSQL) ' Open recordset for current SOPs
+        Set NewSOP = Db.OpenRecordset("tbl_SOP_version") ' Open recordset for new SOP records
         While CurrentSOP.EOF = False
             NewSOP.AddNew
             NewSOP![version_key_number] = intFID + 1

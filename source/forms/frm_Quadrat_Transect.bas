@@ -6,7 +6,6 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -19,13 +18,12 @@ Begin Form
     Width =13320
     DatasheetFontHeight =9
     ItemSuffix =65
-    Left =-2970
-    Top =1170
-    Right =10710
-    Bottom =10215
+    Top =585
+    Right =12060
+    Bottom =9630
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0xb5100b474c2ee340
+        0x5f862743f4f5e440
     End
     RecordSource ="qry_Quadrat_Transect"
     Caption ="frm_Canopy_Transect"
@@ -2435,7 +2433,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.03
+' Version:      1.04
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -2454,6 +2452,7 @@ Option Explicit
 '                                        error message (Error 2105 - can't go to specified record),
 '                                        pull microhabitats, species cover from respective SurfaceCover,
 '                                        SpeciesCover tables
+'               BLC - 4/25/2017 - 1.04 - revised to save quadrat flags to db
 ' =================================
 
 '---------------------
@@ -2480,7 +2479,9 @@ Dim strCheck As String
 ' ---------------------------------
 ' Sub:          Form_Open
 ' Description:  form opening actions
-' Assumptions:  -
+' Assumptions:  Newly imported transects have no quadrats, so these must be added.
+'               New quadrats also require new records for @ microhabitat surface, these
+'               too must be added.
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
@@ -2495,10 +2496,41 @@ Dim strCheck As String
 '   BLC - 4/23/2017 - added initialization for transect # since Next/Previous
 '                     buttons now cycle through the transects vs. stopping w/ 2105 error message,
 '                     added call to PopulateMicrohabitats to pull them from SurfaceCover
+'   BLC - 4/25/2017 - revised to save quadrat flags to database
+'   BLC - 7/10/2017 - added check for new transects, create new quadrats, quadrat surface
+'                     microhabitat records
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
+'    're-generate the temp table source
+'    DoCmd.SetWarnings False
+'    If TableExists("temp_Transect_Combined_Crosstab") Then
+'        DoCmd.DeleteObject acTable, "temp_Transect_Combined_Crosstab"
+'    End If
+'    DoCmd.OpenQuery "Create_temp_Transect_Combined_Crosstab"
+'    DoCmd.SetWarnings True
+'
+'    'set form recordsource
+'    Me.RecordSource = "temp_Transect_Combined_Crosstab"
+    
+    Dim t As New VegTransect
+    
+    'check if transect has quadrats
+    With t
+        .TransectQuadratID = Me.Transect_ID '"20170705114218-705547511.577606"
+                        
+        'newly imported transects have 0 quadrats --> create them & the associated
+        '                                             surface microhabitat records
+        If .NumQuadrats = 0 Then
+            .AddQuadrats
+            .AddSurfaceMicrohabitats
+            
+            Me.Refresh
+        End If
+    
+    End With
+            
     'default
     strCheck = StringFromCodepoint(uCheck)
     
@@ -2519,15 +2551,11 @@ On Error GoTo Err_Handler
     Dim ctl As Control
     
     For Each ctl In Me.Controls
-        If Left(ctl.Name, 3) = "tgl" Then
+        If Left(ctl.name, 3) = "tgl" Then
             ctl.Enabled = True
             ctl.ForeColor = lngBlack
         End If
     Next
-  
-    'initialize subform properties
-'    If Me.fsub_Species_Current.Form.ParentForm Is Nothing Then _
-'        Me.fsub_Species_Current.Form.ParentForm = Me
 
     'initialize Quadrat # temp vars
     Me.tbxQ1 = 0
@@ -2600,7 +2628,6 @@ On Error GoTo Err_Handler
     'set up toggles depending on species data
     With Me.fsub_Species_Current.Form
     
-        'Debug.Print .HasRecords
         'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
         If .HasRecords = True Then
             
@@ -2611,17 +2638,12 @@ On Error GoTo Err_Handler
             DisableToggles
             
             'enable select toggles depending on which quadrats have records
-'            Dim colToggles As New Collection
-'            Dim colRemoveToggles As New Collection
             Dim aryToggles() As String
             Dim strToggles As String
             Dim i As Integer
             Dim tgl As Variant
-            
-'            For i = 1 To 3
-'                colToggles.Add i
-'            Next
-            
+                        
+            'initialize
             strToggles = "1,2,3"
 
             With Me.fsub_Species_Current.Form
@@ -2643,23 +2665,8 @@ Debug.Print "PreTrim: " & strToggles
             
 Debug.Print "PostTrim: " & strToggles
                 aryToggles = Split(strToggles, ",")
-    '
-    '
-    '
-    '            If .HasRecordsQ1 Then colToggles.Remove 1 'remove 1
-    '            If .HasRecordsQ2 Then colToggles.Remove 2 'remove 2
-    '            If .HasRecordsQ3 Then
-    '                'remove if > 1 left, otherwise eliminate collection
-    '                If colToggles.Count > 1 Then
-    '                    colToggles.Remove 3 'remove 3
-    '                Else
-    '                    Set colToggles = Nothing
-    '                End If
-    '            End If
                 
                 'iterate to enable IF any toggles are left
-    '            If Not colToggles Is Nothing Then
-    '                For Each tgl In colToggles
                 If IsArray(aryToggles) Then
                     For Each tgl In aryToggles
                         
@@ -2667,8 +2674,6 @@ Debug.Print "tgl: " & tgl
                         EnableToggles CInt(tgl)
                     Next
                 End If
-    '                Next
-    '            End If
             End If
         Else
             
@@ -3776,13 +3781,13 @@ On Error GoTo Err_Handler
     
     blnON = False
     
-    If Me.Controls(ToggleSet.Name).Caption = strCheck Then _
+    If Me.Controls(ToggleSet.name).Caption = strCheck Then _
         blnON = True
     
     'default
-    strToggle = ToggleSet.Name
+    strToggle = ToggleSet.name
        
-    Select Case Replace(ToggleSet.Name, "tgl", "")
+    Select Case Replace(ToggleSet.name, "tgl", "")
     
     '------------------------------------------
     ' NotSampled
@@ -3861,8 +3866,7 @@ On Error GoTo Err_Handler
             End If
     End Select
 
-    If Me.Controls(ToggleSet.Name).Caption = strCheck Then
- 
+    If Me.Controls(ToggleSet.name).Caption = strCheck Then
         With fsub_Species_Current
             'form
             .Enabled = IIf(blnON, False, True)
@@ -3885,7 +3889,7 @@ On Error GoTo Err_Handler
     Dim strControl As String, strControlQ As String
     
     'quadrat level?
-    If InStr(strToggle, "Q", "") Then
+    If InStr(strToggle, "Q") > 0 Then
         strControl = Left(strToggle, Len(strToggle) - 1) 'remove last 1|2|3
     
         Count = 0
@@ -3898,12 +3902,12 @@ On Error GoTo Err_Handler
         Next
     
         'all quadrats set? (if so, count = 1 + 2 + 3 = 6)
-        '
-        If Count < 6 Then
-            
-            Debug.Print strControlQ & "6"
         
-        End If
+'        If Count < 6 Then
+'
+'            Debug.Print strControlQ & "6"
+'
+'        End If
     
     End If
     

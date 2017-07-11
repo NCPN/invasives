@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Settings
 ' Level:        Application module
-' Version:      1.07
+' Version:      1.08
 ' Description:  Application-wide related values, functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -22,6 +22,10 @@ Option Explicit
 ' --------------------------------------------------------------------
 '               BLC, 4/24/2017          added updated version to Invasives db
 ' --------------------------------------------------------------------
+'               BLC, 5/3/2017  - 1.08 - added VCS_FULL_PATH for running VCS functions/subroutines
+'               BLC, 7/5/2017  - 1.09 - added QUADRATS_PER_TRANSECT to make
+'                                       adding quadrats for new transects flexible in case
+'                                       # changes from 3 quadrats per transect
 ' =================================
 
 ' ---------------------------------
@@ -59,7 +63,9 @@ Public gSubReportCount As Integer                  'global counter for subreport
 '               BLC, 4/4/2016  - added LOCATION_TYPES to allow specific types only, RECORD_ACTIONS, CONTACT_ROLES, PARKS
 '               BLC, 6/7/2016  - added ACCESS_ROLES to set user application permissions
 '               BLC, 9/7/2016  - added LINK_NORMAL_TEXT & _BKGD for disabling tile links
+'               BLC, 5/3/2017  - added VCS_FULL_PATH for running VCS functions/subroutines
 ' ---------------------------------
+Public Const VCS_FULL_PATH As String = "Z:\_____LIB\dev\git_projects\libraries\VCS.accdb"   'Version Control System (VCS) db (contains modules for version control)
 Public Const USER_ACCESS_CONTROL As Boolean = True             'Boolean flag -> db includes user access control or not
 Public Const DB_ADMIN_CONTROL As Boolean = False                'Boolean flag -> db does not include DbAdmin subform & controls
 Public Const FIX_LINKED_DBS As Boolean = False                  'Boolean flag -> db requires tbl_Dbs to be updated via FixLinkedDb (usually when DbAdmin is not fully implemented)
@@ -162,3 +168,6 @@ Public Const PHOTO_PATH As String = "Z:\_____LIB\dev\git_projects\big_rivers_app
 '-----------------------------------------------------------------------
 Public g_AppSurfaces As Scripting.Dictionary            'global application surface names & IDs (for lookups)
 Public g_AppQuadratPositions As Scripting.Dictionary    'global application quadrat positions (for lookups)
+
+Public Const QUADRATS_PER_TRANSECT As Integer = 3       'total # of quadrats found on an invasives transect
+                                                        'this value assumes quadrat #s are consecutive & begin w/ 1
