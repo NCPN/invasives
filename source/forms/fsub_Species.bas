@@ -14,10 +14,10 @@ Begin Form
     Width =7800
     DatasheetFontHeight =9
     ItemSuffix =51
-    Left =5640
-    Top =4695
-    Right =13935
-    Bottom =11130
+    Left =450
+    Top =1335
+    Right =6360
+    Bottom =4725
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x3d9c36b74cece440
@@ -427,7 +427,7 @@ Begin Form
                     Name ="cbxIsDead"
                     ControlSource ="IsDead"
                     RowSourceType ="Table/Query"
-                    RowSource ="qry_IsDead_Plus_Flags"
+                    RowSource ="IsDead_Plus_Flags"
                     ColumnWidths ="0;1440"
                     ControlTipText ="Indicate if species is alive or dead (or the appropriate missing data flag)"
                     LayoutCachedLeft =5760

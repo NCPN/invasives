@@ -386,7 +386,7 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
         strTempFile = CurrentProject.Path & "\" _
                     & Left(CurrentProject.name, InStrRev(CurrentProject.name, ".") - 1) _
                     & "_Temp.accdb"
-        If FileExists(strTempFile) = False Then
+        If mod_File.FileExists(strTempFile) = False Then
             DBEngine.CreateDatabase strTempFile, dbLangGeneral, dbVersion120
         End If
     

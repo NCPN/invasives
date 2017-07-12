@@ -22,9 +22,9 @@ Begin Form
     Width =14280
     DatasheetFontHeight =10
     ItemSuffix =200
-    Left =4080
+    Left =4680
     Top =2610
-    Right =18360
+    Right =18960
     Bottom =14355
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20121121125102-961953163.146973' AND [Event_ID]='20151107154044-7"
@@ -150,7 +150,7 @@ Begin Form
                     FontSize =9
                     FontWeight =700
                     TabIndex =11
-                    Name ="cmdClose"
+                    Name ="btnClose"
                     Caption ="Close"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
@@ -176,7 +176,7 @@ Begin Form
                     Width =768
                     ColumnWidth =1440
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"510\""
-                    Name ="cboLocation_ID"
+                    Name ="cbxLocationID"
                     ControlSource ="Location_ID"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tbl_Locations.Location_ID, tbl_Locations.Plot_ID, tbl_Locations.Unit_Code"
@@ -209,7 +209,7 @@ Begin Form
                     Top =900
                     Width =1080
                     TabIndex =3
-                    Name ="txtStart_Date"
+                    Name ="tbxStartDate"
                     ControlSource ="Start_Date"
                     Format ="Short Date"
                     StatusBarText ="M. Starting date for the event (Start_Date)"
@@ -486,6 +486,28 @@ Begin Form
                         End
                     End
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3180
+                    Top =480
+                    Width =2820
+                    Height =255
+                    TabIndex =13
+                    ForeColor =8355711
+                    Name ="tbxEventID"
+                    ControlSource ="Event_ID"
+
+                    LayoutCachedLeft =3180
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =6000
+                    LayoutCachedHeight =735
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
             End
         End
     End
@@ -499,44 +521,58 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:    frm_Data_Entry
-' Description:  Primary field data entry form
+' Form:         frm_Data_Entry
+' Level:        Application form
+' Version:      1.01
+' Basis:        -
+'
+' Description:  Data entry form object related properties, functions & procedures for UI display
+'               Primary field data entry form
 ' Data source:  tbl_Locations
 ' Data access:  edit; allow additions off except for new records
 ' Pages:        none
 ' Functions:    none
-' References:   fxnSwitchboardIsOpen, fxnGUIDGen
 ' Source/date:  John R. Boetsch, June 2006
-' Revisions:    <name, date, desc - add lines as you go>
+' References:   fxnSwitchboardIsOpen, fxnGUIDGen
+' Revisions:    JRB - 6/x/2006  - 1.00 - initial version
+'               BLC - 7/12/2017 - 1.01 - added documentation, error handling
 ' =================================
 
-Private Sub cboLocation_ID_AfterUpdate()
-' Update_Loc_Info
-End Sub
+'---------------------
+' Simulated Inheritance
+'---------------------
 
-Private Sub Form_BeforeUpdate(Cancel As Integer)
-  If IsNull(Me!Start_Date) Then
-        ' ask user if (s)he wants to enter data or cancel and close form
-        If MsgBox("Visit date is missing - do you want to enter the missing data?", vbYesNo, "Date missing") = vbNo Then
-            Me.Undo
-        End If
-  End If
-End Sub
+'---------------------
+' Declarations
+'---------------------
 
-Private Sub Form_Close()
-If IsLoaded("frm_Data_Gateway") Then
-    Forms("frm_Data_Gateway").Requery
-End If
-End Sub
+'---------------------
+' Event Declarations
+'---------------------
 
-Private Sub Form_Current()
+'---------------------
+' Properties
+'---------------------
 
-Update_Loc_Info
+'---------------------
+' Methods
+'---------------------
 
-End Sub
-
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   JRB - 6/x/2006 - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
-    On Error GoTo Err_Handler
+On Error GoTo Err_Handler
 
     Dim strCaptionSuffix As String
 
@@ -549,23 +585,102 @@ Private Sub Form_Open(Cancel As Integer)
         strCaptionSuffix = " - " & "Filter by sampling event"
     End If
     Me.Caption = Me.Caption & strCaptionSuffix
-    Me!txtStart_date.SetFocus
-Exit_Procedure:
+    Me!tbxStartDate.SetFocus
+
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
+' ---------------------------------
+' Sub:          Form_Current
+' Description:  form current record actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Current()
+On Error GoTo Err_Handler
+
+    Update_Loc_Info
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Current[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_BeforeUpdate
+' Description:  form actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+  
+  If IsNull(Me!Start_Date) Then
+        ' ask user if (s)he wants to enter data or cancel and close form
+        If MsgBox("Visit date is missing - do you want to enter the missing data?", vbYesNo, "Date missing") = vbNo Then
+            Me.Undo
+        End If
+  End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeUpdate[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_BeforeInsert
+' Description:  form actions before a new record is inserted
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
+On Error GoTo Err_Handler
 
         Dim Db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim strSQL As String
         
-    On Error GoTo Err_Handler
     
     ' Set master version number on event record
     Set Db = CurrentDb
@@ -582,50 +697,33 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
         End If
     End If
 
-Exit_Procedure:
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_BeforeInsert[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub cmdClose_Click()
-    On Error GoTo Err_Handler
-
-    DoCmd.RunCommand acCmdSaveRecord
-    DoCmd.Close , , acSaveNo
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-
-Public Sub Update_Loc_Info()
-' Description:  Updates associated location information when Location_ID is updated
-' References:   GetCriteriaString
-' Source/date:  Simon Kingston, Sept. 2006
-' Revisions:    <name, date, desc - add lines as you go>
-
-Dim strXY As Variant
-Dim strCriteria As String
-
-If IsNull(Me!txtLocation_ID) Then
-    Me!txtUnit_Code = Null
-Else
-    strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
-    Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
-End If
-End Sub
-
-
-Private Sub txtStart_Date_AfterUpdate()
+' ---------------------------------
+' Sub:          tbxStartDate_AfterUpdate
+' Description:  tbxStartDate actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub tbxStartDate_AfterUpdate()
+On Error GoTo Err_Handler
+        
         Dim Db As DAO.Database
         Dim Events As DAO.Recordset
         Dim strSQL As String
@@ -634,21 +732,153 @@ Private Sub txtStart_Date_AfterUpdate()
     
     ' Check for duplicate date
     strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
-'    MsgBox strSQL
+
     Set Db = CurrentDb
     Set Events = Db.OpenRecordset(strSQL)
+    
     If Not Events.EOF Then
       MsgBox " Duplicate visit date - update cancelled."
       Me.Undo
       Events.Close
       DoCmd.Close
-      GoTo Exit_Procedure
+      GoTo Exit_Handler
     End If
     Events.Close
-Exit_Procedure:
-    Exit Sub
 
+Exit_Handler:
+    Exit Sub
 Err_Handler:
-    MsgBox Err.Description
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tbxStartDate_AfterUpdate[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          cbxLocationID_AfterUpdate
+' Description:  cbxLocationID actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub cbxLocationID_AfterUpdate()
+On Error GoTo Err_Handler
+
+    ' Update_Loc_Info
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxLocationID_AfterUpdate[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnClose_Click
+' Description:  Close button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnClose_Click()
+On Error GoTo Err_Handler
+    
+    DoCmd.RunCommand acCmdSaveRecord
+    DoCmd.Close , , acSaveNo
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_Close
+' Description:  form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Close()
+On Error GoTo Err_Handler
+
+    If IsLoaded("frm_Data_Gateway") Then
+        Forms("frm_Data_Gateway").Requery
+    End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Close[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Update_Loc_Info
+' Description:  Updates associated location information when Location_ID is updated
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   GetCriteriaString
+' Adapted:      -
+' Revisions:
+'   SK  - 9/x/2006 - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Public Sub Update_Loc_Info()
+On Error GoTo Err_Handler
+
+    Dim strXY As Variant
+    Dim strCriteria As String
+    
+    If IsNull(Me!txtLocation_ID) Then
+        Me!txtUnit_Code = Null
+    Else
+        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+        Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
+    End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Update_Loc_Info[frm_Data_Entry form])"
+    End Select
+    Resume Exit_Handler
 End Sub

@@ -26,6 +26,7 @@ Option Explicit
 '               BLC, 7/5/2017  - 1.09 - added QUADRATS_PER_TRANSECT to make
 '                                       adding quadrats for new transects flexible in case
 '                                       # changes from 3 quadrats per transect
+'               BLC, 7/12/2017 - 1.10 - added VCS_SAVE_TABLES for tables to backup (lookups)
 ' =================================
 
 ' ---------------------------------
@@ -66,7 +67,11 @@ Public gSubReportCount As Integer                  'global counter for subreport
 '               BLC, 5/3/2017  - added VCS_FULL_PATH for running VCS functions/subroutines
 ' ---------------------------------
 Public Const VCS_FULL_PATH As String = "Z:\_____LIB\dev\git_projects\libraries\VCS.accdb"   'Version Control System (VCS) db (contains modules for version control)
-Public Const USER_ACCESS_CONTROL As Boolean = True             'Boolean flag -> db includes user access control or not
+                                                                'Tables to save for VCS (e.g. lookups)
+Public Const VCS_SAVE_TABLES As String = "tlu_projects, " & _
+    "tlu_Cover_Code, tlu_Cover_Value, tlu_Disturbance," & _
+    "tlu_NCPN_Plants, tlu_Parks, tlu_Size_Value, tlu_Species"
+Public Const USER_ACCESS_CONTROL As Boolean = True              'Boolean flag -> db includes user access control or not
 Public Const DB_ADMIN_CONTROL As Boolean = False                'Boolean flag -> db does not include DbAdmin subform & controls
 Public Const FIX_LINKED_DBS As Boolean = False                  'Boolean flag -> db requires tbl_Dbs to be updated via FixLinkedDb (usually when DbAdmin is not fully implemented)
 Public Const MAIN_APP_FORM As String = "Main"                   'String -> main tabbed form (frm_Switchboard, etc.)

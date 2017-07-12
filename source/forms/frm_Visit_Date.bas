@@ -7,7 +7,6 @@ Begin Form
     AutoCenter = NotDefault
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowEdits = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
@@ -18,18 +17,24 @@ Begin Form
     GridY =24
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =4830
-    Top =3255
-    Right =12105
-    Bottom =6945
+    Left =4965
+    Top =5160
+    Right =12165
+    Bottom =8805
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20101019114804-705547511.577606'"
     RecSrcDt = Begin
         0x5bd611c7ad13e340
     End
     RecordSource ="qfrm_Visit_Date"
     Caption ="Select a Visit"
+    OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
+    PrtMip = Begin
+        0x6801000068010000680100006801000000000000201c0000e010000001000000 ,
+        0x010000006801000000000000a10700000100000001000000
+    End
+    FilterOnLoad =255
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -39,54 +44,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -96,9 +112,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1140
@@ -147,9 +165,18 @@ Begin Form
                     Top =120
                     Width =1020
                     Height =300
-                    Name ="ButtonClose"
+                    Name ="btnClose"
                     Caption ="Close Form"
                     OnClick ="[Event Procedure]"
+
+                    LayoutCachedLeft =6000
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =7020
+                    LayoutCachedHeight =420
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -164,11 +191,13 @@ Begin Form
                     Width =600
                     Height =255
                     ColumnWidth =540
+                    ColumnOrder =0
                     FontWeight =700
                     TabIndex =1
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -184,11 +213,13 @@ Begin Form
                     Width =3540
                     Height =255
                     ColumnWidth =600
+                    ColumnOrder =1
                     FontWeight =700
                     TabIndex =2
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
                 End
                 Begin Label
                     OverlapFlags =85
@@ -220,6 +251,7 @@ Begin Form
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Event identifier (Event_ID)"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -239,6 +271,7 @@ Begin Form
                     Name ="Location_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -258,6 +291,7 @@ Begin Form
                     ControlSource ="Start_Date"
                     Format ="Short Date"
                     StatusBarText ="M. Starting date for the event (Start_Date)"
+
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -266,9 +300,14 @@ Begin Form
                     Width =1020
                     Height =300
                     TabIndex =3
-                    Name ="ButtonEdit"
+                    Name ="btnEdit"
                     Caption ="Edit Visit"
                     OnClick ="[Event Procedure]"
+
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
@@ -285,36 +324,153 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Compare Database
+Option Explicit
 
-Private Sub ButtonClose_Click()
-On Error GoTo Err_ButtonClose_Click
+' =================================
+' Form:         frm_Visit_Date
+' Level:        Application form
+' Version:      1.05
+' Basis:        -
+'
+' Description:  Visit Date form object related properties, functions & procedures for UI display
+'
+' Source/date:  NCPN, Unknown - for NCPN tools
+' References:   -
+' Revisions:    NCPN - Unknown  - 1.00 - initial version
+'               BLC - 7/12/2017 - 1.01 - added documentation, error handling, update usys_temp_transect
+'                                        before opening form
+' =================================
 
-    DoCmd.Close
+'---------------------
+' Simulated Inheritance
+'---------------------
 
-Exit_ButtonClose_Click:
-    Exit Sub
+'---------------------
+' Declarations
+'---------------------
 
-Err_ButtonClose_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonClose_Click
+'---------------------
+' Event Declarations
+'---------------------
+
+'---------------------
+' Properties
+'---------------------
+
+'---------------------
+' Methods
+'---------------------
+
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Open(Cancel As Integer)
+On Error GoTo Err_Handler
     
+    'set hover colors
+    Me.btnEdit.HoverColor = lngGreen
+    Me.btnClose.HoverColor = lngGreen
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
 End Sub
-Private Sub ButtonEdit_Click()
+
+' ---------------------------------
+' Sub:          btnEdit_Click
+' Description:  Edit button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling,
+'                     update of usys_temp_transect data table before opening form
+' ---------------------------------
+Private Sub btnEdit_Click()
     On Error GoTo Err_Handler
 
     Dim strCriteriaLoc As String
     Dim strCriteriaEvent As String
 
-        strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.name, "Location_ID")
-        strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.name, "Event_ID")
-        ' Filter by location and event
-        DoCmd.OpenForm "frm_Data_Entry", , , strCriteriaLoc & " AND " & strCriteriaEvent, , , strCriteriaEvent
-        DoCmd.Close acForm, "frm_Visit_Date"
-        DoCmd.SelectObject acForm, "frm_Data_Entry"
-Exit_Procedure:
-    Exit Sub
+    strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.name, "Location_ID")
+    strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.name, "Event_ID")
+    
+    're-generate the temp table source
+    DoCmd.SetWarnings False
+    If TableExists("usys_temp_transect") Then
+        DoCmd.DeleteObject acTable, "usys_temp_transect"
+    End If
+    DoCmd.OpenQuery "Create_usys_temp_transect"
+    
+    'move tables to Queries - Application group
+    SetNavGroup "Queries - Application", "usys_temp_transect", "table"
 
+    DoCmd.SetWarnings True
+    
+    ' Filter by location and event
+    DoCmd.OpenForm "frm_Data_Entry", , , strCriteriaLoc & " AND " & strCriteriaEvent, , , strCriteriaEvent
+    DoCmd.Close acForm, "frm_Visit_Date"
+    DoCmd.SelectObject acForm, "frm_Data_Entry"
+
+Exit_Handler:
+    Exit Sub
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnEdit_Click[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          btnClose_Click
+' Description:  Close button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   NCPN - Unknown - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub ButtonClose_Click()
+On Error GoTo Err_Handler
+
+    DoCmd.Close
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[frm_Visit_Date form])"
+    End Select
+    Resume Exit_Handler
 End Sub

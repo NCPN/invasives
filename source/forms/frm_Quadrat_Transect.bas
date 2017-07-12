@@ -6,6 +6,7 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -17,15 +18,16 @@ Begin Form
     GridY =24
     Width =13320
     DatasheetFontHeight =9
-    ItemSuffix =65
-    Top =585
+    ItemSuffix =71
+    Left =-1620
+    Top =885
     Right =12060
-    Bottom =9630
+    Bottom =9930
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x5f862743f4f5e440
+        0xc5265af90df6e440
     End
-    RecordSource ="qry_Quadrat_Transect"
+    RecordSource ="usys_temp_transect"
     Caption ="frm_Canopy_Transect"
     OnCurrent ="[Event Procedure]"
     OnOpen ="[Event Procedure]"
@@ -177,7 +179,7 @@ Begin Form
                     Visible = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
-                    Left =12360
+                    Left =12630
                     Top =360
                     Width =630
                     Height =180
@@ -186,12 +188,16 @@ Begin Form
                     ControlSource ="Transect_ID"
                     StatusBarText ="Unique record identifier - primary key"
 
+                    LayoutCachedLeft =12630
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =13260
+                    LayoutCachedHeight =540
                 End
                 Begin TextBox
                     Visible = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
-                    Left =12300
+                    Left =12630
                     Top =660
                     Width =630
                     Height =180
@@ -201,6 +207,10 @@ Begin Form
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
 
+                    LayoutCachedLeft =12630
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =13260
+                    LayoutCachedHeight =840
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -296,6 +306,10 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
+                    LayoutCachedLeft =2220
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2526
+                    LayoutCachedHeight =366
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -335,6 +349,10 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
+                    LayoutCachedLeft =2580
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2886
+                    LayoutCachedHeight =366
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
@@ -342,9 +360,9 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
-                    OverlapFlags =85
+                    OverlapFlags =93
                     IMESentenceMode =3
-                    Left =12360
+                    Left =12420
                     Top =60
                     Width =840
                     Height =180
@@ -354,25 +372,29 @@ Begin Form
                     Format ="Long Time"
                     StatusBarText ="Recording time"
 
-                    LayoutCachedLeft =12360
+                    LayoutCachedLeft =12420
                     LayoutCachedTop =60
-                    LayoutCachedWidth =13200
+                    LayoutCachedWidth =13260
                     LayoutCachedHeight =240
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
                     ScrollBars =2
-                    OverlapFlags =85
+                    OverlapFlags =87
                     IMESentenceMode =3
                     Left =6900
                     Top =60
-                    Width =5340
-                    Height =363
+                    Width =5520
+                    Height =843
                     TabIndex =7
                     Name ="Comments"
                     ControlSource ="Comments"
                     StatusBarText ="Notes"
 
+                    LayoutCachedLeft =6900
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =12420
+                    LayoutCachedHeight =903
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -401,7 +423,7 @@ Begin Form
                     ControlSource ="Observer"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT tlu_Contacts.Contact_ID, tlu_Contacts.Last_Name, tlu_Contacts.First_Name "
-                        "FROM tlu_Contacts; "
+                        "FROM tlu_Contacts;"
                     ColumnWidths ="0;810;839"
                     Begin
                         Begin Label
@@ -509,6 +531,7 @@ Begin Form
                     Left =1980
                     Top =3360
                     Width =778
+                    Height =239
                     TabIndex =9
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q1"
@@ -520,7 +543,7 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3360
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =3600
+                    LayoutCachedHeight =3599
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -546,6 +569,7 @@ Begin Form
                     Left =2770
                     Top =3360
                     Width =778
+                    Height =239
                     TabIndex =10
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q2"
@@ -557,16 +581,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3360
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =3600
+                    LayoutCachedHeight =3599
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
+                    Left =3540
                     Top =3360
-                    Width =778
+                    Width =763
+                    Height =239
                     TabIndex =11
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Wood_Q3"
@@ -575,10 +600,10 @@ Begin Form
                     StatusBarText ="Dead wood cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
+                    LayoutCachedLeft =3540
                     LayoutCachedTop =3360
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =3600
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =3599
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -588,6 +613,7 @@ Begin Form
                     Left =1980
                     Top =3600
                     Width =778
+                    Height =239
                     TabIndex =12
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q1"
@@ -599,7 +625,7 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3600
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =3840
+                    LayoutCachedHeight =3839
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -619,12 +645,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
                     Top =3600
                     Width =778
+                    Height =239
                     TabIndex =13
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q2"
@@ -636,16 +663,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3600
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =3840
+                    LayoutCachedHeight =3839
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =3600
-                    Width =778
+                    Left =3540
+                    Top =3599
+                    Width =763
+                    Height =239
                     TabIndex =14
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dung_Q3"
@@ -654,19 +682,20 @@ Begin Form
                     StatusBarText ="Dung cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =3600
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =3840
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =3599
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =3838
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
                     Top =3840
                     Width =778
+                    Height =239
                     TabIndex =15
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q1"
@@ -678,7 +707,7 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =3840
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =4080
+                    LayoutCachedHeight =4079
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -698,12 +727,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
                     Top =3840
                     Width =778
+                    Height =239
                     TabIndex =16
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q2"
@@ -715,16 +745,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =3840
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =4080
+                    LayoutCachedHeight =4079
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =3840
-                    Width =778
+                    Left =3540
+                    Top =3838
+                    Width =763
+                    Height =239
                     TabIndex =17
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Fungus_Q3"
@@ -733,19 +764,20 @@ Begin Form
                     StatusBarText ="Fungus cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =3840
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =4080
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =3838
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =4077
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
                     Top =4080
                     Width =778
+                    Height =239
                     TabIndex =18
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q1"
@@ -757,11 +789,11 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4080
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =4320
+                    LayoutCachedHeight =4319
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =95
+                            OverlapFlags =127
                             Left =120
                             Top =4080
                             Width =1860
@@ -777,12 +809,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
                     Top =4080
                     Width =778
+                    Height =239
                     TabIndex =19
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q2"
@@ -794,16 +827,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4080
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =4320
+                    LayoutCachedHeight =4319
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =4080
-                    Width =778
+                    Left =3540
+                    Top =4077
+                    Width =763
+                    Height =239
                     TabIndex =20
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Lichen_Q3"
@@ -812,19 +846,20 @@ Begin Form
                     StatusBarText ="Lichen cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =4080
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =4320
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =4077
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =4316
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
                     Top =4320
                     Width =778
+                    Height =239
                     TabIndex =21
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q1"
@@ -836,11 +871,11 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4320
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =4560
+                    LayoutCachedHeight =4559
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =95
+                            OverlapFlags =127
                             Left =120
                             Top =4320
                             Width =1860
@@ -856,12 +891,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
                     Top =4320
                     Width =778
+                    Height =239
                     TabIndex =22
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q2"
@@ -873,16 +909,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4320
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =4560
+                    LayoutCachedHeight =4559
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =4320
-                    Width =778
+                    Left =3540
+                    Top =4316
+                    Width =763
+                    Height =239
                     TabIndex =23
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Litter_Duff_Q3"
@@ -891,19 +928,20 @@ Begin Form
                     StatusBarText ="Litter/Duff cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =4320
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =4560
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =4316
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =4555
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
                     Top =4560
                     Width =778
+                    Height =239
                     TabIndex =24
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q1"
@@ -915,11 +953,11 @@ Begin Form
                     LayoutCachedLeft =1980
                     LayoutCachedTop =4560
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =4800
+                    LayoutCachedHeight =4799
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =95
+                            OverlapFlags =127
                             Left =120
                             Top =4560
                             Width =1860
@@ -935,12 +973,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
                     Top =4560
                     Width =778
+                    Height =239
                     TabIndex =25
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q2"
@@ -952,16 +991,17 @@ Begin Form
                     LayoutCachedLeft =2770
                     LayoutCachedTop =4560
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =4800
+                    LayoutCachedHeight =4799
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =4560
-                    Width =778
+                    Left =3540
+                    Top =4555
+                    Width =763
+                    Height =239
                     TabIndex =26
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Root_Bole_Q3"
@@ -970,10 +1010,10 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =4560
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =4800
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =4555
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =4794
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -981,9 +1021,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =5040
+                    Top =5041
                     Width =778
-                    Height =300
+                    Height =239
                     TabIndex =30
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q1"
@@ -993,9 +1033,9 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =5040
+                    LayoutCachedTop =5041
                     LayoutCachedWidth =2758
-                    LayoutCachedHeight =5340
+                    LayoutCachedHeight =5280
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1019,9 +1059,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =5040
+                    Top =5041
                     Width =778
-                    Height =300
+                    Height =239
                     TabIndex =31
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q2"
@@ -1031,19 +1071,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =5040
+                    LayoutCachedTop =5041
                     LayoutCachedWidth =3548
-                    LayoutCachedHeight =5340
+                    LayoutCachedHeight =5280
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =5040
-                    Width =778
-                    Height =300
+                    Left =3540
+                    Top =5041
+                    Width =763
+                    Height =239
                     TabIndex =32
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Mineral_Soil_Sediment_Q3"
@@ -1052,19 +1092,20 @@ Begin Form
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =5040
-                    LayoutCachedWidth =4328
-                    LayoutCachedHeight =5340
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =5041
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =5280
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =255
+                    OverlapFlags =95
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =5280
+                    Top =5281
                     Width =778
+                    Height =239
                     TabIndex =33
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q1"
@@ -1074,13 +1115,13 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =5280
+                    LayoutCachedTop =5281
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =5520
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =223
+                            OverlapFlags =95
                             Left =120
                             Top =5280
                             Width =1860
@@ -1096,12 +1137,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =255
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =5280
+                    Top =5281
                     Width =778
+                    Height =239
                     TabIndex =34
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q2"
@@ -1111,7 +1153,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =5280
+                    LayoutCachedTop =5281
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =5520
                 End
@@ -1120,9 +1162,10 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =5280
-                    Width =778
+                    Left =3540
+                    Top =5281
+                    Width =763
+                    Height =239
                     TabIndex =35
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Moss_Q3"
@@ -1131,9 +1174,9 @@ Begin Form
                     StatusBarText ="Moss cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =5280
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =5281
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =5520
                 End
                 Begin ComboBox
@@ -1142,8 +1185,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =5520
+                    Top =5521
                     Width =778
+                    Height =239
                     TabIndex =36
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q1"
@@ -1153,13 +1197,13 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =5520
+                    LayoutCachedTop =5521
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =5760
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =127
+                            OverlapFlags =95
                             Left =120
                             Top =5520
                             Width =1860
@@ -1179,8 +1223,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =5520
+                    Top =5521
                     Width =778
+                    Height =239
                     TabIndex =37
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q2"
@@ -1190,18 +1235,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =5520
+                    LayoutCachedTop =5521
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =5760
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =127
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =5520
-                    Width =778
+                    Left =3540
+                    Top =5521
+                    Width =763
+                    Height =239
                     TabIndex =38
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Cryptogram_Q3"
@@ -1210,9 +1256,9 @@ Begin Form
                     StatusBarText ="Cryptogram cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =5520
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =5521
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =5760
                 End
                 Begin ComboBox
@@ -1221,8 +1267,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =5760
+                    Top =5761
                     Width =778
+                    Height =239
                     TabIndex =39
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q1"
@@ -1232,7 +1279,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =5760
+                    LayoutCachedTop =5761
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =6000
                     Begin
@@ -1258,8 +1305,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =5760
+                    Top =5761
                     Width =778
+                    Height =239
                     TabIndex =40
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q2"
@@ -1269,18 +1317,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =5760
+                    LayoutCachedTop =5761
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =6000
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =127
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =5760
-                    Width =778
+                    Left =3540
+                    Top =5761
+                    Width =763
+                    Height =239
                     TabIndex =41
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Road_Q3"
@@ -1289,9 +1338,9 @@ Begin Form
                     StatusBarText ="Road cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =5760
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =5761
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =6000
                 End
                 Begin ComboBox
@@ -1300,8 +1349,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =6000
+                    Top =6001
                     Width =778
+                    Height =239
                     TabIndex =42
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q1"
@@ -1311,7 +1361,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =6000
+                    LayoutCachedTop =6001
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =6240
                     Begin
@@ -1337,8 +1387,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =6000
+                    Top =6001
                     Width =778
+                    Height =239
                     TabIndex =43
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q2"
@@ -1348,18 +1399,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =6000
+                    LayoutCachedTop =6001
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =6240
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =127
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =6000
-                    Width =778
+                    Left =3540
+                    Top =6001
+                    Width =763
+                    Height =239
                     TabIndex =44
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Rock_Q3"
@@ -1368,9 +1420,9 @@ Begin Form
                     StatusBarText ="Rock cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =6000
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =6001
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =6240
                 End
                 Begin ComboBox
@@ -1379,8 +1431,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =6240
+                    Top =6241
                     Width =778
+                    Height =239
                     TabIndex =45
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q1"
@@ -1390,7 +1443,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =6240
+                    LayoutCachedTop =6241
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =6480
                     Begin
@@ -1416,8 +1469,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =6240
+                    Top =6241
                     Width =778
+                    Height =239
                     TabIndex =46
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q2"
@@ -1427,18 +1481,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =6240
+                    LayoutCachedTop =6241
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =6480
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =127
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =6240
-                    Width =778
+                    Left =3540
+                    Top =6241
+                    Width =763
+                    Height =239
                     TabIndex =47
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Standing_Water_Flooded_Q3"
@@ -1447,9 +1502,9 @@ Begin Form
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =6240
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =6241
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =6480
                 End
                 Begin ComboBox
@@ -1458,8 +1513,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =6480
+                    Top =6481
                     Width =778
+                    Height =239
                     TabIndex =48
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q1"
@@ -1469,7 +1525,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =6480
+                    LayoutCachedTop =6481
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =6720
                     Begin
@@ -1495,8 +1551,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =6480
+                    Top =6481
                     Width =778
+                    Height =239
                     TabIndex =49
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q2"
@@ -1506,18 +1563,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =6480
+                    LayoutCachedTop =6481
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =6720
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =127
+                    OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =6480
-                    Width =778
+                    Left =3540
+                    Top =6481
+                    Width =763
+                    Height =239
                     TabIndex =50
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Stream_Q3"
@@ -1526,9 +1584,9 @@ Begin Form
                     StatusBarText ="Stream cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =6480
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =6481
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =6720
                 End
                 Begin ComboBox
@@ -1537,8 +1595,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =6720
+                    Top =6721
                     Width =778
+                    Height =239
                     TabIndex =51
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q1"
@@ -1548,7 +1607,7 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =6720
+                    LayoutCachedTop =6721
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =6960
                     Begin
@@ -1574,8 +1633,9 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =6720
+                    Top =6721
                     Width =778
+                    Height =239
                     TabIndex =52
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q2"
@@ -1585,18 +1645,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =6720
+                    LayoutCachedTop =6721
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =6960
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =119
+                    OverlapFlags =247
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =6720
-                    Width =778
+                    Left =3540
+                    Top =6721
+                    Width =763
+                    Height =239
                     TabIndex =53
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Trash_Junk_Q3"
@@ -1605,20 +1666,20 @@ Begin Form
                     StatusBarText ="Trash/Junk cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =6720
-                    LayoutCachedWidth =4328
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =6721
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =6960
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    SpecialEffect =0
-                    OverlapFlags =215
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =1980
-                    Top =4800
+                    Top =4801
                     Width =778
+                    Height =239
                     TabIndex =27
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q1"
@@ -1628,13 +1689,13 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =1980
-                    LayoutCachedTop =4800
+                    LayoutCachedTop =4801
                     LayoutCachedWidth =2758
                     LayoutCachedHeight =5040
                     Begin
                         Begin Label
                             OldBorderStyle =1
-                            OverlapFlags =223
+                            OverlapFlags =255
                             Left =120
                             Top =4800
                             Width =1860
@@ -1650,13 +1711,13 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    SpecialEffect =0
-                    OverlapFlags =223
+                    OverlapFlags =127
                     IMESentenceMode =3
                     ListRows =21
                     Left =2770
-                    Top =4800
+                    Top =4801
                     Width =778
+                    Height =239
                     TabIndex =28
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q2"
@@ -1666,19 +1727,19 @@ Begin Form
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2770
-                    LayoutCachedTop =4800
+                    LayoutCachedTop =4801
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =5040
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    SpecialEffect =0
-                    OverlapFlags =215
+                    OverlapFlags =247
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3550
-                    Top =4800
+                    Left =3540
+                    Top =4801
                     Width =763
+                    Height =239
                     TabIndex =29
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     Name ="Dead_Root_Bole_Q3"
@@ -1687,9 +1748,9 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3550
-                    LayoutCachedTop =4800
-                    LayoutCachedWidth =4313
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =4801
+                    LayoutCachedWidth =4303
                     LayoutCachedHeight =5040
                 End
                 Begin Label
@@ -2303,7 +2364,7 @@ Begin Form
                     Name ="fsub_Species_Current"
                     SourceObject ="Form.fsub_Species"
                     LinkChildFields ="Transect_ID"
-                    LinkMasterFields ="Transect_ID"
+                    LinkMasterFields ="t_Transect_ID"
 
                     LayoutCachedLeft =4620
                     LayoutCachedTop =1020
@@ -2341,7 +2402,7 @@ Begin Form
                     TabIndex =66
                     ForeColor =8355711
                     Name ="tbxTransectID"
-                    ControlSource ="Transect_ID"
+                    ControlSource ="t_Transect_ID"
 
                     LayoutCachedLeft =60
                     LayoutCachedTop =420
@@ -2413,6 +2474,138 @@ Begin Form
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =240
+                    Top =7695
+                    Width =1200
+                    Height =255
+                    TabIndex =70
+                    ForeColor =8355711
+                    Name ="tbxQ1IS"
+                    ControlSource ="IsSampled_Q1"
+
+                    LayoutCachedLeft =240
+                    LayoutCachedTop =7695
+                    LayoutCachedWidth =1440
+                    LayoutCachedHeight =7950
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =1680
+                    Top =7695
+                    Width =1200
+                    Height =255
+                    TabIndex =71
+                    ForeColor =8355711
+                    Name ="tbxQ2IS"
+                    ControlSource ="IsSampled_Q2"
+
+                    LayoutCachedLeft =1680
+                    LayoutCachedTop =7695
+                    LayoutCachedWidth =2880
+                    LayoutCachedHeight =7950
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3120
+                    Top =7695
+                    Width =1200
+                    Height =255
+                    TabIndex =72
+                    ForeColor =8355711
+                    Name ="tbxQ3IS"
+                    ControlSource ="IsSampled_Q3"
+
+                    LayoutCachedLeft =3120
+                    LayoutCachedTop =7695
+                    LayoutCachedWidth =4320
+                    LayoutCachedHeight =7950
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =240
+                    Top =8070
+                    Width =1200
+                    Height =255
+                    TabIndex =73
+                    ForeColor =8355711
+                    Name ="tbxQ1NE"
+                    ControlSource ="NoExotics_Q1"
+
+                    LayoutCachedLeft =240
+                    LayoutCachedTop =8070
+                    LayoutCachedWidth =1440
+                    LayoutCachedHeight =8325
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =1680
+                    Top =8070
+                    Width =1200
+                    Height =255
+                    TabIndex =74
+                    ForeColor =8355711
+                    Name ="tbxQ2NE"
+                    ControlSource ="NoExotics_Q2"
+
+                    LayoutCachedLeft =1680
+                    LayoutCachedTop =8070
+                    LayoutCachedWidth =2880
+                    LayoutCachedHeight =8325
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3120
+                    Top =8070
+                    Width =1200
+                    Height =255
+                    TabIndex =75
+                    ForeColor =8355711
+                    Name ="tbxQ3NE"
+                    ControlSource ="NoExotics_Q3"
+
+                    LayoutCachedLeft =3120
+                    LayoutCachedTop =8070
+                    LayoutCachedWidth =4320
+                    LayoutCachedHeight =8325
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
             End
         End
         Begin FormFooter
@@ -2433,7 +2626,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.04
+' Version:      1.05
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -2453,6 +2646,8 @@ Option Explicit
 '                                        pull microhabitats, species cover from respective SurfaceCover,
 '                                        SpeciesCover tables
 '               BLC - 4/25/2017 - 1.04 - revised to save quadrat flags to db
+'               BLC - 7/10/2017 - 1.05 - added check for new transects, create new quadrats, quadrat surface
+'                                        microhabitat records
 ' =================================
 
 '---------------------
@@ -2498,27 +2693,20 @@ Dim strCheck As String
 '                     added call to PopulateMicrohabitats to pull them from SurfaceCover
 '   BLC - 4/25/2017 - revised to save quadrat flags to database
 '   BLC - 7/10/2017 - added check for new transects, create new quadrats, quadrat surface
-'                     microhabitat records
+'                     microhabitat records, moved usys_temp_transect update to
+'                     launching form (frm_Visit_Date)
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
-'    're-generate the temp table source
-'    DoCmd.SetWarnings False
-'    If TableExists("temp_Transect_Combined_Crosstab") Then
-'        DoCmd.DeleteObject acTable, "temp_Transect_Combined_Crosstab"
-'    End If
-'    DoCmd.OpenQuery "Create_temp_Transect_Combined_Crosstab"
-'    DoCmd.SetWarnings True
-'
-'    'set form recordsource
-'    Me.RecordSource = "temp_Transect_Combined_Crosstab"
+    'set form recordsource
+    Me.RecordSource = "usys_temp_transect"
     
     Dim t As New VegTransect
     
     'check if transect has quadrats
     With t
-        .TransectQuadratID = Me.Transect_ID '"20170705114218-705547511.577606"
+        .TransectQuadratID = Me.tbxTransectID '"20170705114218-705547511.577606"
                         
         'newly imported transects have 0 quadrats --> create them & the associated
         '                                             surface microhabitat records
@@ -2568,6 +2756,9 @@ On Error GoTo Err_Handler
     
     'populate the microhabitats from SurfaceCover
     PopulateMicrohabitats
+    
+    'populate the transect & quadrat flag toggles based on usys_temp_transect
+    PopulateFlagToggles
   
 Exit_Handler:
     Exit Sub
@@ -2599,6 +2790,7 @@ End Sub
 '                    therefore fsub_Current is the container for fsub_Species subform
 '                    (handles 2010 & later species)
 '   BLC - 4/21/2017 - added check for if species subform has records
+'   BLC - 7/12/2017 - added PopulateFlagToggles
 ' ---------------------------------
 Private Sub Form_Current()
 On Error GoTo Err_Handler
@@ -2682,6 +2874,11 @@ Debug.Print "tgl: " & tgl
         
         End If
     End With
+
+    'populate the transect & quadrat flag toggles based on usys_temp_transect
+    PopulateFlagToggles
+    
+    Me.Repaint
 
 Exit_Handler:
     Exit Sub
@@ -4097,6 +4294,45 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - EnableToggles[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          PopulateFlagToggles
+' Description:  Sets captions for transect & quadrat flag toggle buttons
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, July 12, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/12/2017 - initial version
+' ---------------------------------
+Private Sub PopulateFlagToggles()
+On Error GoTo Err_Handler
+
+    'populate toggles based on data
+    tglNotSampledQ1.Caption = IIf(IsSampled_Q1 = 1, "", strCheck)
+    tglNotSampledQ2.Caption = IIf(IsSampled_Q2 = 1, "", strCheck)
+    tglNotSampledQ3.Caption = IIf(IsSampled_Q3 = 1, "", strCheck)
+Debug.Print "IS:" & IsSampled_Q1
+
+    tglNoExoticsQ1.Caption = IIf(NoExotics_Q1 = 1, strCheck, "")
+    tglNoExoticsQ2.Caption = IIf(NoExotics_Q2 = 1, strCheck, "")
+    tglNoExoticsQ3.Caption = IIf(NoExotics_Q3 = 1, strCheck, "")
+
+Debug.Print "NE:" & NoExotics_Q1
+        
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - PopulateFlagToggles[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub
