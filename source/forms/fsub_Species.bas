@@ -13,11 +13,11 @@ Begin Form
     GridY =24
     Width =7800
     DatasheetFontHeight =9
-    ItemSuffix =51
-    Left =450
-    Top =1335
-    Right =6360
-    Bottom =4725
+    ItemSuffix =55
+    Left =3000
+    Top =1905
+    Right =11550
+    Bottom =8310
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x3d9c36b74cece440
@@ -209,7 +209,7 @@ Begin Form
             End
         End
         Begin Section
-            Height =420
+            Height =360
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -242,35 +242,13 @@ Begin Form
                     StatusBarText ="Foreign key to tbl_Quadrat_Transect"
 
                 End
-                Begin TextBox
-                    Enabled = NotDefault
-                    Locked = NotDefault
-                    DecimalPlaces =1
-                    SpecialEffect =0
-                    OverlapFlags =85
-                    TextAlign =2
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =5040
-                    Top =60
-                    Width =540
-                    Height =255
-                    ColumnWidth =465
-                    TabIndex =6
-                    Name ="Average_Cover"
-                    ControlSource ="AvgCover"
-                    Format ="General Number"
-                    StatusBarText ="Percent cover in 10 m2 quadrat"
-                    AfterUpdate ="[Event Procedure]"
-
-                End
                 Begin CommandButton
                     OverlapFlags =85
                     Left =6960
                     Top =60
                     Width =705
                     Height =300
-                    TabIndex =7
+                    TabIndex =6
                     ForeColor =255
                     Name ="btnDelete"
                     Caption ="Delete"
@@ -298,24 +276,28 @@ Begin Form
                     TabIndex =3
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x0100000084000000010000000100000000000000000000001100000001000000 ,
-                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
-                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b0050006c0061006e0074005f0043006f00640065005d003c003e0022002200 ,
-                        0x00000000
+                        0x01000000aa000000020000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000240000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800510031005f00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b0050006c0061006e0074005f0043006f00640065005d003c00 ,
+                        0x3e002200220000000000
                     End
                     Name ="Q1_hm"
                     ControlSource ="Q1_0m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
-                    StatusBarText ="Percent cover Q1 @ 3m"
+                    StatusBarText ="Percent cover Q1 @ 0.5m"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
                     ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000100000000000000ffffff00100000005b00 ,
-                        0x50006c0061006e0074005f0043006f00640065005d003c003e00220022000000 ,
-                        0x00000000000000000000000000000000000000
+                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800510031005f00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
+                        0x0000000000ffffff00100000005b0050006c0061006e0074005f0043006f0064 ,
+                        0x0065005d003c003e002200220000000000000000000000000000000000000000 ,
+                        0x0000
                     End
                 End
                 Begin ComboBox
@@ -331,24 +313,27 @@ Begin Form
                     TabIndex =4
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x0100000082000000010000000100000000000000000000001000000001000000 ,
-                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
-                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
-                        0x0000
+                        0x01000000a8000000020000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000230000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800510032005f00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b0050006c0061006e00740043006f00640065005d003c003e00 ,
+                        0x2200220000000000
                     End
                     Name ="Q2_5m"
                     ControlSource ="Q2_5m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
-                    StatusBarText ="Percent cover Q2 @ 8m"
+                    StatusBarText ="Percent cover Q2 @ 4.5m"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
                     ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000100000000000000ffffff000f0000005b00 ,
-                        0x50006c0061006e00740043006f00640065005d003c003e002200220000000000 ,
-                        0x0000000000000000000000000000000000
+                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800510032005f00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
+                        0x0000000000ffffff000f0000005b0050006c0061006e00740043006f00640065 ,
+                        0x005d003c003e0022002200000000000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -364,24 +349,27 @@ Begin Form
                     TabIndex =5
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x0100000082000000010000000100000000000000000000001000000001000000 ,
-                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
-                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
-                        0x0000
+                        0x01000000a8000000020000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000230000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800510033005f00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b0050006c0061006e00740043006f00640065005d003c003e00 ,
+                        0x2200220000000000
                     End
                     Name ="Q3_10m"
                     ControlSource ="Q3_10m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
-                    StatusBarText ="Percent cover Q3 @ 13m"
+                    StatusBarText ="Percent cover Q3 @ 9.5m"
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
                     ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000100000000000000ffffff000f0000005b00 ,
-                        0x50006c0061006e00740043006f00640065005d003c003e002200220000000000 ,
-                        0x0000000000000000000000000000000000
+                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800510033005f00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
+                        0x0000000000ffffff000f0000005b0050006c0061006e00740043006f00640065 ,
+                        0x005d003c003e0022002200000000000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -414,14 +402,14 @@ Begin Form
                     Left =5760
                     Top =60
                     Width =900
-                    TabIndex =8
+                    TabIndex =7
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x01000000be000000030000000100000000000000000000001000000001000000 ,
-                        0x00000000ffffff000100000000000000110000001d0000000100000000000000 ,
-                        0xfff2000001000000000000001e0000002e0000000100000000000000ffffff00 ,
-                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
-                        0x00005b004900730044006500610064005d003d0022002200000000005b006300 ,
+                        0x01000000be000000030000000100000000000000000000000c00000001000000 ,
+                        0x00000000fff2000001000000000000000d0000001d0000000100000000000000 ,
+                        0xffffff0001000000000000001e0000002e0000000100000000000000ffffff00 ,
+                        0x5b004900730044006500610064005d003d0022002200000000005b0050006c00 ,
+                        0x61006e00740043006f00640065005d003c003e0022002200000000005b006300 ,
                         0x620078004900730044006500610064005d003c003e002200220000000000
                     End
                     Name ="cbxIsDead"
@@ -435,19 +423,39 @@ Begin Form
                     LayoutCachedWidth =6660
                     LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000300000001000000000000000100000000000000ffffff000f0000005b00 ,
-                        0x50006c0061006e00740043006f00640065005d003c003e002200220000000000 ,
-                        0x0000000000000000000000000000000000010000000000000001000000000000 ,
-                        0x00fff200000b0000005b004900730044006500610064005d003d002200220000 ,
+                        0x01000300000001000000000000000100000000000000fff200000b0000005b00 ,
+                        0x4900730044006500610064005d003d0022002200000000000000000000000000 ,
+                        0x00000000000000000001000000000000000100000000000000ffffff000f0000 ,
+                        0x005b0050006c0061006e00740043006f00640065005d003c003e002200220000 ,
                         0x0000000000000000000000000000000000000000010000000000000001000000 ,
                         0x00000000ffffff000f0000005b00630062007800490073004400650061006400 ,
                         0x5d003c003e0022002200000000000000000000000000000000000000000000
                     End
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =5040
+                    Top =60
+                    Width =540
+                    Height =255
+                    TabIndex =8
+                    Name ="tbxAvgCover"
+                    ControlSource ="=IIf([tbxSumSampled]>0,[tbxSumCover]/[tbxSumSampled],0)"
+                    StatusBarText ="Percent cover in 10 m2 quadrat"
+
+                    LayoutCachedLeft =5040
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =5580
+                    LayoutCachedHeight =315
+                End
             End
         End
         Begin FormFooter
-            Height =360
+            Height =690
             BackColor =-2147483633
             Name ="FormFooter"
             Begin
@@ -465,6 +473,13 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ1_Sampled"
                     ControlSource ="=Count(IIf(Len([Q1_0m])>0,1,Null))"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ececec00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
 
                     LayoutCachedLeft =2040
                     LayoutCachedTop =60
@@ -472,6 +487,11 @@ Begin Form
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ececec00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -488,6 +508,13 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ2_Sampled"
                     ControlSource ="=Count(IIf(Len([Q2_5m])>0,1,Null))"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
 
                     LayoutCachedLeft =3000
                     LayoutCachedTop =60
@@ -495,6 +522,11 @@ Begin Form
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ffffff00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
                 End
                 Begin TextBox
                     SpecialEffect =0
@@ -511,6 +543,13 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ3_Sampled"
                     ControlSource ="=Count(IIf(Len([Q3_10m])>0,1,Null))"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
 
                     LayoutCachedLeft =3960
                     LayoutCachedTop =60
@@ -518,6 +557,111 @@ Begin Form
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ffffff00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =4980
+                    Top =60
+                    Width =900
+                    Height =255
+                    TabIndex =3
+                    ForeColor =8355711
+                    Name ="tbxSumSampled"
+                    ControlSource ="=[tbxQ1_Sampled]+[tbxQ2_Sampled]+[tbxQ3_Sampled]"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =4980
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =5880
+                    LayoutCachedHeight =315
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ffffff00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =5940
+                    Top =60
+                    Width =900
+                    Height =255
+                    TabIndex =4
+                    ForeColor =8355711
+                    Name ="tbxSumCover"
+                    ControlSource ="=IIf([Q1_hm]>0,[Q1_hm],0)+IIf([Q2_5m]>0,[Q2_5m],0)+IIf([Q3_10m]>0,[Q3_10m],0)"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =5940
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =6840
+                    LayoutCachedHeight =315
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ffffff00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =180
+                    Top =60
+                    Width =900
+                    Height =255
+                    TabIndex =5
+                    ForeColor =12566463
+                    Name ="tbxDevMode"
+                    ConditionalFormat = Begin
+                        0x010000006e000000010000000000000002000000000000000600000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x460061006c007300650000000000
+                    End
+
+                    LayoutCachedLeft =180
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1080
+                    LayoutCachedHeight =315
+                    ConditionalFormat14 = Begin
+                        0x010001000000000000000200000001000000ececec00ffffff00050000004600 ,
+                        0x61006c0073006500000000000000000000000000000000000000000000
+                    End
                 End
             End
         End
@@ -534,7 +678,7 @@ Option Explicit
 ' =================================
 ' Form:         fsub_Species
 ' Level:        Application form
-' Version:      1.03
+' Version:      1.04
 ' Basis:        -
 '
 ' Description:  Species subform object related properties, functions & procedures for UI display
@@ -545,6 +689,9 @@ Option Explicit
 '               BLC - 3/8/2017  - 1.01 - added documentation, error handling
 '               BLC - 4/21/2017 - 1.02 - added HasRecords, ParentForm properties
 '               BLC - 7/5/2017  - 1.03 - removed warnings for deleting record
+'               BLC - 7/12/2017 - 1.04 - replaced CalcAvgCover w/ refresh of tbxAvgCover
+'                                        which calculates average cover on-the-fly based on
+'                                        IsSampled_Q1-3 and Q1_hm, Q2_5m, Q3_10m values
 ' =================================
 
 '---------------------
@@ -676,6 +823,11 @@ On Error GoTo Err_Handler
 
     'disable unless species is selected
     
+    'hide dev mode so it doesn't flash w/ @ transect
+    If Not DEV_MODE Then Me.tbxDevMode.Visible = False
+    
+    'set dev mode
+    Me.tbxDevMode = DEV_MODE
 
 Exit_Handler:
     Exit Sub
@@ -1014,12 +1166,13 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/12/2017 - replaced CalcAvgCover w/ refresh of tbxAvgCover
 ' ---------------------------------
 Private Sub Q1_hm_AfterUpdate()
 On Error GoTo Err_Handler
-
-  Me!Average_Cover = CalcAvgCover
-
+ 
+  Me.Refresh
+  
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -1044,11 +1197,12 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/12/2017 - replaced CalcAvgCover w/ refresh of tbxAvgCover
 ' ---------------------------------
 Private Sub Q2_5m_AfterUpdate()
 On Error GoTo Err_Handler
-
-  Me!Average_Cover = CalcAvgCover
+ 
+  Me.Refresh
 
 Exit_Handler:
     Exit Sub
@@ -1074,11 +1228,12 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/12/2017 - replaced CalcAvgCover w/ refresh of tbxAvgCover
 ' ---------------------------------
 Private Sub Q3_10m_AfterUpdate()
 On Error GoTo Err_Handler
-
-  Me!Average_Cover = CalcAvgCover
+  
+  Me.Refresh
 
 Exit_Handler:
     Exit Sub
@@ -1108,6 +1263,7 @@ End Sub
 '   RDB - 9/22/2010 - initial version
 '   BLC - 3/8/2017  - added documentation, error handling,
 '                     revised to address non-sampled quadrats
+'   BLC - 7/12/2017 - replaced CalcAvgCover w/ refresh of tbxAvgCover
 ' ---------------------------------
 Public Function CalcAvgCover() As Single
     On Error GoTo Err_Handler
@@ -1121,22 +1277,6 @@ Public Function CalcAvgCover() As Single
     AvgCover = 0
     TotalCover = 0
     
-'    If Not IsNull(Me!Q1_hm) Or Not IsNull(Me!Q2_5m) Or Not IsNull(Me!Q3_10m) Then
-'      If Not IsNull(Me!Q1_hm) Then
-'        TotCover = Me!Q1_hm
-'      End If
-'      If Not IsNull(Me!Q2_5m) Then
-'        TotCover = TotCover + Me!Q2_5m
-'      End If
-'      If Not IsNull(Me!Q3_10m) Then
-'        TotCover = TotCover + Me!Q3_10m
-'      End If
-'      AvgCover = TotCover / 3
-'    End If
-    
-    
-    '---------------------------------------------------
-        '---------------------------------------------------
     For i = 1 To 3
         'determine quadrat control
         Select Case i

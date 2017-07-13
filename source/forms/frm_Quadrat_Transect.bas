@@ -18,7 +18,7 @@ Begin Form
     GridY =24
     Width =13320
     DatasheetFontHeight =9
-    ItemSuffix =71
+    ItemSuffix =72
     Left =-1620
     Top =885
     Right =12060
@@ -135,7 +135,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =8325
+            Height =9000
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -2414,7 +2414,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =240
@@ -2435,7 +2435,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =1680
@@ -2456,7 +2456,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =3120
@@ -2477,7 +2477,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =240
@@ -2499,7 +2499,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =1680
@@ -2521,7 +2521,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =3120
@@ -2543,7 +2543,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =240
@@ -2565,7 +2565,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =1680
@@ -2587,7 +2587,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
                     Left =3120
@@ -2598,6 +2598,16 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ3NE"
                     ControlSource ="NoExotics_Q3"
+                    ConditionalFormat = Begin
+                        0x01000000ee000000010000000100000000000000000000004600000001000000 ,
+                        0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x49004900660028005b0066007300750062005f00530070006500630069006500 ,
+                        0x73005f00430075007200720065006e0074005d002e005b0046006f0072006d00 ,
+                        0x5d002e005b0043006f006e00740072006f006c0073005d002800220074006200 ,
+                        0x78004400650076004d006f0064006500220029003d00460061006c0073006500 ,
+                        0x2c0031002c003000290000000000
+                    End
 
                     LayoutCachedLeft =3120
                     LayoutCachedTop =8070
@@ -2605,6 +2615,31 @@ Begin Form
                     LayoutCachedHeight =8325
                     ForeThemeColorIndex =1
                     ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ffffff00450000004900 ,
+                        0x4900660028005b0066007300750062005f005300700065006300690065007300 ,
+                        0x5f00430075007200720065006e0074005d002e005b0046006f0072006d005d00 ,
+                        0x2e005b0043006f006e00740072006f006c0073005d0028002200740062007800 ,
+                        0x4400650076004d006f0064006500220029003d00460061006c00730065002c00 ,
+                        0x31002c0030002900000000000000000000000000000000000000000000
+                    End
+                End
+                Begin Rectangle
+                    Visible = NotDefault
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    Left =60
+                    Top =7080
+                    Width =4440
+                    Height =1440
+                    BackColor =-2147483633
+                    Name ="bxHide"
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =7080
+                    LayoutCachedWidth =4500
+                    LayoutCachedHeight =8520
                 End
             End
         End
@@ -2695,9 +2730,13 @@ Dim strCheck As String
 '   BLC - 7/10/2017 - added check for new transects, create new quadrats, quadrat surface
 '                     microhabitat records, moved usys_temp_transect update to
 '                     launching form (frm_Visit_Date)
+'   BLC - 7/13/2017 - set development controls to show/hide based on DEV_MODE setting
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
+    
+    'show/hide dev mode controls
+    bxHide.Visible = Not DEV_MODE
     
     'set form recordsource
     Me.RecordSource = "usys_temp_transect"
@@ -3057,7 +3096,7 @@ On Error GoTo Err_Handler
     
     'populate w/ current transect's data
     PopulateMicrohabitats
-      
+        
 Exit_Handler:
     Exit Sub
 Err_Handler:
