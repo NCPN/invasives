@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.29
+' Version:      1.30
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -50,6 +50,7 @@ Option Explicit
 '               BLC, 7/5/2017   - 1.29 - SetRecords() added inserts for transect quadrats &
 '                                        surface cover records, GetRecords() added
 '                                        surface microhabitat & quadrat IDs templates
+'               BLC, 7/14/2017  - 1.30 - add transect update template
 ' =================================
 
 '' ---------------------------------
@@ -1044,6 +1045,7 @@ End Function
 '                     added uplands cases, delete cases
 '   BLC - 3/29/2017 - added FieldOK, FieldCheck, Dependencies parameters for templates
 '   BLC - 4/24/2017 - add surface/species cover, set SkipRecordAction = false (invasives, uplands)
+'   BLC - 7/14/2017 - add u_transect_data
 ' ---------------------------------
 Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
@@ -1152,6 +1154,13 @@ On Error GoTo Err_Handler
                     .Parameters("sid") = params(2)
                     .Parameters("pct") = params(3)
                     '.Parameters("sfcid") = Params(4)
+                
+                Case "u_transect_data"
+                    '-- required parameters --
+                    .Parameters("start") = params(1)    'start time
+                    .Parameters("oid") = params(2)      'observer
+                    .Parameters("cmt") = params(3)      'comments
+                    .Parameters("tid") = params(4)      'transect quadrat ID
                     
         '-----------------------
         '  DELETES
@@ -2231,6 +2240,68 @@ Err_Handler:
     Resume Exit_Handler
 End Function
 
+' ---------------------------------
+' Function:     UpdateTransect
+' Description:  Updates transect record values (Invasives)
+'               and returns the submitted value (single)
+' Assumptions:  Controls of transect visit form trigger the
+'               function using:
+'                   =UpdateTransect()
+'               in their change event properties
+' Parameters:   -
+' Returns:      if successful - submitted cover value (single)
+'               or 0 if not
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, July 13, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/13/2016 - initial version
+' ---------------------------------
+Public Function UpdateTransect() As Single
+On Error GoTo Err_Handler
+
+    Dim transectID As String
+    Dim ObserverID As String
+    Dim Comments As String
+    Dim StartTime As Date
+    
+    Dim vt As New VegTransect
+    
+    With Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form
+        
+        'set transect values
+        transectID = .Controls("tbxTransectID")     ' Quadrat-Transect ID
+        ObserverID = .Controls("cbxObserver")
+        Comments = Nz(.Controls("tbxComments"), "")
+        StartTime = .Controls("tbxStartTime")
+        
+        With vt
+            
+            .TransectQuadratID = transectID
+            .StartTime = StartTime
+            .Observer = ObserverID
+            .Comments = Comments
+            
+            .UpdateTransectData
+            
+        End With
+        
+    End With
+       
+    'skip if NULL
+'    If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
+    
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - UpdateTransect[mod_App_Data])"
+    End Select
+    Resume Exit_Handler
+End Function
 
 ' ---------------------------------
 ' Sub:          UpdateMicrohabitat
@@ -2262,12 +2333,6 @@ On Error GoTo Err_Handler
     Dim sfcID As Integer
     Dim pctCover As Single
     Dim rs As DAO.Recordset
-
-    'retrieve calling control
-'    caller = Screen.ActiveControl
-      
-'    'set the transect ID
-'    SetTempVar "Transect_ID", CInt(Right(CStr(transectID), 1))
     
     'set surface ID (pull from global dictionary using control name - _Q#)
     strSurface = Left(caller.name, Len(caller.name) - 3)
@@ -2277,7 +2342,7 @@ On Error GoTo Err_Handler
     sfcID = g_AppSurfaces(strSurface)
     
     'retrieve values
-    pctCover = Nz(caller.Value, 0) 'TempVars("SfcPercentCover"), 0)
+    pctCover = Nz(caller.Value, 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2365,8 +2430,6 @@ On Error GoTo Err_Handler
         
         'determine quadrat position (pull from global dictionary using control name)
         strPosition = g_AppQuadratPositions(caller.name)
-        
-        
         
         'update values
         .SaveToDb True

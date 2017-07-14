@@ -459,7 +459,7 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 7/12/2017 - added documentation, error handling
 ' ---------------------------------
-Private Sub ButtonClose_Click()
+Private Sub btnClose_Click()
 On Error GoTo Err_Handler
 
     DoCmd.Close

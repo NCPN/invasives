@@ -19,6 +19,8 @@ Option Explicit
 '                                        this is an update vs. an insert
 '               BLC - 7/5/2017   - 1.02 - AddQuadrats() & AddSurfaceMicrohabitats() to
 '                                         initialize records tied to new transect
+'               BLC - 7/13/2017  - 1.03 - added UpdateTransect for updating visit data,
+'                                         added StartTime, Comments properties
 ' =================================
 
 '---------------------
@@ -31,10 +33,15 @@ Private m_TransectQuadratID As String
 Private m_TransectNumber As Integer
 Private m_SampleDate As Date
 
+Private m_StartTime As Date
+Private m_Comments As String
+
 Private m_Park As String
 Private m_ObserverID As Integer
 Private m_RecorderID As Integer
+Private m_ObserverName As String
 Private m_Observer As String
+Private m_RecorderName As String
 Private m_Recorder As String
 
 Private m_HasQuadrats As Boolean
@@ -90,31 +97,11 @@ Public Property Get TransectQuadratID() As String
     TransectQuadratID = m_TransectQuadratID
 End Property
 
-
 Public Property Let TransectNumber(Value As Integer)
     If IsNull(Me.Park) Then
         MsgBox "Park must be set before setting transect number.", vbCritical, "Missing Park"
         
     End If
-    'validate park (BLCA & CANY only)
-'    Select Case Me.Park
-'        Case "BLCA", "CANY"
-'            'check value
-'            'validate transect #
-'            Dim aryTransectNum() As String
-'            aryTransectNum = Split(TRANSECT_NUMBERS, ",")
-'            If IsInArray(CStr(value), aryTransectNum) Then
-'                m_TransectNumber = value
-'            Else
-'                RaiseEvent InvalidTransectNumber(value)
-'            End If
-'        Case "DINO"
-'            'invalid
-'            RaiseEvent InvalidTransectNumber(value)
-'        Case Else
-'            'invalid
-'            RaiseEvent InvalidTransectNumber(value)
-'    End Select
 End Property
 
 Public Property Get TransectNumber() As Integer
@@ -153,6 +140,14 @@ Public Property Get Observer() As String
     Observer = m_Observer
 End Property
 
+Public Property Let ObserverName(Value As String)
+    m_ObserverName = Value
+End Property
+
+Public Property Get ObserverName() As String
+    ObserverName = m_ObserverName
+End Property
+
 Public Property Let RecorderID(Value As Integer)
     m_RecorderID = Value
 End Property
@@ -167,6 +162,14 @@ End Property
 
 Public Property Get Recorder() As String
     Recorder = m_Recorder
+End Property
+
+Public Property Let RecorderName(Value As String)
+    m_RecorderName = Value
+End Property
+
+Public Property Get RecorderName() As String
+    RecorderName = m_RecorderName
 End Property
 
 Public Property Let HasQuadrats(Value As Boolean)
@@ -191,6 +194,22 @@ End Property
 
 Public Property Get NumQuadrats() As Integer
     NumQuadrats = m_NumQuadrats
+End Property
+
+Public Property Let StartTime(Value As Date)
+    m_StartTime = Value
+End Property
+
+Public Property Get StartTime() As Date
+    StartTime = m_StartTime
+End Property
+
+Public Property Let Comments(Value As String)
+    m_Comments = Value
+End Property
+
+Public Property Get Comments() As String
+    Comments = m_Comments
 End Property
 
 '---------------------
@@ -507,6 +526,52 @@ Err_Handler:
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
                 "Error encounter (#" & Err.Number & " - AddSurfaceMicrohabitats[cls_VegPlot])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateTransectData
+' Description:  Updates visit information (start time, observer, comments) for
+'               a transect
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/13/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/13/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateTransectData()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+        
+    Template = "u_transect_data"
+    
+    Dim params(0 To 4) As Variant
+
+    With Me
+        params(0) = "Transect"
+        params(1) = .StartTime          'start time
+        params(2) = .Observer           'observer
+        params(3) = .Comments           'comments
+        params(4) = .TransectQuadratID  'string identifier
+        
+        .ID = SetRecord(Template, params)
+    End With
+
+    'SetObserverRecorder Me, "VegTransect"
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateTransectData[cls_VegPlot])"
     End Select
     Resume Exit_Handler
 End Sub

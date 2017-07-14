@@ -6,7 +6,6 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,11 +17,11 @@ Begin Form
     GridY =24
     Width =13320
     DatasheetFontHeight =9
-    ItemSuffix =72
-    Left =-1620
-    Top =885
-    Right =12060
-    Bottom =9930
+    ItemSuffix =77
+    Left =675
+    Top =3225
+    Right =14100
+    Bottom =12015
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0xc5265af90df6e440
@@ -252,12 +251,13 @@ Begin Form
                     Width =960
                     ColumnWidth =1035
                     TabIndex =3
-                    Name ="tbxVisitDate"
+                    Name ="tbxStartTime"
                     ControlSource ="Start_Time"
                     Format ="Short Time"
                     StatusBarText ="Date of visit."
                     InputMask ="00:00;0;_"
                     OnKeyDown ="[Event Procedure]"
+                    OnChange ="=UpdateTransect()"
 
                     Begin
                         Begin Label
@@ -387,9 +387,10 @@ Begin Form
                     Width =5520
                     Height =843
                     TabIndex =7
-                    Name ="Comments"
+                    Name ="tbxComments"
                     ControlSource ="Comments"
                     StatusBarText ="Notes"
+                    OnChange ="=UpdateTransect()"
 
                     LayoutCachedLeft =6900
                     LayoutCachedTop =60
@@ -425,6 +426,7 @@ Begin Form
                     RowSource ="SELECT tlu_Contacts.Contact_ID, tlu_Contacts.Last_Name, tlu_Contacts.First_Name "
                         "FROM tlu_Contacts;"
                     ColumnWidths ="0;810;839"
+                    OnChange ="=UpdateTransect()"
                     Begin
                         Begin Label
                             OverlapFlags =93
@@ -1731,28 +1733,6 @@ Begin Form
                     LayoutCachedWidth =3548
                     LayoutCachedHeight =5040
                 End
-                Begin ComboBox
-                    LimitToList = NotDefault
-                    OverlapFlags =247
-                    IMESentenceMode =3
-                    ListRows =21
-                    Left =3540
-                    Top =4801
-                    Width =763
-                    Height =239
-                    TabIndex =29
-                    ColumnInfo ="\"\";\"\";\"6\";\"4\""
-                    Name ="Dead_Root_Bole_Q3"
-                    RowSourceType ="Table/Query"
-                    RowSource ="tlu_Cover_Code"
-                    StatusBarText ="Root/Bole cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
-
-                    LayoutCachedLeft =3540
-                    LayoutCachedTop =4801
-                    LayoutCachedWidth =4303
-                    LayoutCachedHeight =5040
-                End
                 Begin Label
                     BackStyle =1
                     OldBorderStyle =1
@@ -2640,6 +2620,170 @@ Begin Form
                     LayoutCachedTop =7080
                     LayoutCachedWidth =4500
                     LayoutCachedHeight =8520
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    OverlapFlags =247
+                    IMESentenceMode =3
+                    ListRows =21
+                    Left =3540
+                    Top =4801
+                    Width =763
+                    Height =239
+                    TabIndex =29
+                    ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    Name ="Dead_Root_Bole_Q3"
+                    RowSourceType ="Table/Query"
+                    RowSource ="tlu_Cover_Code"
+                    StatusBarText ="Root/Bole cover percentage quadrat 3"
+                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+
+                    LayoutCachedLeft =3540
+                    LayoutCachedTop =4801
+                    LayoutCachedWidth =4303
+                    LayoutCachedHeight =5040
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =60
+                    Top =795
+                    Width =3180
+                    Height =255
+                    TabIndex =76
+                    ForeColor =8355711
+                    Name ="tbxStart"
+                    ControlSource ="Start_Time"
+
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =795
+                    LayoutCachedWidth =3240
+                    LayoutCachedHeight =1050
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =3240
+                    Top =2550
+                    Width =270
+                    Height =268
+                    TabIndex =77
+                    BackColor =15590879
+                    BorderColor =16711680
+                    ForeColor =8355711
+                    Name ="tgl"
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
+
+                    LayoutCachedLeft =3240
+                    LayoutCachedTop =2550
+                    LayoutCachedWidth =3510
+                    LayoutCachedHeight =2818
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3660
+                    Top =2580
+                    Width =270
+                    Height =267
+                    TabIndex =78
+                    Name ="btn"
+                    PictureData = Begin
+                        0x28000000150000001300000001002000000000003c0600000000000000000000 ,
+                        0x0000000000000000def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00 ,
+                        0xdef1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00 ,
+                        0xdef1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00bc835200 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00bc835200bb7e4a00ffc7a700ffc7a700ffc7a700 ,
+                        0xffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700 ,
+                        0xffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700ffc7a700 ,
+                        0xbb7e4a00bb7e4a00ffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00 ,
+                        0xffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00 ,
+                        0xffc9ac00ffc9ac00ffc9ac00ffc9ac00ffc9ac00bb7e4a00bb7e4a00ffccb000 ,
+                        0xffccb000ffccb000ffccb000ffccb000ffccb000ffccb000ffccb000ffccb000 ,
+                        0xffccb000ffccb000ffccb000ffccb000ffccb000ffccb000ffccb000ffccb000 ,
+                        0xffccb000ffccb000bb7e4a00bb7e4a00ffd1b900ffd1b900ffd1b900ffd1b900 ,
+                        0xffd1b900ffd1b900ffd1b900ffd1b900ffd1b900ffd1b900ffd1b900ffd1b900 ,
+                        0xffd1b900ffd1b900ffd1b900ffd1b900ffd1b900ffd1b900ffd1b900bb7e4a00 ,
+                        0xbb7e4a00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00 ,
+                        0xffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00ffd4bd00 ,
+                        0xffd4bd00ffd4bd00ffd4bd00ffd4bd00bb7e4a00bb7e4a00ffd6c100ffd6c100 ,
+                        0xffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100 ,
+                        0xffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100ffd6c100 ,
+                        0xffd6c100bb7e4a00bb7e4a00ffd8c400ffd8c400ffd8c400ffd8c400ffd8c400 ,
+                        0xffd8c400ffd8c400ffd8c400ffd8c400ffd8c400ffd8c400ffd8c400ffd8c400 ,
+                        0xffd8c400ffd8c400ffd8c400ffd8c400ffd8c400ffd8c400bb7e4a00bb7e4a00 ,
+                        0xffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800 ,
+                        0xffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800ffdbc800 ,
+                        0xffdbc800ffdbc800ffdbc800bb7e4a00bb7e4a00ffddcb00ffddcb00ffddcb00 ,
+                        0xffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00 ,
+                        0xffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00ffddcb00 ,
+                        0xbb7e4a00bb7e4a00ffdfce00ffdfce00ffdfce00ffdfce00ffdfce00ffdfce00 ,
+                        0xffdfce00ffdfce00ffdfce00ffdfce00ffdfce00ffdfce00ffdfce00ffdfce00 ,
+                        0xffdfce00ffdfce00ffdfce00ffdfce00ffdfce00bb7e4a00bb7e4a00ffe1d200 ,
+                        0xffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200 ,
+                        0xffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200ffe1d200 ,
+                        0xffe1d200ffe1d200bb7e4a00bb7e4a00ffe1d000ffe1d000ffe1d000ffe1d000 ,
+                        0xffe1d000ffe1d000ffe1d000ffe1d000ffe1d000ffe1d000ffe1d000ffe1d000 ,
+                        0xffe1d000ffe1d000ffe1d000ffe1d000ffe1d000ffe1d000ffe1d000bb7e4a00 ,
+                        0xbb7e4a00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00 ,
+                        0xffe8db00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00ffe8db00 ,
+                        0xffe8db00ffe8db00ffe8db00ffe8db00bb7e4a00bb7e4a00ffeadf00ffeadf00 ,
+                        0xffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00 ,
+                        0xffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00ffeadf00 ,
+                        0xffeadf00bb7e4a00bb7e4a00ffece100ffece100ffece100ffece100ffece100 ,
+                        0xffece100ffece100ffece100ffece100ffece100ffece100ffece100ffece100 ,
+                        0xffece100ffece100ffece100ffece100ffece100ffece100bb7e4a00c2936700 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00bb7e4a00 ,
+                        0xbb7e4a00bb7e4a00bb7e4a00c2936700def1eb00def1eb00def1eb00def1eb00 ,
+                        0xdef1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00 ,
+                        0xdef1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00def1eb00 ,
+                        0xdef1eb00
+                    End
+                    ObjectPalette = Begin
+                        0x000301000000000000000000
+                    End
+                    ControlTipText ="Find Next"
+                    Picture ="tglBlue.ico"
+                    OnClickEmMacro = Begin
+                        Version =196611
+                        ColumnsShown =8
+                        Begin
+                            Action ="FindNext"
+                        End
+                    End
+
+                    LayoutCachedLeft =3660
+                    LayoutCachedTop =2580
+                    LayoutCachedWidth =3930
+                    LayoutCachedHeight =2847
+                    UseTheme =1
+                    BackColor =-2147483643
+                    OldBorderStyle =0
+                    HoverColor =65280
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
                 End
             End
         End
