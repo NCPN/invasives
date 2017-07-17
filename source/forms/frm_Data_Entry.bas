@@ -8,7 +8,6 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     DefaultView =0
     ScrollBars =0
     ViewsAllowed =1
@@ -19,20 +18,18 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =14280
+    Width =14160
     DatasheetFontHeight =10
-    ItemSuffix =200
+    ItemSuffix =205
     Left =4680
     Top =2610
     Right =18960
     Bottom =14355
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20121121125102-961953163.146973' AND [Event_ID]='20151107154044-7"
-        "60723590.85083'"
     RecSrcDt = Begin
-        0xaf0254819108e340
+        0xc0d562cf56f6e440
     End
-    RecordSource ="qfrm_DataEntry"
+    RecordSource ="qfrm_Data_Entry"
     Caption =" Data Entry Form - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
@@ -136,30 +133,54 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =11160
+            Height =11880
             BackColor =12574431
             Name ="Detail"
             Begin
                 Begin CommandButton
                     TabStop = NotDefault
                     OverlapFlags =85
-                    Left =6240
-                    Top =480
+                    Left =6300
+                    Top =360
                     Width =1080
                     Height =479
                     FontSize =9
                     FontWeight =700
-                    TabIndex =11
+                    TabIndex =9
                     Name ="btnClose"
                     Caption ="Close"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
+                    LeftPadding =60
+                    TopPadding =45
+                    RightPadding =150
+                    BottomPadding =150
 
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    LayoutCachedLeft =6300
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =7380
+                    LayoutCachedHeight =839
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =0
+                    PressedThemeColorIndex =0
+                    PressedShade =80.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =9
+                    WebImagePaddingBottom =9
+                    Overlaps =1
                 End
                 Begin ComboBox
                     ColumnHeads = NotDefault
@@ -190,42 +211,18 @@ Begin Form
                     Begin
                         Begin Label
                             OverlapFlags =93
-                            Left =8760
-                            Top =840
+                            Left =8820
+                            Top =900
                             Width =780
                             Height =255
                             FontWeight =700
-                            Name ="labLocation_ID"
+                            Name ="lblLocation_ID"
                             Caption ="Site"
                             FontName ="Arial"
-                        End
-                    End
-                End
-                Begin TextBox
-                    OverlapFlags =93
-                    TextAlign =1
-                    IMESentenceMode =3
-                    Left =1140
-                    Top =900
-                    Width =1080
-                    TabIndex =3
-                    Name ="tbxStartDate"
-                    ControlSource ="Start_Date"
-                    Format ="Short Date"
-                    StatusBarText ="M. Starting date for the event (Start_Date)"
-                    AfterUpdate ="[Event Procedure]"
-                    InputMask ="99/99/0000;0;_"
-
-                    Begin
-                        Begin Label
-                            OverlapFlags =93
-                            Left =120
-                            Top =900
-                            Width =960
-                            Height =240
-                            FontWeight =700
-                            Name ="Label55"
-                            Caption ="Start Date"
+                            LayoutCachedLeft =8820
+                            LayoutCachedTop =900
+                            LayoutCachedWidth =9600
+                            LayoutCachedHeight =1155
                         End
                     End
                 End
@@ -238,59 +235,69 @@ Begin Form
                     OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =1140
-                    Top =120
+                    Left =1440
+                    Top =360
                     Width =840
-                    TabIndex =5
+                    TabIndex =3
                     Name ="txtUnit_Code"
 
+                    LayoutCachedLeft =1440
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =2280
+                    LayoutCachedHeight =600
                     Begin
                         Begin Label
                             OverlapFlags =93
-                            Left =120
-                            Top =120
+                            Left =420
+                            Top =360
                             Width =990
                             Height =240
                             FontWeight =700
-                            Name ="Label60"
+                            Name ="lblPark"
                             Caption ="Park"
+                            LayoutCachedLeft =420
+                            LayoutCachedTop =360
+                            LayoutCachedWidth =1410
+                            LayoutCachedHeight =600
                         End
                     End
-                End
-                Begin Rectangle
-                    OverlapFlags =255
-                    Left =60
-                    Top =60
-                    Width =5760
-                    Name ="Box62"
                 End
                 Begin Tab
                     MultiRow = NotDefault
                     OverlapFlags =85
-                    Left =45
-                    Top =1260
-                    Width =14130
+                    BackStyle =1
+                    Left =60
+                    Top =1920
+                    Width =14040
                     Height =9795
-                    TabIndex =6
+                    FontWeight =600
+                    TabIndex =4
                     Name ="pgTabs"
 
-                    LayoutCachedLeft =45
-                    LayoutCachedTop =1260
-                    LayoutCachedWidth =14175
-                    LayoutCachedHeight =11055
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =1920
+                    LayoutCachedWidth =14100
+                    LayoutCachedHeight =11715
+                    UseTheme =1
+                    BackThemeColorIndex =1
+                    HoverColor =65280
+                    PressedColor =3114797
+                    HoverForeColor =16777181
+                    PressedForeColor =16777181
+                    ForeColor =16777215
                     Begin
                         Begin Page
                             OverlapFlags =87
-                            Left =180
-                            Top =1665
-                            Width =13860
-                            Height =9255
+                            Left =135
+                            Top =2325
+                            Width =13890
+                            Height =9315
                             Name ="pgCoords_and_loc_details"
                             Caption ="Monitoring Transects"
-                            LayoutCachedLeft =180
-                            LayoutCachedTop =1665
-                            LayoutCachedWidth =14040
-                            LayoutCachedHeight =10920
+                            LayoutCachedLeft =135
+                            LayoutCachedTop =2325
+                            LayoutCachedWidth =14025
+                            LayoutCachedHeight =11640
                             WebImagePaddingLeft =2
                             WebImagePaddingTop =2
                             WebImagePaddingRight =2
@@ -298,8 +305,8 @@ Begin Form
                             Begin
                                 Begin Subform
                                     OverlapFlags =215
-                                    Left =180
-                                    Top =1665
+                                    Left =225
+                                    Top =2460
                                     Width =13710
                                     Height =9075
                                     Name ="frm_Quadrat_Transect"
@@ -307,22 +314,14 @@ Begin Form
                                     LinkChildFields ="Event_ID"
                                     LinkMasterFields ="Event_ID"
 
-                                    LayoutCachedLeft =180
-                                    LayoutCachedTop =1665
-                                    LayoutCachedWidth =13890
-                                    LayoutCachedHeight =10740
+                                    LayoutCachedLeft =225
+                                    LayoutCachedTop =2460
+                                    LayoutCachedWidth =13935
+                                    LayoutCachedHeight =11535
                                 End
                             End
                         End
                     End
-                End
-                Begin Rectangle
-                    OverlapFlags =255
-                    Left =60
-                    Top =780
-                    Width =5760
-                    Height =480
-                    Name ="Box65"
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -333,7 +332,7 @@ Begin Form
                     Left =7560
                     Top =540
                     Width =300
-                    TabIndex =7
+                    TabIndex =5
                     Name ="txtLocation_ID"
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
@@ -344,7 +343,7 @@ Begin Form
                     OverlapFlags =85
                     Left =7560
                     Top =900
-                    TabIndex =8
+                    TabIndex =6
                     Name ="Site_Selection"
                     ControlSource ="Site_Selection"
                     StatusBarText ="Site accepted or rejected"
@@ -357,44 +356,52 @@ Begin Form
                     Left =8100
                     Top =540
                     Width =540
-                    TabIndex =9
+                    TabIndex =7
                     Name ="version_key_number"
                     ControlSource ="version_key_number"
                     StatusBarText ="Master protocol version key"
 
                 End
                 Begin Label
-                    OverlapFlags =247
-                    Left =2220
-                    Top =120
+                    OverlapFlags =93
+                    Left =2520
+                    Top =360
                     Width =600
                     Height =240
                     FontWeight =700
-                    Name ="Label91"
+                    Name ="lblRoute"
                     Caption ="Route"
+                    LayoutCachedLeft =2520
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =3120
+                    LayoutCachedHeight =600
                 End
                 Begin TextBox
                     Enabled = NotDefault
                     Locked = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =247
+                    OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2880
-                    Top =120
+                    Left =3180
+                    Top =360
                     Width =2820
-                    TabIndex =10
+                    TabIndex =8
                     Name ="SiteDisplay"
                     ControlSource ="Plot_ID"
 
+                    LayoutCachedLeft =3180
+                    LayoutCachedTop =360
+                    LayoutCachedWidth =6000
+                    LayoutCachedHeight =600
                 End
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
                     ScrollBars =2
                     OverlapFlags =215
                     IMESentenceMode =3
-                    Left =8880
+                    Left =9000
                     Top =180
                     Width =4800
                     Height =899
@@ -403,27 +410,35 @@ Begin Form
                     ControlSource ="Comments"
                     StatusBarText ="Plot revisit comments."
 
+                    LayoutCachedLeft =9000
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =13800
+                    LayoutCachedHeight =1079
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =7440
+                            Left =7560
                             Top =180
                             Width =1380
                             Height =240
                             FontWeight =700
-                            Name ="Label94"
+                            Name ="lblVisitComments"
                             Caption ="Visit Comments:"
+                            LayoutCachedLeft =7560
+                            LayoutCachedTop =180
+                            LayoutCachedWidth =8940
+                            LayoutCachedHeight =420
                         End
                     End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =247
+                    OverlapFlags =95
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =1650
-                    Left =960
-                    Top =480
+                    Left =1260
+                    Top =690
                     Width =2100
                     TabIndex =2
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"100\""
@@ -433,70 +448,38 @@ Begin Form
                     RowSource ="SELECT tlu_Contacts.Contact_ID, tlu_Contacts.Last_Name, tlu_Contacts.First_Name "
                         "FROM tlu_Contacts; "
                     ColumnWidths ="0;810;839"
+                    LayoutCachedLeft =1260
+                    LayoutCachedTop =690
+                    LayoutCachedWidth =3360
+                    LayoutCachedHeight =930
                     Begin
                         Begin Label
-                            OverlapFlags =255
-                            Left =120
-                            Top =480
+                            OverlapFlags =93
+                            Left =420
+                            Top =690
                             Width =840
                             Height =245
                             FontWeight =700
-                            Name ="Observer_Label"
+                            Name ="lblObserver"
                             Caption ="Observer"
-                        End
-                    End
-                End
-                Begin TextBox
-                    Visible = NotDefault
-                    OverlapFlags =247
-                    IMESentenceMode =3
-                    Left =4980
-                    Top =960
-                    Width =360
-                    TabIndex =12
-                    Name ="Unit_Code"
-                    ControlSource ="Unit_Code"
-                    StatusBarText ="Park Code."
-
-                End
-                Begin TextBox
-                    OverlapFlags =247
-                    TextAlign =1
-                    IMESentenceMode =3
-                    Left =3480
-                    Top =900
-                    Width =1080
-                    TabIndex =4
-                    Name ="Start_Time"
-                    ControlSource ="Start_Time"
-                    Format ="Short Time"
-                    StatusBarText ="M. Starting date for the event (Start_Date)"
-                    InputMask ="00:00;0;_"
-
-                    Begin
-                        Begin Label
-                            OverlapFlags =247
-                            Left =2460
-                            Top =900
-                            Width =960
-                            Height =240
-                            FontWeight =700
-                            Name ="Label199"
-                            Caption ="GPS Time"
+                            LayoutCachedLeft =420
+                            LayoutCachedTop =690
+                            LayoutCachedWidth =1260
+                            LayoutCachedHeight =935
                         End
                     End
                 End
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =247
+                    OverlapFlags =85
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3180
-                    Top =480
+                    Left =6240
+                    Top =1500
                     Width =2820
                     Height =255
-                    TabIndex =13
+                    TabIndex =10
                     ForeColor =8355711
                     Name ="tbxEventID"
                     ControlSource ="Event_ID"
@@ -512,10 +495,10 @@ Begin Form
                         0x220029002c0030002c003100290000000000
                     End
 
-                    LayoutCachedLeft =3180
-                    LayoutCachedTop =480
-                    LayoutCachedWidth =6000
-                    LayoutCachedHeight =735
+                    LayoutCachedLeft =6240
+                    LayoutCachedTop =1500
+                    LayoutCachedWidth =9060
+                    LayoutCachedHeight =1755
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -527,6 +510,157 @@ Begin Form
                         0x6f006c007300280022007400620078004400650076004d006f00640065002200 ,
                         0x29002c0030002c00310029000000000000000000000000000000000000000000 ,
                         0x00
+                    End
+                End
+                Begin OptionGroup
+                    OverlapFlags =93
+                    Left =120
+                    Top =1200
+                    Width =5940
+                    Height =600
+                    TabIndex =11
+                    Name ="frmSamplingVisit"
+
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =1200
+                    LayoutCachedWidth =6060
+                    LayoutCachedHeight =1800
+                    Begin
+                        Begin Label
+                            BackStyle =1
+                            OverlapFlags =215
+                            TextAlign =2
+                            Left =240
+                            Top =1080
+                            Width =1380
+                            Height =240
+                            FontWeight =700
+                            BackColor =12574431
+                            Name ="lblSamplingVisit"
+                            Caption ="Sampling Visit"
+                            LayoutCachedLeft =240
+                            LayoutCachedTop =1080
+                            LayoutCachedWidth =1620
+                            LayoutCachedHeight =1320
+                        End
+                    End
+                End
+                Begin TextBox
+                    OverlapFlags =215
+                    TextAlign =1
+                    IMESentenceMode =3
+                    Left =960
+                    Top =1440
+                    Width =1080
+                    TabIndex =12
+                    Name ="tbxStartDate"
+                    ControlSource ="Start_Date"
+                    Format ="Short Date"
+                    StatusBarText ="M. Starting date for the event (Start_Date)"
+                    InputMask ="99/99/0000;0;_"
+
+                    LayoutCachedLeft =960
+                    LayoutCachedTop =1440
+                    LayoutCachedWidth =2040
+                    LayoutCachedHeight =1680
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =215
+                    IMESentenceMode =3
+                    Left =5460
+                    Top =1440
+                    Width =360
+                    TabIndex =13
+                    Name ="Unit_Code"
+                    ControlSource ="Unit_Code"
+                    StatusBarText ="Park Code."
+
+                    LayoutCachedLeft =5460
+                    LayoutCachedTop =1440
+                    LayoutCachedWidth =5820
+                    LayoutCachedHeight =1680
+                End
+                Begin TextBox
+                    OverlapFlags =215
+                    TextAlign =1
+                    IMESentenceMode =3
+                    Left =2880
+                    Top =1440
+                    Width =1080
+                    TabIndex =14
+                    Name ="Start_Time"
+                    ControlSource ="Start_Time"
+                    Format ="Short Time"
+                    StatusBarText ="M. Starting date for the event (Start_Date)"
+                    InputMask ="00:00;0;_"
+
+                    LayoutCachedLeft =2880
+                    LayoutCachedTop =1440
+                    LayoutCachedWidth =3960
+                    LayoutCachedHeight =1680
+                    Begin
+                        Begin Label
+                            OverlapFlags =215
+                            Left =2235
+                            Top =1440
+                            Width =555
+                            Height =240
+                            FontWeight =700
+                            Name ="lblLocalGPSTime"
+                            Caption =" Time"
+                            LayoutCachedLeft =2235
+                            LayoutCachedTop =1440
+                            LayoutCachedWidth =2790
+                            LayoutCachedHeight =1680
+                        End
+                    End
+                End
+                Begin Label
+                    OverlapFlags =215
+                    Left =360
+                    Top =1440
+                    Width =495
+                    Height =240
+                    FontWeight =700
+                    Name ="lblStartDate"
+                    Caption ="Date"
+                    LayoutCachedLeft =360
+                    LayoutCachedTop =1440
+                    LayoutCachedWidth =855
+                    LayoutCachedHeight =1680
+                End
+                Begin OptionGroup
+                    OverlapFlags =247
+                    Left =120
+                    Top =180
+                    Width =5940
+                    Height =840
+                    TabIndex =15
+                    Name ="frmLocation"
+
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =180
+                    LayoutCachedWidth =6060
+                    LayoutCachedHeight =1020
+                    Begin
+                        Begin Label
+                            BackStyle =1
+                            OverlapFlags =247
+                            TextAlign =2
+                            Left =240
+                            Top =60
+                            Width =900
+                            Height =240
+                            FontWeight =700
+                            BackColor =12574431
+                            Name ="lblLocation"
+                            Caption ="Location"
+                            LayoutCachedLeft =240
+                            LayoutCachedTop =60
+                            LayoutCachedWidth =1140
+                            LayoutCachedHeight =300
+                        End
                     End
                 End
             End

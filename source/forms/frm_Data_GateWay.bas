@@ -18,15 +18,15 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =10560
+    Width =9420
     DatasheetFontHeight =10
-    ItemSuffix =37
-    Left =1785
-    Top =195
-    Right =12345
-    Bottom =6045
+    ItemSuffix =38
+    Left =630
+    Top =4350
+    Right =15600
+    Bottom =9780
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_code = 'FOBU'"
+    Filter ="Unit_code = 'ZION'"
     OrderBy ="Plot_ID DESC, Unit_Code"
     RecSrcDt = Begin
         0x29b5dcdf75fbe240
@@ -42,6 +42,9 @@ Begin Form
     AllowPivotTableView =0
     AllowPivotChartView =0
     AllowPivotChartView =0
+    FilterOnLoad =0
+    AllowLayoutView =0
+    DatasheetGridlinesColor12 =12632256
     Begin
         Begin Label
             BackStyle =0
@@ -51,54 +54,65 @@ Begin Form
         Begin Rectangle
             SpecialEffect =3
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin Image
             BackStyle =0
             OldBorderStyle =0
+            BorderLineStyle =0
             PictureAlignment =2
         End
         Begin CommandButton
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin OptionButton
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin CheckBox
             SpecialEffect =2
+            BorderLineStyle =0
             LabelX =230
             LabelY =-30
         End
         Begin OptionGroup
             SpecialEffect =3
+            BorderLineStyle =0
         End
         Begin BoundObjectFrame
             SpecialEffect =2
             OldBorderStyle =0
+            BorderLineStyle =0
             BackStyle =0
         End
         Begin TextBox
             FELineBreak = NotDefault
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
             AsianLineBreak =255
         End
         Begin ListBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin ComboBox
             SpecialEffect =2
+            BorderLineStyle =0
             BackColor =-2147483643
             ForeColor =-2147483640
         End
         Begin Subform
             SpecialEffect =2
+            BorderLineStyle =0
         End
         Begin UnboundObjectFrame
             SpecialEffect =2
@@ -108,9 +122,11 @@ Begin Form
             FontSize =8
             FontWeight =400
             FontName ="MS Sans Serif"
+            BorderLineStyle =0
         End
         Begin Tab
             BackStyle =0
+            BorderLineStyle =0
         End
         Begin FormHeader
             Height =1248
@@ -120,15 +136,20 @@ Begin Form
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =5040
+                    Left =4380
                     Top =1020
                     Width =1680
                     Height =228
-                    Name ="labUpdated_Date"
+                    Name ="lblUpdated_Date"
                     Caption ="Entered/updated*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
                     Tag ="DetachedLabel"
+                    ControlTipText ="Double click to sort by date updated"
+                    LayoutCachedLeft =4380
+                    LayoutCachedTop =1020
+                    LayoutCachedWidth =6060
+                    LayoutCachedHeight =1248
                 End
                 Begin Label
                     OverlapFlags =85
@@ -137,26 +158,54 @@ Begin Form
                     Top =1020
                     Width =795
                     Height =225
-                    Name ="labUnit_code"
+                    Name ="lblUnit_code"
                     Caption ="Unit*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
                     Tag ="DetachedLabel"
+                    ControlTipText ="Double click to sort by park (unit code)"
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =9720
+                    Left =8460
                     Top =120
                     Width =720
                     Height =354
                     FontSize =9
                     FontWeight =700
                     TabIndex =3
-                    Name ="cmdClose"
+                    Name ="btnClose"
                     Caption ="Close"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
                     ControlTipText ="Close the data entry form"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =8460
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =9180
+                    LayoutCachedHeight =474
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
                 Begin Label
                     OverlapFlags =85
@@ -166,7 +215,7 @@ Begin Form
                     Height =408
                     BackColor =16777215
                     ForeColor =0
-                    Name ="labOverview"
+                    Name ="lablbl"
                     Caption ="* Double-click on the field label to change sort order.  Double-click on a Plot "
                         "ID to open the Site form for that record."
                     FontName ="Arial"
@@ -179,15 +228,17 @@ Begin Form
                     Left =1500
                     Top =660
                     Width =960
+                    ColumnOrder =1
                     TabIndex =1
                     ColumnInfo ="\"\";\"\";\"10\";\"8\""
-                    Name ="selPark"
+                    Name ="cbxPark"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT DISTINCT tbl_Locations.Unit_Code FROM tbl_Locations ORDER BY tbl_Location"
                         "s.Unit_Code; "
                     StatusBarText ="Park code"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Arial"
+
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -196,7 +247,7 @@ Begin Form
                             Top =660
                             Width =1320
                             Height =228
-                            Name ="labPark"
+                            Name ="lblPark"
                             Caption ="Filter by:  Park"
                             FontName ="Arial"
                         End
@@ -209,8 +260,8 @@ Begin Form
                     Top =660
                     Width =480
                     Height =300
-                    Name ="togFilterByPark"
-                    AfterUpdate ="[Event Procedure]"
+                    ColumnOrder =0
+                    Name ="tglFilterByPark"
                     Caption ="Filter on"
                     PictureData = Begin
                         0x2800000010000000100000000100040000000000800000000000000000000000 ,
@@ -231,12 +282,22 @@ Begin Form
                         0x0000000000000000
                     End
                     FontName ="Arial"
+                    OnClick ="[Event Procedure]"
                     ObjectPalette = Begin
-                        0x0003100000000000800000000080000080800000000080008000800000808000 ,
-                        0x80808000c0c0c000ff000000c0c0c000ffff00000000ff00c0c0c00000ffff00 ,
-                        0xffffff0000000000
+                        0x000301000000000000000000
                     End
                     ControlTipText ="Turn the park filter on or off"
+
+                    LayoutCachedLeft =2760
+                    LayoutCachedTop =660
+                    LayoutCachedWidth =3240
+                    LayoutCachedHeight =960
+                    UseTheme =1
+                    HoverColor =9434577
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -245,36 +306,90 @@ Begin Form
                     Top =1020
                     Width =675
                     Height =225
-                    Name ="labPlot_ID"
+                    Name ="lblPlot_ID"
                     Caption ="Route*"
                     FontName ="Arial"
                     OnDblClick ="[Event Procedure]"
+                    ControlTipText ="Double click to sort by route"
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =7800
+                    Left =6540
                     Top =120
                     Width =1680
                     FontSize =9
                     FontWeight =700
                     TabIndex =4
-                    Name ="ButtonNewSite"
-                    Caption ="Add a new Route"
+                    Name ="btnNewSite"
+                    Caption ="Add New Route"
                     OnClick ="[Event Procedure]"
-                    FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =6540
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =8220
+                    LayoutCachedHeight =480
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =6600
+                    Left =5340
                     Top =120
                     Width =960
                     FontSize =9
                     FontWeight =700
                     TabIndex =2
-                    Name ="buttonRefresh"
+                    Name ="btnRefresh"
                     Caption ="Refresh"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =5340
+                    LayoutCachedTop =120
+                    LayoutCachedWidth =6300
+                    LayoutCachedHeight =480
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
             End
         End
@@ -283,22 +398,68 @@ Begin Form
             BackColor =11056034
             Name ="Detail"
             Begin
+                Begin CommandButton
+                    OverlapFlags =93
+                    Left =6360
+                    Top =60
+                    Width =1320
+                    Height =300
+                    TabIndex =6
+                    Name ="btnNewVisit"
+                    Caption ="Add New Visit"
+                    OnClick ="[Event Procedure]"
+                    FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =6360
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =7680
+                    LayoutCachedHeight =360
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
+                    Overlaps =1
+                End
                 Begin TextBox
                     Enabled = NotDefault
                     Locked = NotDefault
                     TabStop = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
-                    Left =5220
+                    Left =4380
                     Top =60
                     Width =1680
+                    Height =239
                     ColumnWidth =1710
                     TabIndex =1
-                    Name ="txtUpdated"
+                    Name ="tbxUpdated"
                     ControlSource ="Updated_Date"
                     Format ="yyyy mmm dd hh:nn"
                     StatusBarText ="Date on which data entry occurred"
                     FontName ="Arial"
+
+                    LayoutCachedLeft =4380
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =6060
+                    LayoutCachedHeight =299
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -310,10 +471,11 @@ Begin Form
                     Top =60
                     Width =780
                     ColumnWidth =2310
-                    Name ="txtUnit_code"
+                    Name ="tbxPark"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Unit code"
                     FontName ="Arial"
+
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -330,56 +492,104 @@ Begin Form
                     ControlSource ="Location_ID"
                     StatusBarText ="Name of the location"
                     FontName ="Arial"
+
                 End
                 Begin TextBox
                     Enabled = NotDefault
                     Locked = NotDefault
                     OverlapFlags =247
                     IMESentenceMode =3
-                    Left =1080
+                    Left =1050
                     Top =60
-                    Width =3840
+                    Width =3240
                     TabIndex =3
-                    Name ="txtPlot_ID"
+                    Name ="tbxPlot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
+
+                    LayoutCachedLeft =1050
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4290
+                    LayoutCachedHeight =300
                 End
                 Begin CommandButton
-                    OverlapFlags =93
-                    Left =7200
+                    OverlapFlags =215
+                    Left =6360
                     Top =60
                     Width =1320
                     Height =300
                     TabIndex =4
-                    Name ="ButtonVisitList"
+                    Name ="btnVisitList"
                     Caption ="View Visits"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
-                End
-                Begin CommandButton
-                    Visible = NotDefault
-                    OverlapFlags =215
-                    Left =7200
-                    Top =60
-                    Width =1319
-                    Height =299
-                    TabIndex =5
-                    Name ="ButtonNewVisit"
-                    Caption ="Add New Visit"
-                    OnClick ="[Event Procedure]"
-                    FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =6360
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =7680
+                    LayoutCachedHeight =360
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
+                    Overlaps =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =8700
+                    Left =7800
                     Top =60
-                    Width =1650
+                    Width =1410
                     Height =300
-                    TabIndex =6
-                    Name ="ButtonSiteChar"
+                    TabIndex =5
+                    Name ="btnSiteChar"
                     Caption ="Edit/Add Routes"
                     OnClick ="[Event Procedure]"
                     FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =7800
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =9210
+                    LayoutCachedHeight =360
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
             End
         End
@@ -399,217 +609,247 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' FORM NAME:    frm_Data_Gateway
-' Description:
+' Form:         frm_Data_Gateway
+' Level:        Application form
+' Version:      1.01
+' Basis:        -
+'
+' Description:  Data Gateway form object related properties, functions & procedures for UI display
+'
 ' Data source:  qfrm_Data_Gateway
 ' Data access:  view and delete records (delete by cmdDeleteRec)
 ' Pages:        none
 ' Functions:    fxnSortRecords
-' References:   none
 ' Source/date:  John R. Boetsch, June 7, 2006
-' Revisions:    Simon Kingston, Sept. 2006 - added CorrectText calls where strings were being used in criteria
-'                                          - updated cmdDeleteRec_Click() event to use appropriate criteria depending on primary key
+' References:   -
+' Revisions:    JRB - 6/7/2006  - 1.00 - initial version
+'               SK - 9/x/2006   - 1.01 - added CorrectText calls where strings were being used in criteria
+'                                        - updated cmdDeleteRec_Click() event to use appropriate criteria depending on primary key
+'               BLC - 7/14/2017 - 1.02 - added documentation, error handling, renamed buttons
 ' =================================
 
+'---------------------
+' Simulated Inheritance
+'---------------------
+
+'---------------------
+' Declarations
+'---------------------
 Dim strSortField As String    ' Keeps track of current sort settings
 Dim strSortOrder As String
 Dim strSortFieldLabel As String
 
-Private Sub Form_Open(Cancel As Integer)
-    On Error GoTo Err_Handler
+'---------------------
+' Event Declarations
+'---------------------
 
+'---------------------
+' Properties
+'---------------------
+
+'---------------------
+' Methods
+'---------------------
+
+' ---------------------------------
+' Sub:          Form_Open
+' Description:  form opening actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/14/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub Form_Open(Cancel As Integer)
+On Error GoTo Err_Handler
+    
     Dim varReturn As Variant
 
     ' On opening the form, set the initial sort order
-    strSortFieldLabel = "labPlot_ID"
-    varReturn = fxnSortRecords("Unit_Code", "Plot_ID")
+    strSortFieldLabel = "lblRoute"
+    varReturn = SortRecords("Unit_Code", "Plot_ID")
+    
     ' Set the filter
     If fxnSwitchboardIsOpen Then
-        Me.selPark = Forms!frm_Switchboard.cPark
-        Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
+        Me.cbxPark = Forms!frm_Switchboard.cPark
+        Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
         Me.FilterOn = True
-        Me.labPark.fontBold = True
-        Me.togFilterByPark = True
+        Me.lblPark.FontBold = True
+        Me.tglFilterByPark = True
     End If
-
-Exit_Procedure:
+  
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Open[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub labPlot_ID_DblClick(Cancel As Integer)
-    On Error GoTo Err_Handler
-
-    fxnSortRecords ("Plot_ID")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-End Sub
-
-
-
-Private Sub selPark_AfterUpdate()
-    On Error GoTo Err_Handler
-
-    Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
-    If togFilterByPark Then
-      Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
+' ---------------------------------
+' Sub:          cbxPark_AfterUpdate
+' Description:  Park selection actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub cbxPark_AfterUpdate()
+On Error GoTo Err_Handler
+    
+    Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
+    If tglFilterByPark Then
+      Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
       Me.FilterOn = True
-      Me.labPark.fontBold = True
+      Me.lblPark.FontBold = True
     End If
-Exit_Procedure:
+  
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxPark_AfterUpdate[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub togFilterByPark_AfterUpdate()
-    On Error GoTo Err_Handler
+'---------------------
+' Button/Toggle Click Events
+'---------------------
 
+' ---------------------------------
+' Sub:          tglFilterByPark_AfterUpdate
+' Description:  Filter by park toggle actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub tglFilterByPark_AfterUpdate()
+On Error GoTo Err_Handler
+    
     If Me.ActiveControl Then
-      If Not IsNull(Me!selPark) Then
-        Me.Filter = "Unit_code = " & CorrectText(Me.selPark)
+      If Not IsNull(Me!cbxPark) Then
+        Me.Filter = "Unit_code = " & CorrectText(Me.cbxPark)
         Me.FilterOn = True
-        Me.labPark.fontBold = True
+        Me.lblPark.FontBold = True
       End If
     Else
         Me.FilterOn = False
-        Me.labPark.fontBold = False
+        Me.lblPark.FontBold = False
     End If
-
-Exit_Procedure:
+  
+  
+Exit_Handler:
     Exit Sub
-
 Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglFilterByPark_AfterUpdate[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub cmdClose_Click()
-    On Error GoTo Err_Handler
-
-    DoCmd.Close , , acSaveNo
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-' =================================
-' The next several procedures re-sort the records if the user
-'   double-clicks on a field label
-
-
-Private Sub labUnit_code_DblClick(Cancel As Integer)
-    On Error GoTo Err_Handler
-
-    fxnSortRecords ("Unit_code")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-Private Sub labUpdated_Date_DblClick(Cancel As Integer)
-    On Error GoTo Err_Handler
-
-    fxnSortRecords ("Updated_Date")
-
-Exit_Procedure:
-    Exit Sub
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_Procedure
-
-End Sub
-
-' =================================
-' FUNCTION:     fxnSortRecords
-' Description:  Sorts the records by the indicated field
-' Parameters:   strFieldName
-' Returns:      none
+' ---------------------------------
+' Sub:          btnRefresh_Click
+' Description:  Refresh button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
 ' Throws:       none
-' References:   strFieldName, strSortOrder, strSortFieldLabel
-'               (form-level variables)
-' Source/date:  John R. Boetsch, May 5, 2006
-' Revisions:    <name, date, desc - add lines as you go>
-' =================================
-
-Private Function fxnSortRecords(ByVal strFieldName As String, _
-    Optional ByVal strField2Name As String)
-    On Error GoTo Err_Handler
-
-    Dim strOrderBy As String
-
-    ' If already sorting in ascending order by this field, sort descending
-    If strFieldName = strSortField And strSortOrder = "" Then
-        strSortOrder = " DESC"
-    Else: strSortOrder = ""
-    End If
-    ' Create the order by string and activate the filter
-    strOrderBy = strFieldName & strSortOrder
-    If strField2Name <> "" Then
-        strOrderBy = strField2Name & " DESC, " & strOrderBy
-    End If
-    strSortField = strFieldName
-    Me.Form.OrderBy = strOrderBy
-    Me.Form.OrderByOn = True
-
-    ' Change the label format to indicate the sorted field
-    Me.Controls.item(strSortFieldLabel).FontItalic = False
-    Me.Controls.item(strSortFieldLabel).fontBold = False
-    strSortFieldLabel = "lab" & strFieldName
-    Me.Controls.item(strSortFieldLabel).FontItalic = True
-    Me.Controls.item(strSortFieldLabel).fontBold = True
-
-Exit_Procedure:
-    Exit Function
-
-Err_Handler:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-        "Error encountered (fxnSortRecords)"
-    Resume Exit_Procedure
-
-End Function
-
-Private Sub ButtonNewSite_Click()
-On Error GoTo Err_ButtonNewSite_Click
-
-    DoCmd.OpenForm "frm_Locations", , , , acFormAdd, , "New record"
-
-Exit_ButtonNewSite_Click:
-    Exit Sub
-
-Err_ButtonNewSite_Click:
-    MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical
-    Resume Exit_ButtonNewSite_Click
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnRefresh_Click()
+On Error GoTo Err_Handler
     
+    Me.Requery
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnRefresh_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
 
-Private Sub ButtonVisitList_Click()
-On Error GoTo Err_ButtonVisitList_Click
+' ---------------------------------
+' Sub:          btnNewSite_Click
+' Description:  New site button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnNewSite_Click()
+On Error GoTo Err_Handler
+    
+    DoCmd.OpenForm "frm_Locations", , , , acFormAdd, , "New record"
+      
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnNewSite_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
+' ---------------------------------
+' Sub:          btnVisitList_Click
+' Description:  Visit list button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnVisitList_Click()
+On Error GoTo Err_Handler
+    
     Dim stDocName As String
     Dim stLinkCriteria As String
 
@@ -617,31 +857,37 @@ On Error GoTo Err_ButtonVisitList_Click
     
     stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonVisitList_Click:
+  
+Exit_Handler:
     Exit Sub
-
-Err_ButtonVisitList_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonVisitList_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnVisitList_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
-Private Sub ButtonRefresh_Click()
-On Error GoTo Err_ButtonRefresh_Click
 
-    Me.Requery
-
-Exit_ButtonRefresh_Click:
-    Exit Sub
-
-Err_ButtonRefresh_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonRefresh_Click
+' ---------------------------------
+' Sub:          btnNewVisit_Click
+' Description:  New visit button click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+'                     NOTE: control is currently hidden under View Visits
+'                           form design must be changed to allow users to use it
+' ---------------------------------
+Private Sub btnNewVisit_Click()
+On Error GoTo Err_Handler
     
-End Sub
-Private Sub ButtonNewVisit_Click()
-On Error GoTo Err_ButtonNewVisit_Click
-
     Dim stDocName As String
     Dim stLinkCriteria As String
 
@@ -650,18 +896,35 @@ On Error GoTo Err_ButtonNewVisit_Click
     stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
 '    DoCmd.Close acForm, "frm_Data_Gateway"
-
-Exit_ButtonNewVisit_Click:
+  
+Exit_Handler:
     Exit Sub
-
-Err_ButtonNewVisit_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonNewVisit_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnNewVisit_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
-Private Sub ButtonSiteChar_Click()
-On Error GoTo Err_ButtonSiteChar_Click
 
+' ---------------------------------
+' Sub:          btnSiteChar_Click
+' Description:  Site characteristic click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnSiteChar_Click()
+On Error GoTo Err_Handler
+    
     Dim stDocName As String
     Dim stLinkCriteria As String
 
@@ -669,12 +932,204 @@ On Error GoTo Err_ButtonSiteChar_Click
     
     stLinkCriteria = "[Location_ID]=" & "'" & Me![txtLocation_ID] & "'"
     DoCmd.OpenForm stDocName, , , stLinkCriteria
-
-Exit_ButtonSiteChar_Click:
+  
+Exit_Handler:
     Exit Sub
-
-Err_ButtonSiteChar_Click:
-    MsgBox Err.Description
-    Resume Exit_ButtonSiteChar_Click
-    
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnSiteChar_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          btnClose_Click
+' Description:  form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub btnClose_Click()
+On Error GoTo Err_Handler
+    
+    DoCmd.Close , , acSaveNo
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - btnClose_Click[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------
+' Sorting Methods
+'---------------------
+'  Procedures that re-sort the records if the user
+'  double-clicks on a field label
+
+' ---------------------------------
+' Sub:          lblUnit_code_DblClick
+' Description:  Unit code label double click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblUnit_code_DblClick(Cancel As Integer)
+On Error GoTo Err_Handler
+    
+    SortRecords ("Unit_code")
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblUnit_code_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          lblPlot_ID_DblClick
+' Description:  Plot ID (route) label double click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblPlot_ID_DblClick(Cancel As Integer)
+On Error GoTo Err_Handler
+    
+    SortRecords ("Plot_ID") 'Plot_ID = Route
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblPlot_ID_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          lblUpdated_Date_DblClick
+' Description:  Updated date double click actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 6/7/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Sub lblUpdated_Date_DblClick(Cancel As Integer)
+On Error GoTo Err_Handler
+    
+    SortRecords ("Updated_Date")
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - lblUpdated_Date_DblClick[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------
+' Custom Functions
+'---------------------
+
+' ---------------------------------
+' Function:     SortRecords
+' Description:  Sorts form records by field indicated
+' Assumptions:  -
+' Parameters:   strFieldName - first field to sort by (string)
+'               strField2Name - second field to sort by (optional, string)
+' Returns:      -
+' Throws:       none
+' References:   strFieldName, strSortOrder, strSortFieldLabel
+'               (form-level variables)
+' Source/date:  JRB, May 5, 2006 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   JRB - 5/5/2006  - initial version
+'   BLC - 7/12/2017 - added documentation, error handling
+' ---------------------------------
+Private Function SortRecords(ByVal strFieldName As String, _
+                        Optional ByVal strField2Name As String)
+On Error GoTo Err_Handler
+      
+    Dim strOrderBy As String
+
+    ' Toggle sort ASC/DESC
+    If strFieldName = strSortField And strSortOrder = "" Then
+        strSortOrder = " DESC"
+    Else
+        strSortOrder = ""
+    End If
+    
+    ' Create ORDER BY string & activate filter
+    strOrderBy = strFieldName & strSortOrder
+    
+    If strField2Name <> "" Then
+        strOrderBy = strField2Name & " DESC, " & strOrderBy
+    End If
+    
+    strSortField = strFieldName
+    
+    Me.Form.OrderBy = strOrderBy
+    Me.Form.OrderByOn = True
+
+    ' Set label format to indicate sorted field
+'    Me.Controls.item(strSortFieldLabel).FontItalic = False
+'    Me.Controls.item(strSortFieldLabel).fontBold = False
+    
+    strSortFieldLabel = "lbl" & strFieldName
+    Me.Controls.item(strSortFieldLabel).FontItalic = True
+    Me.Controls.item(strSortFieldLabel).FontBold = True
+  
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SortRecords[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Function

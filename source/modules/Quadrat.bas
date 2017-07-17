@@ -33,6 +33,8 @@ Private m_NoExoticsQ1 As Boolean
 Private m_NoExoticsQ2 As Boolean
 Private m_NoExoticsQ3 As Boolean
 
+Private m_QuadratNumber As Integer
+
 '---------------------
 ' Events
 '---------------------
@@ -45,6 +47,7 @@ Public Event InvalidIsSampled(Value As Boolean)
 Public Event InvalidNoExotics(Value As Boolean)
 Public Event InvalidSurfaceCover(Value As DAO.Recordset)
 Public Event InvalidSpeciesCover(Value As DAO.Recordset)
+Public Event InvalidQuadratNumber(Value As Integer)
 
 '---------------------
 ' Properties
@@ -195,6 +198,20 @@ End Property
 Public Property Get NoExoticsQ3() As Boolean
     NoExoticsQ3 = m_NoExoticsQ3
 End Property
+
+Public Property Let QuadratNumber(Value As Integer)
+    If varType(Value) = vbInteger Then
+        m_QuadratNumber = Value
+    Else
+        RaiseEvent InvalidQuadratNumber(Value)
+    End If
+End Property
+
+Public Property Get QuadratNumber() As Integer
+    QuadratNumber = m_QuadratNumber
+End Property
+
+
 '---------------------
 ' Methods
 '---------------------
@@ -422,6 +439,68 @@ Err_Handler:
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
                 "Error encounter (#" & Err.Number & " - GetSurfaceCover[Quadrat class])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateQuadratFlags
+' Description:  Update quadrat flag settings
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/14/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/14/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateQuadratFlags()
+On Error GoTo Err_Handler
+
+    'determine which flags to set
+    Dim IsSampledFlag As Integer
+    Dim NoExoticsFlag As Integer
+        
+    Dim Template As String
+        
+    Template = "u_quadrat_flags"
+    
+    Dim params(0 To 4) As Variant
+
+    With Me
+        
+        'requires quadrat # (1-3) to determine which flag to send
+        If Not IsNumeric(Me.QuadratNumber) Then GoTo Exit_Handler
+        
+        Select Case Me.QuadratNumber
+            Case 1
+                IsSampledFlag = .IsSampledQ1
+                NoExoticsFlag = .NoExoticsQ1
+            Case 2
+                IsSampledFlag = .IsSampledQ2
+                NoExoticsFlag = .NoExoticsQ2
+            Case 3
+                IsSampledFlag = .IsSampledQ3
+                NoExoticsFlag = .NoExoticsQ3
+        End Select
+        
+        params(0) = "Quadrat"
+        params(1) = .ID                 'quadrat ID
+        params(2) = IsSampledFlag       'IsSampled flag
+        params(3) = NoExoticsFlag       'NoExotics flag
+        
+        .ID = SetRecord(Template, params)
+    End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateQuadratFlags[Quadrat class])"
     End Select
     Resume Exit_Handler
 End Sub

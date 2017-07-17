@@ -5,6 +5,7 @@ Begin Form
     Modal = NotDefault
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
+    NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
     AllowEdits = NotDefault
@@ -15,12 +16,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
+    Width =4440
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =4965
-    Top =5160
-    Right =12165
-    Bottom =8805
+    Left =6630
+    Top =2325
+    Right =11070
+    Bottom =5970
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x5bd611c7ad13e340
@@ -119,64 +121,56 @@ Begin Form
             BorderLineStyle =0
         End
         Begin FormHeader
-            Height =1140
             BackColor =-2147483633
             Name ="FormHeader"
             Begin
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =180
-                    Top =900
+                    Left =960
+                    Top =1200
                     Width =1035
                     Height =240
                     FontWeight =700
-                    Name ="Start_Date_Label"
+                    Name ="lblStart_Date"
                     Caption ="Visit Date"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =960
+                    LayoutCachedTop =1200
+                    LayoutCachedWidth =1995
+                    LayoutCachedHeight =1440
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
                     Left =120
-                    Top =120
+                    Top =480
                     Width =540
                     Height =240
                     FontWeight =700
-                    Name ="Unit_Code_Label"
+                    Name ="lblUnit_Code"
                     Caption ="Park"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =660
+                    LayoutCachedHeight =720
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
                     Left =120
-                    Top =540
+                    Top =780
                     Width =600
                     Height =240
                     FontWeight =700
-                    Name ="Plot_ID_Label"
+                    Name ="lblPlot_ID"
                     Caption ="Route"
                     Tag ="DetachedLabel"
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =6000
-                    Top =120
-                    Width =1020
-                    Height =300
-                    Name ="btnClose"
-                    Caption ="Close Form"
-                    OnClick ="[Event Procedure]"
-
-                    LayoutCachedLeft =6000
-                    LayoutCachedTop =120
-                    LayoutCachedWidth =7020
-                    LayoutCachedHeight =420
-                    WebImagePaddingLeft =2
-                    WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    LayoutCachedLeft =120
+                    LayoutCachedTop =780
+                    LayoutCachedWidth =720
+                    LayoutCachedHeight =1020
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -186,18 +180,20 @@ Begin Form
                     OverlapFlags =85
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =720
-                    Top =120
+                    Left =840
+                    Top =480
                     Width =600
                     Height =255
                     ColumnWidth =540
                     ColumnOrder =0
-                    FontWeight =700
-                    TabIndex =1
                     Name ="Unit_Code"
                     ControlSource ="Unit_Code"
                     StatusBarText ="Park Code."
 
+                    LayoutCachedLeft =840
+                    LayoutCachedTop =480
+                    LayoutCachedWidth =1440
+                    LayoutCachedHeight =735
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -208,29 +204,78 @@ Begin Form
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =780
-                    Top =540
+                    Left =840
+                    Top =780
                     Width =3540
                     Height =255
                     ColumnWidth =600
                     ColumnOrder =1
-                    FontWeight =700
-                    TabIndex =2
+                    TabIndex =1
                     Name ="Plot_ID"
                     ControlSource ="Plot_ID"
                     StatusBarText ="Plot identifier"
 
+                    LayoutCachedLeft =840
+                    LayoutCachedTop =780
+                    LayoutCachedWidth =4380
+                    LayoutCachedHeight =1035
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =2760
-                    Top =120
+                    Left =660
+                    Top =60
                     Width =2640
                     Height =360
                     FontSize =12
                     FontWeight =700
-                    Name ="Label12"
+                    Name ="lblTitle"
                     Caption ="Select a Visit to Edit"
+                    LayoutCachedLeft =660
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3300
+                    LayoutCachedHeight =420
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3660
+                    Top =60
+                    Width =720
+                    Height =294
+                    FontSize =9
+                    FontWeight =500
+                    TabIndex =2
+                    Name ="btnClose"
+                    Caption ="Close Form"
+                    OnClick ="[Event Procedure]"
+                    FontName ="Arial"
+                    ControlTipText ="Close the data entry form"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
+
+                    LayoutCachedLeft =3660
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4380
+                    LayoutCachedHeight =354
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
             End
         End
@@ -243,7 +288,7 @@ Begin Form
                     Visible = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
-                    Left =60
+                    Left =840
                     Top =60
                     Width =660
                     Height =255
@@ -252,6 +297,10 @@ Begin Form
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Event identifier (Event_ID)"
 
+                    LayoutCachedLeft =840
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1500
+                    LayoutCachedHeight =315
                 End
                 Begin TextBox
                     Visible = NotDefault
@@ -262,7 +311,7 @@ Begin Form
                     OverlapFlags =93
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =840
+                    Left =1620
                     Top =60
                     Width =690
                     Height =255
@@ -272,6 +321,10 @@ Begin Form
                     ControlSource ="Location_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
 
+                    LayoutCachedLeft =1620
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2310
+                    LayoutCachedHeight =315
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -281,7 +334,7 @@ Begin Form
                     OverlapFlags =247
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =180
+                    Left =840
                     Top =60
                     Width =1035
                     Height =255
@@ -292,27 +345,54 @@ Begin Form
                     Format ="Short Date"
                     StatusBarText ="M. Starting date for the event (Start_Date)"
 
+                    LayoutCachedLeft =840
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1875
+                    LayoutCachedHeight =315
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =1860
-                    Top =60
-                    Width =1020
+                    Left =2520
+                    Top =30
+                    Width =1019
                     Height =300
                     TabIndex =3
                     Name ="btnEdit"
                     Caption ="Edit Visit"
                     OnClick ="[Event Procedure]"
+                    FontName ="Arial"
+                    LeftPadding =60
+                    RightPadding =75
+                    BottomPadding =120
 
-                    WebImagePaddingLeft =2
+                    LayoutCachedLeft =2520
+                    LayoutCachedTop =30
+                    LayoutCachedWidth =3539
+                    LayoutCachedHeight =330
+                    ForeThemeColorIndex =0
+                    UseTheme =1
+                    BackColor =15921906
+                    BackThemeColorIndex =1
+                    BackShade =95.0
+                    BorderThemeColorIndex =0
+                    HoverColor =9434577
+                    PressedColor =15921906
+                    PressedThemeColorIndex =1
+                    PressedShade =95.0
+                    HoverForeColor =16711680
+                    PressedForeColor =0
+                    PressedForeThemeColorIndex =0
+                    QuickStyle =22
+                    QuickStyleMask =-53
+                    WebImagePaddingLeft =4
                     WebImagePaddingTop =2
-                    WebImagePaddingRight =1
-                    WebImagePaddingBottom =1
+                    WebImagePaddingRight =4
+                    WebImagePaddingBottom =7
                 End
             End
         End
         Begin FormFooter
-            Height =0
+            Height =60
             BackColor =-2147483633
             Name ="FormFooter"
         End
@@ -329,7 +409,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Visit_Date
 ' Level:        Application form
-' Version:      1.05
+' Version:      1.02
 ' Basis:        -
 '
 ' Description:  Visit Date form object related properties, functions & procedures for UI display
@@ -339,6 +419,7 @@ Option Explicit
 ' Revisions:    NCPN - Unknown  - 1.00 - initial version
 '               BLC - 7/12/2017 - 1.01 - added documentation, error handling, update usys_temp_transect
 '                                        before opening form
+'               BLC - 7/14/2017 - 1.02 - renamed buttons
 ' =================================
 
 '---------------------
@@ -374,13 +455,11 @@ Option Explicit
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 7/12/2017 - added documentation, error handling
+'   BLC - 7/14/2017 - remove hovers
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
-    'set hover colors
-    Me.btnEdit.HoverColor = lngGreen
-    Me.btnClose.HoverColor = lngGreen
   
 Exit_Handler:
     Exit Sub

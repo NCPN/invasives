@@ -11,13 +11,13 @@ Begin Form
     DatasheetGridlinesBehavior =3
     GridX =24
     GridY =24
-    Width =7800
+    Width =7860
     DatasheetFontHeight =9
     ItemSuffix =55
-    Left =3000
-    Top =1905
-    Right =11550
-    Bottom =8310
+    Left =255
+    Top =2535
+    Right =8805
+    Bottom =8940
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x3d9c36b74cece440
@@ -126,84 +126,99 @@ Begin Form
                 Begin Label
                     OverlapFlags =93
                     TextAlign =2
-                    Left =2160
+                    Left =2280
                     Width =2700
                     Height =240
                     Name ="Nested_Quad_Label"
                     Caption ="% Cover in Classes"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =2280
+                    LayoutCachedWidth =4980
+                    LayoutCachedHeight =240
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =4920
+                    Left =5025
                     Top =60
                     Width =840
                     Height =420
                     Name ="Percent_Cover_Label"
                     Caption ="AverageCover"
                     Tag ="DetachedLabel"
+                    LayoutCachedLeft =5025
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =5865
+                    LayoutCachedHeight =480
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =1
-                    Left =60
+                    Left =165
                     Top =240
                     Width =960
                     Height =240
                     Name ="Label14"
                     Caption ="Species"
+                    LayoutCachedLeft =165
+                    LayoutCachedTop =240
+                    LayoutCachedWidth =1125
+                    LayoutCachedHeight =480
                 End
                 Begin Label
                     OverlapFlags =95
-                    Left =2160
+                    Left =2265
                     Top =240
                     Width =900
                     Height =240
                     Name ="Label23"
                     Caption ="Q1@0m"
+                    LayoutCachedLeft =2265
+                    LayoutCachedTop =240
+                    LayoutCachedWidth =3165
+                    LayoutCachedHeight =480
                 End
                 Begin Label
                     OverlapFlags =215
                     TextAlign =2
-                    Left =2940
+                    Left =3045
                     Top =240
                     Width =915
                     Height =240
                     Name ="Label25"
                     Caption ="Q2@4.5m"
-                    LayoutCachedLeft =2940
+                    LayoutCachedLeft =3045
                     LayoutCachedTop =240
-                    LayoutCachedWidth =3855
+                    LayoutCachedWidth =3960
                     LayoutCachedHeight =480
                 End
                 Begin Label
                     OverlapFlags =87
                     TextAlign =2
-                    Left =3945
+                    Left =4050
                     Top =240
                     Width =915
                     Height =240
                     Name ="Label26"
                     Caption ="Q3@9.5m"
-                    LayoutCachedLeft =3945
+                    LayoutCachedLeft =4050
                     LayoutCachedTop =240
-                    LayoutCachedWidth =4860
+                    LayoutCachedWidth =4965
                     LayoutCachedHeight =480
                 End
                 Begin Label
                     OverlapFlags =85
                     TextAlign =2
-                    Left =5820
+                    Left =5925
                     Top =60
                     Width =840
                     Height =420
                     Name ="lblIsDead"
                     Caption ="Dead or Alive?"
                     Tag ="DetachedLabel"
-                    LayoutCachedLeft =5820
+                    LayoutCachedLeft =5925
                     LayoutCachedTop =60
-                    LayoutCachedWidth =6660
+                    LayoutCachedWidth =6765
                     LayoutCachedHeight =480
                 End
             End
@@ -217,7 +232,7 @@ Begin Form
                     Visible = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
-                    Left =60
+                    Left =165
                     Top =60
                     Width =420
                     Height =255
@@ -226,12 +241,16 @@ Begin Form
                     ControlSource ="Species_ID"
                     StatusBarText ="Unique record identifier - primary key"
 
+                    LayoutCachedLeft =165
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =585
+                    LayoutCachedHeight =315
                 End
                 Begin TextBox
                     Visible = NotDefault
                     OverlapFlags =93
                     IMESentenceMode =3
-                    Left =600
+                    Left =705
                     Top =60
                     Width =360
                     Height =255
@@ -241,10 +260,14 @@ Begin Form
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Quadrat_Transect"
 
+                    LayoutCachedLeft =705
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =1065
+                    LayoutCachedHeight =315
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =6960
+                    Left =7005
                     Top =60
                     Width =705
                     Height =300
@@ -254,9 +277,9 @@ Begin Form
                     Caption ="Delete"
                     OnClick ="[Event Procedure]"
 
-                    LayoutCachedLeft =6960
+                    LayoutCachedLeft =7005
                     LayoutCachedTop =60
-                    LayoutCachedWidth =7665
+                    LayoutCachedWidth =7710
                     LayoutCachedHeight =360
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -270,18 +293,19 @@ Begin Form
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2160
+                    Left =2265
                     Top =60
                     Width =900
                     TabIndex =3
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x01000000aa000000020000000100000000000000000000001200000000000000 ,
-                        0x00000000ffffff00010000000000000013000000240000000100000000000000 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x01000000d4000000030000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff00010000000000000028000000390000000100000000000000ffffff00 ,
                         0x5b00740062007800510031005f00530061006d0070006c00650064005d003d00 ,
-                        0x3000000000005b0050006c0061006e0074005f0043006f00640065005d003c00 ,
-                        0x3e002200220000000000
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x5f00510031005d003d003100000000005b0050006c0061006e0074005f004300 ,
+                        0x6f00640065005d003c003e002200220000000000
                     End
                     Name ="Q1_hm"
                     ControlSource ="Q1_0m"
@@ -291,13 +315,19 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
+                    LayoutCachedLeft =2265
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =3165
+                    LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x01000300000001000000000000000000000000000000ffffff00110000005b00 ,
                         0x740062007800510031005f00530061006d0070006c00650064005d003d003000 ,
-                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
-                        0x0000000000ffffff00100000005b0050006c0061006e0074005f0043006f0064 ,
-                        0x0065005d003c003e002200220000000000000000000000000000000000000000 ,
-                        0x0000
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x006900630073005f00510031005d003d00310000000000000000000000000000 ,
+                        0x000000000000000001000000000000000100000000000000ffffff0010000000 ,
+                        0x5b0050006c0061006e0074005f0043006f00640065005d003c003e0022002200 ,
+                        0x000000000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -307,18 +337,19 @@ Begin Form
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3060
+                    Left =3165
                     Top =60
                     Width =900
                     TabIndex =4
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x01000000a8000000020000000100000000000000000000001200000000000000 ,
-                        0x00000000ffffff00010000000000000013000000230000000100000000000000 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x01000000d2000000030000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff00010000000000000028000000380000000100000000000000ffffff00 ,
                         0x5b00740062007800510032005f00530061006d0070006c00650064005d003d00 ,
-                        0x3000000000005b0050006c0061006e00740043006f00640065005d003c003e00 ,
-                        0x2200220000000000
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x5f00510032005d003d003100000000005b0050006c0061006e00740043006f00 ,
+                        0x640065005d003c003e002200220000000000
                     End
                     Name ="Q2_5m"
                     ControlSource ="Q2_5m"
@@ -328,12 +359,19 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
+                    LayoutCachedLeft =3165
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4065
+                    LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x01000300000001000000000000000000000000000000ffffff00110000005b00 ,
                         0x740062007800510032005f00530061006d0070006c00650064005d003d003000 ,
-                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
-                        0x0000000000ffffff000f0000005b0050006c0061006e00740043006f00640065 ,
-                        0x005d003c003e0022002200000000000000000000000000000000000000000000
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x006900630073005f00510032005d003d00310000000000000000000000000000 ,
+                        0x000000000000000001000000000000000100000000000000ffffff000f000000 ,
+                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
+                        0x00000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -343,18 +381,19 @@ Begin Form
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3960
+                    Left =4065
                     Top =60
                     Width =900
                     TabIndex =5
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
-                        0x01000000a8000000020000000100000000000000000000001200000000000000 ,
-                        0x00000000ffffff00010000000000000013000000230000000100000000000000 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x01000000d2000000030000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff00010000000000000028000000380000000100000000000000ffffff00 ,
                         0x5b00740062007800510033005f00530061006d0070006c00650064005d003d00 ,
-                        0x3000000000005b0050006c0061006e00740043006f00640065005d003c003e00 ,
-                        0x2200220000000000
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x5f00510033005d003d003100000000005b0050006c0061006e00740043006f00 ,
+                        0x640065005d003c003e002200220000000000
                     End
                     Name ="Q3_10m"
                     ControlSource ="Q3_10m"
@@ -364,12 +403,19 @@ Begin Form
                     BeforeUpdate ="[Event Procedure]"
                     AfterUpdate ="[Event Procedure]"
 
+                    LayoutCachedLeft =4065
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =4965
+                    LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x01000300000001000000000000000000000000000000ffffff00110000005b00 ,
                         0x740062007800510033005f00530061006d0070006c00650064005d003d003000 ,
-                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
-                        0x0000000000ffffff000f0000005b0050006c0061006e00740043006f00640065 ,
-                        0x005d003c003e0022002200000000000000000000000000000000000000000000
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x006900630073005f00510033005d003d00310000000000000000000000000000 ,
+                        0x000000000000000001000000000000000100000000000000ffffff000f000000 ,
+                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
+                        0x00000000000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -377,11 +423,19 @@ Begin Form
                     IMESentenceMode =3
                     ColumnCount =3
                     ListWidth =4320
-                    Left =60
+                    Left =165
                     Top =60
                     Width =1860
                     TabIndex =2
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"50\""
+                    ConditionalFormat = Begin
+                        0x01000000b0000000020000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800530075006d00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x530075006d005d003d00330000000000
+                    End
                     Name ="Plant_Code"
                     ControlSource ="PlantCode"
                     RowSourceType ="Table/Query"
@@ -390,6 +444,18 @@ Begin Form
                     ColumnWidths ="0;1728;2592"
                     BeforeUpdate ="[Event Procedure]"
 
+                    LayoutCachedLeft =165
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =2025
+                    LayoutCachedHeight =300
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800530075006d00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x00690063007300530075006d005d003d00330000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -399,18 +465,19 @@ Begin Form
                     IMESentenceMode =3
                     ColumnCount =2
                     ListRows =21
-                    Left =5760
+                    Left =5865
                     Top =60
                     Width =900
                     TabIndex =7
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x01000000be000000030000000100000000000000000000000c00000001000000 ,
-                        0x00000000fff2000001000000000000000d0000001d0000000100000000000000 ,
-                        0xffffff0001000000000000001e0000002e0000000100000000000000ffffff00 ,
-                        0x5b004900730044006500610064005d003d0022002200000000005b0050006c00 ,
-                        0x61006e00740043006f00640065005d003c003e0022002200000000005b006300 ,
-                        0x620078004900730044006500610064005d003c003e002200220000000000
+                        0x01000000ca000000030000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff00010000000000000028000000340000000100000000000000fff20000 ,
+                        0x5b00740062007800530075006d00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x530075006d005d003d003300000000005b004900730044006500610064005d00 ,
+                        0x3d002200220000000000
                     End
                     Name ="cbxIsDead"
                     ControlSource ="IsDead"
@@ -418,18 +485,24 @@ Begin Form
                     RowSource ="IsDead_Plus_Flags"
                     ColumnWidths ="0;1440"
                     ControlTipText ="Indicate if species is alive or dead (or the appropriate missing data flag)"
-                    LayoutCachedLeft =5760
+                    LayoutCachedLeft =5865
                     LayoutCachedTop =60
-                    LayoutCachedWidth =6660
+                    LayoutCachedWidth =6765
                     LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000300000001000000000000000100000000000000fff200000b0000005b00 ,
-                        0x4900730044006500610064005d003d0022002200000000000000000000000000 ,
-                        0x00000000000000000001000000000000000100000000000000ffffff000f0000 ,
-                        0x005b0050006c0061006e00740043006f00640065005d003c003e002200220000 ,
-                        0x0000000000000000000000000000000000000000010000000000000001000000 ,
-                        0x00000000ffffff000f0000005b00630062007800490073004400650061006400 ,
-                        0x5d003c003e0022002200000000000000000000000000000000000000000000
+                        0x01000500000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800530075006d00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x00690063007300530075006d005d003d00330000000000000000000000000000 ,
+                        0x000000000000000001000000000000000100000000000000fff200000b000000 ,
+                        0x5b004900730044006500610064005d003d002200220000000000000000000000 ,
+                        0x000000000000000000000001000000000000000100000000000000ffffff000f ,
+                        0x0000005b0050006c0061006e00740043006f00640065005d003c003e00220022 ,
+                        0x0000000000000000000000000000000000000000000001000000000000000100 ,
+                        0x000000000000ffffff000f0000005b0063006200780049007300440065006100 ,
+                        0x64005d003c003e00220022000000000000000000000000000000000000000000 ,
+                        0x00
                     End
                 End
                 Begin TextBox
@@ -438,7 +511,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =5040
+                    Left =5145
                     Top =60
                     Width =540
                     Height =255
@@ -446,16 +519,32 @@ Begin Form
                     Name ="tbxAvgCover"
                     ControlSource ="=IIf([tbxSumSampled]>0,[tbxSumCover]/[tbxSumSampled],0)"
                     StatusBarText ="Percent cover in 10 m2 quadrat"
+                    ConditionalFormat = Begin
+                        0x01000000b0000000020000000100000000000000000000001200000000000000 ,
+                        0x00000000ffffff00010000000000000013000000270000000000000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800530075006d00530061006d0070006c00650064005d003d00 ,
+                        0x3000000000005b007400620078004e006f00450078006f007400690063007300 ,
+                        0x530075006d005d003d00330000000000
+                    End
 
-                    LayoutCachedLeft =5040
+                    LayoutCachedLeft =5145
                     LayoutCachedTop =60
-                    LayoutCachedWidth =5580
+                    LayoutCachedWidth =5685
                     LayoutCachedHeight =315
+                    ConditionalFormat14 = Begin
+                        0x01000200000001000000000000000000000000000000ffffff00110000005b00 ,
+                        0x740062007800530075006d00530061006d0070006c00650064005d003d003000 ,
+                        0x0000000000000000000000000000000000000000000100000000000000000000 ,
+                        0x0000000000ffffff00130000005b007400620078004e006f00450078006f0074 ,
+                        0x00690063007300530075006d005d003d00330000000000000000000000000000 ,
+                        0x0000000000000000
+                    End
                 End
             End
         End
         Begin FormFooter
-            Height =690
+            Height =420
             BackColor =-2147483633
             Name ="FormFooter"
             Begin
@@ -466,7 +555,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2040
+                    Left =2145
                     Top =60
                     Width =900
                     Height =255
@@ -481,9 +570,9 @@ Begin Form
                         0x7300650000000000
                     End
 
-                    LayoutCachedLeft =2040
+                    LayoutCachedLeft =2145
                     LayoutCachedTop =60
-                    LayoutCachedWidth =2940
+                    LayoutCachedWidth =3045
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -500,7 +589,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3000
+                    Left =3105
                     Top =60
                     Width =900
                     Height =255
@@ -516,9 +605,9 @@ Begin Form
                         0x7300650000000000
                     End
 
-                    LayoutCachedLeft =3000
+                    LayoutCachedLeft =3105
                     LayoutCachedTop =60
-                    LayoutCachedWidth =3900
+                    LayoutCachedWidth =4005
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -535,7 +624,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3960
+                    Left =4065
                     Top =60
                     Width =900
                     Height =255
@@ -551,9 +640,9 @@ Begin Form
                         0x7300650000000000
                     End
 
-                    LayoutCachedLeft =3960
+                    LayoutCachedLeft =4065
                     LayoutCachedTop =60
-                    LayoutCachedWidth =4860
+                    LayoutCachedWidth =4965
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -570,7 +659,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =4980
+                    Left =5085
                     Top =60
                     Width =900
                     Height =255
@@ -586,9 +675,9 @@ Begin Form
                         0x7300650000000000
                     End
 
-                    LayoutCachedLeft =4980
+                    LayoutCachedLeft =5085
                     LayoutCachedTop =60
-                    LayoutCachedWidth =5880
+                    LayoutCachedWidth =5985
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -605,7 +694,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =5940
+                    Left =6045
                     Top =60
                     Width =900
                     Height =255
@@ -621,9 +710,9 @@ Begin Form
                         0x7300650000000000
                     End
 
-                    LayoutCachedLeft =5940
+                    LayoutCachedLeft =6045
                     LayoutCachedTop =60
-                    LayoutCachedWidth =6840
+                    LayoutCachedWidth =6945
                     LayoutCachedHeight =315
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -640,7 +729,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =180
+                    Left =285
                     Top =60
                     Width =900
                     Height =255
@@ -654,9 +743,9 @@ Begin Form
                         0x460061006c007300650000000000
                     End
 
-                    LayoutCachedLeft =180
+                    LayoutCachedLeft =285
                     LayoutCachedTop =60
-                    LayoutCachedWidth =1080
+                    LayoutCachedWidth =1185
                     LayoutCachedHeight =315
                     ConditionalFormat14 = Begin
                         0x010001000000000000000200000001000000ececec00ffffff00050000004600 ,
