@@ -229,7 +229,7 @@ End Sub
 '   BLC, 4/4/2016 - initial version
 '   BLC, 8/8/2016 - added update parameter to identify if this is an update vs. an insert
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
 
     Dim Template As String
@@ -253,7 +253,7 @@ On Error GoTo Err_Handler
         params(11) = IIf(IsDate(.RetireDate), _
                      IIf(.RetireDate = #12:00:00 AM#, Null, .RetireDate), Null)
     
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_template"
             params(12) = .ID
         End If

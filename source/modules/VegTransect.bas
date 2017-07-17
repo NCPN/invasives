@@ -8,7 +8,7 @@ Option Explicit
 ' =================================
 ' CLASS:        VegTransect
 ' Level:        Framework class
-' Version:      1.01
+' Version:      1.04
 '
 ' Description:  VegTransect object related properties, events, functions & procedures
 '
@@ -21,6 +21,7 @@ Option Explicit
 '                                         initialize records tied to new transect
 '               BLC - 7/13/2017  - 1.03 - added UpdateTransect for updating visit data,
 '                                         added StartTime, Comments properties
+'               BLC - 7/16/2017  - 1.04 - revised to accommodate NULL StartTime values
 ' =================================
 
 '---------------------
@@ -293,7 +294,7 @@ End Sub
 '   BLC, 8/8/2016 - added update parameter to identify if this is an update vs. an insert
 '   BLC, 9/8/2016 - code cleanup
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
@@ -309,7 +310,7 @@ On Error GoTo Err_Handler
         params(3) = .TransectNumber
         params(4) = .SampleDate
         
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_vegtransect"
             params(5) = .ID
         End If
@@ -531,33 +532,75 @@ Err_Handler:
 End Sub
 
 '---------------------------------------------------------------------------------------
-' SUB:          UpdateTransectData
-' Description:  Updates visit information (start time, observer, comments) for
-'               a transect
+' SUB:          UpdateObserver
+' Description:  Updates transect observer
+' Assumption:
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       -
 ' References:   -
 ' Source/Date:  Bonnie Campbell
-' Adapted:      Bonnie Campbell, 7/13/2017 - for NCPN tools
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
 ' Revisions:
-'   BLC, 7/13/2017 - initial version
+'   BLC, 7/17/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub UpdateTransectData()
+Public Sub UpdateObserver()
 On Error GoTo Err_Handler
     
     Dim Template As String
         
-    Template = "u_transect_data"
+    Template = "u_transect_observer"
     
-    Dim params(0 To 4) As Variant
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "Transect"
+        params(1) = .Observer           'observer
+        params(2) = .TransectQuadratID  'string identifier
+        
+        .ID = SetRecord(Template, params)
+                
+    End With
+
+    'SetObserverRecorder Me, "VegTransect"
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateObserver[cls_VegPlot])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateStartTime
+' Description:  Updates visit information (start time) for a transect
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/16/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/16/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateStartTime()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+        
+    Template = "u_transect_start_time"
+    
+    Dim params(0 To 2) As Variant
 
     With Me
         params(0) = "Transect"
         params(1) = .StartTime          'start time
-        params(2) = .Observer           'observer
-        params(3) = .Comments           'comments
-        params(4) = .TransectQuadratID  'string identifier
+        params(2) = .TransectQuadratID  'string identifier
         
         .ID = SetRecord(Template, params)
     End With
@@ -571,7 +614,52 @@ Err_Handler:
     Select Case Err.Number
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - UpdateTransectData[cls_VegPlot])"
+                "Error encounter (#" & Err.Number & " - UpdateStartTime[cls_VegPlot])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateComments
+' Description:  Updates transect comments
+' Assumptions:
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/17/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateComments()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+        
+    Template = "u_transect_comments"
+    
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "Transect"
+        params(1) = .Comments           'comments
+        params(2) = .TransectQuadratID  'string identifier
+        
+        .ID = SetRecord(Template, params)
+                
+    End With
+
+    'SetObserverRecorder Me, "VegTransect"
+    
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateComments[cls_VegPlot])"
     End Select
     Resume Exit_Handler
 End Sub

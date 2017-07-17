@@ -6,34 +6,34 @@ Option Compare Database
 Option Explicit
 
 ' =================================
-' CLASS:        Transect
+' CLASS:        SamplingEvent
 ' Level:        Framework class
-' Version:      1.01
+' Version:      1.00
 '
-' Description:  Transect object related properties, events, functions & procedures for UI display
+' Description:  Sampling event object related properties, events, functions & procedures for UI display
 '
-' Source/date:  Bonnie Campbell, 4/20/2017
+' Source/date:  Bonnie Campbell, 7/17/2017
 ' References:   -
-' Revisions:    BLC - 4/20/2017 - 1.00 - initial version
+' Revisions:    BLC - 7/17/2017 - 1.00 - initial version
 ' =================================
 
 '---------------------
 ' Declarations
 '---------------------
 Private m_ID As Long
-Private m_TransectID As Long
-Private m_EventID As Long
-Private m_SurfaceCover As DAO.Recordset
-Private m_SpeciesCover As DAO.Recordset
+Private m_EventID As String
+Private m_StartDate As Date
+Private m_Observer As String
+Private m_Comments As String
 
 '---------------------
 ' Events
 '---------------------
 Public Event InvalidID(Value As Long)
-Public Event InvalidEventID(Value As Long)
-Public Event InvalidTransectID(Value As Long)
-Public Event InvalidSurfaceCover(Value As DAO.Recordset)
-Public Event InvalidSpeciesCover(Value As DAO.Recordset)
+Public Event InvalidEventID(Value As String)
+Public Event InvalidStartDate(Value As Date)
+Public Event InvalidObserver(Value As String)
+Public Event InvalidComments(Value As String)
 
 '---------------------
 ' Properties
@@ -50,54 +50,56 @@ Public Property Get ID() As Long
     ID = m_ID
 End Property
 
-Public Property Let EventID(Value As Long)
-    If varType(Value) = vbLong Then
+Public Property Let EventID(Value As String)
+    If varType(Value) = vbString Then
         m_EventID = Value
+    
+        'set ID for parameters
+        SetTempVar "EventID", m_EventID
     Else
         RaiseEvent InvalidEventID(Value)
     End If
+
 End Property
 
-Public Property Get EventID() As Long
+Public Property Get EventID() As String
     EventID = m_EventID
 End Property
 
-Public Property Let transectID(Value As Long)
-    If varType(Value) = vbLong Then
-        m_TransectID = Value
+Public Property Let StartDate(Value As Date)
+    If varType(Value) = vbDate Then
+        m_StartDate = Value
     Else
-        RaiseEvent InvalidTransectID(Value)
+        RaiseEvent InvalidStartDate(Value)
     End If
 End Property
 
-Public Property Get transectID() As Long
-    transectID = m_TransectID
+Public Property Get StartDate() As Date
+    StartDate = m_StartDate
 End Property
 
-Public Property Let SpeciesCover(Value As DAO.Recordset)
-    'assume vbDaataObject is a DAO.Recordset
-    If varType(Value) = vbDataObject Then
-        Set m_SpeciesCover = Value
+Public Property Let Observer(Value As String)
+    If varType(Value) = vbString Then
+        m_Observer = Value
     Else
-        RaiseEvent InvalidSpeciesCover(Value)
+        RaiseEvent InvalidObserver(Value)
     End If
 End Property
 
-Public Property Get SpeciesCover() As DAO.Recordset
-    Set SpeciesCover = m_SpeciesCover
+Public Property Get Observer() As String
+    Observer = m_Observer
 End Property
 
-Public Property Let SurfaceCover(Value As DAO.Recordset)
-    'assume vbDaataObject is a DAO.Recordset
-    If varType(Value) = vbDataObject Then
-        Set m_SurfaceCover = Value
+Public Property Let Comments(Value As String)
+    If varType(Value) = vbString Then
+        m_Comments = Value
     Else
-        RaiseEvent InvalidSurfaceCover(Value)
+        RaiseEvent InvalidComments(Value)
     End If
 End Property
 
-Public Property Get SurfaceCover() As DAO.Recordset
-    Set SurfaceCover = m_SurfaceCover
+Public Property Get Comments() As String
+    Comments = m_Comments
 End Property
 
 '---------------------
@@ -127,7 +129,7 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Class_Initialize[Transect class])"
+            "Error encountered (#" & Err.Number & " - Class_Initialize[SamplingEvent class])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -162,35 +164,33 @@ End Sub
 
 '======== Custom Methods ===========
 '---------------------------------------------------------------------------------------
-' SUB:          Init
-' Description:  Lookup Transect based on Transect/microhabitat ID
-' Parameters:   ID - identifier for Transect/microhabitat record (long)
+' SUB:          UpdateStartDate
+' Description:  Save event data to database
+' Parameters:   -
 ' Returns:      -
 ' Throws:       -
 ' References:   -
 ' Source/Date:  Bonnie Campbell
-' Adapted:      Bonnie Campbell, 4/17/2017 - for NCPN tools
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
 ' Revisions:
-'   BLC, 4/17/2017 - initial version
+'   BLC, 7/17/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub Init(ID As Long)
+Public Sub UpdateStartDate()
 On Error GoTo Err_Handler
     
-    Dim rs As DAO.Recordset
+    Dim Template As String
     
-    'set ID for parameters
-    SetTempVar "TransectID", ID
+    Template = "u_event_startdate"
     
-    Set rs = GetRecords("s_Transect_by_ID")
-    If Not (rs.EOF And rs.BOF) Then
-        With rs
-            Me.ID = Nz(.Fields("ID"), 0)
-            Me.EventID = Nz(.Fields("Event_ID"), "")
-            'Me. = Nz(.Fields(""), "")
-        End With
-    Else
-        RaiseEvent InvalidID(ID)
-    End If
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "tblEvent"
+        params(1) = .EventID
+        params(2) = .StartDate
+                
+        .ID = SetRecord(Template, params)
+    End With
 
 Exit_Handler:
     Exit Sub
@@ -199,40 +199,123 @@ Err_Handler:
     Select Case Err.Number
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - Init[Transect class])"
+                "Error encounter (#" & Err.Number & " - UpdateStartDate[SamplingEvent class])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateObserver
+' Description:  Save event data to database
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/17/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateObserver()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "u_event_observer"
+    
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "tblEvent"
+        params(1) = .EventID
+        params(2) = .Observer
+                
+        .ID = SetRecord(Template, params)
+    End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateObserver[SamplingEvent class])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateComments
+' Description:  Save event data to database
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/17/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateComments()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "u_event_comments"
+    
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "tblEvent"
+        params(1) = .EventID
+        params(2) = .Comments
+                
+        .ID = SetRecord(Template, params)
+    End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateComments[SamplingEvent class])"
     End Select
     Resume Exit_Handler
 End Sub
 
 '---------------------------------------------------------------------------------------
 ' SUB:          SaveToDb
-' Description:  Save Transect/microhabitat based to database
+' Description:  Save event data to database
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       -
 ' References:   -
 ' Source/Date:  Bonnie Campbell
-' Adapted:      Bonnie Campbell, 4/17/2017 - for NCPN tools
+' Adapted:      Bonnie Campbell, 7/17/2017 - for NCPN tools
 ' Revisions:
-'   BLC, 4/17/2017 - initial version
+'   BLC, 7/17/2017 - initial version
 '---------------------------------------------------------------------------------------
 Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
     
-    Template = "i_Transect"
+    Template = "i_event_data"
     
     Dim params(0 To 5) As Variant
 
     With Me
-        params(0) = "Transect"
+        params(0) = "tblEvent"
         params(1) = .EventID
-        params(2) = .SurfaceCover
-        params(3) = .SpeciesCover
+        params(2) = .StartDate
+        params(3) = .Observer
+        params(4) = .Comments
         
         If IsUpdate Then
-            Template = "u_Transect"
+            Template = "u_event_data"
             params(4) = .ID
         End If
         
@@ -246,87 +329,7 @@ Err_Handler:
     Select Case Err.Number
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - SaveToDb[Transect class])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-'---------------------------------------------------------------------------------------
-' SUB:          GetSpeciesCover
-' Description:  Retrieve transect species cover for its quadrats
-' Parameters:   -
-' Returns:      -
-' Throws:       -
-' References:   -
-' Source/Date:  Bonnie Campbell
-' Adapted:      Bonnie Campbell, 4/20/2017 - for NCPN tools
-' Revisions:
-'   BLC, 4/20/2017 - initial version
-'---------------------------------------------------------------------------------------
-Public Sub GetSpeciesCover(Optional IsUpdate As Boolean = False)
-On Error GoTo Err_Handler
-    
-    Dim Template As String
-    
-    Template = "s_speciescover_by_transect"
-    
-    With Me
-        'x = "SpeciesCover"
-        'TempVars("ParkCode") = .Park
-        TempVars("Event_ID") = .EventID
-        TempVars("Transect_ID") = .transectID
-        
-        .SpeciesCover = GetRecords(Template)
-    End With
-
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-        Case Else
-            MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - GetSpeciesCover[Transect class])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-'---------------------------------------------------------------------------------------
-' SUB:          GetSurfaceCover
-' Description:  Save Transect/microhabitat based to database
-' Parameters:   -
-' Returns:      -
-' Throws:       -
-' References:   -
-' Source/Date:  Bonnie Campbell
-' Adapted:      Bonnie Campbell, 4/20/2017 - for NCPN tools
-' Revisions:
-'   BLC, 4/20/2017 - initial version
-'---------------------------------------------------------------------------------------
-Public Sub GetSurfaceCover(Optional IsUpdate As Boolean = False)
-On Error GoTo Err_Handler
-    
-    Dim Template As String
-    
-    Template = "s_surfacecover_by_transect"
-    
-    With Me
-'        params(0) = "Transect"
-'        params(1) = .Park
-        SetTempVar "EventID", .EventID
-        SetTempVar "TransectID", .transectID
-        
-        .SurfaceCover = GetRecords(Template)
-    End With
-
-Exit_Handler:
-    Exit Sub
-
-Err_Handler:
-    Select Case Err.Number
-        Case Else
-            MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - GetSurfaceCover[Transect class])"
+                "Error encounter (#" & Err.Number & " - SaveToDb[SamplingEvent class])"
     End Select
     Resume Exit_Handler
 End Sub

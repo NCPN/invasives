@@ -8,13 +8,15 @@ Option Explicit
 ' =================================
 ' CLASS:        Quadrat
 ' Level:        Framework class
-' Version:      1.00
+' Version:      1.01
 '
 ' Description:  Quadrat object related properties, events, functions & procedures for UI display
 '
 ' Source/date:  Bonnie Campbell, 4/20/2017
 ' References:   -
 ' Revisions:    BLC - 4/20/2017 - 1.00 - initial version
+'               BLC - 7/17/2017 - 1.01 - fix flag Let properties m_IsSampled vs IsSampled
+'                                        to avoid infinite loop, convert from boolean to integer
 ' =================================
 
 '---------------------
@@ -87,7 +89,6 @@ End Property
 Public Property Get transectID() As Long
     transectID = m_TransectID
 End Property
-
 
 Public Property Let QuadratID(Value As Long)
     If varType(Value) = vbLong Then
@@ -165,7 +166,7 @@ End Property
 
 Public Property Let NoExoticsQ1(Value As Boolean)
     If varType(Value) = vbBoolean Then
-        NoExoticsQ1 = Value
+        m_NoExoticsQ1 = Value
     Else
         RaiseEvent InvalidNoExotics(Value)
     End If
@@ -177,7 +178,7 @@ End Property
 
 Public Property Let NoExoticsQ2(Value As Boolean)
     If varType(Value) = vbBoolean Then
-        NoExoticsQ2 = Value
+        m_NoExoticsQ2 = Value
     Else
         RaiseEvent InvalidNoExotics(Value)
     End If
@@ -189,7 +190,7 @@ End Property
 
 Public Property Let NoExoticsQ3(Value As Boolean)
     If varType(Value) = vbBoolean Then
-        NoExoticsQ3 = Value
+        m_NoExoticsQ3 = Value
     Else
         RaiseEvent InvalidNoExotics(Value)
     End If
@@ -328,7 +329,7 @@ End Sub
 ' Revisions:
 '   BLC, 4/17/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
@@ -343,7 +344,7 @@ On Error GoTo Err_Handler
         params(2) = .transectID
 '        params(3) = .
         
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_Quadrat"
             params(4) = .ID
         End If
@@ -375,7 +376,7 @@ End Sub
 ' Revisions:
 '   BLC, 4/20/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub GetSpeciesCover(Optional isUpdate As Boolean = False)
+Public Sub GetSpeciesCover(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
@@ -415,7 +416,7 @@ End Sub
 ' Revisions:
 '   BLC, 4/20/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub GetSurfaceCover(Optional isUpdate As Boolean = False)
+Public Sub GetSurfaceCover(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
@@ -475,14 +476,14 @@ On Error GoTo Err_Handler
         
         Select Case Me.QuadratNumber
             Case 1
-                IsSampledFlag = .IsSampledQ1
-                NoExoticsFlag = .NoExoticsQ1
+                IsSampledFlag = IIf(.IsSampledQ1 = True, 1, 0)
+                NoExoticsFlag = IIf(.NoExoticsQ1 = True, 1, 0)
             Case 2
-                IsSampledFlag = .IsSampledQ2
-                NoExoticsFlag = .NoExoticsQ2
+                IsSampledFlag = IIf(.IsSampledQ2 = True, 1, 0)
+                NoExoticsFlag = IIf(.NoExoticsQ2 = True, 1, 0)
             Case 3
-                IsSampledFlag = .IsSampledQ3
-                NoExoticsFlag = .NoExoticsQ3
+                IsSampledFlag = IIf(.IsSampledQ3 = True, 1, 0)
+                NoExoticsFlag = IIf(.NoExoticsQ3 = True, 1, 0)
         End Select
         
         params(0) = "Quadrat"

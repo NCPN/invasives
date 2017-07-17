@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.30
+' Version:      1.32
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -51,6 +51,9 @@ Option Explicit
 '                                        surface cover records, GetRecords() added
 '                                        surface microhabitat & quadrat IDs templates
 '               BLC, 7/14/2017  - 1.30 - add transect update template
+'               BLC, 7/16/2017  - 1.31 - revise u_transect_data to exclude NULLable start time,
+'                                        Add u_transect_start_time
+'               BLC, 7/17/2017  - 1.32 - add u_quadrat_flags
 ' =================================
 
 '' ---------------------------------
@@ -1046,6 +1049,8 @@ End Function
 '   BLC - 3/29/2017 - added FieldOK, FieldCheck, Dependencies parameters for templates
 '   BLC - 4/24/2017 - add surface/species cover, set SkipRecordAction = false (invasives, uplands)
 '   BLC - 7/14/2017 - add u_transect_data
+'   BLC - 7/16/2017 - revise u_transect_data to exclude NULLable start time, add u_transect_start_time
+'   BLC - 7/17/2017 - add u_quadrat_flags, u_event_(startdate,observer,comments)
 ' ---------------------------------
 Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
@@ -1138,15 +1143,32 @@ On Error GoTo Err_Handler
         '-----------------------
         '  UPDATES
         '-----------------------
+                Case "u_event_comments"
+                    '-- required parameters --
+                    .Parameters("eid") = params(1)
+                    .Parameters("cmt") = params(2)
+                
+                Case "u_event_observer"
+                    '-- required parameters --
+                    .Parameters("eid") = params(1)
+                    .Parameters("oid") = params(2)
+                
+                Case "u_event_startdate"
+                    '-- required parameters --
+                    .Parameters("eid") = params(1)
+                    .Parameters("start") = params(2)
+                
                 Case "u_num_records"
                     '-- required parameters --
                     .Parameters("rid") = params(1)
                     .Parameters("num") = params(2)
                     .Parameters("fok") = params(3)
                     
-                Case "u_template"
+                Case "u_quadrat_flags"
                     '-- required parameters --
-                    .Parameters("id") = params(1)
+                    .Parameters("qid") = params(1)
+                    .Parameters("is") = params(2)
+                    .Parameters("ne") = params(3)
                 
                 Case "u_surface_cover"
                     '-- required parameters --
@@ -1155,12 +1177,31 @@ On Error GoTo Err_Handler
                     .Parameters("pct") = params(3)
                     '.Parameters("sfcid") = Params(4)
                 
+                Case "u_template"
+                    '-- required parameters --
+                    .Parameters("id") = params(1)
+                
                 Case "u_transect_data"
                     '-- required parameters --
+                    .Parameters("oid") = params(1)      'observer
+                    .Parameters("cmt") = params(2)      'comments
+                    .Parameters("tid") = params(3)      'transect quadrat ID
+                    
+                Case "u_transect_comments"
+                    '-- required parameters --
+                    .Parameters("cmt") = params(1)      'comments
+                    .Parameters("tid") = params(2)      'transect quadrat ID
+                
+                Case "u_transect_observer"
+                    '-- required parameters --
+                    .Parameters("oid") = params(1)      'observer
+                    .Parameters("tid") = params(2)      'transect quadrat ID
+                    
+                Case "u_transect_start_time"
+                    '-- required parameters --
                     .Parameters("start") = params(1)    'start time
-                    .Parameters("oid") = params(2)      'observer
-                    .Parameters("cmt") = params(3)      'comments
-                    .Parameters("tid") = params(4)      'transect quadrat ID
+                    .Parameters("tid") = params(2)      'transect quadrat ID
+                    
                     
         '-----------------------
         '  DELETES
@@ -1173,7 +1214,7 @@ On Error GoTo Err_Handler
                     .Parameters("rid") = params(1)
             
             End Select
-            
+Debug.Print .sql
             .Execute dbFailOnError
                 
     ' -------------------
@@ -2258,13 +2299,13 @@ End Function
 ' Revisions:
 '   BLC - 7/13/2016 - initial version
 ' ---------------------------------
-Public Function UpdateTransect() As Single
+Public Function UpdateTransectX() As Single
 On Error GoTo Err_Handler
 
     Dim transectID As String
     Dim ObserverID As String
     Dim Comments As String
-    Dim StartTime As Date
+    Dim StartTime As Variant
     
     Dim vt As New VegTransect
     
@@ -2274,16 +2315,25 @@ On Error GoTo Err_Handler
         transectID = .Controls("tbxTransectID")     ' Quadrat-Transect ID
         ObserverID = .Controls("cbxObserver")
         Comments = Nz(.Controls("tbxComments"), "")
+        'If Not IsNull(.Controls("tbxStartTime")) Then StartTime = .Controls("tbxStartTime")
         StartTime = .Controls("tbxStartTime")
         
         With vt
             
             .TransectQuadratID = transectID
-            .StartTime = StartTime
             .Observer = ObserverID
             .Comments = Comments
             
-            .UpdateTransectData
+            '.UpdateTransectData
+            
+            'update start time if it is set
+            If Not IsNull(StartTime) Then
+                
+                .StartTime = StartTime
+                
+                .UpdateStartTime
+                
+            End If
             
         End With
         

@@ -220,7 +220,7 @@ End Sub
 ' Revisions:
 '   BLC, 4/17/2017 - initial version
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
     Dim Template As String
@@ -235,7 +235,7 @@ On Error GoTo Err_Handler
         params(2) = .SfcDescription
         params(3) = .OrigColumnName
         
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_surface"
             params(4) = .ID
         End If

@@ -248,7 +248,7 @@ End Sub
 ' Revisions:
 '   BLC, 4/17/2017 - initial version, based on Big Rivers classes SaveToDb()
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
         
     Dim Template As String
@@ -263,7 +263,7 @@ On Error GoTo Err_Handler
         params(2) = .SurfaceID
         params(3) = .PercentCover
         
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_surface_cover"
             'Params(4) = .ID
         End If

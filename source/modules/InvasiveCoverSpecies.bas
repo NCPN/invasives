@@ -511,7 +511,7 @@ End Sub
 '   BLC, 6/11/2016 - revised to GetTemplate()
 '   BLC, 8/8/2016 - added update parameter to identify if this is an update vs. an insert
 '---------------------------------------------------------------------------------------
-Public Sub SaveToDb(Optional isUpdate As Boolean = False)
+Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
 '    Dim strSQL As String
@@ -546,7 +546,7 @@ On Error GoTo Err_Handler
         params(4) = .IsDead
         params(5) = .Position
                 
-        If isUpdate Then
+        If IsUpdate Then
             Template = "u_invasive_cover_species"
 '            Params(6) = .ID
         End If
