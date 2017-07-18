@@ -403,6 +403,7 @@ End Function
 ' Adapted:      Bonnie Campbell, 7/5/2017 - for NCPN tools
 ' Revisions:
 '   BLC, 7/5/2017 - initial version
+'   BLC, 7/18/2017 - replace 3 with QUADRATS_PER_TRANSECT
 '---------------------------------------------------------------------------------------
 Public Sub AddQuadrats(Optional QuadratNum As Integer = 0)
 On Error GoTo Err_Handler
@@ -412,7 +413,7 @@ On Error GoTo Err_Handler
     
     Template = "i_new_transect_quadrat"
     
-    Dim params(0 To 3) As Variant
+    Dim params(0 To QUADRATS_PER_TRANSECT) As Variant
 
     'if QuadratNum is set
     If QuadratNum <> 0 Then
@@ -472,6 +473,7 @@ End Sub
 ' Adapted:      Bonnie Campbell, 7/5/2017 - for NCPN tools
 ' Revisions:
 '   BLC, 7/5/2017 - initial version
+'   BLC, 7/18/2017 - replace 3 with QUADRATS_PER_TRANSECT
 '---------------------------------------------------------------------------------------
 Public Sub AddSurfaceMicrohabitats(Optional SfcMicrohabitat As Integer = 0)
 On Error GoTo Err_Handler
@@ -497,7 +499,7 @@ On Error GoTo Err_Handler
     
     Template = "i_new_transect_quadrat_sfccover"
     
-    Dim params(0 To 3) As Variant
+    Dim params(0 To QUADRATS_PER_TRANSECT) As Variant
 
     'iterate once per quadrat
     For Each QuadratID In aryQuadrats

@@ -50,7 +50,7 @@ Public Property Get QuadratID() As Long
     QuadratID = m_QuadratID
 End Property
 
-Public Property Let pctCover(Value As Single)
+Public Property Let PctCover(Value As Single)
     If IsBetween(Value, 0, 100, True) Then
         m_PctCover = Value
     Else
@@ -58,8 +58,8 @@ Public Property Let pctCover(Value As Single)
     End If
 End Property
 
-Public Property Get pctCover() As Single
-    pctCover = m_PctCover
+Public Property Get PctCover() As Single
+    PctCover = m_PctCover
 End Property
 
 ' ---------------------------
@@ -438,7 +438,7 @@ On Error GoTo Err_Handler
         params(0) = "CoverSpecies"
         params(1) = .QuadratID
         params(2) = .MasterPlantCode
-        params(3) = .pctCover
+        params(3) = .PctCover
         
         If IsUpdate Then
             Template = "u_cover_species"

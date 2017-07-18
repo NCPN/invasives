@@ -9,9 +9,12 @@ CREATE TABLE [usys_temp_speciescover] (
   [Q1_0m] DOUBLE ,
   [Q1_3m] DOUBLE ,
   [Q2] DOUBLE ,
-  [Q2_5m] DOUBLE ,
+  [Q2_4_5m] DOUBLE ,
   [Q2_8m] DOUBLE ,
   [Q3] DOUBLE ,
-  [Q3_10m] DOUBLE ,
-  [Q3_13m] DOUBLE 
+  [Q3_13m] DOUBLE ,
+  [Q3_9_5m] DOUBLE ,
+  [SpeciesCoverID_Q1] LONG ,
+  [SpeciesCoverID_Q2] LONG ,
+  [SpeciesCoverID_Q3] LONG 
 )

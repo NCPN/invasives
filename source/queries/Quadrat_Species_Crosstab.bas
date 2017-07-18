@@ -1,10 +1,8 @@
-﻿dbMemo "SQL" ="TRANSFORM Min(Quadrat_Species.PercentCover) AS MinOfPercentCover\015\012SELECT Q"
-    "uadrat_Species.Transect_ID, Quadrat_Species.PlantCode, Quadrat_Species.IsDead, Q"
-    "uadrat_Species.NumSampledQuads, Sum(Quadrat_Species.PercentCover) AS SumOfPercen"
-    "tCover, SumOfPercentCover/(IIf(NumSampledQuads=0,1,NumSampledQuads)) AS AvgCover"
-    "\015\012FROM Quadrat_Species\015\012GROUP BY Quadrat_Species.Transect_ID, Quadra"
-    "t_Species.PlantCode, Quadrat_Species.IsDead, Quadrat_Species.NumSampledQuads\015"
-    "\012PIVOT Quadrat_Species.Quad_Pos;\015\012"
+﻿dbMemo "SQL" ="TRANSFORM Min(qs.PercentCover) AS MinOfPercentCover\015\012SELECT qs.Transect_ID"
+    ", qs.PlantCode, qs.IsDead, qs.NumSampledQuads, Sum(qs.PercentCover) AS SumOfPerc"
+    "entCover, SumOfPercentCover/(IIf(NumSampledQuads=0,1,NumSampledQuads)) AS AvgCov"
+    "er\015\012FROM Quadrat_Species_Position AS qs\015\012GROUP BY qs.Transect_ID, qs"
+    ".PlantCode, qs.IsDead, qs.NumSampledQuads\015\012PIVOT qs.Quad_Pos;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
@@ -215,6 +213,34 @@ Begin
         dbText "Name" ="SumOfPercentCover"
         dbInteger "ColumnWidth" ="2070"
         dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qs.SpeciesCover_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="Q3_9_5m"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qs.Transect_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qs.PlantCode"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qs.IsDead"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="qs.NumSampledQuads"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="Q2_4_5m"
         dbLong "AggregateType" ="-1"
     End
 End

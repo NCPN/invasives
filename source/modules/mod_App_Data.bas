@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.32
+' Version:      1.33
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -54,6 +54,7 @@ Option Explicit
 '               BLC, 7/16/2017  - 1.31 - revise u_transect_data to exclude NULLable start time,
 '                                        Add u_transect_start_time
 '               BLC, 7/17/2017  - 1.32 - add u_quadrat_flags
+'               BLC, 7/18/2017  - 1.33 - add species cover templates
 ' =================================
 
 '' ---------------------------------
@@ -1051,6 +1052,7 @@ End Function
 '   BLC - 7/14/2017 - add u_transect_data
 '   BLC - 7/16/2017 - revise u_transect_data to exclude NULLable start time, add u_transect_start_time
 '   BLC - 7/17/2017 - add u_quadrat_flags, u_event_(startdate,observer,comments)
+'   BLC - 7/18/2017 - add species cover templates (u_speciescover, d_speciescover, i_speciescover)
 ' ---------------------------------
 Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
@@ -1108,6 +1110,13 @@ On Error GoTo Err_Handler
                     .Parameters("rid") = params(1)  'record ID
                     .Parameters("num") = params(2)  'number of records
                     .Parameters("fok") = params(3)  'field ok? (QC pass/fail)
+                    
+                Case "i_speciescover"
+                    '-- required parameters --
+                    .Parameters("qid") = params(1)      'quadrat ID
+                    .Parameters("plant") = params(2)    'plant lookup code
+                    .Parameters("dead") = params(3)     'is dead flag
+                    .Parameters("pct") = params(4)      'percent cover
                     
                 Case "i_template"
                     '-- required parameters --
@@ -1170,6 +1179,14 @@ On Error GoTo Err_Handler
                     .Parameters("is") = params(2)
                     .Parameters("ne") = params(3)
                 
+                Case "u_speciescover"
+                    '-- required parameters --
+                    .Parameters("scid") = params(1)     'species cover record ID
+                    .Parameters("qid") = params(2)      'quadrat ID
+                    .Parameters("plant") = params(3)    'plant lookup code
+                    .Parameters("dead") = params(4)     'is dead flag
+                    .Parameters("pct") = params(5)      'percent cover
+                
                 Case "u_surface_cover"
                     '-- required parameters --
                     .Parameters("qid") = params(1)
@@ -1202,7 +1219,6 @@ On Error GoTo Err_Handler
                     .Parameters("start") = params(1)    'start time
                     .Parameters("tid") = params(2)      'transect quadrat ID
                     
-                    
         '-----------------------
         '  DELETES
         '-----------------------
@@ -1212,6 +1228,13 @@ On Error GoTo Err_Handler
                 Case "d_num_records"
                     '-- required parameters --
                     .Parameters("rid") = params(1)
+            
+                Case "d_speciescover"
+                    '-- required parameters --
+                    .Parameters("scid") = params(1)
+                    .Parameters("qid") = params(2)
+                    .Parameters("plant") = params(3)
+                    .Parameters("dead") = params(4)
             
             End Select
 'Debug.Print .sql
@@ -2381,7 +2404,7 @@ On Error GoTo Err_Handler
 '    Dim caller As Control
     Dim strSurface As String, strControl As String
     Dim sfcID As Integer
-    Dim pctCover As Single
+    Dim PctCover As Single
     Dim rs As DAO.Recordset
     
     'set surface ID (pull from global dictionary using control name - _Q#)
@@ -2392,7 +2415,7 @@ On Error GoTo Err_Handler
     sfcID = g_AppSurfaces(strSurface)
     
     'retrieve values
-    pctCover = Nz(caller.Value, 0)
+    PctCover = Nz(caller.Value, 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2401,7 +2424,7 @@ On Error GoTo Err_Handler
     
     With sfc
         '.QuadratID = CInt(Right(CStr(caller.Name), 1))
-        .PercentCover = pctCover
+        .PercentCover = PctCover
         .SurfaceID = sfcID
         
         'fetch the appropriate QuadratID
@@ -2451,7 +2474,7 @@ On Error GoTo Err_Handler
 '    Dim caller As Control
     Dim strQuadrat As String, strControl As String, strPosition As String
     Dim sfcID As Integer
-    Dim pctCover As Single
+    Dim PctCover As Single
     Dim rs As DAO.Recordset
 
     'retrieve calling control
@@ -2461,7 +2484,7 @@ On Error GoTo Err_Handler
     strQuadrat = Replace(Left(caller.name, 2), "Q", "")
     
     'retrieve values
-    pctCover = Nz(caller.Value, 0)
+    PctCover = Nz(caller.Value, 0)
     
     'skip if NULL
     If IsNull(TempVars("Transect_ID")) Then GoTo Exit_Handler
@@ -2470,7 +2493,7 @@ On Error GoTo Err_Handler
     
     With sp
         '.QuadratID = CInt(Right(CStr(caller.Name), 1))
-        .pctCover = pctCover
+        .PctCover = PctCover
         '.IsDead = cbxIsDead
         '.Position =
         

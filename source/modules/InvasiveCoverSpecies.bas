@@ -22,12 +22,21 @@ Option Explicit
 '---------------------
 Private m_CoverSpecies As New CoverSpecies
 
+'CoverSpecies includes:
+'Private m_Species As New Species
+'Private m_PctCover As Single
+'Private m_QuadratID As Long
+'Species includes:
+'Private m_LUcode As String
+
 Private m_IsDead As Byte
 Private m_AverageCover As Single
 Private m_PctCoverQ1 As Single
 Private m_PctCoverQ2 As Single
 Private m_PctCoverQ3 As Single
 Private m_Position As Integer
+
+Private m_SpeciesCoverID As Long    'species cover record ID
 
 '---------------------
 ' Events
@@ -125,6 +134,14 @@ Public Property Get PctCoverQ3() As Single
     PctCoverQ3 = PctCoverQ3
 End Property
 
+Public Property Let SpeciesCoverID(Value As Long)
+    m_SpeciesCoverID = Value
+End Property
+
+Public Property Get SpeciesCoverID() As Long
+    SpeciesCoverID = m_SpeciesCoverID
+End Property
+
 ' ---------------------------
 ' -- base class properties --
 ' ---------------------------
@@ -141,16 +158,16 @@ Public Property Get QuadratID() As Long
     QuadratID = m_CoverSpecies.QuadratID
 End Property
 
-Public Property Let pctCover(Value As Integer)
+Public Property Let PctCover(Value As Integer)
     If IsBetween(Value, 0, 100, True) Then
-        m_CoverSpecies.pctCover = Value
+        m_CoverSpecies.PctCover = Value
     Else
         RaiseEvent InvalidPctCover(Value)
     End If
 End Property
 
-Public Property Get pctCover() As Integer
-    pctCover = m_CoverSpecies.pctCover
+Public Property Get PctCover() As Integer
+    PctCover = m_CoverSpecies.PctCover
 End Property
 
 ' ---------------------------
@@ -510,28 +527,11 @@ End Sub
 '   BLC, 4/19/2016 - initial version
 '   BLC, 6/11/2016 - revised to GetTemplate()
 '   BLC, 8/8/2016 - added update parameter to identify if this is an update vs. an insert
+'   BLC, 7/18/2017 - code cleanup
 '---------------------------------------------------------------------------------------
 Public Sub SaveToDb(Optional IsUpdate As Boolean = False)
 On Error GoTo Err_Handler
     
-'    Dim strSQL As String
-'    Dim db As DAO.Database
-'    Dim rs As DAO.Recordset
-'
-'    Set db = CurrentDb
-'
-'    'record actions must have:
-''    strSQL = "INSERT INTO UnderstorySpecies(VegPlot_ID, Master_PLANT_Code, PercentCover, IsSeedling) VALUES " _
-''                & "(" & Me.VegPlotID & ",'" & Me.MasterPlantCode & "'," _
-''                & Me.PercentCover & "," & Me.IsSeedling & ");"
-'    strSQL = GetTemplate("i_understory_species", _
-'                "vegplotID" & PARAM_SEPARATOR & Me.VegPlotID & _
-'                "|masterplantcode" & PARAM_SEPARATOR & Me.MasterPlantCode & _
-'                "|pctcover" & PARAM_SEPARATOR & Me.PercentCover & _
-'                "|isseedling" & PARAM_SEPARATOR & Me.IsSeedling)
-'    db.Execute strSQL, dbFailOnError
-'    Me.ID = db.OpenRecordset("SELECT @@IDENTITY")(0)
-
     Dim Template As String
     
     Template = "i_invasive_cover_species"
@@ -542,7 +542,7 @@ On Error GoTo Err_Handler
         params(0) = "InvasiveCoverSpecies"
         params(1) = .QuadratID
         params(2) = .MasterPlantCode
-        params(3) = .pctCover
+        params(3) = .PctCover
         params(4) = .IsDead
         params(5) = .Position
                 
@@ -561,7 +561,154 @@ Err_Handler:
     Select Case Err.Number
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
-                "Error encounter (#" & Err.Number & " - Init[cls_InvasiveCoverSpecies])"
+                "Error encounter (#" & Err.Number & " - SaveToDb[cls_InvasiveCoverSpecies])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          AddSpeciesCover
+' Description:  Add species cover record in database
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:
+'   MarkK, November 17, 2011
+'   https://www.access-programmers.co.uk/forums/showthread.php?t=218298
+' Source/Date:  Bonnie Campbell, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 7/18/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub AddSpeciesCover()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "i_speciescover"
+    
+    Dim params(0 To 5) As Variant
+
+    With Me
+        params(0) = "SpeciesCover"
+        params(1) = .QuadratID
+        params(2) = .LUcode
+        params(3) = .IsDead
+        params(4) = .PctCover
+        
+        .ID = SetRecord(Template, params)
+        
+        'retrieve the ID (requires MAX() vs. SELECT @@Identity
+        'since each CurrentDb is a new db object & won't see the last insert
+        With CurrentDb
+            Me.SpeciesCoverID = .OpenRecordset("SELECT MAX(ID) FROM SpeciesCover").Fields(0)
+        End With
+End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - AddSpeciesCover[cls_InvasiveCoverSpecies])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateSpeciesCover
+' Description:  Update species cover record in database
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 7/18/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub UpdateSpeciesCover()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "u_speciescover"
+    
+    Dim params(0 To 6) As Variant
+
+    With Me
+        params(0) = "SpeciesCover"
+        params(1) = .SpeciesCoverID
+        params(2) = .QuadratID
+        params(3) = .LUcode
+        params(4) = .IsDead
+        params(5) = .PctCover
+                
+        .ID = SetRecord(Template, params)
+    End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateSpeciesCover[cls_InvasiveCoverSpecies])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          DeleteSpeciesCover
+' Description:  Delete species cover record from database
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:
+'   MarkK, November 17, 2011
+'   https://www.access-programmers.co.uk/forums/showthread.php?t=218298
+' Source/Date:  Bonnie Campbell, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC, 7/18/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Sub DeleteSpeciesCover()
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "d_speciescover"
+    
+    Dim params(0 To 2) As Variant
+
+    With Me
+        params(0) = "SpeciesCover"
+        params(1) = .SpeciesCoverID
+'        params(2) = .QuadratID
+'        params(3) = .LUcode
+'        params(4) = .IsDead
+                
+        .ID = SetRecord(Template, params)
+        
+        'retrieve the species cover ID for the last inserted record
+        'cannot use @@Identity here since it requires using same CurrentDb object
+        '@ time CurrentDb is called, that's a new one >> use MAX(ID) instead
+        With CurrentDb
+            Me.SpeciesCoverID = .OpenRecordset("SELECT MAX(ID) FROM SpeciesCover").Fields(0)
+        End With
+    End With
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - DeleteSpeciesCover[cls_InvasiveCoverSpecies])"
     End Select
     Resume Exit_Handler
 End Sub

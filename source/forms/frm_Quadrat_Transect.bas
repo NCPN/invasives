@@ -6,6 +6,7 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -18,13 +19,13 @@ Begin Form
     Width =13380
     DatasheetFontHeight =9
     ItemSuffix =95
-    Left =4140
+    Left =4200
     Top =1590
-    Right =17820
+    Right =17880
     Bottom =10635
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0xbe3724b9b4f6e440
+        0x2f42c638d0f6e440
     End
     RecordSource ="usys_temp_transect"
     Caption ="frm_Canopy_Transect"
@@ -2043,6 +2044,7 @@ Begin Form
                     TabIndex =59
                     Name ="tglNoExoticsQ1"
                     AfterUpdate ="[Event Procedure]"
+                    Caption ="✔"
                     FontName ="Calibri"
                     ControlTipText ="Q1 has no priority 1 exotics"
                     LeftPadding =60
@@ -2110,6 +2112,7 @@ Begin Form
                     End
                 End
                 Begin ToggleButton
+                    Visible = NotDefault
                     OverlapFlags =215
                     Left =2655
                     Top =2520
@@ -2332,6 +2335,7 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
+                    Visible = NotDefault
                     OverlapFlags =215
                     Left =2655
                     Top =2100
@@ -2828,6 +2832,7 @@ Begin Form
                     LayoutCachedHeight =8280
                 End
                 Begin Label
+                    Visible = NotDefault
                     OverlapFlags =215
                     Left =2370
                     Top =1665
@@ -2896,6 +2901,7 @@ Option Explicit
 '               BLC - 4/25/2017 - 1.04 - revised to save quadrat flags to db
 '               BLC - 7/10/2017 - 1.05 - added check for new transects, create new quadrats, quadrat surface
 '                                        microhabitat records
+'               BLC - 7/17/2017 - 1.06 - hid Transect level toggle (disabled) in favor of Q1-3 toggles
 ' =================================
 
 '---------------------
@@ -3013,24 +3019,25 @@ On Error GoTo Err_Handler
     PopulateFlagToggles
   
     'set subform controls to match main form (for conditional enabling)
-    With Me.fsub_Species_Current.Form
-        .Controls("tbxISQ1") = Me.tbxQ1IS
-        .Controls("tbxNEQ1") = Me.tbxQ1NE
-        .Controls("tbxISQ2") = Me.tbxQ2IS
-        .Controls("tbxNEQ2") = Me.tbxQ2NE
-        .Controls("tbxISQ3") = Me.tbxQ3IS
-        .Controls("tbxNEQ3") = Me.tbxQ3NE
-    
-        Dim IsEnabled As Boolean
-        
-        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
-                        (.Controls("tbxNESum") = 3) _
-                        , True, False)
-        
-        .Controls("Plant_Code").Enabled = IsEnabled
-        .Controls("cbxIsDead").Enabled = IsEnabled
-        
-    End With
+    RefreshSubform
+'    With Me.fsub_Species_Current
+'        .Controls("tbxISQ1") = Me.tbxQ1IS
+'        .Controls("tbxNEQ1") = Me.tbxQ1NE
+'        .Controls("tbxISQ2") = Me.tbxQ2IS
+'        .Controls("tbxNEQ2") = Me.tbxQ2NE
+'        .Controls("tbxISQ3") = Me.tbxQ3IS
+'        .Controls("tbxNEQ3") = Me.tbxQ3NE
+'
+'        Dim IsEnabled As Boolean
+'
+'        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
+'                        (.Controls("tbxNESum") = 3) _
+'                        , True, False)
+'
+'        .Controls("Plant_Code").Enabled = IsEnabled
+'        .Controls("cbxIsDead").Enabled = IsEnabled
+'
+'    End With
   
 Exit_Handler:
     Exit Sub
@@ -3090,24 +3097,25 @@ On Error GoTo Err_Handler
 '    Me.tbxQ3 = Nz(TempVars("Q3_ID"), 0)
     
     'set subform controls to match main form (for conditional enabling)
-    With Me.fsub_Species_Current.Form
-        .Controls("tbxISQ1") = Me.tbxQ1IS
-        .Controls("tbxNEQ1") = Me.tbxQ1NE
-        .Controls("tbxISQ2") = Me.tbxQ2IS
-        .Controls("tbxNEQ2") = Me.tbxQ2NE
-        .Controls("tbxISQ3") = Me.tbxQ3IS
-        .Controls("tbxNEQ3") = Me.tbxQ3NE
-    
-        Dim IsEnabled As Boolean
-        
-        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
-                        (.Controls("tbxNESum") = 3) _
-                        , True, False)
-        
-        .Controls("Plant_Code").Enabled = IsEnabled
-        .Controls("cbxIsDead").Enabled = IsEnabled
-        
-    End With
+    RefreshSubform
+'    With Me.fsub_Species_Current
+'        .Controls("tbxISQ1") = Me.tbxQ1IS
+'        .Controls("tbxNEQ1") = Me.tbxQ1NE
+'        .Controls("tbxISQ2") = Me.tbxQ2IS
+'        .Controls("tbxNEQ2") = Me.tbxQ2NE
+'        .Controls("tbxISQ3") = Me.tbxQ3IS
+'        .Controls("tbxNEQ3") = Me.tbxQ3NE
+'
+'        Dim IsEnabled As Boolean
+'
+'        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
+'                        (.Controls("tbxNESum") = 3) _
+'                        , True, False)
+'
+'        .Controls("Plant_Code").Enabled = IsEnabled
+'        .Controls("cbxIsDead").Enabled = IsEnabled
+'
+'    End With
     
     
 '    'set up toggles depending on species data
@@ -3183,6 +3191,34 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_Current[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_Close
+' Description:  form closing actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2016 - initial version
+' ---------------------------------
+Private Sub Form_Close()
+On Error GoTo Err_Handler
+
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_Close[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -3446,6 +3482,214 @@ End Sub
 '   Not Sampled Flag
 ' =================================
 ' ---------------------------------
+' Sub:          tglNotSampledQ1_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ1_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ1, True
+
+    If tglNotSampledQ1 Then _
+        tglNoExoticsQ1.Caption = ""
+
+    UpdateFlags Me.tglNotSampledQ1, 1
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ1_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNotSampledQ2_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ2_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ2, True
+
+    If tglNotSampledQ2 Then _
+        tglNoExoticsQ2.Caption = ""
+
+    UpdateFlags Me.tglNotSampledQ2, 2
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ2_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNotSampledQ3_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ3_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ3, True
+
+    If tglNotSampledQ3 Then _
+        tglNoExoticsQ3.Caption = ""
+
+    UpdateFlags Me.tglNotSampledQ3, 3
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ3_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' =================================
+'   No Exotics Flag
+' =================================
+' ---------------------------------
+' Sub:          tglNoExoticsQ1_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ1_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ1, True
+
+    UpdateFlags Me.tglNoExoticsQ1, 1
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ1_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNoExoticsQ2_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ2_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ2, True
+
+    UpdateFlags Me.tglNoExoticsQ2, 2
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ2_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNoExoticsQ3_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ3_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ3, True
+
+    UpdateFlags Me.tglNoExoticsQ3, 3
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ3_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' =================================
+'   Transect Level Flags [disabled]
+' =================================
+
+' ---------------------------------
 ' Sub:          tglNotSampledT_AfterUpdate
 ' Description:  Toggle after update actions
 ' Assumptions:  -
@@ -3457,37 +3701,38 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/17/2017 - initial version
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub tglNotSampledT_AfterUpdate()
 On Error GoTo Err_Handler
     
-    'set strCheck
-    strCheck = StringFromCodepoint(uCheck)
-    
-    Dim val As String
-    Select Case tglNotSampledT
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNotSampledT: " & val
-
-    'display as checkbox
-    ToggleCaption tglNotSampledT, True
-
-    If tglNotSampledT Then _
-        tglNoExoticsT.Caption = ""
-
-    Dim i As Integer
-    
-    For i = 1 To 3
-        Me.Controls("tglNotSampledQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
-        UpdateFlags Me.Controls("tglNotSampledQ" & i), 1
-    Next
+'    'set strCheck
+'    strCheck = StringFromCodepoint(uCheck)
+'
+'    Dim val As String
+'    Select Case tglNotSampledT
+'        Case Null
+'            val = "NULL"
+'        Case True
+'            val = "True"
+'        Case False
+'            val = "False"
+'    End Select
+'
+'    Debug.Print "tglNotSampledT: " & val
+'
+'    'display as checkbox
+'    ToggleCaption tglNotSampledT, True
+'
+'    If tglNotSampledT Then _
+'        tglNoExoticsT.Caption = ""
+'
+'    Dim i As Integer
+'
+'    For i = 1 To QUADRATS_PER_TRANSECT
+'        Me.Controls("tglNotSampledQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
+'        UpdateFlags Me.Controls("tglNotSampledQ" & i), 1
+'    Next
     
 Exit_Handler:
     Exit Sub
@@ -3512,34 +3757,35 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/17/2017 - initial version
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub tglNoExoticsT_AfterUpdate()
 On Error GoTo Err_Handler
 
-    'set strCheck
-    strCheck = StringFromCodepoint(uCheck)
-
-    Dim val As String
-    Select Case tglNoExoticsT
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNoExoticsT: " & val
-
-    'display as checkbox
-    ToggleCaption tglNoExoticsT, True
-
-    Dim i As Integer
-    
-    For i = 1 To 3
-        Me.Controls("tglNoExoticsQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
-        UpdateFlags Me.Controls("tglNoExoticsQ" & i), 1
-    Next
+'    'set strCheck
+'    strCheck = StringFromCodepoint(uCheck)
+'
+'    Dim val As String
+'    Select Case tglNoExoticsT
+'        Case Null
+'            val = "NULL"
+'        Case True
+'            val = "True"
+'        Case False
+'            val = "False"
+'    End Select
+'
+'    Debug.Print "tglNoExoticsT: " & val
+'
+'    'display as checkbox
+'    ToggleCaption tglNoExoticsT, True
+'
+'    Dim i As Integer
+'
+'    For i = 1 To QUADRATS_PER_TRANSECT
+'        Me.Controls("tglNoExoticsQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
+'        UpdateFlags Me.Controls("tglNoExoticsQ" & i), 1
+'    Next
     
 Exit_Handler:
     Exit Sub
@@ -3551,436 +3797,10 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-' ---------------------------------
-' Sub:          tglNotSampledQ1_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNotSampledQ1_AfterUpdate()
-On Error GoTo Err_Handler
 
-    Dim val As String
-    Select Case tglNotSampledQ1
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNotSampledQ1: " & val
-
-    'display as checkbox
-    ToggleCaption tglNotSampledQ1, True
-
-    If tglNotSampledQ1 Then _
-        tglNoExoticsQ1.Caption = ""
-
-'    CheckTransectLevel "NotSampled"
-'
-'    SetToggles Me.tglNotSampledQ1
-
-    UpdateFlags Me.tglNotSampledQ1, 1
-
-'    Me.Form.Requery
-
-    'update usys_temp_transect data
-    'tbxISQ1 = Nz(Me.tglNotSampledQ1, 0)
-
-'    If tglNotSampledQ1.Caption = strCheck Then
-'        'not sampled? -> no priority 1 exotics either
-'        tglNoExoticsQ1.Caption = strCheck
-'        tglNoExoticsQ1.Enabled = False
-'    Else
-'        If tglNoExoticsT.Caption <> strCheck Then
-'            'sampled? -> priority 1 exotics ok
-'            tglNoExoticsQ1.Caption = ""
-'            tglNoExoticsQ1.Enabled = True
-'        End If
-'    End If
-
-'    If tglNotSampledQ1 Then _
-'        ReadyForSave
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNotSampledQ1_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          tglNoExoticsQ1_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNoExoticsQ1_AfterUpdate()
-On Error GoTo Err_Handler
-
-    'display as checkbox
-    ToggleCaption tglNoExoticsQ1, True
-
-'    CheckTransectLevel "NoExotics"
-
-'    SetToggles Me.tglNoExoticsQ1
-
-    Dim val As String
-    Select Case tglNoExoticsQ1
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNoExoticsQ1: " & val
-
-    UpdateFlags Me.tglNoExoticsQ1, 1
-    
-    RefreshData
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNoExoticsQ1_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-
-' ---------------------------------
-' Sub:          tglNotSampledQ2_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNotSampledQ2_AfterUpdate()
-On Error GoTo Err_Handler
-
-    Dim val As String
-    Select Case tglNotSampledQ2
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNotSampledQ2: " & val
-
-    'display as checkbox
-    ToggleCaption tglNotSampledQ2, True
-
-    If tglNotSampledQ2 Then _
-        tglNoExoticsQ2.Caption = ""
-
-'    CheckTransectLevel "NotSampled"
-'
-'    SetToggles Me.tglNotSampledQ2
-
-    UpdateFlags Me.tglNotSampledQ2, 2
-
-    RefreshData
-
-'    If tglNotSampledQ2.Caption = strCheck Then
-'        'not sampled? -> no priority 1 exotics either
-'        tglNoExoticsQ2.Caption = strCheck
-'        tglNoExoticsQ2.Enabled = False
-'    Else
-'        If tglNoExoticsT.Caption <> strCheck Then
-'            'sampled? -> priority 1 exotics ok
-'            tglNoExoticsQ2.Caption = ""
-'            tglNoExoticsQ2.Enabled = True
-'        End If
-'    End If
-
-'    If tglNotSampledQ2 Then _
-'        ReadyForSave
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNotSampledQ2_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          tglNoExoticsQ2_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNoExoticsQ2_AfterUpdate()
-On Error GoTo Err_Handler
-
-    'display as checkbox
-    ToggleCaption tglNoExoticsQ2, True
-
-'    CheckTransectLevel "NoExotics"
-
-'    SetToggles Me.tglNoExoticsQ2
-
-    Dim val As String
-    Select Case tglNoExoticsQ2
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNoExoticsQ2: " & val
-
-
-    UpdateFlags Me.tglNoExoticsQ2, 2
-
-    'Me.Form.Requery << reverts to what's in old temp table
-    RefreshData
-
-
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNoExoticsQ2_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-'' ---------------------------------
-'' Sub:          tglNotSampledQ3_Click
-'' Description:  Toggles Q3 not sampled flag
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/17/2016 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledQ3_Click()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNotSampledQ3, True
-'
-'    UpdateFlags Me.tglNotSampledQ3, 3
-'
-'Debug.Print "IS=" & Me.tbxQ1IS
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglQ3NotSampled_Click[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsQ3_Click
-'' Description:  Toggles Q3 not sampled flag
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/17/2016 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsQ3_Click()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNoExoticsQ3, True
-'
-'    UpdateFlags Me.tglNoExoticsQ3, 3
-'
-'Debug.Print "NE=" & Me.tbxQ1NE
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglQ3NoExotics_Click[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-
-
-' ---------------------------------
-' Sub:          tglNotSampledQ3_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNotSampledQ3_AfterUpdate()
-On Error GoTo Err_Handler
-
-    Dim val As String
-    Select Case tglNotSampledQ3
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNotSampledQ3: " & val
-
-    'display as checkbox
-    ToggleCaption tglNotSampledQ3, True
-
-    If tglNotSampledQ3 Then _
-        tglNoExoticsQ3.Caption = ""
-
-'    CheckTransectLevel "NotSampled"
-'
-'    SetToggles Me.tglNotSampledQ3
-
-    UpdateFlags Me.tglNotSampledQ3, 3
-
-    RefreshData
-
-'    If tglNotSampledQ3.Caption = strCheck Then
-'        'not sampled? -> no priority 1 exotics either
-'        tglNoExoticsQ3.Caption = strCheck
-'        tglNoExoticsQ3.Enabled = False
-'    Else
-'        If tglNoExoticsT.Caption <> strCheck Then
-'            'sampled? -> priority 1 exotics ok
-'            tglNoExoticsQ3.Caption = ""
-'            tglNoExoticsQ3.Enabled = True
-'        End If
-'    End If
-
-'    If tglNotSampledQ3 Then _
-'        ReadyForSave
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNotSampledQ3_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
-' Sub:          tglNoExoticsQ3_AfterUpdate
-' Description:  Toggle after update actions
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub tglNoExoticsQ3_AfterUpdate()
-On Error GoTo Err_Handler
-
-    'display as checkbox
-    ToggleCaption tglNoExoticsQ3, True
-
-'    CheckTransectLevel "NoExotics"
-
-'    SetToggles Me.tglNoExoticsQ3
-
-    Dim val As String
-    Select Case tglNoExoticsQ3
-        Case Null
-            val = "NULL"
-        Case True
-            val = "True"
-        Case False
-            val = "False"
-    End Select
-    
-    Debug.Print "tglNoExoticsQ3: " & val
-
-    UpdateFlags Me.tglNoExoticsQ3, 3
-
-    RefreshData
-
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglNoExoticsQ3_AfterUpdate[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
+' =================================
+'   Custom Methods
+' =================================
 
 ' ---------------------------------
 ' Sub:          UpdateFlags
@@ -4061,19 +3881,7 @@ On Error GoTo Err_Handler
     'update sums
     Me.tbxIsSampledSum.Requery
     Me.tbxNoExoticsSum.Requery
-    
-    'refresh subform's conditional formatting
-    'Me.fsub_Species_Current.Form.Recalc
-    'Me.fsub_Species_Current.Form.Requery
-    'Forms("fsub_Species").Repaint << can't find form
-    'Me.fsub_Species_Current.Form.Repaint
-    'Me.fsub_Species_Current.Form.Refresh
-    'Me.fsub_Species_Current.Form.Recalc
-    
-'    Me.fsub_Species_Current.Requery
-    
-'    Me.Requery
-    
+        
     'directly set subform's controls
     If Me.tbxIsSampledSum > 0 Then
         Me.fsub_Species_Current.Form.Controls("Plant_Code").Enabled = True
@@ -4089,8 +3897,6 @@ On Error GoTo Err_Handler
     If Me.tbxQ3IS = 1 Or Me.tbxQ3NE = 1 Then _
         Me.fsub_Species_Current.Form.Controls("Q3_10m").Enabled = True
     
-'    Me.Repaint
-
     'set subform controls to match main form (for conditional enabling)
     Me.fsub_Species_Current.Form.Controls("tbxISQ1") = Me.tbxQ1IS
     Me.fsub_Species_Current.Form.Controls("tbxNEQ1") = Me.tbxQ1NE
@@ -4099,8 +3905,8 @@ On Error GoTo Err_Handler
     Me.fsub_Species_Current.Form.Controls("tbxISQ3") = Me.tbxQ3IS
     Me.fsub_Species_Current.Form.Controls("tbxNEQ3") = Me.tbxQ3NE
     
+Me.Recalc
     
-    Me.Recalc
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -4112,573 +3918,12 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-' ---------------------------------
-' Sub:          RefreshData
-' Description:  Refreshes the underlying temp table so UI reflects changed data
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2017 - initial version
-' ---------------------------------
-Private Sub RefreshData()
-On Error GoTo Err_Handler
-
-    'refresh temp table << can't do this way
-    'error 3211 RefreshData [frm_Quadrat_Transect form]
-    'database engine could not lock table 'usys_temp_transect' because it is already in use by another
-    'person or process
-'    DoCmd.SetWarnings False
-'    DoCmd.OpenQuery ("Create_usys_temp_transect")
-'    DoCmd.SetWarnings True
-    
-    'refresh UI
-'    Me.Form.Requery
-    
-    
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - RefreshData[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-
-'' ---------------------------------
-'' Sub:          tglNotSampledT_LostFocus
-'' Description:  Toggle lost focus actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 14, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/14/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledT_LostFocus()
-'On Error GoTo Err_Handler
-'
-'    Debug.Print tglNotSampledT
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledT_LostFocus[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-
-'' ---------------------------------
-'' Sub:          tglNotSampledQ1_LostFocus
-'' Description:  Toggle lost focus actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 14, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/14/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledQ1_LostFocus()
-'On Error GoTo Err_Handler
-'
-'    Debug.Print tglNotSampledQ1
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledQ1_LostFocus[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-
-'' ---------------------------------
-'' Sub:          tglNotSampledT_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  Transect not sampled? -> no priority 1 species either
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledT_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    Dim i As Integer
-'    Dim strControl As String
-'
-' '   strCheck = StringFromCodepoint(uCheck)
-'
-'    'display as checkbox
-'    ToggleCaption tglNotSampledT, True
-'
-'    SetToggles Me.tglNotSampledT
-'
-''    SetQuadratToggles "NotSampled"
-''
-''    If tglNotSampledT.Caption = strCheck Then
-''        'set all no exotics as well
-''        '(can't have exotics w/o sampling)
-''        tglNoExoticsT.Caption = strCheck
-''        tglNoExoticsT.Enabled = False
-''
-''        SetQuadratToggles "NoExotics"
-''
-''    Else
-''        'enable no exotics if false
-''        tglNoExoticsT.Enabled = True
-''
-''        'clear & enable Q1->3
-''        For i = 1 To 3
-''            strControl = "tglNotSampledQ" & i
-''            Me.Controls(strControl).Enabled = True
-''            Me.Controls(strControl).Caption = ""
-''        Next
-''    End If
-''
-''
-'''    'check if Transect level checked
-'''    If tglNotSampledT.Caption = StringFromCodepoint(uCheck) Then
-'''
-'''        'set Q1-Q3 flags & disable
-'''        For i = 1 To 3
-'''            strControl = "tglNotSampledQ" & i
-'''            Controls(strControl).Caption = StringFromCodepoint(uCheck)
-'''            Controls(strControl).Enabled = False
-'''        Next
-'''
-'''    Else
-'''
-'''        'ensure Q1-Q3 flags are enabled & checks are cleared
-'''        For i = 1 To 3
-'''            strControl = "tglNotSampledQ" & i
-'''            Controls(strControl).Caption = ""
-'''            Controls(strControl).Enabled = True
-'''        Next
-'''
-'''    End If
-''
-''    If tglNotSampledT Then _
-''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledT_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-
-'' ---------------------------------
-'' Sub:          tglNotSampledQ1_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledQ1_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNotSampledQ1, True
-'
-'    SetToggles Me.tglNotSampledQ1
-'
-''    CheckTransectLevel "NotSampled"
-''
-''    If tglNotSampledQ1.Caption = strCheck Then
-''        'not sampled? -> no priority 1 exotics either
-''        tglNoExoticsQ1.Caption = strCheck
-''        tglNoExoticsQ1.Enabled = False
-''    Else
-''        If tglNoExoticsT.Caption <> strCheck Then
-''            'sampled? -> priority 1 exotics ok
-''            tglNoExoticsQ1.Caption = ""
-''            tglNoExoticsQ1.Enabled = True
-''        End If
-''    End If
-''
-'''    If tglNotSampledQ1 Then _
-'''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledQ1_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNotSampledQ2_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledQ2_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNotSampledQ2, True
-'
-'    CheckTransectLevel "NotSampled"
-'
-'    SetToggles Me.tglNotSampledQ2
-'
-''    If tglNotSampledQ2.Caption = strCheck Then
-''        'not sampled? -> no priority 1 exotics either
-''        tglNoExoticsQ2.Caption = strCheck
-''        tglNoExoticsQ2.Enabled = False
-''    Else
-''        If tglNoExoticsT.Caption <> strCheck Then
-''            'sampled? -> priority 1 exotics ok
-''            tglNoExoticsQ2.Caption = ""
-''            tglNoExoticsQ2.Enabled = True
-''        End If
-''    End If
-'
-''    If tglNotSampledQ2 Then _
-''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledQ2_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNotSampledQ3_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNotSampledQ3_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNotSampledQ3, True
-'
-'    CheckTransectLevel "NotSampled"
-'
-'    SetToggles Me.tglNotSampledQ3
-'
-''    If tglNotSampledQ3.Caption = strCheck Then
-''        'not sampled? -> no priority 1 exotics either
-''        tglNoExoticsQ3.Caption = strCheck
-''        tglNoExoticsQ3.Enabled = False
-''    Else
-''        If tglNoExoticsT.Caption <> strCheck Then
-''            'sampled? -> priority 1 exotics ok
-''            tglNoExoticsQ3.Caption = ""
-''            tglNoExoticsQ3.Enabled = True
-''        End If
-''    End If
-''
-'''    If tglNotSampledQ3 Then _
-'''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNotSampledQ3_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-
-' =================================
-'   No Exotics Flag
-' =================================
-
-'' ---------------------------------
-'' Sub:          tglNoExoticsT_LostFocus
-'' Description:  Toggle lost focus actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 14, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/14/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsT_LostFocus()
-'On Error GoTo Err_Handler
-'
-'    Debug.Print tglNoExoticsT
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsT_LostFocus[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsQ1_LostFocus
-'' Description:  Toggle lost focus actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, July 14, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 7/14/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsQ1_LostFocus()
-'On Error GoTo Err_Handler
-'
-'    Debug.Print tglNoExoticsQ1
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsQ1_LostFocus[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsT_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsT_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    Dim i As Integer
-'    Dim strControl As String
-'
-'    'display as checkbox
-'    ToggleCaption tglNoExoticsT, True
-'
-'    SetToggles Me.tglNoExoticsT
-'
-''    SetQuadratToggles "NoExotics"
-'
-''    'check if Transect level checked
-''    If tglNoExoticsT.Caption = StringFromCodepoint(uCheck) Then
-''
-''        'set Q1-Q3 flags & disable
-''        For i = 1 To 3
-''            strControl = "tglNoExoticsQ" & i
-''            Controls(strControl).Caption = StringFromCodepoint(uCheck)
-''            Controls(strControl).Enabled = False
-''        Next
-''
-''    Else
-''
-''        'ensure Q1-Q3 flags are enabled & checks are cleared
-''        For i = 1 To 3
-''            strControl = "tglNoExoticsQ" & i
-''            Controls(strControl).Caption = ""
-''            Controls(strControl).Enabled = True
-''        Next
-''
-''    End If
-'
-'    If tglNoExoticsT Then _
-'        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsT_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsQ1_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsQ1_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNoExoticsQ1, True
-'
-'    CheckTransectLevel "NoExotics"
-'
-'    SetToggles Me.tglNoExoticsQ1
-'
-''    If tglNoExoticsQ1 Then _
-''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsQ1_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsQ2_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsQ2_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNoExoticsQ2, True
-'
-'    CheckTransectLevel "NoExotics"
-'
-'    SetToggles Me.tglNoExoticsQ2
-'
-''    If tglNoExoticsQ2 Then _
-''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsQ2_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
-'
-'' ---------------------------------
-'' Sub:          tglNoExoticsQ3_AfterUpdate
-'' Description:  Toggle after update actions
-'' Assumptions:  -
-'' Parameters:   -
-'' Returns:      -
-'' Throws:       none
-'' References:   -
-'' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-'' Adapted:      -
-'' Revisions:
-''   BLC - 3/8/2017 - initial version
-'' ---------------------------------
-'Private Sub tglNoExoticsQ3_AfterUpdate()
-'On Error GoTo Err_Handler
-'
-'    'display as checkbox
-'    ToggleCaption tglNoExoticsQ3, True
-'
-'    CheckTransectLevel "NoExotics"
-'
-'    SetToggles Me.tglNoExoticsQ3
-'
-''    If tglNoExoticsQ3 Then _
-''        ReadyForSave
-'
-'Exit_Handler:
-'    Exit Sub
-'Err_Handler:
-'    Select Case Err.Number
-'      Case Else
-'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-'            "Error encountered (#" & Err.Number & " - tglNoExoticsQ3_AfterUpdate[frm_Quadrat_Transect form])"
-'    End Select
-'    Resume Exit_Handler
-'End Sub
 
 ' ---------------------------------
-' Sub:          Form_Close
-' Description:  form closing actions
+' Sub:          ToggleDisabledMessage
+' Description:  Checks if transect level flags are set
+'               If both or one is set --> displays 'Disabled' message
+'               If neither are is set --> hides 'Disabled' message
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      -
@@ -4688,21 +3933,37 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/8/2016 - initial version
+'   BLC - 7/14/2017 - revised to use IsSampled/NoExotic sums vs. toggle captions
 ' ---------------------------------
-Private Sub Form_Close()
+Private Sub ToggleDisabledMessage()
 On Error GoTo Err_Handler
 
-    
+'    If tglNotSampledT.Caption = strCheck Or _
+'       tglNoExoticsT.Caption = strCheck Then
+
+    If Me.tbxIsSampledSum = 0 Or Me.tbxNoExoticsSum = 3 Then
+       
+        'display disabled message
+        Me.fsub_Message.Visible = True
+        
+    Else
+         
+         'hide message
+        Me.fsub_Message.Visible = False
+       
+    End If
+       
 Exit_Handler:
     Exit Sub
 Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - Form_Close[frm_Quadrat_Transect form])"
+            "Error encountered (#" & Err.Number & " - ToggleDisabledMessage[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub
+
 
 ' ---------------------------------
 ' Sub:          SetQuadratToggles
@@ -4716,6 +3977,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/8/2017 - initial version
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub SetQuadratToggles(strToggle As String)
 On Error GoTo Err_Handler
@@ -4732,7 +3994,7 @@ On Error GoTo Err_Handler
     If Controls(strControl).Caption = strCheck Then
     
         'set Q1-Q3 flags & disable
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             strControl = "tgl" & strToggle & "Q" & i
             Controls(strControl).Caption = strCheck
             Controls(strControl).Enabled = False
@@ -4763,7 +4025,7 @@ On Error GoTo Err_Handler
         strControl2 = "tgl" & strToggle2 & "T"
         
         'ensure Q1-Q3 flags are enabled & checks are cleared
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             strControl = "tgl" & strToggle & "Q" & i
                         
             If Controls("tgl" & strToggle2 & "Q" & i).Caption <> strCheck Then
@@ -4802,9 +4064,6 @@ On Error GoTo Err_Handler
     
     ToggleDisabledMessage
     
-    'update AvgCover
-'    Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
-    
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -4830,6 +4089,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/8/2016 - initial version
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub CheckTransectLevel(strToggle As String)
 On Error GoTo Err_Handler
@@ -4843,7 +4103,7 @@ On Error GoTo Err_Handler
 '    strCheck = StringFromCodepoint(uCheck)
 
     'check @ quadrat's checkbox toggle
-    For i = 1 To 3
+    For i = 1 To QUADRATS_PER_TRANSECT
     
         strControl = "tgl" & strToggle & "Q" & i
     
@@ -4871,7 +4131,7 @@ On Error GoTo Err_Handler
         
         Controls(strControl).Caption = strCheck
         
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             strControl = "tgl" & strToggle & "Q" & i
             Controls(strControl).Enabled = False
             
@@ -4893,7 +4153,7 @@ On Error GoTo Err_Handler
     
         Controls(strControl).Caption = ""
         
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             strControl = "tgl" & strToggle & "Q" & i
         
             strLabel = "lblQ" & i
@@ -4978,51 +4238,6 @@ Err_Handler:
 End Sub
 
 ' ---------------------------------
-' Sub:          ToggleDisabledMessage
-' Description:  Checks if transect level flags are set
-'               If both or one is set --> displays 'Disabled' message
-'               If neither are is set --> hides 'Disabled' message
-' Assumptions:  -
-' Parameters:   -
-' Returns:      -
-' Throws:       none
-' References:   -
-' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
-' Adapted:      -
-' Revisions:
-'   BLC - 3/8/2016 - initial version
-'   BLC - 7/14/2017 - revised to use IsSampled/NoExotic sums vs. toggle captions
-' ---------------------------------
-Private Sub ToggleDisabledMessage()
-On Error GoTo Err_Handler
-
-'    If tglNotSampledT.Caption = strCheck Or _
-'       tglNoExoticsT.Caption = strCheck Then
-
-    If Me.tbxIsSampledSum = 0 Or Me.tbxNoExoticsSum = 3 Then
-       
-        'display disabled message
-        Me.fsub_Message.Visible = True
-        
-    Else
-         
-         'hide message
-        Me.fsub_Message.Visible = False
-       
-    End If
-       
-Exit_Handler:
-    Exit Sub
-Err_Handler:
-    Select Case Err.Number
-      Case Else
-        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - ToggleDisabledMessage[frm_Quadrat_Transect form])"
-    End Select
-    Resume Exit_Handler
-End Sub
-
-' ---------------------------------
 ' Sub:          ToggleSpeciesControls
 ' Description:  Checks if transect or quadrat level flags are set
 '               If transect set --> form disabled
@@ -5040,9 +4255,7 @@ End Sub
 Private Sub ToggleSpeciesControls()
 On Error GoTo Err_Handler
 
-'    Dim strCaption As String
-'
-'    strCaption = StringFromCodepoint(uCheck)
+    strCheck = StringFromCodepoint(uCheck)
 
     If tglNotSampledT.Caption = strCheck Or _
        tglNoExoticsT.Caption = strCheck Then
@@ -5090,6 +4303,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 3/8/2016 - initial version
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub SetToggles(ToggleSet As ToggleButton)
 On Error GoTo Err_Handler
@@ -5116,7 +4330,7 @@ On Error GoTo Err_Handler
     '   transect OFF --> quadrats OFF
     '------------------------------------------
         Case "NotSampledT"
-            For i = 1 To 3
+            For i = 1 To QUADRATS_PER_TRANSECT
                 strToggle = "tglNotSampledQ" & i
                 Controls(strToggle).Enabled = IIf(blnON, False, True)
                 Controls(strToggle).Caption = IIf(blnON, strCheck, "")
@@ -5158,7 +4372,7 @@ On Error GoTo Err_Handler
     '   transect OFF --> quadrats OFF UNLESS NotSampled ON
     '------------------------------------------
         Case "NoExoticsT"
-            For i = 1 To 3
+            For i = 1 To QUADRATS_PER_TRANSECT
                 strToggle = "tglNoExoticsQ" & i
                 Controls(strToggle).Enabled = IIf(blnON, False, True)
                 Controls(strToggle).Caption = IIf(blnON, strCheck, "")
@@ -5213,7 +4427,7 @@ On Error GoTo Err_Handler
     
         Count = 0
         
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             strControlQ = strControl & i
             If Controls(strControlQ).Caption = strCheck Then
                 Count = Count + 1
@@ -5285,6 +4499,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 4/21/2016 - initial version
+'   BLC - 7/18/2017 - replace 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub DisableToggles()
 On Error GoTo Err_Handler
@@ -5317,7 +4532,7 @@ On Error GoTo Err_Handler
         Controls("lblTransect").ForeColor = lngGray50
     
         'clear & disable quadrat toggles
-        For i = 1 To 3
+        For i = 1 To QUADRATS_PER_TRANSECT
             'NotSampled/NoExotics
             strToggle = tglName & "Q" & i
             Controls(strToggle).Enabled = False
@@ -5351,6 +4566,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 4/21/2016 - initial version
+'   BLC - 7/18/2017 - replace 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Private Sub EnableToggles(Optional Quadrat As Integer)
 On Error GoTo Err_Handler
@@ -5398,7 +4614,7 @@ On Error GoTo Err_Handler
         
         Else
             'enable all quadrat toggles
-            For i = 1 To 3
+            For i = 1 To QUADRATS_PER_TRANSECT
                 'NotSampled/NoExotics
                 strToggle = tglName & "Q" & i
                 Controls(strToggle).Enabled = True
@@ -5593,6 +4809,54 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+
+' ---------------------------------
+' Sub:          RefreshSubform
+' Description:  form current actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, July 18, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub RefreshSubform()
+On Error GoTo Err_Handler
+              
+    'set subform controls to match main form (for conditional enabling)
+    With Me.fsub_Species_Current
+        .Controls("tbxISQ1") = Me.tbxQ1IS
+        .Controls("tbxNEQ1") = Me.tbxQ1NE
+        .Controls("tbxISQ2") = Me.tbxQ2IS
+        .Controls("tbxNEQ2") = Me.tbxQ2NE
+        .Controls("tbxISQ3") = Me.tbxQ3IS
+        .Controls("tbxNEQ3") = Me.tbxQ3NE
+    
+'        Dim IsEnabled As Boolean
+'
+'        IsEnabled = IIf((Me.tbxIsSampledSum = 0) Or _
+'                        (Me.tbxNoExoticsSum = 3) _
+'                        , True, False)
+'
+'        .Controls("Plant_Code").Enabled = IsEnabled
+'        .Controls("cbxIsDead").Enabled = IsEnabled
+        
+    End With
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - RefreshSubform[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 ' ---------------------------------
 ' Sub:          ReadyForSave

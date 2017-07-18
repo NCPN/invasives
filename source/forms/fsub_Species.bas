@@ -13,12 +13,13 @@ Begin Form
     GridY =24
     Width =7860
     DatasheetFontHeight =9
-    ItemSuffix =63
-    Left =9435
-    Top =4470
-    Right =17490
-    Bottom =10905
+    ItemSuffix =66
+    Left =14790
+    Top =3750
+    Right =23100
+    Bottom =10155
     DatasheetGridlinesColor =12632256
+    AfterInsert ="[Event Procedure]"
     RecSrcDt = Begin
         0x3d9c36b74cece440
     End
@@ -224,7 +225,7 @@ Begin Form
             End
         End
         Begin Section
-            Height =360
+            Height =660
             BackColor =-2147483633
             Name ="Detail"
             Begin
@@ -347,7 +348,7 @@ Begin Form
                         0x43006f00640065005d003c003e002200220000000000
                     End
                     Name ="Q2_5m"
-                    ControlSource ="Q2_5m"
+                    ControlSource ="Q2_4_5m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Percent cover Q2 @ 4.5m"
@@ -388,7 +389,7 @@ Begin Form
                         0x43006f00640065005d003c003e002200220000000000
                     End
                     Name ="Q3_10m"
-                    ControlSource ="Q3_10m"
+                    ControlSource ="Q3_9_5m"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Percent cover Q3 @ 9.5m"
@@ -425,35 +426,31 @@ Begin Form
                     TabIndex =2
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"50\""
                     ConditionalFormat = Begin
-                        0x01000000b4000000030000000100000000000000000000000d00000000000000 ,
-                        0x00000000ffffff0001000000000000000e0000001b0000000000000000000000 ,
-                        0xffffff0001000000000000001c000000290000000100000000000000ffffff00 ,
-                        0x5b00740062007800530075006d00490053005d003d003000000000005b007400 ,
-                        0x62007800530075006d004e0045005d003d003300000000005b00740062007800 ,
-                        0x530075006d00490053005d003e00300000000000
+                        0x0100000098000000020000000100000000000000000000000d00000001000000 ,
+                        0x00000000ffffff0001000000000000000e0000001b0000000100000000000000 ,
+                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b00740062007800530075006d00490053005d003e003000000000005b007400 ,
+                        0x62007800530075006d004e0045005d003c00330000000000
                     End
                     Name ="Plant_Code"
                     ControlSource ="PlantCode"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT qry_sel_Species_Lookup.Master_PLANT_Code, qry_sel_Species_Lookup.LU_Code,"
-                        " qry_sel_Species_Lookup.Utah_Species FROM qry_sel_Species_Lookup; "
+                        " qry_sel_Species_Lookup.Utah_Species FROM qry_sel_Species_Lookup;"
                     ColumnWidths ="0;1728;2592"
                     BeforeUpdate ="[Event Procedure]"
+                    AfterUpdate ="[Event Procedure]"
 
                     LayoutCachedLeft =165
                     LayoutCachedTop =60
                     LayoutCachedWidth =2025
                     LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000400000001000000000000000000000000000000ffffff000c0000005b00 ,
-                        0x740062007800530075006d00490053005d003d00300000000000000000000000 ,
-                        0x000000000000000000000001000000000000000000000000000000ffffff000c ,
-                        0x0000005b00740062007800530075006d004e0045005d003d0033000000000000 ,
-                        0x0000000000000000000000000000000001000000000000000100000000000000 ,
-                        0xffffff000c0000005b00740062007800530075006d00490053005d003e003000 ,
-                        0x0000000000000000000000000000000000000000000100000000000000010000 ,
-                        0x0000000000ffffff000c0000005b00740062007800530075006d004e0045005d ,
-                        0x003c003300000000000000000000000000000000000000000000
+                        0x01000200000001000000000000000100000000000000ffffff000c0000005b00 ,
+                        0x740062007800530075006d00490053005d003e00300000000000000000000000 ,
+                        0x000000000000000000000001000000000000000100000000000000ffffff000c ,
+                        0x0000005b00740062007800530075006d004e0045005d003c0033000000000000 ,
+                        0x00000000000000000000000000000000
                     End
                 End
                 Begin ComboBox
@@ -467,42 +464,42 @@ Begin Form
                     Top =60
                     Width =900
                     TabIndex =7
+                    BackColor =62207
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
-                        0x01000000b2000000030000000100000000000000000000000d00000000000000 ,
-                        0x00000000ffffff0001000000000000000e0000001b0000000000000000000000 ,
-                        0xffffff0001000000000000001c000000280000000100000000000000fff20000 ,
-                        0x5b00740062007800530075006d00490053005d003d003000000000005b007400 ,
-                        0x62007800530075006d004e0045005d003d003300000000005b00490073004400 ,
-                        0x6500610064005d003d002200220000000000
+                        0x01000000c4000000030000000100000000000000000000000f00000001000000 ,
+                        0x00000000fff20000010000000000000010000000200000000100000000000000 ,
+                        0xffffff00010000000000000021000000310000000100000000000000ffffff00 ,
+                        0x5b006300620078004900730044006500610064005d003d002200220000000000 ,
+                        0x5b0050006c0061006e00740043006f00640065005d003c003e00220022000000 ,
+                        0x00005b006300620078004900730044006500610064005d003c003e0022002200 ,
+                        0x00000000
                     End
                     Name ="cbxIsDead"
                     ControlSource ="IsDead"
                     RowSourceType ="Table/Query"
                     RowSource ="IsDead_Plus_Flags"
                     ColumnWidths ="0;1440"
+                    BeforeUpdate ="[Event Procedure]"
+                    AfterUpdate ="[Event Procedure]"
                     ControlTipText ="Indicate if species is alive or dead (or the appropriate missing data flag)"
                     LayoutCachedLeft =5865
                     LayoutCachedTop =60
                     LayoutCachedWidth =6765
                     LayoutCachedHeight =300
                     ConditionalFormat14 = Begin
-                        0x01000700000001000000000000000000000000000000ffffff000c0000005b00 ,
-                        0x740062007800530075006d00490053005d003d00300000000000000000000000 ,
-                        0x000000000000000000000001000000000000000000000000000000ffffff000c ,
-                        0x0000005b00740062007800530075006d004e0045005d003d0033000000000000 ,
-                        0x0000000000000000000000000000000001000000000000000100000000000000 ,
-                        0xfff200000b0000005b004900730044006500610064005d003d00220022000000 ,
-                        0x0000000000000000000000000000000000000001000000000000000100000000 ,
-                        0x000000ffffff000f0000005b0050006c0061006e00740043006f00640065005d ,
-                        0x003c003e00220022000000000000000000000000000000000000000000000100 ,
-                        0x0000000000000100000000000000ffffff000f0000005b006300620078004900 ,
-                        0x730044006500610064005d003c003e0022002200000000000000000000000000 ,
-                        0x00000000000000000001000000000000000100000000000000ffffff000c0000 ,
-                        0x005b00740062007800530075006d00490053005d003e00300000000000000000 ,
-                        0x000000000000000000000000000001000000000000000100000000000000ffff ,
-                        0xff000c0000005b00740062007800530075006d004e0045005d003c0033000000 ,
-                        0x00000000000000000000000000000000000000
+                        0x01000500000001000000000000000100000000000000fff200000e0000005b00 ,
+                        0x6300620078004900730044006500610064005d003d0022002200000000000000 ,
+                        0x00000000000000000000000000000001000000000000000100000000000000ff ,
+                        0xffff000f0000005b0050006c0061006e00740043006f00640065005d003c003e ,
+                        0x0022002200000000000000000000000000000000000000000000010000000000 ,
+                        0x00000100000000000000ffffff000f0000005b00630062007800490073004400 ,
+                        0x6500610064005d003c003e002200220000000000000000000000000000000000 ,
+                        0x000000000001000000000000000100000000000000ffffff000c0000005b0074 ,
+                        0x0062007800530075006d00490053005d003e0030000000000000000000000000 ,
+                        0x0000000000000000000001000000000000000100000000000000ffffff000c00 ,
+                        0x00005b00740062007800530075006d004e0045005d003c003300000000000000 ,
+                        0x000000000000000000000000000000
                     End
                 End
                 Begin TextBox
@@ -541,10 +538,112 @@ Begin Form
                         0x0000000000000000
                     End
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =2280
+                    Top =420
+                    Width =660
+                    TabIndex =9
+                    ForeColor =8355711
+                    Name ="tbxSpeciesCoverID_Q1"
+                    ControlSource ="SpeciesCoverID_Q1"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ececec00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =2280
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =2940
+                    LayoutCachedHeight =660
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ececec00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =3180
+                    Top =420
+                    Width =660
+                    TabIndex =10
+                    ForeColor =8355711
+                    Name ="tbxSpeciesCoverID_Q2"
+                    ControlSource ="SpeciesCoverID_Q2"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ececec00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =3180
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =3840
+                    LayoutCachedHeight =660
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ececec00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =4140
+                    Top =420
+                    Width =660
+                    TabIndex =11
+                    ForeColor =8355711
+                    Name ="tbxSpeciesCoverID_Q3"
+                    ControlSource ="SpeciesCoverID_Q3"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ececec00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =4140
+                    LayoutCachedTop =420
+                    LayoutCachedWidth =4800
+                    LayoutCachedHeight =660
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ececec00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
             End
         End
         Begin FormFooter
-            Height =1200
+            Height =1020
             BackColor =-2147483633
             Name ="FormFooter"
             Begin
@@ -596,7 +695,7 @@ Begin Form
                     TabIndex =1
                     ForeColor =8355711
                     Name ="tbxQ2_Sampled"
-                    ControlSource ="=Count(IIf(Len([Q2_5m])>0,1,Null))"
+                    ControlSource ="=Count(IIf(Len([Q2_4_5m])>0,1,Null))"
                     ConditionalFormat = Begin
                         0x0100000088000000010000000100000000000000000000001300000001000000 ,
                         0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
@@ -631,7 +730,7 @@ Begin Form
                     TabIndex =2
                     ForeColor =8355711
                     Name ="tbxQ3_Sampled"
-                    ControlSource ="=Count(IIf(Len([Q3_10m])>0,1,Null))"
+                    ControlSource ="=Count(IIf(Len([Q3_9_5m])>0,1,Null))"
                     ConditionalFormat = Begin
                         0x0100000088000000010000000100000000000000000000001300000001000000 ,
                         0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
@@ -701,7 +800,8 @@ Begin Form
                     TabIndex =4
                     ForeColor =8355711
                     Name ="tbxSumCover"
-                    ControlSource ="=IIf([Q1_hm]>0,[Q1_hm],0)+IIf([Q2_5m]>0,[Q2_5m],0)+IIf([Q3_10m]>0,[Q3_10m],0)"
+                    ControlSource ="=IIf([Q1_hm]>0,[Q1_hm],0)+IIf([Q2_4_5m]>0,[Q2_4_5m],0)+IIf([Q3_9_5m]>0,[Q3_9_5m]"
+                        ",0)"
                     ConditionalFormat = Begin
                         0x0100000088000000010000000100000000000000000000001300000001000000 ,
                         0xececec00ffffff00000000000000000000000000000000000000000000000000 ,
@@ -760,7 +860,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =2160
-                    Top =435
+                    Top =375
                     Width =900
                     Height =255
                     TabIndex =6
@@ -775,9 +875,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =2160
-                    LayoutCachedTop =435
+                    LayoutCachedTop =375
                     LayoutCachedWidth =3060
-                    LayoutCachedHeight =690
+                    LayoutCachedHeight =630
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -794,7 +894,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =2160
-                    Top =810
+                    Top =675
                     Width =900
                     Height =255
                     TabIndex =7
@@ -809,9 +909,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =2160
-                    LayoutCachedTop =810
+                    LayoutCachedTop =675
                     LayoutCachedWidth =3060
-                    LayoutCachedHeight =1065
+                    LayoutCachedHeight =930
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -828,7 +928,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =3120
-                    Top =420
+                    Top =360
                     Width =900
                     Height =255
                     TabIndex =8
@@ -843,9 +943,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =3120
-                    LayoutCachedTop =420
+                    LayoutCachedTop =360
                     LayoutCachedWidth =4020
-                    LayoutCachedHeight =675
+                    LayoutCachedHeight =615
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -862,7 +962,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =3120
-                    Top =795
+                    Top =660
                     Width =900
                     Height =255
                     TabIndex =9
@@ -877,9 +977,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =3120
-                    LayoutCachedTop =795
+                    LayoutCachedTop =660
                     LayoutCachedWidth =4020
-                    LayoutCachedHeight =1050
+                    LayoutCachedHeight =915
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -896,7 +996,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =4080
-                    Top =420
+                    Top =360
                     Width =900
                     Height =255
                     TabIndex =10
@@ -911,9 +1011,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =4080
-                    LayoutCachedTop =420
+                    LayoutCachedTop =360
                     LayoutCachedWidth =4980
-                    LayoutCachedHeight =675
+                    LayoutCachedHeight =615
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -930,7 +1030,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =4080
-                    Top =795
+                    Top =660
                     Width =900
                     Height =255
                     TabIndex =11
@@ -945,9 +1045,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =4080
-                    LayoutCachedTop =795
+                    LayoutCachedTop =660
                     LayoutCachedWidth =4980
-                    LayoutCachedHeight =1050
+                    LayoutCachedHeight =915
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -964,7 +1064,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =1140
-                    Top =450
+                    Top =375
                     Width =900
                     Height =255
                     TabIndex =12
@@ -980,9 +1080,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =1140
-                    LayoutCachedTop =450
+                    LayoutCachedTop =375
                     LayoutCachedWidth =2040
-                    LayoutCachedHeight =705
+                    LayoutCachedHeight =630
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -999,7 +1099,7 @@ Begin Form
                     BackStyle =0
                     IMESentenceMode =3
                     Left =1140
-                    Top =825
+                    Top =675
                     Width =900
                     Height =255
                     TabIndex =13
@@ -1015,9 +1115,9 @@ Begin Form
                     End
 
                     LayoutCachedLeft =1140
-                    LayoutCachedTop =825
+                    LayoutCachedTop =675
                     LayoutCachedWidth =2040
-                    LayoutCachedHeight =1080
+                    LayoutCachedHeight =930
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -1056,6 +1156,7 @@ Option Explicit
 '                                        which calculates average cover on-the-fly based on
 '                                        IsSampled_Q1-3 and Q1_hm, Q2_5m, Q3_10m values
 '               BLC - 7/17/2017 - 1.05 - set controls enabled by default
+'               BLC - 7/18/2017 - 1.06 - revised for species cover updates/deletes
 ' =================================
 
 '---------------------
@@ -1280,6 +1381,7 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/18/2017 - revised for new tables
 ' ---------------------------------
 Private Sub Form_BeforeInsert(Cancel As Integer)
     On Error GoTo Err_Handler
@@ -1290,12 +1392,13 @@ Private Sub Form_BeforeInsert(Cancel As Integer)
       SendKeys "{ESC}"
       GoTo Exit_Handler
     End If
+    
     ' Create the GUID primary key value
-    If IsNull(Me!Species_ID) Then
-        If GetDataType("tbl_Quadrat_Species", "species_ID") = dbText Then
-            Me.Species_ID = fxnGUIDGen
-        End If
-    End If
+'    If IsNull(Me!Species_ID) Then
+'        If GetDataType("tbl_Quadrat_Species", "species_ID") = dbText Then
+'            Me.Species_ID = fxnGUIDGen
+'        End If
+'    End If
 
 Exit_Handler:
     Exit Sub
@@ -1304,6 +1407,35 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Form_BeforeInsert[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          Form_AfterInsert
+' Description:  Form after insert actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, July 18, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub Form_AfterInsert()
+    On Error GoTo Err_Handler
+
+    Debug.Print "form_afterinsert"
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_AfterInsert[fsub_Species form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1355,17 +1487,47 @@ End Sub
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/5/2017 - toggled warnings off before removing record to avoid 2nd "do you want to
 '                    do this?" dialog
+'   BLC - 7/18/2017 - revised for deletions from SpeciesCover
 ' ---------------------------------
 Private Sub btnDelete_Click()
 On Error GoTo Err_Handler
 
   Dim Reply As Integer
   Reply = MsgBox("Are you sure you want to delete this record?", vbYesNo, "Species Delete")
+  
+  'do the deletion for temp & underlying tables
   If Reply = 6 Then
     DoCmd.SetWarnings False
     DoCmd.DoMenuItem acFormBar, acEditMenu, 8, , acMenuVer70
     DoCmd.DoMenuItem acFormBar, acEditMenu, 6, , acMenuVer70
     DoCmd.SetWarnings True
+    
+    'do for @ Quadrat that has a SpeciesCover record
+    Dim i As Integer
+    Dim strControl As String
+    
+    For i = 1 To QUADRATS_PER_TRANSECT
+        
+        strControl = "tbxSpeciesCoverID_Q" & i
+        
+        'only delete existing records (these should have a SpeciesCover ID value)
+        If Me.Controls(strControl) > 0 Then
+      
+            Dim sp As New InvasiveCoverSpecies
+            
+            With sp
+                .SpeciesCoverID = Me.Controls(strControl)
+                
+                .DeleteSpeciesCover
+            
+            End With
+            
+        End If
+    
+        Next
+       
+        RefreshTempTable "uys_temp_species_cover"
+  
   End If
 
 Exit_Handler:
@@ -1392,17 +1554,50 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/17/2017 - revised for normalized tables & new form fields
 ' ---------------------------------
 Private Sub Plant_Code_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
-  If Not IsNull(Me!Plant_Code) Then
-    If Not IsNull(DLookup("[Species_ID]", "tbl_Quadrat_Species", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Plant_Code] = '" & Me!Plant_Code & "'")) Then
-      MsgBox "Duplicate species for this quadrat."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-    End If
-  End If
+    'check if duplicate species cover (skip the warning)
+    IsDuplicateSpeciesCover True
+
+'  If Not IsNull(Me!Plant_Code) Then
+''    If Not IsNull(DLookup("[Species_ID]", "tbl_Quadrat_Species", "[Transect_ID] = '" & Me!Transect_ID & "' AND [Plant_Code] = '" & Me!Plant_Code & "'")) Then
+'
+'    'check if *any* of the Quadrats have this species in SpeciesCover
+'    Dim i, IsDead As Integer
+'    Dim strControl, strCriteria As String
+'
+'    For i = 1 To QUADRATS_PER_TRANSECT
+'
+'        strControl = "tbxQ" & i
+'        IsDead = IIf(Me.cbxIsDead = "Dead", 1, 0)
+'
+'        strCriteria = "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
+'                " AND [PlantCode] = '" & Me.Plant_Code & "'" & _
+'                " AND [IsDead] = " & IsDead
+'
+''        If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", _
+''                "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
+''                " AND [Plant_Code] = '" & Me.Plant_Code & "'" & _
+''                " AND [IsDead] = " & IsDead)) Then
+'
+'        If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", strCriteria)) Then
+'
+'          'MsgBox "Duplicate species for this quadrat."
+'          MsgBox "Duplicate species for this transect."
+'
+'          DoCmd.CancelEvent
+'          SendKeys "{ESC}"
+'
+'          'exit if it's a dupe for one quadrat, dupe for transect
+'          Exit For
+'        End If
+'
+'    Next
+'
+'  End If
   
 Exit_Handler:
     Exit Sub
@@ -1411,6 +1606,36 @@ Err_Handler:
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - Plant_Code_BeforeUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          cbxIsDead_BeforeUdpate
+' Description:  IsDead combobox actions before update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub cbxIsDead_BeforeUpdate(Cancel As Integer)
+On Error GoTo Err_Handler
+
+    'check if duplicate species cover (skip the warning)
+    IsDuplicateSpeciesCover True
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxIsDead_BeforeUpdate[fsub_Species form])"
     End Select
     Resume Exit_Handler
 End Sub
@@ -1428,15 +1653,13 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/18/2017 - revise to check for both species & is dead flag
 ' ---------------------------------
 Private Sub Q1_hm_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
-  If IsNull(Me!Plant_Code) Then
-      MsgBox "You must enter species first."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-  End If
+    'check if duplicate species cover
+    'IsDuplicateSpeciesCover
 
 Exit_Handler:
     Exit Sub
@@ -1462,15 +1685,19 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/18/2017 - revise to check for both species & is dead flag
 ' ---------------------------------
 Private Sub Q2_5m_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
-  If IsNull(Me!Plant_Code) Then
-      MsgBox "You must enter species first."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-  End If
+    'check if duplicate species cover
+    'IsDuplicateSpeciesCover
+
+'  If IsNull(Me!Plant_Code) Then
+'      MsgBox "You must enter species first."
+'      DoCmd.CancelEvent
+'      SendKeys "{ESC}"
+'  End If
 
 Exit_Handler:
     Exit Sub
@@ -1496,15 +1723,19 @@ End Sub
 ' Revisions:
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
+'   BLC - 7/18/2017 - revise to check for both species & is dead flag
 ' ---------------------------------
 Private Sub Q3_10m_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
-  If IsNull(Me!Plant_Code) Then
-      MsgBox "You must enter species first."
-      DoCmd.CancelEvent
-      SendKeys "{ESC}"
-  End If
+    'check if duplicate species cover
+    'IsDuplicateSpeciesCover
+
+'  If IsNull(Me!Plant_Code) Then
+'      MsgBox "You must enter species first."
+'      DoCmd.CancelEvent
+'      SendKeys "{ESC}"
+'  End If
 
 Exit_Handler:
     Exit Sub
@@ -1516,6 +1747,65 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          Plant_Code_AfterUdpate
+' Description:  Plant_Code combobox actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub Plant_Code_AfterUpdate()
+On Error GoTo Err_Handler
+
+    SetSpeciesCover
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Plant_Code_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          cbxIsDead_AfterUdpate
+' Description:  IsDead combobox actions after update
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub cbxIsDead_AfterUpdate()
+On Error GoTo Err_Handler
+
+    SetSpeciesCover
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - cbxIsDead_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 
 ' ---------------------------------
 ' Sub:          Q1_hm_AfterUpdate
@@ -1536,6 +1826,8 @@ Private Sub Q1_hm_AfterUpdate()
 On Error GoTo Err_Handler
  
   Me.Refresh
+  
+    SetSpeciesCover
   
 Exit_Handler:
     Exit Sub
@@ -1568,6 +1860,8 @@ On Error GoTo Err_Handler
  
   Me.Refresh
 
+    SetSpeciesCover
+    
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -1598,6 +1892,7 @@ Private Sub Q3_10m_AfterUpdate()
 On Error GoTo Err_Handler
   
   Me.Refresh
+    SetSpeciesCover
 
 Exit_Handler:
     Exit Sub
@@ -1628,6 +1923,7 @@ End Sub
 '   BLC - 3/8/2017  - added documentation, error handling,
 '                     revised to address non-sampled quadrats
 '   BLC - 7/12/2017 - replaced CalcAvgCover w/ refresh of tbxAvgCover
+'   BLC - 7/18/2017 - replaced 3 with QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Public Function CalcAvgCover() As Single
     On Error GoTo Err_Handler
@@ -1641,7 +1937,7 @@ Public Function CalcAvgCover() As Single
     AvgCover = 0
     TotalCover = 0
     
-    For i = 1 To 3
+    For i = 1 To QUADRATS_PER_TRANSECT
         'determine quadrat control
         Select Case i
             Case 1
@@ -1692,6 +1988,7 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/5/2017 - initial version
+'   BLC - 7/18/2017 - replace 3 w/ QUADRATS_PER_TRANSECT
 ' ---------------------------------
 Public Function AddNewTransectQuadrats() As Single
     On Error GoTo Err_Handler
@@ -1721,7 +2018,7 @@ Public Function AddNewTransectQuadrats() As Single
     
     '---------------------------------------------------
         '---------------------------------------------------
-    For i = 1 To 3
+    For i = 1 To QUADRATS_PER_TRANSECT
         'determine quadrat control
         Select Case i
             Case 1
@@ -1759,3 +2056,208 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+' ---------------------------------
+' Function:     IsDuplicateSpeciesCover
+' Description:  Checks if species cover record exists for same species & is dead flag
+' Assumptions:  -
+' Parameters:   SkipWarning - whether to skip plant species/is dead warning (boolean, optional,
+'                             default = False)
+' Returns:      True or False depending on whether a record is found in SpeciesCover
+'               for the same species and is dead flag setting
+' Throws:       none
+' References:   -
+' Source/date:  BLC, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Function IsDuplicateSpeciesCover(Optional SkipWarning As Boolean = False) As Boolean
+On Error GoTo Err_Handler
+      
+    'ensure plant code & is dead flag are set
+    If IsNull(Me!Plant_Code) Or IsNull(Me!cbxIsDead) Then
+        MsgBox "Enter the species and set the IsDead flag first."
+        
+        If Not (SkipWarning) Then
+            
+            DoCmd.CancelEvent
+            SendKeys "{ESC}"
+        End If
+    
+    End If
+    
+    Dim IsDupe As Boolean
+      
+    'default
+    IsDupe = False
+      
+    'check when plant code & is dead are set only
+    If Not IsNull(Me!Plant_Code) And Not IsNull(Me.cbxIsDead) Then
+        
+        'check if *any* of the Quadrats have this species in SpeciesCover
+        Dim i, IsDead As Integer
+        Dim strControl, strCriteria As String
+        
+        For i = 1 To QUADRATS_PER_TRANSECT
+            
+            strControl = "tbxQ" & i
+            IsDead = IIf(Me.cbxIsDead = "Dead", 1, 0)
+            
+            strCriteria = "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
+                    " AND [PlantCode] = '" & Me.Plant_Code & "'" & _
+                    " AND [IsDead] = " & IsDead
+
+Debug.Print strCriteria
+Debug.Print "DLU: " & DLookup("[PlantCode]", "SpeciesCover", strCriteria)
+
+            If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", strCriteria)) Then
+              
+              IsDupe = True
+              
+              If Not SkipWarning Then
+                MsgBox "Duplicate species dead/alive for this transect."
+                
+                DoCmd.CancelEvent
+                SendKeys "{ESC}"
+              End If
+              
+              'exit if it's a dupe for one quadrat, dupe for transect
+              Exit For
+            End If
+            
+        Next
+    
+    End If
+  
+    IsDuplicateSpeciesCover = IsDupe
+  
+Exit_Handler:
+    Exit Function
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - IsDuplicateSpeciesCover[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Function
+
+' ---------------------------------
+' Sub:          SetSpeciesCover
+' Description:  Add or update species cover record
+' Assumptions:  Quadrat species cover IDs will be:
+'                NULL - when no species cover record exists
+'                > 0  - when the species cover record exists
+'               for the selected species, is dead flag, quadrat combination
+'               enabled Q1-3 percent cover values indicate if record should
+'               be added/updated
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, 7/18/2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/18/2017 - initial version
+' ---------------------------------
+Private Sub SetSpeciesCover()
+On Error GoTo Err_Handler
+
+    'check if duplicate species cover
+    'If Not IsDuplicateSpeciesCover Then
+    
+        Dim i As Integer
+        Dim strControl As String
+        Dim sc As New InvasiveCoverSpecies
+        Dim CoverID As Integer
+        Dim Pct As Double
+        Dim QID As Long
+        Dim SkipQuadrat As Boolean
+                
+        'iterate through quadrats
+        For i = 1 To QUADRATS_PER_TRANSECT
+        
+            SkipQuadrat = False
+
+            strControl = "tbxSpeciesCoverID_Q" & i
+                
+            ' do the update/add
+            With sc
+                            
+                Select Case i
+                    Case 1
+                        If Me.tbxISQ1 = 0 Or Me.tbxNEQ1 = 1 Then
+                            SkipQuadrat = True
+                        Else
+                            Pct = Nz(Me.Q1_hm, 0)
+                            CoverID = Nz(Me.tbxSpeciesCoverID_Q1, 0)
+                            QID = Parent.Form.Controls("tbxQ1")
+                        End If
+                        
+                    Case 2
+                        If Me.tbxISQ2 = 0 Or Me.tbxNEQ2 = 1 Then
+                            SkipQuadrat = True
+                        Else
+                            Pct = Nz(Me.Q2_5m, 0)
+                            CoverID = Nz(Me.tbxSpeciesCoverID_Q2, 0)
+                            QID = Parent.Form.Controls("tbxQ2")
+                        End If
+                    
+                    Case 3
+                        If Me.tbxISQ3 = 0 Or Me.tbxNEQ3 = 1 Then
+                            SkipQuadrat = True
+                        Else
+                            Pct = Nz(Me.Q3_10m, 0)
+                            CoverID = Nz(Me.tbxSpeciesCoverID_Q3, 0)
+                            QID = Parent.Form.Controls("tbxQ3")
+                        End If
+                        
+                End Select
+                
+                .QuadratID = QID
+                .LUcode = Me.Plant_Code
+                .IsDead = Nz(Me.cbxIsDead, 0) 'IIf(Me.cbxIsDead = "Dead", 1, 0)
+                .PctCover = Pct
+                
+                'take action if quadrat shouldn't be skipped
+                If Not SkipQuadrat Then
+                    
+                    'check if update or new
+                    Select Case Me.Controls(strControl)
+                        
+                        Case Is > 0 'Update
+                                        
+                            .SpeciesCoverID = CoverID
+                            .UpdateSpeciesCover
+                            
+                        Case Else   'New
+                
+                            .AddSpeciesCover
+                            
+                            'update the values for species cover ID
+                            Me.Controls(strControl) = .SpeciesCoverID
+
+                    End Select
+                
+                    'update the underlying data << not now, it's in use!
+                    'RefreshTempTable "usys_temp_speciescover"
+                
+                End If
+                
+            End With
+            
+        Next
+    
+    'End If
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - SetSpeciesCover[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub

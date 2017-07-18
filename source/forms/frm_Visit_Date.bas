@@ -409,7 +409,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Visit_Date
 ' Level:        Application form
-' Version:      1.02
+' Version:      1.03
 ' Basis:        -
 '
 ' Description:  Visit Date form object related properties, functions & procedures for UI display
@@ -420,6 +420,7 @@ Option Explicit
 '               BLC - 7/12/2017 - 1.01 - added documentation, error handling, update usys_temp_transect
 '                                        before opening form
 '               BLC - 7/14/2017 - 1.02 - renamed buttons
+'               BLC - 7/18/2017 - 1.03 - revised to refresh temp tables (usys_temp_*)
 ' =================================
 
 '---------------------
@@ -486,6 +487,8 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 7/12/2017 - added documentation, error handling,
 '                     update of usys_temp_transect data table before opening form
+'   BLC - 7/18/2017 - update of usys_temp_speciescover data table before opening form,
+'                     use RefreshTempTable instead
 ' ---------------------------------
 Private Sub btnEdit_Click()
     On Error GoTo Err_Handler
@@ -496,15 +499,9 @@ Private Sub btnEdit_Click()
     strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.name, "Location_ID")
     strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.name, "Event_ID")
     
-    're-generate the temp table source
-    DoCmd.SetWarnings False
-    If TableExists("usys_temp_transect") Then
-        DoCmd.DeleteObject acTable, "usys_temp_transect"
-    End If
-    DoCmd.OpenQuery "Create_usys_temp_transect"
-    
-    'move tables to Queries - Application group
-    SetNavGroup "Queries - Application", "usys_temp_transect", "table"
+    're-generate the temp table sources
+    RefreshTempTable "usys_temp_transect"
+    RefreshTempTable "usys_temp_speciescover"
 
     DoCmd.SetWarnings True
     

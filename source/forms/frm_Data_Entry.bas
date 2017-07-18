@@ -22,18 +22,19 @@ Begin Form
     Width =14160
     DatasheetFontHeight =10
     ItemSuffix =206
-    Left =5505
-    Top =2100
-    Right =19665
-    Bottom =13545
+    Left =4860
+    Top =2295
+    Right =19020
+    Bottom =13740
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20140106101754-829801619.052887' AND [Event_ID]='20151107154044-1"
-        "06369674.20578'"
+    Filter ="[Location_ID]='20121121125102-961953163.146973' AND [Event_ID]='20151107154044-7"
+        "60723590.85083'"
     RecSrcDt = Begin
         0xc0d562cf56f6e440
     End
     RecordSource ="qfrm_Data_Entry"
-    Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event"
+    Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
+        "by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
