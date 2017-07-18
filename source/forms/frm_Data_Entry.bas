@@ -22,18 +22,18 @@ Begin Form
     Width =14160
     DatasheetFontHeight =10
     ItemSuffix =206
-    Left =3795
-    Top =2175
-    Right =17955
-    Bottom =14040
+    Left =5505
+    Top =2100
+    Right =19665
+    Bottom =13545
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20121121125102-961953163.146973' AND [Event_ID]='20121121125237-6"
-        "33178889.751434'"
+    Filter ="[Location_ID]='20140106101754-829801619.052887' AND [Event_ID]='20151107154044-1"
+        "06369674.20578'"
     RecSrcDt = Begin
         0xc0d562cf56f6e440
     End
     RecordSource ="qfrm_Data_Entry"
-    Caption =" Data Entry Form - Filter by sampling event"
+    Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -419,12 +419,12 @@ Begin Form
                 Begin TextBox
                     EnterKeyBehavior = NotDefault
                     ScrollBars =2
-                    OverlapFlags =255
+                    OverlapFlags =247
                     IMESentenceMode =3
                     Left =7860
                     Top =420
                     Width =5100
-                    Height =899
+                    Height =1079
                     TabIndex =1
                     Name ="Comments"
                     ControlSource ="Comments"
@@ -433,7 +433,7 @@ Begin Form
                     LayoutCachedLeft =7860
                     LayoutCachedTop =420
                     LayoutCachedWidth =12960
-                    LayoutCachedHeight =1319
+                    LayoutCachedHeight =1499
                     Begin
                         Begin Label
                             OverlapFlags =85
@@ -493,15 +493,14 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =247
+                    OverlapFlags =215
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =7560
-                    Top =1260
+                    Left =2160
+                    Top =1560
                     Width =2820
-                    Height =255
                     TabIndex =10
-                    ForeColor =8355711
+                    ForeColor =5855577
                     Name ="tbxEventID"
                     ControlSource ="Event_ID"
                     ConditionalFormat = Begin
@@ -516,12 +515,12 @@ Begin Form
                         0x220029002c0030002c003100290000000000
                     End
 
-                    LayoutCachedLeft =7560
-                    LayoutCachedTop =1260
-                    LayoutCachedWidth =10380
-                    LayoutCachedHeight =1515
-                    ForeThemeColorIndex =1
-                    ForeShade =50.0
+                    LayoutCachedLeft =2160
+                    LayoutCachedTop =1560
+                    LayoutCachedWidth =4980
+                    LayoutCachedHeight =1800
+                    ForeThemeColorIndex =0
+                    ForeTint =65.0
                     ConditionalFormat14 = Begin
                         0x010001000000010000000000000001000000ececec00ffffff00570000004900 ,
                         0x4900660028005b00660072006d005f0051007500610064007200610074005f00 ,

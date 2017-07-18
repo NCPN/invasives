@@ -17,14 +17,14 @@ Begin Form
     GridY =24
     Width =13380
     DatasheetFontHeight =9
-    ItemSuffix =93
-    Left =720
-    Top =3585
-    Right =14145
-    Bottom =12240
+    ItemSuffix =95
+    Left =4140
+    Top =1590
+    Right =17820
+    Bottom =10635
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0xc5265af90df6e440
+        0xbe3724b9b4f6e440
     End
     RecordSource ="usys_temp_transect"
     Caption ="frm_Canopy_Transect"
@@ -134,7 +134,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =8880
+            Height =8460
             BackColor =26112
             Name ="Detail"
             AlternateBackColor =26112
@@ -145,15 +145,15 @@ Begin Form
                     Left =120
                     Top =240
                     Width =13140
-                    Height =8520
-                    TabIndex =80
+                    Height =8100
+                    TabIndex =79
                     BackColor =14478320
-                    Name ="Frame89"
+                    Name ="frmTransectData"
 
                     LayoutCachedLeft =120
                     LayoutCachedTop =240
                     LayoutCachedWidth =13260
-                    LayoutCachedHeight =8760
+                    LayoutCachedHeight =8340
                     Begin
                         Begin Label
                             BackStyle =1
@@ -183,8 +183,8 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2280
-                    Top =8295
+                    Left =1125
+                    Top =7680
                     Width =840
                     Height =255
                     TabIndex =77
@@ -192,10 +192,10 @@ Begin Form
                     Name ="tbxIsSampledSum"
                     ControlSource ="=[IsSampled_Q1]+[IsSampled_Q2]+[IsSampled_Q3]"
 
-                    LayoutCachedLeft =2280
-                    LayoutCachedTop =8295
-                    LayoutCachedWidth =3120
-                    LayoutCachedHeight =8550
+                    LayoutCachedLeft =1125
+                    LayoutCachedTop =7680
+                    LayoutCachedWidth =1965
+                    LayoutCachedHeight =7935
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                 End
@@ -206,8 +206,8 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3420
-                    Top =8295
+                    Left =1125
+                    Top =7980
                     Width =840
                     Height =255
                     TabIndex =78
@@ -215,10 +215,10 @@ Begin Form
                     Name ="tbxNoExoticsSum"
                     ControlSource ="=[NoExotics_Q1]+[NoExotics_Q2]+[NoExotics_Q3]"
 
-                    LayoutCachedLeft =3420
-                    LayoutCachedTop =8295
-                    LayoutCachedWidth =4260
-                    LayoutCachedHeight =8550
+                    LayoutCachedLeft =1125
+                    LayoutCachedTop =7980
+                    LayoutCachedWidth =1965
+                    LayoutCachedHeight =8235
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                 End
@@ -304,34 +304,36 @@ Begin Form
                     TextAlign =1
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =690
+                    Left =600
                     Top =420
                     Width =1080
                     ColumnWidth =465
                     FontWeight =700
                     TabIndex =2
+                    ForeColor =255
                     Name ="Transect"
                     ControlSource ="Transect"
                     StatusBarText ="Transect number - 1, 2, or 3"
+                    ControlTipText ="First Transect"
 
-                    LayoutCachedLeft =690
+                    LayoutCachedLeft =600
                     LayoutCachedTop =420
-                    LayoutCachedWidth =1770
+                    LayoutCachedWidth =1680
                     LayoutCachedHeight =660
                     Begin
                         Begin Label
-                            OverlapFlags =223
+                            OverlapFlags =215
                             TextAlign =1
                             Left =330
                             Top =420
-                            Width =360
+                            Width =210
                             Height =240
                             FontWeight =700
                             Name ="lblTransectNumber"
                             Caption ="#"
                             LayoutCachedLeft =330
                             LayoutCachedTop =420
-                            LayoutCachedWidth =690
+                            LayoutCachedWidth =540
                             LayoutCachedHeight =660
                         End
                     End
@@ -375,7 +377,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =215
-                    Left =1890
+                    Left =1740
                     Top =420
                     Width =306
                     Height =306
@@ -407,9 +409,9 @@ Begin Form
                     End
                     ControlTipText ="Previous Record"
 
-                    LayoutCachedLeft =1890
+                    LayoutCachedLeft =1740
                     LayoutCachedTop =420
-                    LayoutCachedWidth =2196
+                    LayoutCachedWidth =2046
                     LayoutCachedHeight =726
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -419,7 +421,7 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =215
-                    Left =2250
+                    Left =2100
                     Top =420
                     Width =306
                     Height =306
@@ -451,9 +453,9 @@ Begin Form
                     End
                     ControlTipText ="Next Record"
 
-                    LayoutCachedLeft =2250
+                    LayoutCachedLeft =2100
                     LayoutCachedTop =420
-                    LayoutCachedWidth =2556
+                    LayoutCachedWidth =2406
                     LayoutCachedHeight =726
                     WebImagePaddingLeft =2
                     WebImagePaddingTop =2
@@ -560,16 +562,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =223
                     TextAlign =2
-                    Left =255
+                    Left =420
                     Top =3240
                     Width =1860
                     Height =480
                     FontWeight =700
                     Name ="lblMicrohabitat"
                     Caption ="Microhabitat"
-                    LayoutCachedLeft =255
+                    LayoutCachedLeft =420
                     LayoutCachedTop =3240
-                    LayoutCachedWidth =2115
+                    LayoutCachedWidth =2280
                     LayoutCachedHeight =3720
                 End
                 Begin Label
@@ -577,16 +579,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =223
                     TextAlign =2
-                    Left =2115
+                    Left =2280
                     Top =3480
                     Width =778
                     Height =240
                     FontWeight =700
                     Name ="lblMicrohabitatCoverQ1"
                     Caption ="Q1"
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =3480
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =3720
                 End
                 Begin Label
@@ -594,16 +596,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =223
                     TextAlign =2
-                    Left =2895
+                    Left =3060
                     Top =3480
                     Width =780
                     Height =240
                     FontWeight =700
                     Name ="lblMicrohabitatCoverQ2"
                     Caption ="Q2"
-                    LayoutCachedLeft =2895
+                    LayoutCachedLeft =3060
                     LayoutCachedTop =3480
-                    LayoutCachedWidth =3675
+                    LayoutCachedWidth =3840
                     LayoutCachedHeight =3720
                 End
                 Begin Label
@@ -611,16 +613,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =223
                     TextAlign =2
-                    Left =3674
+                    Left =3839
                     Top =3480
                     Width =780
                     Height =240
                     FontWeight =700
                     Name ="lblMicrohabitatCoverQ3"
                     Caption ="Q3"
-                    LayoutCachedLeft =3674
+                    LayoutCachedLeft =3839
                     LayoutCachedTop =3480
-                    LayoutCachedWidth =4454
+                    LayoutCachedWidth =4619
                     LayoutCachedHeight =3720
                 End
                 Begin Label
@@ -628,16 +630,16 @@ Begin Form
                     BorderWidth =1
                     OverlapFlags =215
                     TextAlign =2
-                    Left =2115
+                    Left =2280
                     Top =3240
                     Width =2340
                     Height =240
                     FontWeight =700
                     Name ="lblPctCover"
                     Caption ="% cover"
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =3240
-                    LayoutCachedWidth =4455
+                    LayoutCachedWidth =4620
                     LayoutCachedHeight =3480
                 End
                 Begin ComboBox
@@ -645,7 +647,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =3720
                     Width =778
                     Height =239
@@ -657,23 +659,23 @@ Begin Form
                     StatusBarText ="Dead wood cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =3720
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =3959
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =3720
                             Width =1860
                             Height =240
                             Name ="lblDeadWood"
                             Caption ="Dead Wood:"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =3720
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =3960
                         End
                     End
@@ -683,7 +685,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =3720
                     Width =778
                     Height =239
@@ -695,9 +697,9 @@ Begin Form
                     StatusBarText ="Dead wood cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =3720
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =3959
                 End
                 Begin ComboBox
@@ -705,7 +707,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =3720
                     Width =763
                     Height =239
@@ -717,9 +719,9 @@ Begin Form
                     StatusBarText ="Dead wood cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =3720
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =3959
                 End
                 Begin ComboBox
@@ -727,7 +729,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =3960
                     Width =778
                     Height =239
@@ -739,23 +741,23 @@ Begin Form
                     StatusBarText ="Dung cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =3960
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =4199
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =3960
                             Width =1860
                             Height =240
                             Name ="lblDung"
                             Caption ="Dung"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =3960
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =4200
                         End
                     End
@@ -765,7 +767,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =3960
                     Width =778
                     Height =239
@@ -777,9 +779,9 @@ Begin Form
                     StatusBarText ="Dung cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =3960
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =4199
                 End
                 Begin ComboBox
@@ -787,7 +789,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =3959
                     Width =763
                     Height =239
@@ -799,9 +801,9 @@ Begin Form
                     StatusBarText ="Dung cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =3959
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =4198
                 End
                 Begin ComboBox
@@ -809,7 +811,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =4200
                     Width =778
                     Height =239
@@ -821,23 +823,23 @@ Begin Form
                     StatusBarText ="Fungus cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =4200
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =4439
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =4200
                             Width =1860
                             Height =240
                             Name ="lblFungus"
                             Caption ="Fungus"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =4200
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =4440
                         End
                     End
@@ -847,7 +849,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =4200
                     Width =778
                     Height =239
@@ -859,9 +861,9 @@ Begin Form
                     StatusBarText ="Fungus cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =4200
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =4439
                 End
                 Begin ComboBox
@@ -869,7 +871,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =4198
                     Width =763
                     Height =239
@@ -881,9 +883,9 @@ Begin Form
                     StatusBarText ="Fungus cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =4198
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =4437
                 End
                 Begin ComboBox
@@ -891,7 +893,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =4440
                     Width =778
                     Height =239
@@ -903,23 +905,23 @@ Begin Form
                     StatusBarText ="Lichen cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =4440
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =4679
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =4440
                             Width =1860
                             Height =240
                             Name ="lblLichen"
                             Caption ="Lichen"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =4440
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =4680
                         End
                     End
@@ -929,7 +931,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =4440
                     Width =778
                     Height =239
@@ -941,9 +943,9 @@ Begin Form
                     StatusBarText ="Lichen cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =4440
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =4679
                 End
                 Begin ComboBox
@@ -951,7 +953,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =4437
                     Width =763
                     Height =239
@@ -963,9 +965,9 @@ Begin Form
                     StatusBarText ="Lichen cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =4437
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =4676
                 End
                 Begin ComboBox
@@ -973,7 +975,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =4680
                     Width =778
                     Height =239
@@ -985,23 +987,23 @@ Begin Form
                     StatusBarText ="Litter/Duff cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =4680
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =4919
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =4680
                             Width =1860
                             Height =240
                             Name ="lblLitterDuff"
                             Caption ="Litter Duff"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =4680
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =4920
                         End
                     End
@@ -1011,7 +1013,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =4680
                     Width =778
                     Height =239
@@ -1023,9 +1025,9 @@ Begin Form
                     StatusBarText ="Litter/Duff cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =4680
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =4919
                 End
                 Begin ComboBox
@@ -1033,7 +1035,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =4676
                     Width =763
                     Height =239
@@ -1045,9 +1047,9 @@ Begin Form
                     StatusBarText ="Litter/Duff cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =4676
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =4915
                 End
                 Begin ComboBox
@@ -1055,7 +1057,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =4920
                     Width =778
                     Height =239
@@ -1067,23 +1069,23 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =4920
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =5159
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =4920
                             Width =1860
                             Height =240
                             Name ="lblLiveRootBole"
                             Caption ="Live root/Bole"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =4920
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =5160
                         End
                     End
@@ -1093,7 +1095,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =4920
                     Width =778
                     Height =239
@@ -1105,9 +1107,9 @@ Begin Form
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =4920
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =5159
                 End
                 Begin ComboBox
@@ -1115,7 +1117,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =4915
                     Width =763
                     Height =239
@@ -1127,9 +1129,9 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =4915
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =5154
                 End
                 Begin ComboBox
@@ -1137,7 +1139,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =5401
                     Width =778
                     Height =239
@@ -1149,23 +1151,23 @@ Begin Form
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =5401
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =5640
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =5400
                             Width =1858
                             Height =240
                             Name ="lblMineralSoilSediment"
                             Caption ="Mineral Soil/Sediment"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =5400
-                            LayoutCachedWidth =2113
+                            LayoutCachedWidth =2278
                             LayoutCachedHeight =5640
                         End
                     End
@@ -1175,7 +1177,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =5401
                     Width =778
                     Height =239
@@ -1187,9 +1189,9 @@ Begin Form
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =5401
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =5640
                 End
                 Begin ComboBox
@@ -1197,7 +1199,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =5400
                     Width =763
                     Height =239
@@ -1209,9 +1211,9 @@ Begin Form
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =5400
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =5639
                 End
                 Begin ComboBox
@@ -1219,7 +1221,7 @@ Begin Form
                     OverlapFlags =223
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =5641
                     Width =778
                     Height =239
@@ -1231,23 +1233,23 @@ Begin Form
                     StatusBarText ="Moss cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =5641
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =5880
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =5640
                             Width =1860
                             Height =240
                             Name ="lblMoss"
                             Caption ="Moss"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =5640
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =5880
                         End
                     End
@@ -1257,7 +1259,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =5641
                     Width =778
                     Height =239
@@ -1269,9 +1271,9 @@ Begin Form
                     StatusBarText ="Moss cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =5641
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =5880
                 End
                 Begin ComboBox
@@ -1279,7 +1281,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =5641
                     Width =763
                     Height =239
@@ -1291,9 +1293,9 @@ Begin Form
                     StatusBarText ="Moss cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =5641
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =5880
                 End
                 Begin ComboBox
@@ -1301,7 +1303,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =5881
                     Width =778
                     Height =239
@@ -1313,23 +1315,23 @@ Begin Form
                     StatusBarText ="Cryptogram cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =5881
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =6120
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =223
-                            Left =255
+                            Left =420
                             Top =5880
                             Width =1860
                             Height =240
                             Name ="lblBiologicalSoilCrust"
                             Caption ="Biological Soil Crust"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =5880
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =6120
                         End
                     End
@@ -1339,7 +1341,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =5881
                     Width =778
                     Height =239
@@ -1351,9 +1353,9 @@ Begin Form
                     StatusBarText ="Cryptogram cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =5881
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =6120
                 End
                 Begin ComboBox
@@ -1361,7 +1363,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =5881
                     Width =763
                     Height =239
@@ -1373,9 +1375,9 @@ Begin Form
                     StatusBarText ="Cryptogram cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =5881
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =6120
                 End
                 Begin ComboBox
@@ -1383,7 +1385,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =6121
                     Width =778
                     Height =239
@@ -1395,23 +1397,23 @@ Begin Form
                     StatusBarText ="Road cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =6121
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =6360
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =6120
                             Width =1860
                             Height =240
                             Name ="lblRoad"
                             Caption ="Road"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =6120
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =6360
                         End
                     End
@@ -1421,7 +1423,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =6121
                     Width =778
                     Height =239
@@ -1433,9 +1435,9 @@ Begin Form
                     StatusBarText ="Road cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =6121
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =6360
                 End
                 Begin ComboBox
@@ -1443,7 +1445,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =6121
                     Width =763
                     Height =239
@@ -1455,9 +1457,9 @@ Begin Form
                     StatusBarText ="Road cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =6121
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =6360
                 End
                 Begin ComboBox
@@ -1465,7 +1467,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =6361
                     Width =778
                     Height =239
@@ -1477,23 +1479,23 @@ Begin Form
                     StatusBarText ="Rock cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =6361
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =6600
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =6360
                             Width =1860
                             Height =240
                             Name ="lblRock"
                             Caption ="Rock"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =6360
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =6600
                         End
                     End
@@ -1503,7 +1505,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =6361
                     Width =778
                     Height =239
@@ -1515,9 +1517,9 @@ Begin Form
                     StatusBarText ="Rock cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =6361
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =6600
                 End
                 Begin ComboBox
@@ -1525,7 +1527,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =6361
                     Width =763
                     Height =239
@@ -1537,9 +1539,9 @@ Begin Form
                     StatusBarText ="Rock cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =6361
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =6600
                 End
                 Begin ComboBox
@@ -1547,7 +1549,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =6601
                     Width =778
                     Height =239
@@ -1559,23 +1561,23 @@ Begin Form
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =6601
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =6840
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =6600
                             Width =1860
                             Height =240
                             Name ="lblStandingWaterFlooded"
                             Caption ="Standing Water/Flooded"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =6600
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =6840
                         End
                     End
@@ -1585,7 +1587,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =6601
                     Width =778
                     Height =239
@@ -1597,9 +1599,9 @@ Begin Form
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =6601
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =6840
                 End
                 Begin ComboBox
@@ -1607,7 +1609,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =6601
                     Width =763
                     Height =239
@@ -1619,9 +1621,9 @@ Begin Form
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =6601
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =6840
                 End
                 Begin ComboBox
@@ -1629,7 +1631,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =6841
                     Width =778
                     Height =239
@@ -1641,23 +1643,23 @@ Begin Form
                     StatusBarText ="Stream cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =6841
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =7080
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =6840
                             Width =1860
                             Height =240
                             Name ="lblStream"
                             Caption ="Stream"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =6840
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =7080
                         End
                     End
@@ -1667,7 +1669,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =6841
                     Width =778
                     Height =239
@@ -1679,9 +1681,9 @@ Begin Form
                     StatusBarText ="Stream cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =6841
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =7080
                 End
                 Begin ComboBox
@@ -1689,7 +1691,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =6841
                     Width =763
                     Height =239
@@ -1701,9 +1703,9 @@ Begin Form
                     StatusBarText ="Stream cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =6841
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =7080
                 End
                 Begin ComboBox
@@ -1711,7 +1713,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =7081
                     Width =778
                     Height =239
@@ -1723,23 +1725,23 @@ Begin Form
                     StatusBarText ="Trash/Junk cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =7081
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =7320
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =7080
                             Width =1860
                             Height =240
                             Name ="lblTrashJunk"
                             Caption ="Trash/Junk"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =7080
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =7320
                         End
                     End
@@ -1749,7 +1751,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =7081
                     Width =778
                     Height =239
@@ -1761,9 +1763,9 @@ Begin Form
                     StatusBarText ="Trash/Junk cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =7081
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =7320
                 End
                 Begin ComboBox
@@ -1771,7 +1773,7 @@ Begin Form
                     OverlapFlags =247
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =7081
                     Width =763
                     Height =239
@@ -1783,9 +1785,9 @@ Begin Form
                     StatusBarText ="Trash/Junk cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =7081
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =7320
                 End
                 Begin ComboBox
@@ -1793,7 +1795,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2115
+                    Left =2280
                     Top =5161
                     Width =778
                     Height =239
@@ -1805,23 +1807,23 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2115
+                    LayoutCachedLeft =2280
                     LayoutCachedTop =5161
-                    LayoutCachedWidth =2893
+                    LayoutCachedWidth =3058
                     LayoutCachedHeight =5400
                     Begin
                         Begin Label
                             OldBorderStyle =1
                             OverlapFlags =255
-                            Left =255
+                            Left =420
                             Top =5160
                             Width =1860
                             Height =240
                             Name ="lblDeadRootBole"
                             Caption ="Dead root/Bole"
-                            LayoutCachedLeft =255
+                            LayoutCachedLeft =420
                             LayoutCachedTop =5160
-                            LayoutCachedWidth =2115
+                            LayoutCachedWidth =2280
                             LayoutCachedHeight =5400
                         End
                     End
@@ -1831,7 +1833,7 @@ Begin Form
                     OverlapFlags =255
                     IMESentenceMode =3
                     ListRows =21
-                    Left =2905
+                    Left =3070
                     Top =5161
                     Width =778
                     Height =239
@@ -1843,9 +1845,9 @@ Begin Form
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =2905
+                    LayoutCachedLeft =3070
                     LayoutCachedTop =5161
-                    LayoutCachedWidth =3683
+                    LayoutCachedWidth =3848
                     LayoutCachedHeight =5400
                 End
                 Begin Label
@@ -1876,9 +1878,8 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =4290
+                    Left =4200
                     Top =2505
                     Width =270
                     Height =300
@@ -1887,6 +1888,7 @@ Begin Form
                     TabIndex =57
                     Name ="tglNoExoticsQ3"
                     ControlSource ="NoExotics_Q3"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Q3 has no priority 1 exotics"
                     LeftPadding =60
@@ -1894,11 +1896,10 @@ Begin Form
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =4290
+                    LayoutCachedLeft =4200
                     LayoutCachedTop =2505
-                    LayoutCachedWidth =4560
+                    LayoutCachedWidth =4470
                     LayoutCachedHeight =2805
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -1918,7 +1919,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -1926,8 +1927,8 @@ Begin Form
                     Overlaps =1
                     Begin
                         Begin Label
-                            OverlapFlags =223
-                            Left =4260
+                            OverlapFlags =215
+                            Left =4170
                             Top =1665
                             Width =330
                             Height =315
@@ -1935,15 +1936,15 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =8355711
+                            ForeColor =0
                             Name ="lblQ3"
                             Caption ="Q3"
                             FontName ="Calibri"
                             ControlTipText ="Q3 flags"
                             GridlineColor =10921638
-                            LayoutCachedLeft =4260
+                            LayoutCachedLeft =4170
                             LayoutCachedTop =1665
-                            LayoutCachedWidth =4590
+                            LayoutCachedWidth =4500
                             LayoutCachedHeight =1980
                             ThemeFontIndex =1
                             BackThemeColorIndex =1
@@ -1955,9 +1956,8 @@ Begin Form
                     End
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =3855
+                    Left =3765
                     Top =2505
                     Width =270
                     Height =299
@@ -1965,6 +1965,7 @@ Begin Form
                     FontWeight =700
                     TabIndex =58
                     Name ="tglNoExoticsQ2"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Q2 has no priority 1 exotics"
                     LeftPadding =60
@@ -1972,11 +1973,10 @@ Begin Form
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =3855
+                    LayoutCachedLeft =3765
                     LayoutCachedTop =2505
-                    LayoutCachedWidth =4125
+                    LayoutCachedWidth =4035
                     LayoutCachedHeight =2804
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -1996,7 +1996,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2004,8 +2004,8 @@ Begin Form
                     Overlaps =1
                     Begin
                         Begin Label
-                            OverlapFlags =223
-                            Left =3825
+                            OverlapFlags =215
+                            Left =3735
                             Top =1665
                             Width =330
                             Height =315
@@ -2013,15 +2013,15 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =8355711
+                            ForeColor =0
                             Name ="lblQ2"
                             Caption ="Q2"
                             FontName ="Calibri"
                             ControlTipText ="Q2 flags"
                             GridlineColor =10921638
-                            LayoutCachedLeft =3825
+                            LayoutCachedLeft =3735
                             LayoutCachedTop =1665
-                            LayoutCachedWidth =4155
+                            LayoutCachedWidth =4065
                             LayoutCachedHeight =1980
                             ThemeFontIndex =1
                             BackThemeColorIndex =1
@@ -2033,9 +2033,8 @@ Begin Form
                     End
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =3420
+                    Left =3330
                     Top =2505
                     Width =270
                     Height =299
@@ -2043,6 +2042,7 @@ Begin Form
                     FontWeight =700
                     TabIndex =59
                     Name ="tglNoExoticsQ1"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Q1 has no priority 1 exotics"
                     LeftPadding =60
@@ -2050,11 +2050,10 @@ Begin Form
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =3420
+                    LayoutCachedLeft =3330
                     LayoutCachedTop =2505
-                    LayoutCachedWidth =3690
+                    LayoutCachedWidth =3600
                     LayoutCachedHeight =2804
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2074,7 +2073,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2082,8 +2081,8 @@ Begin Form
                     Overlaps =1
                     Begin
                         Begin Label
-                            OverlapFlags =223
-                            Left =3405
+                            OverlapFlags =215
+                            Left =3315
                             Top =1665
                             Width =330
                             Height =315
@@ -2091,15 +2090,15 @@ Begin Form
                             FontWeight =600
                             BackColor =16777215
                             BorderColor =8355711
-                            ForeColor =8355711
+                            ForeColor =0
                             Name ="lblQ1"
                             Caption ="Q1"
                             FontName ="Calibri"
                             ControlTipText ="Q1 flags"
                             GridlineColor =10921638
-                            LayoutCachedLeft =3405
+                            LayoutCachedLeft =3315
                             LayoutCachedTop =1665
-                            LayoutCachedWidth =3735
+                            LayoutCachedWidth =3645
                             LayoutCachedHeight =1980
                             ThemeFontIndex =1
                             BackThemeColorIndex =1
@@ -2111,7 +2110,6 @@ Begin Form
                     End
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =2655
                     Top =2520
@@ -2121,6 +2119,7 @@ Begin Form
                     FontWeight =700
                     TabIndex =60
                     Name ="tglNoExoticsT"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Transect has no exotics"
                     LeftPadding =60
@@ -2132,7 +2131,6 @@ Begin Form
                     LayoutCachedTop =2520
                     LayoutCachedWidth =2925
                     LayoutCachedHeight =2789
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2152,7 +2150,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2189,9 +2187,8 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =4290
+                    Left =4200
                     Top =2085
                     Width =270
                     Height =300
@@ -2199,19 +2196,18 @@ Begin Form
                     FontWeight =700
                     TabIndex =61
                     Name ="tglNotSampledQ3"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
-                    OnClick ="[Event Procedure]"
                     ControlTipText ="Q3 was not sampled"
                     LeftPadding =60
                     RightPadding =75
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =4290
+                    LayoutCachedLeft =4200
                     LayoutCachedTop =2085
-                    LayoutCachedWidth =4560
+                    LayoutCachedWidth =4470
                     LayoutCachedHeight =2385
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2231,7 +2227,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2239,9 +2235,8 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =3855
+                    Left =3765
                     Top =2085
                     Width =270
                     Height =299
@@ -2249,6 +2244,7 @@ Begin Form
                     FontWeight =700
                     TabIndex =62
                     Name ="tglNotSampledQ2"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Q2 was not sampled"
                     LeftPadding =60
@@ -2256,11 +2252,10 @@ Begin Form
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =3855
+                    LayoutCachedLeft =3765
                     LayoutCachedTop =2085
-                    LayoutCachedWidth =4125
+                    LayoutCachedWidth =4035
                     LayoutCachedHeight =2384
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2280,7 +2275,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2288,9 +2283,8 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
-                    Left =3420
+                    Left =3330
                     Top =2085
                     Width =270
                     Height =299
@@ -2298,18 +2292,19 @@ Begin Form
                     FontWeight =700
                     TabIndex =63
                     Name ="tglNotSampledQ1"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
+                    OnLostFocus ="[Event Procedure]"
                     ControlTipText ="Q1 was not sampled"
                     LeftPadding =60
                     RightPadding =75
                     BottomPadding =120
                     GridlineColor =10921638
 
-                    LayoutCachedLeft =3420
+                    LayoutCachedLeft =3330
                     LayoutCachedTop =2085
-                    LayoutCachedWidth =3690
+                    LayoutCachedWidth =3600
                     LayoutCachedHeight =2384
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2329,7 +2324,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2337,7 +2332,6 @@ Begin Form
                     Overlaps =1
                 End
                 Begin ToggleButton
-                    Enabled = NotDefault
                     OverlapFlags =215
                     Left =2655
                     Top =2100
@@ -2347,6 +2341,7 @@ Begin Form
                     FontWeight =700
                     TabIndex =64
                     Name ="tglNotSampledT"
+                    AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
                     ControlTipText ="Transect was not sampled"
                     LeftPadding =60
@@ -2358,7 +2353,6 @@ Begin Form
                     LayoutCachedTop =2100
                     LayoutCachedWidth =2925
                     LayoutCachedHeight =2369
-                    ForeThemeColorIndex =0
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                     UseTheme =1
@@ -2378,7 +2372,7 @@ Begin Form
                     PressedForeColor =0
                     PressedForeThemeColorIndex =0
                     QuickStyle =23
-                    QuickStyleMask =-5
+                    QuickStyleMask =-517
                     WebImagePaddingLeft =4
                     WebImagePaddingTop =2
                     WebImagePaddingRight =4
@@ -2444,7 +2438,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =1980
+                    Left =2145
                     Top =7380
                     Width =840
                     Height =255
@@ -2452,9 +2446,9 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ1"
 
-                    LayoutCachedLeft =1980
+                    LayoutCachedLeft =2145
                     LayoutCachedTop =7380
-                    LayoutCachedWidth =2820
+                    LayoutCachedWidth =2985
                     LayoutCachedHeight =7635
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2466,7 +2460,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2880
+                    Left =3045
                     Top =7380
                     Width =840
                     Height =255
@@ -2474,9 +2468,9 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ2"
 
-                    LayoutCachedLeft =2880
+                    LayoutCachedLeft =3045
                     LayoutCachedTop =7380
-                    LayoutCachedWidth =3720
+                    LayoutCachedWidth =3885
                     LayoutCachedHeight =7635
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2488,7 +2482,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3780
+                    Left =3945
                     Top =7380
                     Width =840
                     Height =255
@@ -2496,9 +2490,9 @@ Begin Form
                     ForeColor =8355711
                     Name ="tbxQ3"
 
-                    LayoutCachedLeft =3780
+                    LayoutCachedLeft =3945
                     LayoutCachedTop =7380
-                    LayoutCachedWidth =4620
+                    LayoutCachedWidth =4785
                     LayoutCachedHeight =7635
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2510,7 +2504,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =1980
+                    Left =2145
                     Top =7680
                     Width =840
                     Height =255
@@ -2519,9 +2513,9 @@ Begin Form
                     Name ="tbxQ1IS"
                     ControlSource ="IsSampled_Q1"
 
-                    LayoutCachedLeft =1980
+                    LayoutCachedLeft =2145
                     LayoutCachedTop =7680
-                    LayoutCachedWidth =2820
+                    LayoutCachedWidth =2985
                     LayoutCachedHeight =7935
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2533,7 +2527,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2880
+                    Left =3045
                     Top =7680
                     Width =840
                     Height =255
@@ -2542,9 +2536,9 @@ Begin Form
                     Name ="tbxQ2IS"
                     ControlSource ="IsSampled_Q2"
 
-                    LayoutCachedLeft =2880
+                    LayoutCachedLeft =3045
                     LayoutCachedTop =7680
-                    LayoutCachedWidth =3720
+                    LayoutCachedWidth =3885
                     LayoutCachedHeight =7935
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2556,7 +2550,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3780
+                    Left =3945
                     Top =7680
                     Width =840
                     Height =255
@@ -2565,9 +2559,9 @@ Begin Form
                     Name ="tbxQ3IS"
                     ControlSource ="IsSampled_Q3"
 
-                    LayoutCachedLeft =3780
+                    LayoutCachedLeft =3945
                     LayoutCachedTop =7680
-                    LayoutCachedWidth =4620
+                    LayoutCachedWidth =4785
                     LayoutCachedHeight =7935
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2579,7 +2573,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =1980
+                    Left =2145
                     Top =7980
                     Width =840
                     Height =255
@@ -2588,9 +2582,9 @@ Begin Form
                     Name ="tbxQ1NE"
                     ControlSource ="NoExotics_Q1"
 
-                    LayoutCachedLeft =1980
+                    LayoutCachedLeft =2145
                     LayoutCachedTop =7980
-                    LayoutCachedWidth =2820
+                    LayoutCachedWidth =2985
                     LayoutCachedHeight =8235
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2602,7 +2596,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =2880
+                    Left =3045
                     Top =7980
                     Width =840
                     Height =255
@@ -2611,9 +2605,9 @@ Begin Form
                     Name ="tbxQ2NE"
                     ControlSource ="NoExotics_Q2"
 
-                    LayoutCachedLeft =2880
+                    LayoutCachedLeft =3045
                     LayoutCachedTop =7980
-                    LayoutCachedWidth =3720
+                    LayoutCachedWidth =3885
                     LayoutCachedHeight =8235
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2625,7 +2619,7 @@ Begin Form
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
-                    Left =3780
+                    Left =3945
                     Top =7980
                     Width =840
                     Height =255
@@ -2644,9 +2638,9 @@ Begin Form
                         0x2c0031002c003000290000000000
                     End
 
-                    LayoutCachedLeft =3780
+                    LayoutCachedLeft =3945
                     LayoutCachedTop =7980
-                    LayoutCachedWidth =4620
+                    LayoutCachedWidth =4785
                     LayoutCachedHeight =8235
                     ForeThemeColorIndex =1
                     ForeShade =50.0
@@ -2664,7 +2658,7 @@ Begin Form
                     OverlapFlags =247
                     IMESentenceMode =3
                     ListRows =21
-                    Left =3675
+                    Left =3840
                     Top =5161
                     Width =763
                     Height =239
@@ -2676,12 +2670,13 @@ Begin Form
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
                     OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
-                    LayoutCachedLeft =3675
+                    LayoutCachedLeft =3840
                     LayoutCachedTop =5161
-                    LayoutCachedWidth =4438
+                    LayoutCachedWidth =4603
                     LayoutCachedHeight =5400
                 End
                 Begin TextBox
+                    Visible = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =215
@@ -2703,109 +2698,9 @@ Begin Form
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                 End
-                Begin Rectangle
-                    Visible = NotDefault
-                    SpecialEffect =0
-                    BackStyle =1
-                    OldBorderStyle =0
-                    OverlapFlags =247
-                    Left =240
-                    Top =7380
-                    Width =4440
-                    Height =1260
-                    BackColor =14478320
-                    Name ="bxHide"
-                    LayoutCachedLeft =240
-                    LayoutCachedTop =7380
-                    LayoutCachedWidth =4680
-                    LayoutCachedHeight =8640
-                End
-                Begin TextBox
-                    SpecialEffect =0
-                    OldBorderStyle =0
-                    OverlapFlags =223
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =2265
-                    Top =1665
-                    Width =990
-                    Height =315
-                    FontSize =11
-                    FontWeight =700
-                    TabIndex =79
-                    BackColor =16777215
-                    BorderColor =8355711
-                    ForeColor =8355711
-                    Name ="lblTransect"
-                    ControlSource ="=\"Transect\""
-                    FontName ="Calibri"
-                    ControlTipText ="Transect flags"
-                    ConditionalFormat = Begin
-                        0x01000000b4000000020000000100000000000000000000001400000001010000 ,
-                        0x7f7f7f00ffffff00010000000000000015000000290000000101000092929200 ,
-                        0xffffff0000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b0074006200780049007300530061006d0070006c0065006400530075006d00 ,
-                        0x5d003d003000000000005b007400620078004e006f00450078006f0074006900 ,
-                        0x63007300530075006d005d003d00330000000000
-                    End
-                    GridlineColor =10921638
-
-                    LayoutCachedLeft =2265
-                    LayoutCachedTop =1665
-                    LayoutCachedWidth =3255
-                    LayoutCachedHeight =1980
-                    BackThemeColorIndex =1
-                    BorderThemeColorIndex =0
-                    BorderTint =50.0
-                    ThemeFontIndex =1
-                    ConditionalFormat14 = Begin
-                        0x0100020000000100000000000000010100007f7f7f00ffffff00130000005b00 ,
-                        0x74006200780049007300530061006d0070006c0065006400530075006d005d00 ,
-                        0x3d00300000000000000000000000000000000000000000000001000000000000 ,
-                        0x000101000092929200ffffff00130000005b007400620078004e006f00450078 ,
-                        0x006f007400690063007300530075006d005d003d003300000000000000000000 ,
-                        0x000000000000000000000000
-                    End
-                    GridlineThemeColorIndex =1
-                    GridlineShade =65.0
-                End
-                Begin Rectangle
-                    Visible = NotDefault
-                    SpecialEffect =0
-                    OldBorderStyle =0
-                    OverlapFlags =255
-                    Left =195
-                    Top =1620
-                    Width =4560
-                    Height =360
-                    BackColor =-2147483633
-                    Name ="bxCoverLabels"
-                    OnClick ="[Event Procedure]"
-                    LayoutCachedLeft =195
-                    LayoutCachedTop =1620
-                    LayoutCachedWidth =4755
-                    LayoutCachedHeight =1980
-                End
-                Begin Subform
-                    OverlapFlags =255
-                    Left =4755
-                    Top =1500
-                    Width =8265
-                    Height =6718
-                    TabIndex =54
-                    Name ="fsub_Species_Current"
-                    SourceObject ="Form.fsub_Species"
-                    LinkChildFields ="Transect_ID"
-                    LinkMasterFields ="t_Transect_ID"
-
-                    LayoutCachedLeft =4755
-                    LayoutCachedTop =1500
-                    LayoutCachedWidth =13020
-                    LayoutCachedHeight =8218
-                End
                 Begin Subform
                     Visible = NotDefault
-                    OverlapFlags =247
+                    OverlapFlags =255
                     SpecialEffect =0
                     Left =7215
                     Top =3072
@@ -2823,6 +2718,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
+                    Visible = NotDefault
                     OverlapFlags =215
                     IMESentenceMode =3
                     ColumnCount =3
@@ -2830,7 +2726,7 @@ Begin Form
                     Left =4020
                     Top =810
                     Width =1620
-                    TabIndex =81
+                    TabIndex =80
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"100\""
                     Name ="cbxRecorder"
                     ControlSource ="Recorder"
@@ -2845,13 +2741,14 @@ Begin Form
                     LayoutCachedHeight =1050
                     Begin
                         Begin Label
+                            Visible = NotDefault
                             OverlapFlags =215
                             Left =3060
                             Top =810
                             Width =870
                             Height =240
                             FontWeight =700
-                            Name ="Label92"
+                            Name ="lblRecorder"
                             Caption ="Recorder"
                             LayoutCachedLeft =3060
                             LayoutCachedTop =810
@@ -2859,6 +2756,103 @@ Begin Form
                             LayoutCachedHeight =1050
                         End
                     End
+                End
+                Begin Subform
+                    OverlapFlags =247
+                    Left =4800
+                    Top =1500
+                    Width =8340
+                    Height =6718
+                    TabIndex =54
+                    Name ="fsub_Species_Current"
+                    SourceObject ="Form.fsub_Species"
+                    LinkChildFields ="Transect_ID"
+                    LinkMasterFields ="t_Transect_ID"
+
+                    LayoutCachedLeft =4800
+                    LayoutCachedTop =1500
+                    LayoutCachedWidth =13140
+                    LayoutCachedHeight =8218
+                End
+                Begin Label
+                    OverlapFlags =223
+                    TextAlign =2
+                    Left =645
+                    Top =7680
+                    Width =300
+                    Height =240
+                    BackColor =-2147483643
+                    ForeColor =8355711
+                    Name ="tbxIS"
+                    Caption ="IS"
+                    LayoutCachedLeft =645
+                    LayoutCachedTop =7680
+                    LayoutCachedWidth =945
+                    LayoutCachedHeight =7920
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin Label
+                    OverlapFlags =223
+                    TextAlign =2
+                    Left =645
+                    Top =7980
+                    Width =300
+                    Height =240
+                    BackColor =-2147483643
+                    ForeColor =8355711
+                    Name ="lblNE"
+                    Caption ="NE"
+                    LayoutCachedLeft =645
+                    LayoutCachedTop =7980
+                    LayoutCachedWidth =945
+                    LayoutCachedHeight =8220
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                End
+                Begin Rectangle
+                    Visible = NotDefault
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    Left =300
+                    Top =7380
+                    Width =4440
+                    Height =900
+                    BackColor =14478320
+                    Name ="bxHide"
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =7380
+                    LayoutCachedWidth =4740
+                    LayoutCachedHeight =8280
+                End
+                Begin Label
+                    OverlapFlags =215
+                    Left =2370
+                    Top =1665
+                    Width =855
+                    Height =315
+                    FontSize =11
+                    FontWeight =700
+                    BackColor =16777215
+                    BorderColor =8355711
+                    ForeColor =0
+                    Name ="lblTransect"
+                    Caption ="Transect"
+                    FontName ="Calibri"
+                    ControlTipText ="Transect flags"
+                    GridlineColor =10921638
+                    LayoutCachedLeft =2370
+                    LayoutCachedTop =1665
+                    LayoutCachedWidth =3225
+                    LayoutCachedHeight =1980
+                    ThemeFontIndex =1
+                    BackThemeColorIndex =1
+                    BorderThemeColorIndex =0
+                    BorderTint =50.0
+                    GridlineThemeColorIndex =1
+                    GridlineShade =65.0
                 End
             End
         End
@@ -3018,6 +3012,26 @@ On Error GoTo Err_Handler
     'populate the transect & quadrat flag toggles based on usys_temp_transect
     PopulateFlagToggles
   
+    'set subform controls to match main form (for conditional enabling)
+    With Me.fsub_Species_Current.Form
+        .Controls("tbxISQ1") = Me.tbxQ1IS
+        .Controls("tbxNEQ1") = Me.tbxQ1NE
+        .Controls("tbxISQ2") = Me.tbxQ2IS
+        .Controls("tbxNEQ2") = Me.tbxQ2NE
+        .Controls("tbxISQ3") = Me.tbxQ3IS
+        .Controls("tbxNEQ3") = Me.tbxQ3NE
+    
+        Dim IsEnabled As Boolean
+        
+        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
+                        (.Controls("tbxNESum") = 3) _
+                        , True, False)
+        
+        .Controls("Plant_Code").Enabled = IsEnabled
+        .Controls("cbxIsDead").Enabled = IsEnabled
+        
+    End With
+  
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -3075,63 +3089,84 @@ On Error GoTo Err_Handler
 '    Me.tbxQ2 = Nz(TempVars("Q2_ID"), 0)
 '    Me.tbxQ3 = Nz(TempVars("Q3_ID"), 0)
     
-    'set up toggles depending on species data
+    'set subform controls to match main form (for conditional enabling)
     With Me.fsub_Species_Current.Form
+        .Controls("tbxISQ1") = Me.tbxQ1IS
+        .Controls("tbxNEQ1") = Me.tbxQ1NE
+        .Controls("tbxISQ2") = Me.tbxQ2IS
+        .Controls("tbxNEQ2") = Me.tbxQ2NE
+        .Controls("tbxISQ3") = Me.tbxQ3IS
+        .Controls("tbxNEQ3") = Me.tbxQ3NE
     
-        'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
-        If .HasRecords = True Then
-            
-            'check if Q1,Q2,Q3 % Cover values are set
-           Debug.Print .Plant_Code
-           Debug.Print .HasRecordsQ1 & "-"; .HasRecordsQ2 & "-"; .HasRecordsQ3
-            'disable transect & quadrat toggles
-            DisableToggles
-            
-            'enable select toggles depending on which quadrats have records
-            Dim aryToggles() As String
-            Dim strToggles As String
-            Dim i As Integer
-            Dim tgl As Variant
-                        
-            'initialize
-            strToggles = "1,2,3"
-
-            With Me.fsub_Species_Current.Form
-            
-                If .Controls("tbxQ1_Sampled") > 0 Then _
-                    strToggles = Replace(strToggles, "1,", "")
-                If .Controls("tbxQ2_Sampled") > 0 Then _
-                    strToggles = Replace(strToggles, "2,", "")
-                If .Controls("tbxQ3_Sampled") > 0 Then _
-                    strToggles = Replace(strToggles, "3", "")
-            
-            End With
-Debug.Print "PreTrim: " & strToggles
-
-            If Len(strToggles) > 0 Then
-
-                'trim any ending commas
-                strToggles = IIf(Right(strToggles, 1) = ",", Left(strToggles, Len(strToggles) - 1), strToggles)
-            
-Debug.Print "PostTrim: " & strToggles
-                aryToggles = Split(strToggles, ",")
-                
-                'iterate to enable IF any toggles are left
-                If IsArray(aryToggles) Then
-                    For Each tgl In aryToggles
-                        
-Debug.Print "tgl: " & tgl
-                        EnableToggles CInt(tgl)
-                    Next
-                End If
-            End If
-        Else
-            
-            'enable transect & quadrat toggles
-            EnableToggles
+        Dim IsEnabled As Boolean
         
-        End If
+        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
+                        (.Controls("tbxNESum") = 3) _
+                        , True, False)
+        
+        .Controls("Plant_Code").Enabled = IsEnabled
+        .Controls("cbxIsDead").Enabled = IsEnabled
+        
     End With
+    
+    
+'    'set up toggles depending on species data
+'    With Me.fsub_Species_Current.Form
+'
+'        'if species subform has records --> disable transect & quadrat toggles (IsSampled, NoExotics)
+'        If .HasRecords = True Then
+'
+'            'check if Q1,Q2,Q3 % Cover values are set
+'           Debug.Print .Plant_Code
+'           Debug.Print .HasRecordsQ1 & "-"; .HasRecordsQ2 & "-"; .HasRecordsQ3
+'            'disable transect & quadrat toggles
+'            DisableToggles
+'
+'            'enable select toggles depending on which quadrats have records
+'            Dim aryToggles() As String
+'            Dim strToggles As String
+'            Dim i As Integer
+'            Dim tgl As Variant
+'
+'            'initialize
+'            strToggles = "1,2,3"
+'
+'            With Me.fsub_Species_Current.Form
+'
+'                If .Controls("tbxQ1_Sampled") > 0 Then _
+'                    strToggles = Replace(strToggles, "1,", "")
+'                If .Controls("tbxQ2_Sampled") > 0 Then _
+'                    strToggles = Replace(strToggles, "2,", "")
+'                If .Controls("tbxQ3_Sampled") > 0 Then _
+'                    strToggles = Replace(strToggles, "3", "")
+'
+'            End With
+''Debug.Print "PreTrim: " & strToggles
+'
+'            If Len(strToggles) > 0 Then
+'
+'                'trim any ending commas
+'                strToggles = IIf(Right(strToggles, 1) = ",", Left(strToggles, Len(strToggles) - 1), strToggles)
+'
+''Debug.Print "PostTrim: " & strToggles
+'                aryToggles = Split(strToggles, ",")
+'
+'                'iterate to enable IF any toggles are left
+'                If IsArray(aryToggles) Then
+'                    For Each tgl In aryToggles
+'
+''Debug.Print "tgl: " & tgl
+'                        EnableToggles CInt(tgl)
+'                    Next
+'                End If
+'            End If
+'        Else
+'
+'            'enable transect & quadrat toggles
+'            EnableToggles
+'
+'        End If
+'    End With
 
     'populate the transect & quadrat flag toggles based on usys_temp_transect
     PopulateFlagToggles
@@ -3410,10 +3445,9 @@ End Sub
 ' =================================
 '   Not Sampled Flag
 ' =================================
-
 ' ---------------------------------
-' Sub:          tglNotSampledQ3_Click
-' Description:  Toggles Q3 not sampled flag
+' Sub:          tglNotSampledT_AfterUpdate
+' Description:  Toggle after update actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      -
@@ -3422,27 +3456,38 @@ End Sub
 ' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
-'   BLC - 7/17/2016 - initial version
+'   BLC - 7/17/2017 - initial version
 ' ---------------------------------
-Private Sub tglNotSampledQ3_Click()
+Private Sub tglNotSampledT_AfterUpdate()
 On Error GoTo Err_Handler
+    
+    'set strCheck
+    strCheck = StringFromCodepoint(uCheck)
+    
+    Dim val As String
+    Select Case tglNotSampledT
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNotSampledT: " & val
 
-    UpdateFlags 3
+    'display as checkbox
+    ToggleCaption tglNotSampledT, True
 
-'    Dim IsSampledQ3 As Integer
-'    Dim NoExoticsQ3 As Integer
-'
-'    IsSampledQ3 = IIf(tglNotSampledQ3 = strCheck, 0, 1)
-'    NoExoticsQ3 = IIf(tglNoExoticsQ3 = strCheck, 1, 0)
-'
-'    Dim q As New Quadrat
-'
-'    With q
-'        .QuadratID = tbxQ3
-'        .IsSampledQ3 = IsSampledQ3
-'        .NoExoticsQ3 = NoExoticsQ3
-'        .UpdateQuadratFlags
-'    End With
+    If tglNotSampledT Then _
+        tglNoExoticsT.Caption = ""
+
+    Dim i As Integer
+    
+    For i = 1 To 3
+        Me.Controls("tglNotSampledQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
+        UpdateFlags Me.Controls("tglNotSampledQ" & i), 1
+    Next
     
 Exit_Handler:
     Exit Sub
@@ -3450,14 +3495,14 @@ Err_Handler:
     Select Case Err.Number
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
-            "Error encountered (#" & Err.Number & " - tglQ3NotSampled_Click[frm_Quadrat_Transect form])"
+            "Error encountered (#" & Err.Number & " - tglNotSampledT_AfterUpdate[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
 End Sub
 
 ' ---------------------------------
-' Sub:          UpdateFlags
-' Description:  Updates not sampled/no exotics flags
+' Sub:          tglNoExoticsT_AfterUpdate
+' Description:  Toggle after update actions
 ' Assumptions:  -
 ' Parameters:   -
 ' Returns:      -
@@ -3466,40 +3511,527 @@ End Sub
 ' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
 ' Adapted:      -
 ' Revisions:
-'   BLC - 7/17/2016 - initial version
+'   BLC - 7/17/2017 - initial version
 ' ---------------------------------
-Private Sub UpdateFlags(QuadratNumber As Integer)
+Private Sub tglNoExoticsT_AfterUpdate()
 On Error GoTo Err_Handler
 
-'    Dim IsSampled, IsSampledQ1, IsSampledQ2, IsSampledQ3 As Integer
-'    Dim NoExotics, NoExoticsQ1, NoExoticsQ2, NoExoticsQ3 As Integer
-    Dim IsSampled As Integer
-    Dim NoExotics As Integer
+    'set strCheck
+    strCheck = StringFromCodepoint(uCheck)
+
+    Dim val As String
+    Select Case tglNoExoticsT
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNoExoticsT: " & val
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsT, True
+
+    Dim i As Integer
+    
+    For i = 1 To 3
+        Me.Controls("tglNoExoticsQ" & i).Caption = IIf(tglNotSampledT = True, "", strCheck)
+        UpdateFlags Me.Controls("tglNoExoticsQ" & i), 1
+    Next
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsT_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+' ---------------------------------
+' Sub:          tglNotSampledQ1_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ1_AfterUpdate()
+On Error GoTo Err_Handler
+
+    Dim val As String
+    Select Case tglNotSampledQ1
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNotSampledQ1: " & val
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ1, True
+
+    If tglNotSampledQ1 Then _
+        tglNoExoticsQ1.Caption = ""
+
+'    CheckTransectLevel "NotSampled"
+'
+'    SetToggles Me.tglNotSampledQ1
+
+    UpdateFlags Me.tglNotSampledQ1, 1
+
+'    Me.Form.Requery
+
+    'update usys_temp_transect data
+    'tbxISQ1 = Nz(Me.tglNotSampledQ1, 0)
+
+'    If tglNotSampledQ1.Caption = strCheck Then
+'        'not sampled? -> no priority 1 exotics either
+'        tglNoExoticsQ1.Caption = strCheck
+'        tglNoExoticsQ1.Enabled = False
+'    Else
+'        If tglNoExoticsT.Caption <> strCheck Then
+'            'sampled? -> priority 1 exotics ok
+'            tglNoExoticsQ1.Caption = ""
+'            tglNoExoticsQ1.Enabled = True
+'        End If
+'    End If
+
+'    If tglNotSampledQ1 Then _
+'        ReadyForSave
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ1_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNoExoticsQ1_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ1_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ1, True
+
+'    CheckTransectLevel "NoExotics"
+
+'    SetToggles Me.tglNoExoticsQ1
+
+    Dim val As String
+    Select Case tglNoExoticsQ1
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNoExoticsQ1: " & val
+
+    UpdateFlags Me.tglNoExoticsQ1, 1
+    
+    RefreshData
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ1_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+
+' ---------------------------------
+' Sub:          tglNotSampledQ2_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ2_AfterUpdate()
+On Error GoTo Err_Handler
+
+    Dim val As String
+    Select Case tglNotSampledQ2
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNotSampledQ2: " & val
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ2, True
+
+    If tglNotSampledQ2 Then _
+        tglNoExoticsQ2.Caption = ""
+
+'    CheckTransectLevel "NotSampled"
+'
+'    SetToggles Me.tglNotSampledQ2
+
+    UpdateFlags Me.tglNotSampledQ2, 2
+
+    RefreshData
+
+'    If tglNotSampledQ2.Caption = strCheck Then
+'        'not sampled? -> no priority 1 exotics either
+'        tglNoExoticsQ2.Caption = strCheck
+'        tglNoExoticsQ2.Enabled = False
+'    Else
+'        If tglNoExoticsT.Caption <> strCheck Then
+'            'sampled? -> priority 1 exotics ok
+'            tglNoExoticsQ2.Caption = ""
+'            tglNoExoticsQ2.Enabled = True
+'        End If
+'    End If
+
+'    If tglNotSampledQ2 Then _
+'        ReadyForSave
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ2_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNoExoticsQ2_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ2_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ2, True
+
+'    CheckTransectLevel "NoExotics"
+
+'    SetToggles Me.tglNoExoticsQ2
+
+    Dim val As String
+    Select Case tglNoExoticsQ2
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNoExoticsQ2: " & val
+
+
+    UpdateFlags Me.tglNoExoticsQ2, 2
+
+    'Me.Form.Requery << reverts to what's in old temp table
+    RefreshData
+
+
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ2_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'' ---------------------------------
+'' Sub:          tglNotSampledQ3_Click
+'' Description:  Toggles Q3 not sampled flag
+'' Assumptions:  -
+'' Parameters:   -
+'' Returns:      -
+'' Throws:       none
+'' References:   -
+'' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
+'' Adapted:      -
+'' Revisions:
+''   BLC - 7/17/2016 - initial version
+'' ---------------------------------
+'Private Sub tglNotSampledQ3_Click()
+'On Error GoTo Err_Handler
+'
+'    'display as checkbox
+'    ToggleCaption tglNotSampledQ3, True
+'
+'    UpdateFlags Me.tglNotSampledQ3, 3
+'
+'Debug.Print "IS=" & Me.tbxQ1IS
+'
+'Exit_Handler:
+'    Exit Sub
+'Err_Handler:
+'    Select Case Err.Number
+'      Case Else
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - tglQ3NotSampled_Click[frm_Quadrat_Transect form])"
+'    End Select
+'    Resume Exit_Handler
+'End Sub
+'
+'' ---------------------------------
+'' Sub:          tglNoExoticsQ3_Click
+'' Description:  Toggles Q3 not sampled flag
+'' Assumptions:  -
+'' Parameters:   -
+'' Returns:      -
+'' Throws:       none
+'' References:   -
+'' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
+'' Adapted:      -
+'' Revisions:
+''   BLC - 7/17/2016 - initial version
+'' ---------------------------------
+'Private Sub tglNoExoticsQ3_Click()
+'On Error GoTo Err_Handler
+'
+'    'display as checkbox
+'    ToggleCaption tglNoExoticsQ3, True
+'
+'    UpdateFlags Me.tglNoExoticsQ3, 3
+'
+'Debug.Print "NE=" & Me.tbxQ1NE
+'
+'Exit_Handler:
+'    Exit Sub
+'Err_Handler:
+'    Select Case Err.Number
+'      Case Else
+'        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+'            "Error encountered (#" & Err.Number & " - tglQ3NoExotics_Click[frm_Quadrat_Transect form])"
+'    End Select
+'    Resume Exit_Handler
+'End Sub
+
+
+' ---------------------------------
+' Sub:          tglNotSampledQ3_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNotSampledQ3_AfterUpdate()
+On Error GoTo Err_Handler
+
+    Dim val As String
+    Select Case tglNotSampledQ3
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNotSampledQ3: " & val
+
+    'display as checkbox
+    ToggleCaption tglNotSampledQ3, True
+
+    If tglNotSampledQ3 Then _
+        tglNoExoticsQ3.Caption = ""
+
+'    CheckTransectLevel "NotSampled"
+'
+'    SetToggles Me.tglNotSampledQ3
+
+    UpdateFlags Me.tglNotSampledQ3, 3
+
+    RefreshData
+
+'    If tglNotSampledQ3.Caption = strCheck Then
+'        'not sampled? -> no priority 1 exotics either
+'        tglNoExoticsQ3.Caption = strCheck
+'        tglNoExoticsQ3.Enabled = False
+'    Else
+'        If tglNoExoticsT.Caption <> strCheck Then
+'            'sampled? -> priority 1 exotics ok
+'            tglNoExoticsQ3.Caption = ""
+'            tglNoExoticsQ3.Enabled = True
+'        End If
+'    End If
+
+'    If tglNotSampledQ3 Then _
+'        ReadyForSave
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNotSampledQ3_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          tglNoExoticsQ3_AfterUpdate
+' Description:  Toggle after update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub tglNoExoticsQ3_AfterUpdate()
+On Error GoTo Err_Handler
+
+    'display as checkbox
+    ToggleCaption tglNoExoticsQ3, True
+
+'    CheckTransectLevel "NoExotics"
+
+'    SetToggles Me.tglNoExoticsQ3
+
+    Dim val As String
+    Select Case tglNoExoticsQ3
+        Case Null
+            val = "NULL"
+        Case True
+            val = "True"
+        Case False
+            val = "False"
+    End Select
+    
+    Debug.Print "tglNoExoticsQ3: " & val
+
+    UpdateFlags Me.tglNoExoticsQ3, 3
+
+    RefreshData
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - tglNoExoticsQ3_AfterUpdate[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+' ---------------------------------
+' Sub:          UpdateFlags
+' Description:  Updates not sampled/no exotics flags
+' Assumptions:
+'               IsSampled = INVERSE of NotSampled UI toggle
+'               NoExotics = NoExotics UI toggle
+'               Flag values are 0 or 1 vs 0 and -1 (per Access)
+'               so use absolute value to coerce proper values for database
+' Parameters:   ctl - toggle control passed from UI (control object)
+'               QuadratNumber - numeric quadrat number (1-3) (integer)
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, July 17, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/17/2016 - initial version
+' ---------------------------------
+Private Sub UpdateFlags(ctrl As Control, QuadratNumber As Integer)
+On Error GoTo Err_Handler
+
+    Dim IsSampled, NoExotics As Integer
     Dim strNotSampled, strNoExotics, strTbx As String
-    Dim tglNotSampled As ToggleButton
-    Dim tglNoExotics As ToggleButton
+    Dim tglNotSampled, tglNoExotics As ToggleButton
     Dim tbx As TextBox
     
-    'control names
-    strNotSampled = "tglNotSampledQ" & QuadratNumber
-    'strNoExotics =
-    strTbx = "tbxQ" & QuadratNumber
+    'set strCheck
+    strCheck = StringFromCodepoint(uCheck)
     
     'set controls
     Set tglNotSampled = Me.Controls("tglNotSampledQ" & QuadratNumber)
     Set tglNoExotics = Me.Controls("tglNoExoticsQ" & QuadratNumber)
     Set tbx = Me.Controls("tbxQ" & QuadratNumber)
     
-    'set value
-    IsSampled = IIf(tglNotSampled.Caption = strCheck, 0, 1)
-    NoExotics = IIf(tglNoExotics.Caption = strCheck, 1, 0)
+    'set value (avoid NULLs via Nz)
+    IsSampled = IIf(Nz(tglNotSampled.Caption, "") = strCheck, 0, 1)
+    NoExotics = IIf(Nz(tglNoExotics.Caption, "") = strCheck, 1, 0)
+    
+    'cannot have NoExotics = 1 when transect isn't sampled (IsSampled = 0)
+    If InStr(ctrl.name, "NotSampled") And IsSampled = 0 Then
+        NoExotics = 0
+    End If
     
     Dim q As New Quadrat
     
     With q
-        .QuadratID = tbx 'Q3
+        .QuadratID = tbx
         .QuadratNumber = QuadratNumber
         
+        'set values (Quadrat)
         Select Case QuadratNumber
             Case 1
                 .IsSampledQ1 = IsSampled
@@ -3508,16 +4040,67 @@ On Error GoTo Err_Handler
                 .IsSampledQ2 = IsSampled
                 .NoExoticsQ2 = NoExotics
             Case 3
-                .IsSampledQ3 = IsSampled 'Q3
-                .NoExoticsQ3 = NoExotics 'Q3
+                .IsSampledQ3 = IsSampled
+                .NoExoticsQ3 = NoExotics
         End Select
         
         .UpdateQuadratFlags
         
     End With
     
-    Me.Requery
+    'set UI fields (usys_temp_transect)
+    Me.Controls("tbxQ" & QuadratNumber & "IS") = IsSampled
+    Me.Controls("tbxQ" & QuadratNumber & "NE") = NoExotics
     
+    'clear NoExotics if transect is not sampled
+    If IsSampled = 0 Then
+        Me.Controls("tglNoExoticsQ" & QuadratNumber).Caption = ""
+        Me.Controls("tbxQ" & QuadratNumber & "NE") = 0
+    End If
+    
+    'update sums
+    Me.tbxIsSampledSum.Requery
+    Me.tbxNoExoticsSum.Requery
+    
+    'refresh subform's conditional formatting
+    'Me.fsub_Species_Current.Form.Recalc
+    'Me.fsub_Species_Current.Form.Requery
+    'Forms("fsub_Species").Repaint << can't find form
+    'Me.fsub_Species_Current.Form.Repaint
+    'Me.fsub_Species_Current.Form.Refresh
+    'Me.fsub_Species_Current.Form.Recalc
+    
+'    Me.fsub_Species_Current.Requery
+    
+'    Me.Requery
+    
+    'directly set subform's controls
+    If Me.tbxIsSampledSum > 0 Then
+        Me.fsub_Species_Current.Form.Controls("Plant_Code").Enabled = True
+        Me.fsub_Species_Current.Form.Controls("cbxIsDead").Enabled = True
+    End If
+    
+    If Me.tbxQ1IS = 1 Or Me.tbxQ1NE = 1 Then _
+        Me.fsub_Species_Current.Form.Controls("Q1_hm").Enabled = True
+    
+    If Me.tbxQ2IS = 1 Or Me.tbxQ2NE = 1 Then _
+        Me.fsub_Species_Current.Form.Controls("Q2_5m").Enabled = True
+    
+    If Me.tbxQ3IS = 1 Or Me.tbxQ3NE = 1 Then _
+        Me.fsub_Species_Current.Form.Controls("Q3_10m").Enabled = True
+    
+'    Me.Repaint
+
+    'set subform controls to match main form (for conditional enabling)
+    Me.fsub_Species_Current.Form.Controls("tbxISQ1") = Me.tbxQ1IS
+    Me.fsub_Species_Current.Form.Controls("tbxNEQ1") = Me.tbxQ1NE
+    Me.fsub_Species_Current.Form.Controls("tbxISQ2") = Me.tbxQ2IS
+    Me.fsub_Species_Current.Form.Controls("tbxNEQ2") = Me.tbxQ2NE
+    Me.fsub_Species_Current.Form.Controls("tbxISQ3") = Me.tbxQ3IS
+    Me.fsub_Species_Current.Form.Controls("tbxNEQ3") = Me.tbxQ3NE
+    
+    
+    Me.Recalc
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -3528,6 +4111,46 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          RefreshData
+' Description:  Refreshes the underlying temp table so UI reflects changed data
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, March 8, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 3/8/2017 - initial version
+' ---------------------------------
+Private Sub RefreshData()
+On Error GoTo Err_Handler
+
+    'refresh temp table << can't do this way
+    'error 3211 RefreshData [frm_Quadrat_Transect form]
+    'database engine could not lock table 'usys_temp_transect' because it is already in use by another
+    'person or process
+'    DoCmd.SetWarnings False
+'    DoCmd.OpenQuery ("Create_usys_temp_transect")
+'    DoCmd.SetWarnings True
+    
+    'refresh UI
+'    Me.Form.Requery
+    
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - RefreshData[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 
 '' ---------------------------------
 '' Sub:          tglNotSampledT_LostFocus

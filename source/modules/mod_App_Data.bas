@@ -1214,7 +1214,7 @@ On Error GoTo Err_Handler
                     .Parameters("rid") = params(1)
             
             End Select
-Debug.Print .sql
+'Debug.Print .sql
             .Execute dbFailOnError
                 
     ' -------------------

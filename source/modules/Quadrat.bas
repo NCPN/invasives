@@ -486,8 +486,12 @@ On Error GoTo Err_Handler
                 NoExoticsFlag = IIf(.NoExoticsQ3 = True, 1, 0)
         End Select
         
+        'avoid invalid combination IsSampled = 0, NoExotics = 1
+        'ensure IsSampled = 0 doesn't have NoExotics = 1
+        If IsSampledFlag = 0 Then NoExoticsFlag = 0
+        
         params(0) = "Quadrat"
-        params(1) = .ID                 'quadrat ID
+        params(1) = .QuadratID          'quadrat ID
         params(2) = IsSampledFlag       'IsSampled flag
         params(3) = NoExoticsFlag       'NoExotics flag
         
