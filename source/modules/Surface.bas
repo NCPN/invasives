@@ -8,13 +8,14 @@ Option Explicit
 ' =================================
 ' CLASS:        Surface
 ' Level:        Framework class
-' Version:      1.03
+' Version:      1.01
 '
 ' Description:  Surface (microhabitat) object related properties, events, functions & procedures for UI display
 '
 ' Source/date:  Bonnie Campbell, 4/17/2017
 ' References:   -
 ' Revisions:    BLC - 4/17/2017 - 1.00 - initial version
+'               BLC - 7/24/2017 - 1.01 - added GetIDFromColName()
 ' =================================
 
 '---------------------
@@ -207,6 +208,51 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          GetIDFromColName
+' Description:  Lookup surface ID based on surface/microhabitat ColName
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/24/2017 - for NCPN tools
+' Revisions:
+'   BLC, 7/24/2017 - initial version
+'---------------------------------------------------------------------------------------
+Public Function GetIDFromColName() As Long
+On Error GoTo Err_Handler
+    
+    Dim Template As String
+    
+    Template = "s_surface_by_colname"
+    
+    Dim params(0 To 1) As Variant
+
+    With Me
+        
+        'set temp var
+        SetTempVar "SurfaceColName", .OrigColumnName
+    
+        params(0) = "Surface"
+        params(1) = .OrigColumnName
+                
+              .ID = GetRecords(Template).Fields(0)
+'        .ID = 0
+    End With
+
+Exit_Handler:
+    Exit Function
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - GetIDFromColName[Surface class])"
+    End Select
+    Resume Exit_Handler
+End Function
 
 '---------------------------------------------------------------------------------------
 ' SUB:          SaveToDb

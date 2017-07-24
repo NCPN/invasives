@@ -16,16 +16,16 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =13380
+    Width =18060
     DatasheetFontHeight =9
     ItemSuffix =95
-    Left =4200
-    Top =1590
-    Right =17880
-    Bottom =10635
+    Left =10260
+    Top =1200
+    Right =23940
+    Bottom =10245
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x2f42c638d0f6e440
+        0x0ae7540792f7e440
     End
     RecordSource ="usys_temp_transect"
     Caption ="frm_Canopy_Transect"
@@ -311,11 +311,10 @@ Begin Form
                     ColumnWidth =465
                     FontWeight =700
                     TabIndex =2
-                    ForeColor =255
+                    ForeColor =0
                     Name ="Transect"
                     ControlSource ="Transect"
                     StatusBarText ="Transect number - 1, 2, or 3"
-                    ControlTipText ="First Transect"
 
                     LayoutCachedLeft =600
                     LayoutCachedTop =420
@@ -2044,7 +2043,6 @@ Begin Form
                     TabIndex =59
                     Name ="tglNoExoticsQ1"
                     AfterUpdate ="[Event Procedure]"
-                    Caption ="✔"
                     FontName ="Calibri"
                     ControlTipText ="Q1 has no priority 1 exotics"
                     LeftPadding =60
@@ -2902,6 +2900,7 @@ Option Explicit
 '               BLC - 7/10/2017 - 1.05 - added check for new transects, create new quadrats, quadrat surface
 '                                        microhabitat records
 '               BLC - 7/17/2017 - 1.06 - hid Transect level toggle (disabled) in favor of Q1-3 toggles
+'               BLC - 7/24/2017 - 1.07 - added UpdateMicrohabitat()
 ' =================================
 
 '---------------------
@@ -3020,24 +3019,6 @@ On Error GoTo Err_Handler
   
     'set subform controls to match main form (for conditional enabling)
     RefreshSubform
-'    With Me.fsub_Species_Current
-'        .Controls("tbxISQ1") = Me.tbxQ1IS
-'        .Controls("tbxNEQ1") = Me.tbxQ1NE
-'        .Controls("tbxISQ2") = Me.tbxQ2IS
-'        .Controls("tbxNEQ2") = Me.tbxQ2NE
-'        .Controls("tbxISQ3") = Me.tbxQ3IS
-'        .Controls("tbxNEQ3") = Me.tbxQ3NE
-'
-'        Dim IsEnabled As Boolean
-'
-'        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
-'                        (.Controls("tbxNESum") = 3) _
-'                        , True, False)
-'
-'        .Controls("Plant_Code").Enabled = IsEnabled
-'        .Controls("cbxIsDead").Enabled = IsEnabled
-'
-'    End With
   
 Exit_Handler:
     Exit Sub
@@ -3087,36 +3068,9 @@ On Error GoTo Err_Handler
     Me!fsub_Species_2008.Visible = False
     Me!fsub_Species_2009.Visible = False
   End If
-
-    'update AvgCover
-    'Me.fsub_Species_Current!Average_Cover = Me.fsub_Species_Current.Form.CalcAvgCover
-    
-    'update Quadrat IDs
-'    Me.tbxQ1 = Nz(TempVars("Q1_ID"), 0)
-'    Me.tbxQ2 = Nz(TempVars("Q2_ID"), 0)
-'    Me.tbxQ3 = Nz(TempVars("Q3_ID"), 0)
     
     'set subform controls to match main form (for conditional enabling)
     RefreshSubform
-'    With Me.fsub_Species_Current
-'        .Controls("tbxISQ1") = Me.tbxQ1IS
-'        .Controls("tbxNEQ1") = Me.tbxQ1NE
-'        .Controls("tbxISQ2") = Me.tbxQ2IS
-'        .Controls("tbxNEQ2") = Me.tbxQ2NE
-'        .Controls("tbxISQ3") = Me.tbxQ3IS
-'        .Controls("tbxNEQ3") = Me.tbxQ3NE
-'
-'        Dim IsEnabled As Boolean
-'
-'        IsEnabled = IIf((.Controls("tbxISSum") = 0) Or _
-'                        (.Controls("tbxNESum") = 3) _
-'                        , True, False)
-'
-'        .Controls("Plant_Code").Enabled = IsEnabled
-'        .Controls("cbxIsDead").Enabled = IsEnabled
-'
-'    End With
-    
     
 '    'set up toggles depending on species data
 '    With Me.fsub_Species_Current.Form
@@ -3918,7 +3872,6 @@ Err_Handler:
     Resume Exit_Handler
 End Sub
 
-
 ' ---------------------------------
 ' Sub:          ToggleDisabledMessage
 ' Description:  Checks if transect level flags are set
@@ -3963,7 +3916,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-
 
 ' ---------------------------------
 ' Sub:          SetQuadratToggles
@@ -4280,8 +4232,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-
-
 
 ' ---------------------------------
 ' Sub:          SetToggles
@@ -4708,12 +4658,7 @@ On Error GoTo Err_Handler
     
     If Not (rs.BOF And rs.EOF) Then
         Do Until rs.EOF
-        
-            'set field name
-            'strField = rs("ControlName")
-            
-            'Debug.Print strField
-        
+                
             'populate the field
             Me.Controls(rs("ControlName")) = rs("PercentCover")
             
@@ -4810,6 +4755,83 @@ Err_Handler:
     Resume Exit_Handler
 End Function
 
+' ---------------------------------
+' Sub:          UpdateMicrohabitat
+' Description:  Updates the microhabitat (surface cover) percent cover value
+' Assumptions:  Last character in the microhabitat control dropdown is an integer
+'               representing the quadrat number (e.g. "Dead_Wood_Q1")
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  Bonnie Campbell, July 24, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/24/2017 - initial version
+' ---------------------------------
+Private Sub UpdateMicrohabitat(ctrl As Control)
+On Error GoTo Err_Handler
+
+    Dim rs As DAO.Recordset
+    Dim strField As String
+    
+    'skip if NULL
+'    If IsNull(Me.tbxTransectID) Then GoTo Exit_Handler
+    
+    'set the transect ID
+'    SetTempVar "Transect_ID", CStr(Me.tbxTransectID)
+    
+'    Set rs = GetRecords("s_surfacecover_by_transect")
+    
+'    If Not (rs.BOF And rs.EOF) Then
+'        Do Until rs.EOF
+'
+'            'populate the field
+'            Me.Controls(rs("ControlName")) = rs("PercentCover")
+'
+'            'set the tempvar for Quadrat ID (1,2,3)
+'            SetTempVar "Q" & rs("Quadrat") & "_ID", CInt(rs("Quadrat_ID"))
+'
+'            rs.MoveNext
+'        Loop
+'    End If
+'
+'    'populate Q1-3 IDs
+'    tbxQ1 = Nz(TempVars("Q1_ID"), 0)
+'    tbxQ2 = Nz(TempVars("Q2_ID"), 0)
+'    tbxQ3 = Nz(TempVars("Q3_ID"), 0)
+    
+    'Dead_Wood_Q1
+    
+    'retrieve control name & determine colname & quadrat
+    Dim q As Integer
+    Dim strQuadratControl As String
+    
+    q = CInt(Right(ctrl.name, 1))
+    
+    strQuadratControl = "tbxQ" & q
+    
+    Dim sc As New SurfaceCover
+    
+    With sc
+        .QuadratID = Me.Controls(strQuadratControl)
+        '.SurfaceID =
+        .PercentCover = Nz(ctrl.Value, 0)
+        
+        'update the cover
+        .SaveToDb True
+    End With
+    
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - UpdateMicrohabitat[frm_Quadrat_Transect form])"
+    End Select
+    Resume Exit_Handler
+End Sub
 
 ' ---------------------------------
 ' Sub:          RefreshSubform

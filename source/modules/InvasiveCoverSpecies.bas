@@ -8,13 +8,15 @@ Option Explicit
 ' =================================
 ' CLASS:        InvasiveCoverSpecies
 ' Level:        Application class
-' Version:      1.00
+' Version:      1.01
 '
 ' Description:  Invasive cover species object related properties, events, functions & procedures for UI display
 '
 ' Source/date:  Bonnie Campbell, 4/17/2017
 ' References:   -
 ' Revisions:    BLC - 4/17/2017 - 1.00 - initial version, adapted from Big Rivers UnderstoryCoverSpecies
+'               BLC - 7/24/2017 - 1.01 - revised all percent cover properties to Single to
+'                                        accommodate 0.5 (trace) percent covers
 ' =================================
 
 '---------------------
@@ -50,7 +52,7 @@ Public Event InvalidPosition(Value As Integer)
 
 '-- base events (coverspecies)
 Public Event InvalidQuadratID(Value As String)
-Public Event InvalidPctCover(Value As Integer)
+Public Event InvalidPctCover(Value As Single) 'Integer)
 
 '-- base events (species) --
 Public Event InvalidMasterPlantCode(Value As String)
@@ -158,7 +160,7 @@ Public Property Get QuadratID() As Long
     QuadratID = m_CoverSpecies.QuadratID
 End Property
 
-Public Property Let PctCover(Value As Integer)
+Public Property Let PctCover(Value As Single) 'Integer)
     If IsBetween(Value, 0, 100, True) Then
         m_CoverSpecies.PctCover = Value
     Else
@@ -166,7 +168,7 @@ Public Property Let PctCover(Value As Integer)
     End If
 End Property
 
-Public Property Get PctCover() As Integer
+Public Property Get PctCover() As Single 'Integer
     PctCover = m_CoverSpecies.PctCover
 End Property
 
@@ -696,9 +698,9 @@ On Error GoTo Err_Handler
         'retrieve the species cover ID for the last inserted record
         'cannot use @@Identity here since it requires using same CurrentDb object
         '@ time CurrentDb is called, that's a new one >> use MAX(ID) instead
-        With CurrentDb
-            Me.SpeciesCoverID = .OpenRecordset("SELECT MAX(ID) FROM SpeciesCover").Fields(0)
-        End With
+'        With CurrentDb
+'            Me.SpeciesCoverID = .OpenRecordset("SELECT MAX(ID) FROM SpeciesCover").Fields(0)
+'        End With
     End With
 
 Exit_Handler:

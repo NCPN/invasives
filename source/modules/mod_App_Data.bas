@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.33
+' Version:      1.34
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -55,6 +55,7 @@ Option Explicit
 '                                        Add u_transect_start_time
 '               BLC, 7/17/2017  - 1.32 - add u_quadrat_flags
 '               BLC, 7/18/2017  - 1.33 - add species cover templates
+'               BLC, 7/24/2017  - 1.34 - added get surface ID from col name template
 ' =================================
 
 '' ---------------------------------
@@ -924,6 +925,7 @@ End Sub
 '   BLC - 4/18/2017 - adjusted for invasives templates
 '   BLC - 4/24/2017 - added microhabitat surface & species templates
 '   BLC - 7/5/2017  - added surface microhabitat & quadrat IDs templates
+'   BLC - 7/24/2017 - added get surface ID from col name template
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -984,6 +986,10 @@ On Error GoTo Err_Handler
                 
                 Case "s_surface"
                     '-- required parameters --
+                
+                Case "s_surface_by_colname"
+                    '-- required parameters --
+                    .Parameters("cname") = TempVars("SurfaceColName")
                 
                 Case "s_surface_by_ID"
                     '-- required parameters --
@@ -1189,10 +1195,11 @@ On Error GoTo Err_Handler
                 
                 Case "u_surface_cover"
                     '-- required parameters --
-                    .Parameters("qid") = params(1)
-                    .Parameters("sid") = params(2)
-                    .Parameters("pct") = params(3)
-                    '.Parameters("sfcid") = Params(4)
+                    .Parameters("sfcid") = params(1)
+                    .Parameters("qid") = params(2)
+                    .Parameters("sid") = params(3)
+                    .Parameters("pct") = params(4)
+                    
                 
                 Case "u_template"
                     '-- required parameters --
@@ -1232,9 +1239,9 @@ On Error GoTo Err_Handler
                 Case "d_speciescover"
                     '-- required parameters --
                     .Parameters("scid") = params(1)
-                    .Parameters("qid") = params(2)
-                    .Parameters("plant") = params(3)
-                    .Parameters("dead") = params(4)
+'                    .Parameters("qid") = params(2)
+'                    .Parameters("plant") = params(3)
+'                    .Parameters("dead") = params(4)
             
             End Select
 'Debug.Print .sql

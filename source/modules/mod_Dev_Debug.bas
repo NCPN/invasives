@@ -751,6 +751,11 @@ Public Sub runtest()
 '
 '    End With
     
-
+    Dim s As Surface
+    
+    With s
+        .OrigColumnName = "Dead_Wood"
+        .ID = s.GetIDFromColName
+    End With
     
 End Sub
