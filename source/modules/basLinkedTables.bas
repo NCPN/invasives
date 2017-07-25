@@ -70,7 +70,7 @@ Public Function fxnVerifyLinks() As Boolean
     Do Until rst.EOF
         intI = intI + 1
         varReturn = SysCmd(acSysCmdUpdateMeter, intI)
-        strLinkTableName = rst![name]
+        strLinkTableName = rst![Name]
         ' Make sure the linked table opens properly
         If fxnCheckLink(strLinkTableName) = False Then
             ' Unable to open a linked table (not a critical error)
@@ -153,7 +153,7 @@ Public Function fxnCheckLink(strTable As String) As Boolean
     On Error Resume Next
     ' Check for failure.  If can't determine the name of
     ' the first field in the table, the link must be bad.
-    varRet = CurrentDb.TableDefs(strTable).Fields(0).name
+    varRet = CurrentDb.TableDefs(strTable).Fields(0).Name
     If Err <> 0 Then
         fxnCheckLink = False
     Else
@@ -271,7 +271,7 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
         intI = intI + 1
         varReturn = SysCmd(acSysCmdUpdateMeter, intI)
         strLinkTableName = rst![Link_table]
-        varReturn = dbGet.TableDefs(strLinkTableName).Fields(0).name
+        varReturn = dbGet.TableDefs(strLinkTableName).Fields(0).Name
         rst.MoveNext
     Loop
 

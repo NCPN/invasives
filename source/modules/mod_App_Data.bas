@@ -1348,9 +1348,9 @@ On Error GoTo Err_Handler
     
         'default
         NoList = False
-        strTable = frm.name
+        strTable = frm.Name
     
-        Select Case frm.name
+        Select Case frm.Name
             
             Case "Template"
                 'Dim tpl As New Template
@@ -1475,7 +1475,7 @@ On Error GoTo Err_Handler
     
 '    If frm.Dirty Then
     If frm.Dirty And Not NoList Then
-        Debug.Print "UpsertRecord " & frm.name & " DIRTY"
+        Debug.Print "UpsertRecord " & frm.Name & " DIRTY"
         'frm.Dirty = False
         
         frm!lblMsg.ForeColor = lngYellow
@@ -1484,7 +1484,7 @@ On Error GoTo Err_Handler
         frm!lblMsg.Caption = "** DIRTY **" 'UNSAVED CHANGES! **"
         
     Else
-        Debug.Print "UpsertRecord " & frm.name & " CLEAN"
+        Debug.Print "UpsertRecord " & frm.Name & " CLEAN"
     End If
         
 ' CHECK IF POPULATING FORM IS THE ISSUE...
@@ -2415,7 +2415,7 @@ On Error GoTo Err_Handler
     Dim rs As DAO.Recordset
     
     'set surface ID (pull from global dictionary using control name - _Q#)
-    strSurface = Left(caller.name, Len(caller.name) - 3)
+    strSurface = Left(caller.Name, Len(caller.Name) - 3)
     
     'if global dictionary not available, set it
     If IsNothing(g_AppSurfaces) Then GetSurfaceIDs
@@ -2435,7 +2435,7 @@ On Error GoTo Err_Handler
         .SurfaceID = sfcID
         
         'fetch the appropriate QuadratID
-        strControl = "tbxQ" & Right(CStr(caller.name), 1)
+        strControl = "tbxQ" & Right(CStr(caller.Name), 1)
         .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
         
         'update values
@@ -2488,7 +2488,7 @@ On Error GoTo Err_Handler
     
     
     'set quadrat # (pull from global dictionary using control name - _Q#)
-    strQuadrat = Replace(Left(caller.name, 2), "Q", "")
+    strQuadrat = Replace(Left(caller.Name, 2), "Q", "")
     
     'retrieve values
     PctCover = Nz(caller.Value, 0)
@@ -2509,7 +2509,7 @@ On Error GoTo Err_Handler
         .QuadratID = Forms("frm_Data_Entry").Controls("frm_Quadrat_Transect").Form.Controls(strControl)
         
         'determine quadrat position (pull from global dictionary using control name)
-        strPosition = g_AppQuadratPositions(caller.name)
+        strPosition = g_AppQuadratPositions(caller.Name)
         
         'update values
         .SaveToDb True

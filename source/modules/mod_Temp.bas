@@ -75,7 +75,7 @@ On Error GoTo Err_Handler
 Dim i As Integer
 
     For i = 0 To [TempVars].Count - 1
-        If [TempVars].item(i).name = strItem Then
+        If [TempVars].item(i).Name = strItem Then
             'fetch the index and exit
             GetTempVarIndex = i
             Exit Function
@@ -384,7 +384,7 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
     If InCurrentDb = False Then
         strError = "Creating the temp database..."
         strTempFile = CurrentProject.Path & "\" _
-                    & Left(CurrentProject.name, InStrRev(CurrentProject.name, ".") - 1) _
+                    & Left(CurrentProject.Name, InStrRev(CurrentProject.Name, ".") - 1) _
                     & "_Temp.accdb"
         If mod_File.FileExists(strTempFile) = False Then
             DBEngine.CreateDatabase strTempFile, dbLangGeneral, dbVersion120

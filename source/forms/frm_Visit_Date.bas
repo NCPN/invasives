@@ -496,8 +496,8 @@ Private Sub btnEdit_Click()
     Dim strCriteriaLoc As String
     Dim strCriteriaEvent As String
 
-    strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.name, "Location_ID")
-    strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.name, "Event_ID")
+    strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.Name, "Location_ID")
+    strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.Name, "Event_ID")
     
     're-generate the temp table sources
     RefreshTempTable "usys_temp_transect"

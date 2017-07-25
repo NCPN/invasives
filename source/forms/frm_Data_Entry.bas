@@ -22,10 +22,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =10
     ItemSuffix =206
-    Left =13395
-    Top =810
-    Right =27555
-    Bottom =12255
+    Left =4500
+    Top =1020
+    Right =18660
+    Bottom =12465
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20140106101754-829801619.052887' AND [Event_ID]='20151107154044-1"
         "06369674.20578'"
@@ -34,7 +34,8 @@ Begin Form
     End
     RecordSource ="qfrm_Data_Entry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event - Filter by sampling event - Filter by sampling event"
+        "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
+        " by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -1045,7 +1046,7 @@ On Error GoTo Err_Handler
     If IsNull(Me!txtLocation_ID) Then
         Me!txtUnit_Code = Null
     Else
-        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.name, "txtLocation_ID")
+        strCriteria = GetCriteriaString("Location_ID=", "tbl_Locations", "Location_ID", Me.Name, "txtLocation_ID")
         Me!txtUnit_Code = DLookup("Unit_Code", "tbl_Locations", strCriteria)
     End If
 
@@ -1092,7 +1093,7 @@ On Error GoTo Err_Handler
     With se
         .EventID = Me.tbxEventID
         
-        Select Case ctrl.name
+        Select Case ctrl.Name
             Case "tbxStartDate"
                 'start date
                 If Not IsNull(start) Then

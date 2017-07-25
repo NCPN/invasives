@@ -146,7 +146,7 @@ Option Compare Database
 Option Explicit
 
 Private Sub cmdCancel_Click()
-DoCmd.Close acForm, Me.name
+DoCmd.Close acForm, Me.Name
 End Sub
 
 Private Sub cmdManageLinks_Click()
@@ -167,7 +167,7 @@ Else
     strSQL = strSQL & CorrectText(Me!txtProjectName) & ";"
 End If
 CurrentDb.Execute strSQL
-DoCmd.Close acForm, Me.name
+DoCmd.Close acForm, Me.Name
 End Sub
 
 Private Sub Form_Close()

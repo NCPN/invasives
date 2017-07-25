@@ -6,7 +6,6 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     ScrollBars =2
@@ -19,13 +18,12 @@ Begin Form
     Width =18060
     DatasheetFontHeight =9
     ItemSuffix =95
-    Left =10260
-    Top =1200
-    Right =23940
-    Bottom =10245
+    Top =1230
+    Right =12810
+    Bottom =10275
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
-        0x0ae7540792f7e440
+        0x4d9088baa9f7e440
     End
     RecordSource ="usys_temp_transect"
     Caption ="frm_Canopy_Transect"
@@ -2964,16 +2962,25 @@ On Error GoTo Err_Handler
     'check if transect has quadrats
     With t
         .TransectQuadratID = Me.tbxTransectID '"20170705114218-705547511.577606"
-                        
+
         'newly imported transects have 0 quadrats --> create them & the associated
         '                                             surface microhabitat records
         If .NumQuadrats = 0 Then
             .AddQuadrats
             .AddSurfaceMicrohabitats
+
+            MsgBox "New quadrats & surface microhabitat records have been created." & _
+                vbCrLf & vbCrLf & "Please re-open the visit to retrieve this new data." _
+                , vbOKOnly, "New Records Created!"
             
-            Me.Refresh
+'            DoCmd.SetWarnings False
+'            DoCmd.Close acForm, Me.Name
+'            DoCmd.SetWarnings True
+'
+'            Exit Sub
+'            Me.Refresh
         End If
-    
+
     End With
             
     'default
@@ -2996,7 +3003,7 @@ On Error GoTo Err_Handler
     Dim ctl As Control
     
     For Each ctl In Me.Controls
-        If Left(ctl.name, 3) = "tgl" Then
+        If Left(ctl.Name, 3) = "tgl" Then
             ctl.Enabled = True
             ctl.ForeColor = lngBlack
         End If
@@ -3795,7 +3802,7 @@ On Error GoTo Err_Handler
     NoExotics = IIf(Nz(tglNoExotics.Caption, "") = strCheck, 1, 0)
     
     'cannot have NoExotics = 1 when transect isn't sampled (IsSampled = 0)
-    If InStr(ctrl.name, "NotSampled") And IsSampled = 0 Then
+    If InStr(ctrl.Name, "NotSampled") And IsSampled = 0 Then
         NoExotics = 0
     End If
     
@@ -4264,13 +4271,13 @@ On Error GoTo Err_Handler
     
     blnON = False
     
-    If Me.Controls(ToggleSet.name).Caption = strCheck Then _
+    If Me.Controls(ToggleSet.Name).Caption = strCheck Then _
         blnON = True
     
     'default
-    strToggle = ToggleSet.name
+    strToggle = ToggleSet.Name
        
-    Select Case Replace(ToggleSet.name, "tgl", "")
+    Select Case Replace(ToggleSet.Name, "tgl", "")
     
     '------------------------------------------
     ' NotSampled
@@ -4349,7 +4356,7 @@ On Error GoTo Err_Handler
             End If
     End Select
 
-    If Me.Controls(ToggleSet.name).Caption = strCheck Then
+    If Me.Controls(ToggleSet.Name).Caption = strCheck Then
         With fsub_Species_Current
             'form
             .Enabled = IIf(blnON, False, True)
@@ -4717,7 +4724,7 @@ On Error GoTo Err_Handler
     With vt
         .TransectQuadratID = Me.tbxTransectID
         
-        Select Case ctrl.name
+        Select Case ctrl.Name
             Case "tbxStartDate"
                 'start time
                 If Not IsNull(start) Then
@@ -4807,7 +4814,7 @@ On Error GoTo Err_Handler
     Dim q As Integer
     Dim strQuadratControl As String
     
-    q = CInt(Right(ctrl.name, 1))
+    q = CInt(Right(ctrl.Name, 1))
     
     strQuadratControl = "tbxQ" & q
     

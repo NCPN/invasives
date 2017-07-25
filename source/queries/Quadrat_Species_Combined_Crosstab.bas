@@ -1,7 +1,8 @@
 ﻿dbMemo "SQL" ="SELECT pc.*, ci.SpeciesCoverID_Q1, ci.SpeciesCoverID_Q2, ci.SpeciesCoverID_Q3\015"
     "\012FROM Quadrat_Species_PctCover_Crosstab AS pc INNER JOIN Quadrat_Species_Cove"
-    "rID_Crosstab AS ci ON (ci.IsDead = pc.IsDead) AND (ci.PlantCode = pc.PlantCode) "
-    "AND (ci.Transect_ID = pc.Transect_ID);\015\012"
+    "rID_Crosstab AS ci ON (ci.Transect_ID = pc.Transect_ID) AND (ci.PlantCode = pc.P"
+    "lantCode) AND (ci.IsDead = pc.IsDead)\015\012ORDER BY pc.Transect_ID, pc.PlantCo"
+    "de;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
@@ -305,6 +306,8 @@ Begin
     Begin
         dbText "Name" ="pc.Transect_ID"
         dbLong "AggregateType" ="-1"
+        dbInteger "ColumnWidth" ="2070"
+        dbBoolean "ColumnHidden" ="0"
     End
     Begin
         dbText "Name" ="pc.Q1_0m"

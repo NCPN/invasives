@@ -236,7 +236,7 @@ On Error GoTo Err_Handler
     
     For Each obj In dbColl
     
-        If obj.name = strName Then
+        If obj.Name = strName Then
             DbObjectExists = True
             GoTo Exit_Handler
         End If
@@ -405,7 +405,7 @@ Public Function qryExists(strQueryName As String) As Boolean
   
     For Each qdf In CurrentDb.QueryDefs
 '        Debug.Print qdf.Name
-        If qdf.name = strQueryName Then
+        If qdf.Name = strQueryName Then
             qryExists = True
             Exit For
         End If
@@ -616,7 +616,7 @@ On Error GoTo Err_Handler
         
         If tdf.Fields.Count > max Then
             max = tdf.Fields.Count
-            qtName = tdf.name
+            qtName = tdf.Name
         End If
 
     Next
@@ -625,7 +625,7 @@ On Error GoTo Err_Handler
     
         If qdf.Fields.Count > max Then
             max = qdf.Fields.Count
-            qtName = qdf.name
+            qtName = qdf.Name
         End If
 
     Next
@@ -1051,7 +1051,7 @@ On Error GoTo Err_Handler
         With fld
                 
             'prepare array of info
-            aryFieldInfo(iCol) = .name & "|" & _
+            aryFieldInfo(iCol) = .Name & "|" & _
                             .Type & "|" & _
                             .Size & "|" & _
                             .Required & "|" & _
@@ -1124,18 +1124,18 @@ On Error GoTo Err_Handler
     For Each tdf In CurrentDb.TableDefs
 'Debug.Print tdf.Name
         'handle MSys tables
-        If Len(tdf.name) > Len(Replace(tdf.name, "MSys", "")) And ShowMSysTables = False Then GoTo Continue
+        If Len(tdf.Name) > Len(Replace(tdf.Name, "MSys", "")) And ShowMSysTables = False Then GoTo Continue
         
         'handle tsys tables
-        If Len(tdf.name) > Len(Replace(tdf.name, "tsys", "")) And ShowMSysTables = False Then GoTo Continue
+        If Len(tdf.Name) > Len(Replace(tdf.Name, "tsys", "")) And ShowMSysTables = False Then GoTo Continue
                 
         'handle usys tables
-        If Len(tdf.name) > Len(Replace(tdf.name, "usys", "")) And ShowMSysTables = False Then GoTo Continue
+        If Len(tdf.Name) > Len(Replace(tdf.Name, "usys", "")) And ShowMSysTables = False Then GoTo Continue
         
         'handle linked tables
         If Len(tdf.connect) > 0 And ShowLinkedTables = False Then GoTo Continue
         
-        tbls = tbls & "|" & tdf.name
+        tbls = tbls & "|" & tdf.Name
         
 Continue:
     Next

@@ -13,11 +13,11 @@ Begin Form
     GridY =24
     Width =7860
     DatasheetFontHeight =9
-    ItemSuffix =66
-    Left =8940
-    Top =3090
-    Right =17250
-    Bottom =9495
+    ItemSuffix =74
+    Left =2400
+    Top =2595
+    Right =10710
+    Bottom =9000
     DatasheetGridlinesColor =12632256
     AfterInsert ="[Event Procedure]"
     RecSrcDt = Begin
@@ -27,6 +27,7 @@ Begin Form
     Caption ="fsub_Species"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
+    AfterUpdate ="[Event Procedure]"
     OnOpen ="[Event Procedure]"
     DatasheetFontName ="Arial"
     PrtMip = Begin
@@ -159,7 +160,7 @@ Begin Form
                     Top =240
                     Width =960
                     Height =240
-                    Name ="Label14"
+                    Name ="lblSpecies"
                     Caption ="Species"
                     LayoutCachedLeft =165
                     LayoutCachedTop =240
@@ -172,7 +173,7 @@ Begin Form
                     Top =240
                     Width =900
                     Height =240
-                    Name ="Label23"
+                    Name ="lblQ1"
                     Caption ="Q1@0m"
                     LayoutCachedLeft =3105
                     LayoutCachedTop =240
@@ -186,7 +187,7 @@ Begin Form
                     Top =240
                     Width =915
                     Height =240
-                    Name ="Label25"
+                    Name ="lblQ2"
                     Caption ="Q2@4.5m"
                     LayoutCachedLeft =3885
                     LayoutCachedTop =240
@@ -200,7 +201,7 @@ Begin Form
                     Top =240
                     Width =915
                     Height =240
-                    Name ="Label26"
+                    Name ="lblQ3"
                     Caption ="Q3@9.5m"
                     LayoutCachedLeft =4890
                     LayoutCachedTop =240
@@ -225,13 +226,42 @@ Begin Form
             End
         End
         Begin Section
-            Height =660
+            Height =780
             BackColor =-2147483633
             Name ="Detail"
             Begin
                 Begin TextBox
-                    Visible = NotDefault
+                    SpecialEffect =0
+                    OldBorderStyle =0
                     OverlapFlags =93
+                    IMESentenceMode =3
+                    Left =60
+                    Top =60
+                    Width =7740
+                    Height =645
+                    TabIndex =13
+                    BackColor =-2147483633
+                    Name ="tbxRecord"
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000001000000 ,
+                        0x00000000ffcccc00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780044007500700065005d003d00310000000000
+                    End
+
+                    LayoutCachedLeft =60
+                    LayoutCachedTop =60
+                    LayoutCachedWidth =7800
+                    LayoutCachedHeight =705
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000100000000000000ffcccc000b0000005b00 ,
+                        0x74006200780044007500700065005d003d003100000000000000000000000000 ,
+                        0x000000000000000000
+                    End
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =255
                     IMESentenceMode =3
                     Left =165
                     Top =60
@@ -249,7 +279,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
-                    OverlapFlags =93
+                    OverlapFlags =255
                     IMESentenceMode =3
                     Left =705
                     Top =60
@@ -267,7 +297,7 @@ Begin Form
                     LayoutCachedHeight =315
                 End
                 Begin CommandButton
-                    OverlapFlags =85
+                    OverlapFlags =247
                     Left =7005
                     Top =60
                     Width =705
@@ -286,10 +316,11 @@ Begin Form
                     WebImagePaddingTop =2
                     WebImagePaddingRight =1
                     WebImagePaddingBottom =1
+                    Overlaps =1
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =93
+                    OverlapFlags =255
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
@@ -332,7 +363,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =95
+                    OverlapFlags =255
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
@@ -375,7 +406,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =87
+                    OverlapFlags =247
                     TextAlign =2
                     IMESentenceMode =3
                     ListRows =21
@@ -467,7 +498,7 @@ Begin Form
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     IMESentenceMode =3
                     ColumnCount =2
@@ -511,7 +542,7 @@ Begin Form
                 End
                 Begin TextBox
                     SpecialEffect =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -548,7 +579,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -582,7 +613,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -616,7 +647,7 @@ Begin Form
                 Begin TextBox
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =85
+                    OverlapFlags =247
                     TextAlign =2
                     BackStyle =0
                     IMESentenceMode =3
@@ -639,6 +670,39 @@ Begin Form
                     LayoutCachedTop =420
                     LayoutCachedWidth =5640
                     LayoutCachedHeight =660
+                    ForeThemeColorIndex =1
+                    ForeShade =50.0
+                    ConditionalFormat14 = Begin
+                        0x010001000000010000000000000001000000ececec00ececec00120000005b00 ,
+                        0x7400620078004400650076004d006f00640065005d003d00460061006c007300 ,
+                        0x6500000000000000000000000000000000000000000000
+                    End
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    TextAlign =2
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =420
+                    Top =390
+                    Width =660
+                    TabIndex =12
+                    ForeColor =8355711
+                    Name ="tbxDupe"
+                    ConditionalFormat = Begin
+                        0x0100000088000000010000000100000000000000000000001300000001000000 ,
+                        0xececec00ececec00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b007400620078004400650076004d006f00640065005d003d00460061006c00 ,
+                        0x7300650000000000
+                    End
+
+                    LayoutCachedLeft =420
+                    LayoutCachedTop =390
+                    LayoutCachedWidth =1080
+                    LayoutCachedHeight =630
                     ForeThemeColorIndex =1
                     ForeShade =50.0
                     ConditionalFormat14 = Begin
@@ -1240,12 +1304,6 @@ Public Property Get HasRecordsQ3() As Boolean
     HasRecordsQ3 = m_HasRecordsQ3
 End Property
 
-'Private Sub Detail_Click()
-'
-'    MsgBox Me.tbxSpeciesCoverID_Q1
-'
-'End Sub
-
 '---------------------
 ' Methods
 '---------------------
@@ -1411,6 +1469,10 @@ Private Sub Form_AfterInsert()
 
     Debug.Print "form_afterinsert"
 
+    'check if duplicate species cover (skip the warning)
+    IsDuplicateSpeciesCover
+
+
 Exit_Handler:
     Exit Sub
 Err_Handler:
@@ -1421,6 +1483,39 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
+
+' ---------------------------------
+' Sub:          Form_AfterUpdate
+' Description:  Form after Update actions
+' Assumptions:  -
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  BLC, July 25, 2017 - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/25/2017 - initial version
+' ---------------------------------
+Private Sub Form_AfterUpdate()
+    On Error GoTo Err_Handler
+
+    Debug.Print "form_afterUpdate"
+
+    'check if duplicate species cover (skip the warning)
+    IsDuplicateSpeciesCover
+
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - Form_AfterUpdate[fsub_Species form])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
 
 ' ---------------------------------
 ' Sub:          btnDelete_Click

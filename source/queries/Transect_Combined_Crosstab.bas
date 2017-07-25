@@ -1,8 +1,9 @@
 ﻿dbMemo "SQL" ="SELECT t.*, s.IsSampled_Q1, s.IsSampled_Q2, s.IsSampled_Q3, ne.NoExotics_Q1, ne."
-    "NoExotics_Q2, ne.NoExotics_Q3, sc.*\015\012FROM ((Transect AS t INNER JOIN Trans"
-    "ect_IsSampled_Crosstab AS s ON s.Transect_ID = t.Transect_ID) INNER JOIN Transec"
-    "t_NoExotics_Crosstab AS ne ON ne.Transect_ID = t.Transect_ID) INNER JOIN Transec"
-    "t_SurfaceCover_Crosstab AS sc ON sc.Transect_ID = t.Transect_ID;\015\012"
+    "NoExotics_Q2, ne.NoExotics_Q3, sc.*\015\012FROM ((Transect AS t LEFT JOIN Transe"
+    "ct_IsSampled_Crosstab AS s ON s.Transect_ID = t.Transect_ID) LEFT JOIN Transect_"
+    "NoExotics_Crosstab AS ne ON ne.Transect_ID = t.Transect_ID) LEFT JOIN Transect_S"
+    "urfaceCover_Crosstab AS sc ON sc.Transect_ID = t.Transect_ID\015\012ORDER BY t.E"
+    "vent_ID, t.Transect;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
@@ -255,6 +256,8 @@ Begin
     Begin
         dbText "Name" ="t.Event_ID"
         dbLong "AggregateType" ="-1"
+        dbInteger "ColumnWidth" ="3330"
+        dbBoolean "ColumnHidden" ="0"
     End
     Begin
         dbText "Name" ="t.Transect"

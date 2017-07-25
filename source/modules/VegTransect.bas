@@ -8,7 +8,7 @@ Option Explicit
 ' =================================
 ' CLASS:        VegTransect
 ' Level:        Framework class
-' Version:      1.04
+' Version:      1.05
 '
 ' Description:  VegTransect object related properties, events, functions & procedures
 '
@@ -22,6 +22,7 @@ Option Explicit
 '               BLC - 7/13/2017  - 1.03 - added UpdateTransect for updating visit data,
 '                                         added StartTime, Comments properties
 '               BLC - 7/16/2017  - 1.04 - revised to accommodate NULL StartTime values
+'               BLC - 7/25/2017  - 1.05 - revised GetTransectQuadrats() to address empty recordsets for transects w/o quadrats
 ' =================================
 
 '---------------------
@@ -343,6 +344,7 @@ End Sub
 ' Adapted:      Bonnie Campbell, 7/10/2017 - for NCPN tools
 ' Revisions:
 '   BLC, 7/10/2017 - initial version
+'   BLC, 7/25/2017 - revised to address empty recordsets for transects w/o quadrats
 '---------------------------------------------------------------------------------------
 Public Function GetTransectQuadrats() As Variant
 On Error GoTo Err_Handler
@@ -351,24 +353,31 @@ On Error GoTo Err_Handler
     
     'retrieve array of all quadrats associated w/ this transect
     Set rs = GetRecords("s_transect_quadrat_IDs")
-        
-    rs.MoveLast
-    rs.MoveFirst
     
     With Me
         'defaults
         .HasQuadrats = False
         .NumQuadrats = 0
         
-        'set had quadrats
-        If rs.RecordCount > 0 Then
+        'ensure there are records before moves
+        If Not (rs.BOF And rs.EOF) Then
+            rs.MoveLast
+            rs.MoveFirst
+            
+            'set had quadrats
             .HasQuadrats = True
             .NumQuadrats = rs.RecordCount
+            
+            'return the 2-dimensional array (1-columns, 2-rows)
+            .TransectQuadrats = rs.GetRows(rs.RecordCount)
+            
+        Else
+        
+            'return 0 (no records)
+            .TransectQuadrats = rs.RecordCount
+        
         End If
-    
-        'return the 2-dimensional array (1-columns, 2-rows)
-        .TransectQuadrats = rs.GetRows(rs.RecordCount)
-    
+            
         GetTransectQuadrats = .TransectQuadrats
     
     End With
@@ -487,15 +496,25 @@ On Error GoTo Err_Handler
     
     'retrieve array of all surface IDs
     Set rs = GetRecords("s_surface_IDs")
-    rs.MoveLast
-    rs.MoveFirst
-    arySurfaces = rs.GetRows(rs.RecordCount)
+    
+    If Not (rs.BOF And rs.EOF) Then
+        rs.MoveLast
+        rs.MoveFirst
+        arySurfaces = rs.GetRows(rs.RecordCount)
+    Else
+        arySurfaces = 0
+    End If
     
     'retrieve array of all quadrats associated w/ this transect
     Set rs = GetRecords("s_transect_quadrat_IDs")
-    rs.MoveLast
-    rs.MoveFirst
-    aryQuadrats = rs.GetRows(rs.RecordCount)
+    
+    If Not (rs.BOF And rs.EOF) Then
+        rs.MoveLast
+        rs.MoveFirst
+        aryQuadrats = rs.GetRows(rs.RecordCount)
+    Else
+        aryQuadrats = 0
+    End If
     
     Template = "i_new_transect_quadrat_sfccover"
     
