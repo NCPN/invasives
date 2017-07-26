@@ -22,20 +22,20 @@ Begin Form
     Width =14160
     DatasheetFontHeight =10
     ItemSuffix =206
-    Left =4500
-    Top =1020
-    Right =18660
-    Bottom =12465
+    Left =2895
+    Top =915
+    Right =17055
+    Bottom =12360
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20140106101754-829801619.052887' AND [Event_ID]='20151107154044-1"
-        "06369674.20578'"
+    Filter ="[Location_ID]='20101021094935-986093163.490295' AND [Event_ID]='20170701144612-1"
+        "28249883.651733'"
     RecSrcDt = Begin
         0xc0d562cf56f6e440
     End
     RecordSource ="qfrm_Data_Entry"
     Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
         "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
-        " by sampling event"
+        " by sampling event - Filter by sampling event"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -701,7 +701,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Data_Entry
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.02
 ' Basis:        -
 '
 ' Description:  Data entry form object related properties, functions & procedures for UI display
@@ -714,6 +714,7 @@ Option Explicit
 ' References:   fxnSwitchboardIsOpen, fxnGUIDGen
 ' Revisions:    JRB - 6/x/2006  - 1.00 - initial version
 '               BLC - 7/12/2017 - 1.01 - added documentation, error handling
+'               BLC - 7/26/2017 - 1.02 - add CancelOpen() for canceling Form_Open from subform
 ' =================================
 
 '---------------------
@@ -748,9 +749,26 @@ Option Explicit
 ' Revisions:
 '   JRB - 6/x/2006 - initial version
 '   BLC - 7/12/2017 - added documentation, error handling
+'   BLC - 7/26/2017 - added check for frm_Quadrat_Transect closed
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
+
+    'check if frm_Quadrat_Transect was closed (as it is after new records are added)
+    ' --> if so, close this form
+    If GetTempVarIndex("CloseForm") > 1 Then
+        
+        'remove the CloseForm temp var & close this form
+        If TempVars("CloseForm") = True Then
+            
+            TempVars.Remove "CloseForm"
+            Cancel = True
+            
+            GoTo Exit_Handler
+            
+        End If
+        
+    End If
 
     Dim strCaptionSuffix As String
 

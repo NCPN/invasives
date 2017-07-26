@@ -10,6 +10,7 @@ Begin Form
     AllowDeletions = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     OrderByOn = NotDefault
     ScrollBars =2
     TabularFamily =0
@@ -21,12 +22,12 @@ Begin Form
     Width =9420
     DatasheetFontHeight =10
     ItemSuffix =38
-    Left =630
-    Top =4350
-    Right =15600
-    Bottom =9780
+    Left =2910
+    Top =2025
+    Right =12330
+    Bottom =7455
     DatasheetGridlinesColor =12632256
-    Filter ="Unit_code = 'ZION'"
+    Filter ="Unit_code = 'FOBU'"
     OrderBy ="Plot_ID DESC, Unit_Code"
     RecSrcDt = Begin
         0x29b5dcdf75fbe240
@@ -611,7 +612,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Data_Gateway
 ' Level:        Application form
-' Version:      1.01
+' Version:      1.02
 ' Basis:        -
 '
 ' Description:  Data Gateway form object related properties, functions & procedures for UI display
@@ -668,6 +669,7 @@ Dim strSortFieldLabel As String
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
     
+    'declarations
     Dim varReturn As Variant
 
     ' On opening the form, set the initial sort order
@@ -1133,3 +1135,33 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Function
+
+' ---------------------------------
+' Sub:          CancelOpen
+' Description:  cancels form open event
+' Assumptions:  called from subform
+' Parameters:   -
+' Returns:      -
+' Throws:       none
+' References:   -
+' Source/date:  NCPN, Unknown - for NCPN tools
+' Adapted:      -
+' Revisions:
+'   BLC - 7/26/2017  - initial version
+' ---------------------------------
+Private Sub CancelOpen(Cancel As Integer)
+On Error GoTo Err_Handler
+    
+    
+      
+  
+Exit_Handler:
+    Exit Sub
+Err_Handler:
+    Select Case Err.Number
+      Case Else
+        MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
+            "Error encountered (#" & Err.Number & " - CancelOpen[frm_Data_Gateway form])"
+    End Select
+    Resume Exit_Handler
+End Sub

@@ -926,6 +926,7 @@ End Sub
 '   BLC - 4/24/2017 - added microhabitat surface & species templates
 '   BLC - 7/5/2017  - added surface microhabitat & quadrat IDs templates
 '   BLC - 7/24/2017 - added get surface ID from col name template
+'   BLC - 7/26/2017 - added get route transects template
 ' ---------------------------------
 Public Function GetRecords(Template As String) As DAO.Recordset
 On Error GoTo Err_Handler
@@ -974,15 +975,9 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                                 
-                Case "s_template_num_records"
+                Case "s_route_transects"
                     '-- required parameters --
-
-                Case "s_transect_quadrat_IDs"
-                    '-- required parameters --
-                    .Parameters("tid") = TempVars("TransectQuadratID")
-                
-                Case "s_tsys_datasheet_defaults"
-                    '-- required parameters --
+                    .Parameters("eid") = TempVars("EventID")
                 
                 Case "s_surface"
                     '-- required parameters --
@@ -1010,6 +1005,16 @@ On Error GoTo Err_Handler
                     '.Parameters("eid") = TempVars("Event_ID")
                     .Parameters("tid") = TempVars("Transect_ID")
                 
+                Case "s_template_num_records"
+                    '-- required parameters --
+
+                Case "s_transect_quadrat_IDs"
+                    '-- required parameters --
+                    .Parameters("tid") = TempVars("TransectQuadratID")
+                
+                Case "s_tsys_datasheet_defaults"
+                    '-- required parameters --
+                                
                 Case Else
                     'handle other non-parameterized queries
                     

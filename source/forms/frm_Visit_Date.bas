@@ -8,6 +8,7 @@ Begin Form
     NavigationButtons = NotDefault
     AllowDeletions = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowEdits = NotDefault
     AllowDesignChanges = NotDefault
     ScrollBars =2
@@ -19,11 +20,12 @@ Begin Form
     Width =4440
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =6630
-    Top =2325
-    Right =11070
-    Bottom =5970
+    Left =7515
+    Top =3435
+    Right =12210
+    Bottom =7080
     DatasheetGridlinesColor =12632256
+    Filter ="[Location_ID]='20101021094935-910964310.16922'"
     RecSrcDt = Begin
         0x5bd611c7ad13e340
     End
@@ -409,7 +411,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Visit_Date
 ' Level:        Application form
-' Version:      1.03
+' Version:      1.04
 ' Basis:        -
 '
 ' Description:  Visit Date form object related properties, functions & procedures for UI display
@@ -421,6 +423,9 @@ Option Explicit
 '                                        before opening form
 '               BLC - 7/14/2017 - 1.02 - renamed buttons
 '               BLC - 7/18/2017 - 1.03 - revised to refresh temp tables (usys_temp_*)
+'               BLC - 7/26/2017 - 1.04 - capture cancelling of OpenForm when
+'                                        new quadrat records are created in frm_Quadrat_Transect
+'                                        & form is closed
 ' =================================
 
 '---------------------
@@ -489,10 +494,14 @@ End Sub
 '                     update of usys_temp_transect data table before opening form
 '   BLC - 7/18/2017 - update of usys_temp_speciescover data table before opening form,
 '                     use RefreshTempTable instead
+'   BLC - 7/26/2017 - capture cancelling of OpenForm when
+'                     new quadrat records are created in frm_Quadrat_Transect
+'                     & form is closed
 ' ---------------------------------
 Private Sub btnEdit_Click()
     On Error GoTo Err_Handler
 
+OpenForm:
     Dim strCriteriaLoc As String
     Dim strCriteriaEvent As String
 
@@ -514,6 +523,12 @@ Exit_Handler:
     Exit Sub
 Err_Handler:
     Select Case Err.Number
+      Case 2501 'OpenForm action was cancelled
+                'when creating new Quadrat/Microhabitat records the form is closed
+                'to refresh usys_temp_transect records from underlying tables
+        'reopen the form
+        GoTo OpenForm
+'        GoTo Exit_Handler
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - btnEdit_Click[frm_Visit_Date form])"

@@ -18,8 +18,9 @@ Begin Form
     Width =18060
     DatasheetFontHeight =9
     ItemSuffix =95
+    Left =2235
     Top =1230
-    Right =12810
+    Right =15915
     Bottom =10275
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
@@ -2875,7 +2876,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.05
+' Version:      1.08
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -2899,6 +2900,9 @@ Option Explicit
 '                                        microhabitat records
 '               BLC - 7/17/2017 - 1.06 - hid Transect level toggle (disabled) in favor of Q1-3 toggles
 '               BLC - 7/24/2017 - 1.07 - added UpdateMicrohabitat()
+'               BLC - 7/25/2017 - 1.08 - added "New Records Created!" message on new quadrat record creation
+'               BLC - 7/26/2017 - 1.09 - iterate through transects for creating new records,
+'                                        fixed start time update
 ' =================================
 
 '---------------------
@@ -2947,9 +2951,14 @@ Dim strCheck As String
 '                     microhabitat records, moved usys_temp_transect update to
 '                     launching form (frm_Visit_Date)
 '   BLC - 7/13/2017 - set development controls to show/hide based on DEV_MODE setting
+'   BLC - 7/25/2017 - added "New Records Created!" message on new quadrat record creation
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
+    
+    'defaults
+    Dim blnNewRecords As Boolean
+    blnNewRecords = False
     
     'show/hide dev mode controls
     bxHide.Visible = Not DEV_MODE
@@ -2957,32 +2966,69 @@ On Error GoTo Err_Handler
     'set form recordsource
     Me.RecordSource = "usys_temp_transect"
     
-    Dim t As New VegTransect
+    Dim rs As DAO.Recordset
     
-    'check if transect has quadrats
-    With t
-        .TransectQuadratID = Me.tbxTransectID '"20170705114218-705547511.577606"
+    'retrieve route transects << use .Value to avoid error #32538
+    '                            TempVars can only store data. They cannot store objects.
+    SetTempVar "EventID", Parent.tbxEventID.Value
+    
+    'retrieve & iterate throught route transects
+    Set rs = GetRecords("s_route_transects")
+        
+    If Not (rs.BOF And rs.EOF) Then
+        rs.MoveLast
+        rs.MoveFirst
+        
+        Do Until rs.EOF = True
 
-        'newly imported transects have 0 quadrats --> create them & the associated
-        '                                             surface microhabitat records
-        If .NumQuadrats = 0 Then
-            .AddQuadrats
-            .AddSurfaceMicrohabitats
-
-            MsgBox "New quadrats & surface microhabitat records have been created." & _
-                vbCrLf & vbCrLf & "Please re-open the visit to retrieve this new data." _
-                , vbOKOnly, "New Records Created!"
+            Debug.Print "Transect_ID: " & rs("Transect_ID")
+        
+            Dim t As New VegTransect
+        
+            'check if transect has quadrats
+            With t
+                .TransectQuadratID = rs("Transect_ID") 'Me.tbxTransectID '"20170705114218-705547511.577606"
+        
+                'newly imported transects have 0 quadrats --> create them & the associated
+                '                                             surface microhabitat records
+                If .NumQuadrats = 0 Then
+                    .AddQuadrats
+                    .AddSurfaceMicrohabitats
+        
+'                    MsgBox "New quadrats & surface microhabitat records have been created." & _
+'                        vbCrLf & vbCrLf & "Please re-open the visit to retrieve this new data." _
+'                        , vbOKOnly, "New Records Created!"
+                    blnNewRecords = True
+                                        
+                End If
+        
+            End With
             
-'            DoCmd.SetWarnings False
-'            DoCmd.Close acForm, Me.Name
-'            DoCmd.SetWarnings True
-'
-'            Exit Sub
-'            Me.Refresh
-        End If
-
-    End With
-            
+            rs.MoveNext
+        
+        Loop
+        
+    End If
+                
+    'cancel open & re-open if blnNewRecords is true
+    If blnNewRecords = True Then
+        
+        'give user a message
+        MsgBox "New quadrats & surface microhabitat records have been created." & _
+            vbCrLf & vbCrLf & "The data entry form is now closing..." & _
+            vbCrLf & vbCrLf & "...and re-opening the visit to retrieve this new data." _
+            , vbOKOnly, "New Records Created!"
+    
+        'close the form
+        Cancel = True
+        
+        'close the parent form (done in frm_Data_Entry by checking this TempVar)
+        'Parent.Form_Open True << fails w/ error
+        '                         #2465 Application-defined or object-defined error.
+        SetTempVar "CloseForm", True
+        
+    End If
+                
     'default
     strCheck = StringFromCodepoint(uCheck)
     
@@ -4706,6 +4752,8 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/17/2016 - initial version
+'   BLC - 7/26/2017 - fixed start time update, removed requery to avoid navigation
+'                     back to first transect
 ' ---------------------------------
 Private Function UpdateTransect(ctrl As Control) As Boolean
 On Error GoTo Err_Handler
@@ -4725,7 +4773,14 @@ On Error GoTo Err_Handler
         .TransectQuadratID = Me.tbxTransectID
         
         Select Case ctrl.Name
-            Case "tbxStartDate"
+'            Case "tbxStartDate"
+'                'start date
+'                If Not IsNull(start) Then
+'                    .StartDate = dt
+'                    .UpdateStartDate
+'                End If
+            
+            Case "tbxStartTime"
                 'start time
                 If Not IsNull(start) Then
                     .StartTime = start
@@ -4749,7 +4804,8 @@ On Error GoTo Err_Handler
         
     End With
     
-    Me.Requery
+    'don't requery as this takes user back to first transect
+    'Me.Requery
     
 Exit_Handler:
     Exit Function
