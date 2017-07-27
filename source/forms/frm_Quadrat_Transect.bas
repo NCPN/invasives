@@ -8,20 +8,19 @@ Begin Form
     AllowAdditions = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
-    ScrollBars =2
     TabularFamily =124
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     Cycle =1
     GridX =24
     GridY =24
-    Width =18060
+    Width =16320
     DatasheetFontHeight =9
-    ItemSuffix =95
-    Left =2235
-    Top =1230
-    Right =15915
-    Bottom =10275
+    ItemSuffix =140
+    Left =420
+    Top =1170
+    Right =20115
+    Bottom =10215
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x4d9088baa9f7e440
@@ -134,7 +133,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =8460
+            Height =11040
             BackColor =26112
             Name ="Detail"
             AlternateBackColor =26112
@@ -2856,6 +2855,1041 @@ Begin Form
                     GridlineThemeColorIndex =1
                     GridlineShade =65.0
                 End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =2940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =81
+                    ForeColor =15921906
+                    Name ="tbxDead_Wood_CoverID_Q1"
+                    ControlSource ="Dead_Wood_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =2940
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =3240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =3240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =82
+                    ForeColor =15921906
+                    Name ="tbxDung_CoverID_Q1"
+                    ControlSource ="Dung_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =3240
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =3540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =3540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =83
+                    ForeColor =15921906
+                    Name ="tbxFungus_CoverID_Q1"
+                    ControlSource ="Fungus_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =3840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =3840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =84
+                    ForeColor =15921906
+                    Name ="tbxLichen_CoverID_Q1"
+                    ControlSource ="Lichen_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =3840
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =4140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =4140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =85
+                    ForeColor =15921906
+                    Name ="tbxLitter_Duff_CoverID_Q1"
+                    ControlSource ="Litter_Duff_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =4140
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =4440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =4440
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =86
+                    ForeColor =15921906
+                    Name ="tbxRoot_Bole_CoverID_Q1"
+                    ControlSource ="Root_Bole_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =4440
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =4740
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =4740
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =87
+                    ForeColor =15921906
+                    Name ="tbxDead_Root_Bole_CoverID_Q1"
+                    ControlSource ="Dead_Root_Bole_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =5040
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =5040
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =88
+                    ForeColor =15921906
+                    Name ="tbxMineral_Soil_Sediment_CoverID_Q1"
+                    ControlSource ="Mineral_Soil_Sediment_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =5040
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =5340
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =5340
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =89
+                    ForeColor =15921906
+                    Name ="tbxMoss_CoverID_Q1"
+                    ControlSource ="Moss_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =5340
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =5640
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =5640
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =90
+                    ForeColor =15921906
+                    Name ="tbxCryptogram_CoverID_Q1"
+                    ControlSource ="Cryptogram_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =5640
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =5940
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =5940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =91
+                    ForeColor =15921906
+                    Name ="tbxRoad_CoverID_Q1"
+                    ControlSource ="Road_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =5940
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =6240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =6240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =92
+                    ForeColor =15921906
+                    Name ="tbxRock_CoverID_Q1"
+                    ControlSource ="Rock_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =6240
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =6540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =6540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =93
+                    ForeColor =15921906
+                    Name ="tbxStanding_Water_Flooded_CoverID_Q1"
+                    ControlSource ="Standing_Water_Flooded_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =6540
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =6840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =6840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =94
+                    ForeColor =15921906
+                    Name ="tbxStream_CoverID_Q1"
+                    ControlSource ="Stream_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =6840
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =7140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =87
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =13440
+                    Top =7140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =95
+                    ForeColor =15921906
+                    Name ="tbxTrash_Junk_CoverID_Q1"
+                    ControlSource ="Trash_Junk_CoverID_Q1"
+
+                    LayoutCachedLeft =13440
+                    LayoutCachedTop =7140
+                    LayoutCachedWidth =14160
+                    LayoutCachedHeight =7440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =2940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =96
+                    ForeColor =15921906
+                    Name ="tbxDead_Wood_CoverID_Q2"
+                    ControlSource ="Dead_Wood_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =2940
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =3240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =3240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =97
+                    ForeColor =15921906
+                    Name ="tbxDung_CoverID_Q2"
+                    ControlSource ="Dung_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =3240
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =3540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =3540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =98
+                    ForeColor =15921906
+                    Name ="tbxFungus_CoverID_Q2"
+                    ControlSource ="Fungus_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =3840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =3840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =99
+                    ForeColor =15921906
+                    Name ="tbxLichen_CoverID_Q2"
+                    ControlSource ="Lichen_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =3840
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =4140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =4140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =100
+                    ForeColor =15921906
+                    Name ="tbxLitter_Duff_CoverID_Q2"
+                    ControlSource ="Litter_Duff_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =4140
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =4440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =4440
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =101
+                    ForeColor =15921906
+                    Name ="tbxRoot_Bole_CoverID_Q2"
+                    ControlSource ="Root_Bole_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =4440
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =4740
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =4740
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =102
+                    ForeColor =15921906
+                    Name ="tbxDead_Root_Bole_CoverID_Q2"
+                    ControlSource ="Dead_Root_Bole_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =5040
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =5040
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =103
+                    ForeColor =15921906
+                    Name ="tbxMineral_Soil_Sediment_CoverID_Q2"
+                    ControlSource ="Mineral_Soil_Sediment_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =5040
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =5340
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =5340
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =104
+                    ForeColor =15921906
+                    Name ="tbxMoss_CoverID_Q2"
+                    ControlSource ="Moss_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =5340
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =5640
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =5640
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =105
+                    ForeColor =15921906
+                    Name ="tbxCryptogram_CoverID_Q2"
+                    ControlSource ="Cryptogram_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =5640
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =5940
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =5940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =106
+                    ForeColor =15921906
+                    Name ="tbxRoad_CoverID_Q2"
+                    ControlSource ="Road_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =5940
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =6240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =6240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =107
+                    ForeColor =15921906
+                    Name ="tbxRock_CoverID_Q2"
+                    ControlSource ="Rock_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =6240
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =6540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =6540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =108
+                    ForeColor =15921906
+                    Name ="tbxStanding_Water_Flooded_CoverID_Q2"
+                    ControlSource ="Standing_Water_Flooded_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =6540
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =6840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =6840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =109
+                    ForeColor =15921906
+                    Name ="tbxStream_CoverID_Q2"
+                    ControlSource ="Stream_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =6840
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =7140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =87
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =14400
+                    Top =7140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =110
+                    ForeColor =15921906
+                    Name ="tbxTrash_Junk_CoverID_Q2"
+                    ControlSource ="Trash_Junk_CoverID_Q2"
+
+                    LayoutCachedLeft =14400
+                    LayoutCachedTop =7140
+                    LayoutCachedWidth =15120
+                    LayoutCachedHeight =7440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =93
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =2940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =111
+                    ForeColor =15921906
+                    Name ="tbxDead_Wood_CoverID_Q3"
+                    ControlSource ="Dead_Wood_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =2940
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =3240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =3240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =112
+                    ForeColor =15921906
+                    Name ="tbxDung_CoverID_Q3"
+                    ControlSource ="Dung_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =3240
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =3540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =3540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =113
+                    ForeColor =15921906
+                    Name ="tbxFungus_CoverID_Q3"
+                    ControlSource ="Fungus_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =3540
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =3840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =3840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =114
+                    ForeColor =15921906
+                    Name ="tbxLichen_CoverID_Q3"
+                    ControlSource ="Lichen_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =3840
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =4140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =4140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =115
+                    ForeColor =15921906
+                    Name ="tbxLitter_Duff_CoverID_Q3"
+                    ControlSource ="Litter_Duff_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =4140
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =4440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =4440
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =116
+                    ForeColor =15921906
+                    Name ="tbxRoot_Bole_CoverID_Q3"
+                    ControlSource ="Root_Bole_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =4440
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =4740
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =4740
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =117
+                    ForeColor =15921906
+                    Name ="tbxDead_Root_Bole_CoverID_Q3"
+                    ControlSource ="Dead_Root_Bole_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =4740
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =5040
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =5040
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =118
+                    ForeColor =15921906
+                    Name ="tbxMineral_Soil_Sediment_CoverID_Q3"
+                    ControlSource ="Mineral_Soil_Sediment_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =5040
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =5340
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =5340
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =119
+                    ForeColor =15921906
+                    Name ="tbxMoss_CoverID_Q3"
+                    ControlSource ="Moss_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =5340
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =5640
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =5640
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =120
+                    ForeColor =15921906
+                    Name ="tbxCryptogram_CoverID_Q3"
+                    ControlSource ="Cryptogram_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =5640
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =5940
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =5940
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =121
+                    ForeColor =15921906
+                    Name ="tbxRoad_CoverID_Q3"
+                    ControlSource ="Road_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =5940
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =6240
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =6240
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =122
+                    ForeColor =15921906
+                    Name ="tbxRock_CoverID_Q3"
+                    ControlSource ="Rock_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =6240
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =6540
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =6540
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =123
+                    ForeColor =15921906
+                    Name ="tbxStanding_Water_Flooded_CoverID_Q3"
+                    ControlSource ="Standing_Water_Flooded_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =6540
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =6840
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =95
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =6840
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =124
+                    ForeColor =15921906
+                    Name ="tbxStream_CoverID_Q3"
+                    ControlSource ="Stream_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =6840
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =7140
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin TextBox
+                    SpecialEffect =0
+                    OldBorderStyle =0
+                    OverlapFlags =87
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =15300
+                    Top =7140
+                    Width =720
+                    Height =300
+                    FontSize =7
+                    TabIndex =125
+                    ForeColor =15921906
+                    Name ="tbxTrash_Junk_CoverID_Q3"
+                    ControlSource ="Trash_Junk_CoverID_Q3"
+
+                    LayoutCachedLeft =15300
+                    LayoutCachedTop =7140
+                    LayoutCachedWidth =16020
+                    LayoutCachedHeight =7440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
             End
         End
         Begin FormFooter
@@ -4821,8 +5855,9 @@ End Function
 ' ---------------------------------
 ' Sub:          UpdateMicrohabitat
 ' Description:  Updates the microhabitat (surface cover) percent cover value
-' Assumptions:  Last character in the microhabitat control dropdown is an integer
-'               representing the quadrat number (e.g. "Dead_Wood_Q1")
+' Assumptions:  SurfaceCoverID control is named similar to the
+'               Microhabitat control dropdown name (Litter_Duff_Q2)
+'               (e.g. "tbxLitter_Duff_CoverID_Q1")
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
@@ -4832,13 +5867,13 @@ End Function
 ' Revisions:
 '   BLC - 7/24/2017 - initial version
 ' ---------------------------------
-Private Sub UpdateMicrohabitat(ctrl As Control)
+Private Function UpdateMicrohabitat(ctrl As Control) As Boolean
 On Error GoTo Err_Handler
 
-    Dim rs As DAO.Recordset
-    Dim strField As String
-    
-    'skip if NULL
+'    Dim rs As DAO.Recordset
+'    Dim strField As String
+'
+'    'skip if NULL
 '    If IsNull(Me.tbxTransectID) Then GoTo Exit_Handler
     
     'set the transect ID
@@ -4867,26 +5902,33 @@ On Error GoTo Err_Handler
     'Dead_Wood_Q1
     
     'retrieve control name & determine colname & quadrat
-    Dim q As Integer
-    Dim strQuadratControl As String
+'    Dim q As Integer
+'    Dim strQuadratControl As String
+'
+'    q = CInt(Right(ctrl.Name, 1))
+'
+'    strQuadratControl = "tbxQ" & q
+       
+    Dim strSurfaceCoverID
     
-    q = CInt(Right(ctrl.Name, 1))
-    
-    strQuadratControl = "tbxQ" & q
+    'tbxLitter_Duff_CoverID_Q2
+    strSurfaceCoverID = "tbx" & Replace(ctrl.Name, "_Q", "_CoverID_Q")
     
     Dim sc As New SurfaceCover
     
     With sc
-        .QuadratID = Me.Controls(strQuadratControl)
+    
+        '.QuadratID = Me.Controls(strQuadratControl)
         '.SurfaceID =
+        .SurfaceCoverID = Me.Controls(strSurfaceCoverID)
         .PercentCover = Nz(ctrl.Value, 0)
-        
+Debug.Print .SurfaceCoverID
         'update the cover
-        .SaveToDb True
+        .UpdateSurfaceCover
     End With
     
 Exit_Handler:
-    Exit Sub
+    Exit Function
 Err_Handler:
     Select Case Err.Number
       Case Else
@@ -4894,7 +5936,7 @@ Err_Handler:
             "Error encountered (#" & Err.Number & " - UpdateMicrohabitat[frm_Quadrat_Transect form])"
     End Select
     Resume Exit_Handler
-End Sub
+End Function
 
 ' ---------------------------------
 ' Sub:          RefreshSubform

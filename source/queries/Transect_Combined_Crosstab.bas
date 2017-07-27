@@ -1,9 +1,10 @@
 ﻿dbMemo "SQL" ="SELECT t.*, s.IsSampled_Q1, s.IsSampled_Q2, s.IsSampled_Q3, ne.NoExotics_Q1, ne."
-    "NoExotics_Q2, ne.NoExotics_Q3, sc.*\015\012FROM ((Transect AS t LEFT JOIN Transe"
-    "ct_IsSampled_Crosstab AS s ON s.Transect_ID = t.Transect_ID) LEFT JOIN Transect_"
-    "NoExotics_Crosstab AS ne ON ne.Transect_ID = t.Transect_ID) LEFT JOIN Transect_S"
-    "urfaceCover_Crosstab AS sc ON sc.Transect_ID = t.Transect_ID\015\012ORDER BY t.E"
-    "vent_ID, t.Transect;\015\012"
+    "NoExotics_Q2, ne.NoExotics_Q3, sc.*, ci.*\015\012FROM (((Transect AS t LEFT JOIN"
+    " Transect_IsSampled_Crosstab AS s ON s.Transect_ID = t.Transect_ID) LEFT JOIN Tr"
+    "ansect_NoExotics_Crosstab AS ne ON ne.Transect_ID = t.Transect_ID) LEFT JOIN Tra"
+    "nsect_SurfaceCover_Crosstab AS sc ON sc.Transect_ID = t.Transect_ID) LEFT JOIN T"
+    "ransect_SurfaceCover_CoverID_Crosstab AS ci ON ci.Transect_ID = t.Transect_ID\015"
+    "\012ORDER BY t.Event_ID, t.Transect;\015\012"
 dbMemo "Connect" =""
 dbBoolean "ReturnsRecords" ="-1"
 dbInteger "ODBCTimeout" ="60"
@@ -321,6 +322,212 @@ Begin
     End
     Begin
         dbText "Name" ="Transect_ID"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.SurfaceCoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Surface"
+        dbInteger "ColumnWidth" ="2250"
+        dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.SurfaceCoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.SurfaceCoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Transect_ID"
+        dbInteger "ColumnWidth" ="3330"
+        dbBoolean "ColumnHidden" ="0"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Rock_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Cryptogram_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dung_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dung_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Fungus_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Lichen_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Lichen_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Mineral_Soil_Sediment_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Moss_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Moss_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Road_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Rock_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Root_Bole_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Root_Bole_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Root_Bole_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Root_Bole_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Wood_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Standing_Water_Flooded_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Standing_Water_Flooded_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Stream_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Trash_Junk_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Rock_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Cryptogram_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Wood_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dung_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Fungus_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Fungus_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Lichen_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Litter_Duff_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Litter_Duff_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Litter_Duff_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Mineral_Soil_Sediment_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Mineral_Soil_Sediment_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Moss_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Road_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Road_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Root_Bole_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Trash_Junk_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Cryptogram_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Dead_Wood_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Root_Bole_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Standing_Water_Flooded_CoverID_Q2"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Stream_CoverID_Q1"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Stream_CoverID_Q3"
+        dbLong "AggregateType" ="-1"
+    End
+    Begin
+        dbText "Name" ="ci.Trash_Junk_CoverID_Q3"
+        dbInteger "ColumnWidth" ="2805"
+        dbBoolean "ColumnHidden" ="0"
         dbLong "AggregateType" ="-1"
     End
 End

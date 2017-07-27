@@ -8,7 +8,7 @@ Option Explicit
 ' =================================
 ' CLASS:        SurfaceCover
 ' Level:        Framework class
-' Version:      1.01
+' Version:      1.02
 '
 ' Description:  Surface (microhabitat) cover object related properties, events, functions & procedures for UI display
 '
@@ -16,6 +16,7 @@ Option Explicit
 ' References:   -
 ' Revisions:    BLC - 4/17/2017 - 1.00 - initial version
 '               BLC - 4/24/2017 - 1.01 - revise PercentCover to Single vs. Integer
+'               BLC - 7/26/2017 - 1.02 - added SurfaceCoverID property
 ' =================================
 
 '---------------------
@@ -24,6 +25,8 @@ Option Explicit
 Private m_Surface As New Surface
 
 Private m_ID As Long
+
+Private m_SurfaceCoverID As Long
 
 Private m_QuadratID As Long
 Private m_SurfaceID As Long
@@ -45,6 +48,14 @@ Public Event InvalidOrigColumnName(Value As String)
 '---------------------
 ' Properties
 '---------------------
+Public Property Let SurfaceCoverID(Value As Long)
+    m_SurfaceCoverID = Value
+End Property
+
+Public Property Get SurfaceCoverID() As Long
+    SurfaceCoverID = m_SurfaceCoverID
+End Property
+
 Public Property Let QuadratID(Value As Long)
     m_QuadratID = Value
 End Property
@@ -281,6 +292,49 @@ Err_Handler:
         Case Else
             MsgBox "Error #" & Err.Description, vbCritical, _
                 "Error encounter (#" & Err.Number & " - SaveToDb[cls_SurfaceCover])"
+    End Select
+    Resume Exit_Handler
+End Sub
+
+'---------------------------------------------------------------------------------------
+' SUB:          UpdateSurfaceCover
+' Description:  Update surface cover for microhabitat
+' Parameters:   -
+' Returns:      -
+' Throws:       -
+' References:   -
+' Source/Date:  Bonnie Campbell
+' Adapted:      Bonnie Campbell, 7/26/2017 - for NCPN tools
+' Revisions:
+'   BLC, 4/17/2017 - initial version, based on Big Rivers classes UpdateSurfaceCover()
+'---------------------------------------------------------------------------------------
+Public Sub UpdateSurfaceCover()
+On Error GoTo Err_Handler
+        
+    Dim Template As String
+    
+    Template = "u_surfacecover_by_id"
+    
+    Dim params(0 To 2) As Variant
+    
+    With Me
+        params(0) = "SurfaceCover"
+        params(1) = .SurfaceCoverID
+        params(2) = .PercentCover
+                
+        .ID = SetRecord(Template, params)
+    End With
+    
+    'no RecordAction for invasives --> if added later see Big Rivers
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+    Select Case Err.Number
+        Case Else
+            MsgBox "Error #" & Err.Description, vbCritical, _
+                "Error encounter (#" & Err.Number & " - UpdateSurfaceCover[cls_SurfaceCover])"
     End Select
     Resume Exit_Handler
 End Sub

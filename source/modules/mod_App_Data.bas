@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.34
+' Version:      1.35
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -56,6 +56,7 @@ Option Explicit
 '               BLC, 7/17/2017  - 1.32 - add u_quadrat_flags
 '               BLC, 7/18/2017  - 1.33 - add species cover templates
 '               BLC, 7/24/2017  - 1.34 - added get surface ID from col name template
+'               BLC, 7/26/2017  - 1.35 - added u_surfacecover_by_ID template
 ' =================================
 
 '' ---------------------------------
@@ -1064,6 +1065,7 @@ End Function
 '   BLC - 7/16/2017 - revise u_transect_data to exclude NULLable start time, add u_transect_start_time
 '   BLC - 7/17/2017 - add u_quadrat_flags, u_event_(startdate,observer,comments)
 '   BLC - 7/18/2017 - add species cover templates (u_speciescover, d_speciescover, i_speciescover)
+'   BLC - 7/26/2017 - add u_surfacecover_by_ID template
 ' ---------------------------------
 Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
@@ -1205,6 +1207,10 @@ On Error GoTo Err_Handler
                     .Parameters("sid") = params(3)
                     .Parameters("pct") = params(4)
                     
+                Case "u_surfacecover_by_ID"
+                    '-- required parameters --
+                    .Parameters("sfcid") = params(1)
+                    .Parameters("pct") = params(2)
                 
                 Case "u_template"
                     '-- required parameters --
