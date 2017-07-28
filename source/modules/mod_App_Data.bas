@@ -928,8 +928,10 @@ End Sub
 '   BLC - 7/5/2017  - added surface microhabitat & quadrat IDs templates
 '   BLC - 7/24/2017 - added get surface ID from col name template
 '   BLC - 7/26/2017 - added get route transects template
+'   BLC - 7/27/2017 - added "s_speciescover_dupes" template, optional params parameter
 ' ---------------------------------
-Public Function GetRecords(Template As String) As DAO.Recordset
+Public Function GetRecords(Template As String, _
+                            Optional params As Variant) As DAO.Recordset
 On Error GoTo Err_Handler
     
     Dim Db As DAO.Database
@@ -993,7 +995,7 @@ On Error GoTo Err_Handler
                 
                 Case "s_surface_IDs"
                     '-- required parameters --
-                
+                                
                 Case "s_speciescover_by_transect"
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
@@ -1006,6 +1008,13 @@ On Error GoTo Err_Handler
                     '.Parameters("eid") = TempVars("Event_ID")
                     .Parameters("tid") = TempVars("Transect_ID")
                 
+                Case "s_speciescover_dupes"
+                    '-- required parameters --
+                    .Parameters("eid") = params(1)
+                    .Parameters("tid") = params(2)
+                    .Parameters("pcode") = params(3)
+                    .Parameters("dead") = params(4)
+                    
                 Case "s_template_num_records"
                     '-- required parameters --
 
@@ -1943,7 +1952,7 @@ End Function
 ' Revisions:
 '   BLC - 3/30/2017 - initial version
 ' ---------------------------------
-Public Function UpdateNumRecords(iRecord As Integer, numRecords As Integer)
+Public Function UpdateNumRecords(iRecord As Integer, NumRecords As Integer)
 On Error GoTo Err_Handler
 
     'add values to numrecords
@@ -1953,7 +1962,7 @@ Debug.Print "UpdateNumRecords"
     
     params(0) = "u_num_records"
     params(1) = iRecord
-    params(2) = numRecords
+    params(2) = NumRecords
             
     SetRecord "u_num_records", params
     

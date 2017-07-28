@@ -14,10 +14,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =74
-    Left =2400
-    Top =2595
-    Right =10710
-    Bottom =9000
+    Left =870
+    Top =3255
+    Right =8925
+    Bottom =9660
     DatasheetGridlinesColor =12632256
     AfterInsert ="[Event Procedure]"
     RecSrcDt = Begin
@@ -231,6 +231,9 @@ Begin Form
             Name ="Detail"
             Begin
                 Begin TextBox
+                    Enabled = NotDefault
+                    Locked = NotDefault
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =93
@@ -246,7 +249,7 @@ Begin Form
                         0x010000007a000000010000000100000000000000000000000c00000001000000 ,
                         0x00000000ffcccc00000000000000000000000000000000000000000000000000 ,
                         0x0000000000000000000000000000000000000000000000000000000000000000 ,
-                        0x5b0074006200780044007500700065005d003d00310000000000
+                        0x2200740062007800440075007000650022003e00310000000000
                     End
 
                     LayoutCachedLeft =60
@@ -254,8 +257,8 @@ Begin Form
                     LayoutCachedWidth =7800
                     LayoutCachedHeight =705
                     ConditionalFormat14 = Begin
-                        0x01000100000001000000000000000100000000000000ffcccc000b0000005b00 ,
-                        0x74006200780044007500700065005d003d003100000000000000000000000000 ,
+                        0x01000100000001000000000000000100000000000000ffcccc000b0000002200 ,
+                        0x740062007800440075007000650022003e003100000000000000000000000000 ,
                         0x000000000000000000
                     End
                 End
@@ -268,6 +271,7 @@ Begin Form
                     Width =420
                     Height =255
                     ColumnWidth =2310
+                    TabIndex =6
                     Name ="Species_ID"
                     ControlSource ="Species_ID"
                     StatusBarText ="Unique record identifier - primary key"
@@ -286,7 +290,7 @@ Begin Form
                     Width =360
                     Height =255
                     ColumnWidth =2310
-                    TabIndex =1
+                    TabIndex =7
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Foreign key to tbl_Quadrat_Transect"
@@ -302,7 +306,7 @@ Begin Form
                     Top =60
                     Width =705
                     Height =300
-                    TabIndex =6
+                    TabIndex =5
                     ForeColor =255
                     Name ="btnDelete"
                     Caption ="Delete"
@@ -327,7 +331,7 @@ Begin Form
                     Left =3105
                     Top =60
                     Width =900
-                    TabIndex =3
+                    TabIndex =2
                     BackColor =62207
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
@@ -370,7 +374,7 @@ Begin Form
                     Left =4005
                     Top =60
                     Width =900
-                    TabIndex =4
+                    TabIndex =3
                     BackColor =62207
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
@@ -413,7 +417,7 @@ Begin Form
                     Left =4905
                     Top =60
                     Width =900
-                    TabIndex =5
+                    TabIndex =4
                     BackColor =62207
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
                     ConditionalFormat = Begin
@@ -455,7 +459,6 @@ Begin Form
                     Left =165
                     Top =60
                     Width =1860
-                    TabIndex =2
                     BackColor =62207
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"50\""
                     ConditionalFormat = Begin
@@ -506,7 +509,7 @@ Begin Form
                     Left =2100
                     Top =60
                     Width =900
-                    TabIndex =7
+                    TabIndex =1
                     BackColor =62207
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"510\""
                     ConditionalFormat = Begin
@@ -541,6 +544,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OverlapFlags =247
                     TextAlign =2
@@ -577,6 +581,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =247
@@ -611,6 +616,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =247
@@ -645,6 +651,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =247
@@ -679,6 +686,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =247
@@ -691,6 +699,10 @@ Begin Form
                     TabIndex =12
                     ForeColor =8355711
                     Name ="tbxDupe"
+                    ControlSource ="=IIf((Len([Plant_Code])>0) And (Len([cbxIsDead])>0),DCount(\"*\",\"TransectSpeci"
+                        "esCover\",\"Event_ID = '\" & [Forms]![frm_Data_Entry]![tbxEventID] & \"' AND  Tr"
+                        "ansect_ID = '\" & [Transect_ID] & \"' AND PlantCode =  '\" & [Plant_Code] & \"' "
+                        "AND IsDead =  \" & [cbxIsDead]),0)"
                     ConditionalFormat = Begin
                         0x0100000088000000010000000100000000000000000000001300000001000000 ,
                         0xececec00ececec00000000000000000000000000000000000000000000000000 ,
@@ -719,6 +731,7 @@ Begin Form
             Name ="FormFooter"
             Begin
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -753,6 +766,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -788,6 +802,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -823,6 +838,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -858,6 +874,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -894,6 +911,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -924,6 +942,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -958,6 +977,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -992,6 +1012,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1026,6 +1047,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1060,6 +1082,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1094,6 +1117,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1128,6 +1152,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1163,6 +1188,7 @@ Begin Form
                     End
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =85
@@ -1212,7 +1238,7 @@ Option Explicit
 ' =================================
 ' Form:         fsub_Species
 ' Level:        Application form
-' Version:      1.08
+' Version:      1.09
 ' Basis:        -
 '
 ' Description:  Species subform object related properties, functions & procedures for UI display
@@ -1230,6 +1256,7 @@ Option Explicit
 '               BLC - 7/18/2017 - 1.06 - revised for species cover updates/deletes
 '               BLC - 7/19/2017 - 1.07 - removed CalcAverageCover(), ParentForm_Current() & other cleanup
 '               BLC - 7/24/2017 - 1.08 - revised btnDelete_Click to properly delete from db & usys_temp_speciescover
+'               BLC - 7/27/2017 - 1.09 - update average cover after setting species cover
 ' =================================
 
 '---------------------
@@ -1470,7 +1497,7 @@ Private Sub Form_AfterInsert()
     Debug.Print "form_afterinsert"
 
     'check if duplicate species cover (skip the warning)
-    IsDuplicateSpeciesCover
+    'IsDuplicateSpeciesCover
 
 
 Exit_Handler:
@@ -1503,7 +1530,7 @@ Private Sub Form_AfterUpdate()
     Debug.Print "form_afterUpdate"
 
     'check if duplicate species cover (skip the warning)
-    IsDuplicateSpeciesCover
+    'IsDuplicateSpeciesCover
 
 Exit_Handler:
     Exit Sub
@@ -1609,12 +1636,20 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/17/2017 - revised for normalized tables & new form fields
+'   BLC - 7/27/2017 - revised duplicate check
 ' ---------------------------------
 Private Sub Plant_Code_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
     'check if duplicate species cover (skip the warning)
     'IsDuplicateSpeciesCover True
+  
+    'check for duplicate species when IsDead is set
+    If Not IsNull(cbxIsDead) Then
+    
+        IsDuplicateSpeciesCover
+    
+    End If
   
 Exit_Handler:
     Exit Sub
@@ -1639,6 +1674,7 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
+'   BLC - 7/27/2017 - revised duplicate check
 ' ---------------------------------
 Private Sub cbxIsDead_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -1655,6 +1691,9 @@ On Error GoTo Err_Handler
 '          'ensure Q1-3 are neither "Not Sampled" nor "No Exotics"
 '
 '        End If
+
+        IsDuplicateSpeciesCover
+
     End If
     
   
@@ -1790,13 +1829,13 @@ On Error GoTo Err_Handler
 
     'ensure there isn't a dupe of Species + IsDead
     If Len(Me.cbxIsDead) > 0 Then
-        If IsDuplicateSpeciesCover = False Then
+'        If IsDuplicateSpeciesCover = False Then
         
           SetSpeciesCover
         
           'ensure Q1-3 are neither "Not Sampled" nor "No Exotics"
                
-        End If
+'        End If
     End If
   
 Exit_Handler:
@@ -2016,6 +2055,9 @@ End Function
 Private Function IsDuplicateSpeciesCover(Optional SkipWarning As Boolean = False) As Boolean
 On Error GoTo Err_Handler
       
+    'default value
+'    Me.tbxDupe = 0
+      
     'ensure plant code & is dead flag are set
     If IsNull(Me!Plant_Code) Or IsNull(Me!cbxIsDead) Then
         
@@ -2038,22 +2080,51 @@ On Error GoTo Err_Handler
         
         'check if *any* of the Quadrats have this species in SpeciesCover
         Dim i, IsDead As Integer
-        Dim strControl, strCriteria As String
+        Dim strCriteria As String
+'        Dim strControl, strCriteria As String
         
-        For i = 1 To QUADRATS_PER_TRANSECT
+'        For i = 1 To QUADRATS_PER_TRANSECT
             
-            strControl = "tbxQ" & i
+'            strControl = "tbxQ" & i
+'            strControl = Me.Parent.Parent.tbxEventID
             IsDead = IIf(Me.cbxIsDead = "Dead", 1, 0)
             
-            strCriteria = "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
-                    " AND [PlantCode] = '" & Me.Plant_Code & "'" & _
-                    " AND [IsDead] = " & IsDead
+'            strCriteria = "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
+'                    " AND [PlantCode] = '" & Me.Plant_Code & "'" & _
+'                    " AND [IsDead] = " & IsDead
 
-Debug.Print strCriteria
-Debug.Print "DLU: " & DLookup("[PlantCode]", "SpeciesCover", strCriteria)
-Debug.Print "DLU2: " & DLookup("[IsDead]", "SpeciesCover", strCriteria)
+'            strCriteria = "[Event_ID] = '" & Me.Parent.Parent.tbxEventID & _
+'                    "' AND [PlantCode] = '" & Me.Plant_Code & "'" & _
+'                    "  AND [IsDead] = " & IsDead
+'
+'Debug.Print strCriteria
+'Debug.Print "DLU: " & DLookup("[PlantCode]", "TransectSpeciesCover", strCriteria)
+'Debug.Print "DLU2: " & DLookup("[IsDead]", "TransectSpeciesCover", strCriteria)
+'
+''            If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", strCriteria)) Then
+'            If Not IsNull(DLookup("[PlantCode]", "TransectSpeciesCover", strCriteria)) Then
 
-            If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", strCriteria)) Then
+            'run
+            Dim NumRecords As Integer
+            Dim Template As String
+            
+            Template = "s_speciescover_dupes"
+            
+            Dim params(0 To 4) As Variant
+        
+            With Me
+                params(0) = "TransectSpeciesCover"
+                params(1) = Me.Parent.Parent.tbxEventID
+                params(2) = Me.Parent.tbxTransectID
+                params(3) = Me.Plant_Code
+                params(4) = Me.cbxIsDead
+                
+                'retrieve the first record returned
+                NumRecords = GetRecords(Template, params).Fields(0)
+Debug.Print "Plant - IsDead - NumRecords: " & Me.Plant_Code & " - " & Me.cbxIsDead & " - " & NumRecords
+            End With
+
+             If NumRecords > 1 Then
               
               IsDupe = True
               
@@ -2065,10 +2136,13 @@ Debug.Print "DLU2: " & DLookup("[IsDead]", "SpeciesCover", strCriteria)
               End If
               
               'exit if it's a dupe for one quadrat, dupe for transect
-              Exit For
+              'Exit For
+              
+              'highlight the problem
+ '             Me.tbxDupe = 1
             End If
             
-        Next
+ '       Next
     
     End If
   
@@ -2102,9 +2176,13 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
+'   BLC - 7/27/2017 - update average cover after setting species cover
 ' ---------------------------------
 Private Sub SetSpeciesCover()
 On Error GoTo Err_Handler
+
+    'check if plant code is set
+    If IsNull(Me.Plant_Code) = True Then GoTo Exit_Handler
 
     'check if duplicate species cover
     'If Not IsDuplicateSpeciesCover Then
@@ -2192,6 +2270,9 @@ On Error GoTo Err_Handler
         Next
     
     'End If
+    
+    'update average cover
+    Me.Requery
 
 Exit_Handler:
     Exit Sub

@@ -14,13 +14,13 @@ Begin Form
     Cycle =1
     GridX =24
     GridY =24
-    Width =16320
+    Width =16140
     DatasheetFontHeight =9
     ItemSuffix =140
-    Left =420
-    Top =1170
-    Right =20115
-    Bottom =10215
+    Left =1560
+    Top =1290
+    Right =15030
+    Bottom =10335
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x4d9088baa9f7e440
@@ -133,7 +133,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =11040
+            Height =8520
             BackColor =26112
             Name ="Detail"
             AlternateBackColor =26112
@@ -145,7 +145,7 @@ Begin Form
                     Top =240
                     Width =13140
                     Height =8100
-                    TabIndex =79
+                    TabIndex =80
                     BackColor =14478320
                     Name ="frmTransectData"
 
@@ -186,7 +186,7 @@ Begin Form
                     Top =7680
                     Width =840
                     Height =255
-                    TabIndex =77
+                    TabIndex =78
                     ForeColor =8355711
                     Name ="tbxIsSampledSum"
                     ControlSource ="=[IsSampled_Q1]+[IsSampled_Q2]+[IsSampled_Q3]"
@@ -199,6 +199,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -209,7 +210,7 @@ Begin Form
                     Top =7980
                     Width =840
                     Height =255
-                    TabIndex =78
+                    TabIndex =79
                     ForeColor =8355711
                     Name ="tbxNoExoticsSum"
                     ControlSource ="=[NoExotics_Q1]+[NoExotics_Q2]+[NoExotics_Q3]"
@@ -228,7 +229,7 @@ Begin Form
                     Top =1500
                     Width =7200
                     Height =6717
-                    TabIndex =55
+                    TabIndex =60
                     Name ="fsub_Species_2008"
                     SourceObject ="Form.fsub_Species_2008"
                     LinkChildFields ="Transect_ID"
@@ -246,7 +247,7 @@ Begin Form
                     Top =1500
                     Width =7320
                     Height =6598
-                    TabIndex =56
+                    TabIndex =61
                     Name ="fsub_Species_2009"
                     SourceObject ="Form.fsub_Species_2009"
                     LinkChildFields ="Transect_ID"
@@ -259,6 +260,7 @@ Begin Form
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     OverlapFlags =223
                     IMESentenceMode =3
                     Left =12450
@@ -266,6 +268,7 @@ Begin Form
                     Width =630
                     Height =180
                     ColumnWidth =2310
+                    TabIndex =63
                     Name ="Transect_ID"
                     ControlSource ="Transect_ID"
                     StatusBarText ="Unique record identifier - primary key"
@@ -284,7 +287,7 @@ Begin Form
                     Width =630
                     Height =180
                     ColumnWidth =2310
-                    TabIndex =1
+                    TabIndex =64
                     Name ="Event_ID"
                     ControlSource ="Event_ID"
                     StatusBarText ="M. Link to tbl_Locations (Loc_ID)"
@@ -297,6 +300,7 @@ Begin Form
                 Begin TextBox
                     Enabled = NotDefault
                     Locked = NotDefault
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =215
@@ -308,11 +312,11 @@ Begin Form
                     Width =1080
                     ColumnWidth =465
                     FontWeight =700
-                    TabIndex =2
+                    TabIndex =65
                     ForeColor =0
                     Name ="Transect"
                     ControlSource ="Transect"
-                    StatusBarText ="Transect number - 1, 2, or 3"
+                    StatusBarText ="Transect number"
 
                     LayoutCachedLeft =600
                     LayoutCachedTop =420
@@ -343,11 +347,11 @@ Begin Form
                     Top =420
                     Width =960
                     ColumnWidth =1035
-                    TabIndex =3
+                    TabIndex =2
                     Name ="tbxStartTime"
                     ControlSource ="Start_Time"
                     Format ="Short Time"
-                    StatusBarText ="Date of visit."
+                    StatusBarText ="Start time of sampling visit"
                     AfterUpdate ="=UpdateTransect([Screen].[ActiveControl])"
                     InputMask ="00:00;0;_"
                     OnKeyDown ="[Event Procedure]"
@@ -379,7 +383,6 @@ Begin Form
                     Top =420
                     Width =306
                     Height =306
-                    TabIndex =4
                     Name ="btnPrevious"
                     Caption ="Command14"
                     OnClick ="[Event Procedure]"
@@ -423,7 +426,7 @@ Begin Form
                     Top =420
                     Width =306
                     Height =306
-                    TabIndex =5
+                    TabIndex =1
                     Name ="btnNext"
                     Caption ="Command15"
                     OnClick ="[Event Procedure]"
@@ -469,7 +472,7 @@ Begin Form
                     Top =420
                     Width =840
                     Height =180
-                    TabIndex =6
+                    TabIndex =67
                     Name ="GPS_Time"
                     ControlSource ="GPS_Time"
                     Format ="Long Time"
@@ -489,7 +492,7 @@ Begin Form
                     Top =420
                     Width =5460
                     Height =903
-                    TabIndex =7
+                    TabIndex =5
                     Name ="tbxComments"
                     ControlSource ="Comments"
                     StatusBarText ="Notes"
@@ -525,7 +528,7 @@ Begin Form
                     Left =1260
                     Top =810
                     Width =1620
-                    TabIndex =8
+                    TabIndex =3
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"100\""
                     Name ="cbxObserver"
                     ControlSource ="Observer"
@@ -649,8 +652,14 @@ Begin Form
                     Top =3720
                     Width =778
                     Height =239
-                    TabIndex =9
+                    TabIndex =14
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Dead_Wood_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -661,6 +670,11 @@ Begin Form
                     LayoutCachedTop =3720
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =3959
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -687,8 +701,14 @@ Begin Form
                     Top =3720
                     Width =778
                     Height =239
-                    TabIndex =10
+                    TabIndex =15
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Dead_Wood_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -699,6 +719,11 @@ Begin Form
                     LayoutCachedTop =3720
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =3959
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -709,8 +734,14 @@ Begin Form
                     Top =3720
                     Width =763
                     Height =239
-                    TabIndex =11
+                    TabIndex =16
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Dead_Wood_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -721,6 +752,11 @@ Begin Form
                     LayoutCachedTop =3720
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =3959
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -731,8 +767,14 @@ Begin Form
                     Top =3960
                     Width =778
                     Height =239
-                    TabIndex =12
+                    TabIndex =17
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Dung_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -743,6 +785,11 @@ Begin Form
                     LayoutCachedTop =3960
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =4199
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -769,8 +816,14 @@ Begin Form
                     Top =3960
                     Width =778
                     Height =239
-                    TabIndex =13
+                    TabIndex =18
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Dung_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -781,6 +834,11 @@ Begin Form
                     LayoutCachedTop =3960
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =4199
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -791,8 +849,14 @@ Begin Form
                     Top =3959
                     Width =763
                     Height =239
-                    TabIndex =14
+                    TabIndex =19
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Dung_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -803,6 +867,11 @@ Begin Form
                     LayoutCachedTop =3959
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =4198
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -813,8 +882,14 @@ Begin Form
                     Top =4200
                     Width =778
                     Height =239
-                    TabIndex =15
+                    TabIndex =20
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Fungus_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -825,6 +900,11 @@ Begin Form
                     LayoutCachedTop =4200
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =4439
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -851,8 +931,14 @@ Begin Form
                     Top =4200
                     Width =778
                     Height =239
-                    TabIndex =16
+                    TabIndex =21
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Fungus_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -863,6 +949,11 @@ Begin Form
                     LayoutCachedTop =4200
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =4439
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -873,8 +964,14 @@ Begin Form
                     Top =4198
                     Width =763
                     Height =239
-                    TabIndex =17
+                    TabIndex =22
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Fungus_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -885,6 +982,11 @@ Begin Form
                     LayoutCachedTop =4198
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =4437
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -895,8 +997,14 @@ Begin Form
                     Top =4440
                     Width =778
                     Height =239
-                    TabIndex =18
+                    TabIndex =23
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Lichen_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -907,6 +1015,11 @@ Begin Form
                     LayoutCachedTop =4440
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =4679
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -933,8 +1046,14 @@ Begin Form
                     Top =4440
                     Width =778
                     Height =239
-                    TabIndex =19
+                    TabIndex =24
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Lichen_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -945,6 +1064,11 @@ Begin Form
                     LayoutCachedTop =4440
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =4679
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -955,8 +1079,14 @@ Begin Form
                     Top =4437
                     Width =763
                     Height =239
-                    TabIndex =20
+                    TabIndex =25
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Lichen_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -967,6 +1097,11 @@ Begin Form
                     LayoutCachedTop =4437
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =4676
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -977,8 +1112,14 @@ Begin Form
                     Top =4680
                     Width =778
                     Height =239
-                    TabIndex =21
+                    TabIndex =26
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Litter_Duff_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -989,6 +1130,11 @@ Begin Form
                     LayoutCachedTop =4680
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =4919
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1015,8 +1161,14 @@ Begin Form
                     Top =4680
                     Width =778
                     Height =239
-                    TabIndex =22
+                    TabIndex =27
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Litter_Duff_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1027,6 +1179,11 @@ Begin Form
                     LayoutCachedTop =4680
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =4919
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1037,8 +1194,14 @@ Begin Form
                     Top =4676
                     Width =763
                     Height =239
-                    TabIndex =23
+                    TabIndex =28
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Litter_Duff_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1049,6 +1212,11 @@ Begin Form
                     LayoutCachedTop =4676
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =4915
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1059,8 +1227,14 @@ Begin Form
                     Top =4920
                     Width =778
                     Height =239
-                    TabIndex =24
+                    TabIndex =29
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Root_Bole_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1071,6 +1245,11 @@ Begin Form
                     LayoutCachedTop =4920
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =5159
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1097,8 +1276,14 @@ Begin Form
                     Top =4920
                     Width =778
                     Height =239
-                    TabIndex =25
+                    TabIndex =30
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Root_Bole_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1109,6 +1294,11 @@ Begin Form
                     LayoutCachedTop =4920
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =5159
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1119,8 +1309,14 @@ Begin Form
                     Top =4915
                     Width =763
                     Height =239
-                    TabIndex =26
+                    TabIndex =31
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Root_Bole_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1131,6 +1327,11 @@ Begin Form
                     LayoutCachedTop =4915
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =5154
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1141,8 +1342,14 @@ Begin Form
                     Top =5401
                     Width =778
                     Height =239
-                    TabIndex =30
+                    TabIndex =35
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Mineral_Soil_Sediment_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1153,6 +1360,11 @@ Begin Form
                     LayoutCachedTop =5401
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =5640
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1179,8 +1391,14 @@ Begin Form
                     Top =5401
                     Width =778
                     Height =239
-                    TabIndex =31
+                    TabIndex =36
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Mineral_Soil_Sediment_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1191,6 +1409,11 @@ Begin Form
                     LayoutCachedTop =5401
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =5640
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1201,8 +1424,14 @@ Begin Form
                     Top =5400
                     Width =763
                     Height =239
-                    TabIndex =32
+                    TabIndex =37
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Mineral_Soil_Sediment_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1213,6 +1442,11 @@ Begin Form
                     LayoutCachedTop =5400
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =5639
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1223,8 +1457,14 @@ Begin Form
                     Top =5641
                     Width =778
                     Height =239
-                    TabIndex =33
+                    TabIndex =38
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Moss_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1235,6 +1475,11 @@ Begin Form
                     LayoutCachedTop =5641
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =5880
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1261,8 +1506,14 @@ Begin Form
                     Top =5641
                     Width =778
                     Height =239
-                    TabIndex =34
+                    TabIndex =39
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Moss_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1273,6 +1524,11 @@ Begin Form
                     LayoutCachedTop =5641
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =5880
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1283,8 +1539,14 @@ Begin Form
                     Top =5641
                     Width =763
                     Height =239
-                    TabIndex =35
+                    TabIndex =40
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Moss_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1295,6 +1557,11 @@ Begin Form
                     LayoutCachedTop =5641
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =5880
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1305,8 +1572,14 @@ Begin Form
                     Top =5881
                     Width =778
                     Height =239
-                    TabIndex =36
+                    TabIndex =41
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Cryptogram_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1317,6 +1590,11 @@ Begin Form
                     LayoutCachedTop =5881
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =6120
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1343,8 +1621,14 @@ Begin Form
                     Top =5881
                     Width =778
                     Height =239
-                    TabIndex =37
+                    TabIndex =42
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Cryptogram_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1355,6 +1639,11 @@ Begin Form
                     LayoutCachedTop =5881
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =6120
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1365,8 +1654,14 @@ Begin Form
                     Top =5881
                     Width =763
                     Height =239
-                    TabIndex =38
+                    TabIndex =43
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Cryptogram_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1377,6 +1672,11 @@ Begin Form
                     LayoutCachedTop =5881
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =6120
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1387,8 +1687,14 @@ Begin Form
                     Top =6121
                     Width =778
                     Height =239
-                    TabIndex =39
+                    TabIndex =44
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Road_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1399,6 +1705,11 @@ Begin Form
                     LayoutCachedTop =6121
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =6360
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1425,8 +1736,14 @@ Begin Form
                     Top =6121
                     Width =778
                     Height =239
-                    TabIndex =40
+                    TabIndex =45
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Road_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1437,6 +1754,11 @@ Begin Form
                     LayoutCachedTop =6121
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =6360
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1447,8 +1769,14 @@ Begin Form
                     Top =6121
                     Width =763
                     Height =239
-                    TabIndex =41
+                    TabIndex =46
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Road_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1459,6 +1787,11 @@ Begin Form
                     LayoutCachedTop =6121
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =6360
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1469,8 +1802,14 @@ Begin Form
                     Top =6361
                     Width =778
                     Height =239
-                    TabIndex =42
+                    TabIndex =47
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Rock_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1481,6 +1820,11 @@ Begin Form
                     LayoutCachedTop =6361
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =6600
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1507,8 +1851,14 @@ Begin Form
                     Top =6361
                     Width =778
                     Height =239
-                    TabIndex =43
+                    TabIndex =48
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Rock_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1519,6 +1869,11 @@ Begin Form
                     LayoutCachedTop =6361
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =6600
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1529,8 +1884,14 @@ Begin Form
                     Top =6361
                     Width =763
                     Height =239
-                    TabIndex =44
+                    TabIndex =49
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Rock_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1541,6 +1902,11 @@ Begin Form
                     LayoutCachedTop =6361
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =6600
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1551,8 +1917,14 @@ Begin Form
                     Top =6601
                     Width =778
                     Height =239
-                    TabIndex =45
+                    TabIndex =50
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Standing_Water_Flooded_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1563,6 +1935,11 @@ Begin Form
                     LayoutCachedTop =6601
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =6840
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1589,8 +1966,14 @@ Begin Form
                     Top =6601
                     Width =778
                     Height =239
-                    TabIndex =46
+                    TabIndex =51
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Standing_Water_Flooded_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1601,6 +1984,11 @@ Begin Form
                     LayoutCachedTop =6601
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =6840
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1611,8 +1999,14 @@ Begin Form
                     Top =6601
                     Width =763
                     Height =239
-                    TabIndex =47
+                    TabIndex =52
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Standing_Water_Flooded_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1623,6 +2017,11 @@ Begin Form
                     LayoutCachedTop =6601
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =6840
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1633,8 +2032,14 @@ Begin Form
                     Top =6841
                     Width =778
                     Height =239
-                    TabIndex =48
+                    TabIndex =53
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Stream_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1645,6 +2050,11 @@ Begin Form
                     LayoutCachedTop =6841
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =7080
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1671,8 +2081,14 @@ Begin Form
                     Top =6841
                     Width =778
                     Height =239
-                    TabIndex =49
+                    TabIndex =54
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Stream_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1683,6 +2099,11 @@ Begin Form
                     LayoutCachedTop =6841
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =7080
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1693,8 +2114,14 @@ Begin Form
                     Top =6841
                     Width =763
                     Height =239
-                    TabIndex =50
+                    TabIndex =55
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Stream_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1705,6 +2132,11 @@ Begin Form
                     LayoutCachedTop =6841
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =7080
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1715,8 +2147,14 @@ Begin Form
                     Top =7081
                     Width =778
                     Height =239
-                    TabIndex =51
+                    TabIndex =56
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Trash_Junk_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1727,6 +2165,11 @@ Begin Form
                     LayoutCachedTop =7081
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =7320
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1753,8 +2196,14 @@ Begin Form
                     Top =7081
                     Width =778
                     Height =239
-                    TabIndex =52
+                    TabIndex =57
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Trash_Junk_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1765,6 +2214,11 @@ Begin Form
                     LayoutCachedTop =7081
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =7320
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1775,8 +2229,14 @@ Begin Form
                     Top =7081
                     Width =763
                     Height =239
-                    TabIndex =53
+                    TabIndex =58
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Trash_Junk_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1787,6 +2247,11 @@ Begin Form
                     LayoutCachedTop =7081
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =7320
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin ComboBox
                     LimitToList = NotDefault
@@ -1797,8 +2262,14 @@ Begin Form
                     Top =5161
                     Width =778
                     Height =239
-                    TabIndex =27
+                    TabIndex =32
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003100490053005d003d00300000000000
+                    End
                     Name ="Dead_Root_Bole_Q1"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1809,6 +2280,11 @@ Begin Form
                     LayoutCachedTop =5161
                     LayoutCachedWidth =3058
                     LayoutCachedHeight =5400
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003100490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                     Begin
                         Begin Label
                             OldBorderStyle =1
@@ -1835,8 +2311,14 @@ Begin Form
                     Top =5161
                     Width =778
                     Height =239
-                    TabIndex =28
+                    TabIndex =33
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003200490053005d003d00300000000000
+                    End
                     Name ="Dead_Root_Bole_Q2"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -1847,6 +2329,11 @@ Begin Form
                     LayoutCachedTop =5161
                     LayoutCachedWidth =3848
                     LayoutCachedHeight =5400
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003200490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin Label
                     BackStyle =1
@@ -1883,7 +2370,7 @@ Begin Form
                     Height =300
                     FontSize =10
                     FontWeight =700
-                    TabIndex =57
+                    TabIndex =13
                     Name ="tglNoExoticsQ3"
                     ControlSource ="NoExotics_Q3"
                     AfterUpdate ="[Event Procedure]"
@@ -1961,7 +2448,7 @@ Begin Form
                     Height =299
                     FontSize =10
                     FontWeight =700
-                    TabIndex =58
+                    TabIndex =12
                     Name ="tglNoExoticsQ2"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2038,7 +2525,7 @@ Begin Form
                     Height =299
                     FontSize =10
                     FontWeight =700
-                    TabIndex =59
+                    TabIndex =11
                     Name ="tglNoExoticsQ1"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2116,7 +2603,7 @@ Begin Form
                     Height =269
                     FontSize =10
                     FontWeight =700
-                    TabIndex =60
+                    TabIndex =10
                     Name ="tglNoExoticsT"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2193,7 +2680,7 @@ Begin Form
                     Height =300
                     FontSize =10
                     FontWeight =700
-                    TabIndex =61
+                    TabIndex =9
                     Name ="tglNotSampledQ3"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2241,7 +2728,7 @@ Begin Form
                     Height =299
                     FontSize =10
                     FontWeight =700
-                    TabIndex =62
+                    TabIndex =8
                     Name ="tglNotSampledQ2"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2289,7 +2776,7 @@ Begin Form
                     Height =299
                     FontSize =10
                     FontWeight =700
-                    TabIndex =63
+                    TabIndex =7
                     Name ="tglNotSampledQ1"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2339,7 +2826,7 @@ Begin Form
                     Height =269
                     FontSize =10
                     FontWeight =700
-                    TabIndex =64
+                    TabIndex =6
                     Name ="tglNotSampledT"
                     AfterUpdate ="[Event Procedure]"
                     FontName ="Calibri"
@@ -2409,6 +2896,7 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =215
@@ -2432,6 +2920,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2442,7 +2931,7 @@ Begin Form
                     Top =7380
                     Width =840
                     Height =255
-                    TabIndex =67
+                    TabIndex =68
                     ForeColor =8355711
                     Name ="tbxQ1"
 
@@ -2454,6 +2943,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2464,7 +2954,7 @@ Begin Form
                     Top =7380
                     Width =840
                     Height =255
-                    TabIndex =68
+                    TabIndex =69
                     ForeColor =8355711
                     Name ="tbxQ2"
 
@@ -2476,6 +2966,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2486,7 +2977,7 @@ Begin Form
                     Top =7380
                     Width =840
                     Height =255
-                    TabIndex =69
+                    TabIndex =70
                     ForeColor =8355711
                     Name ="tbxQ3"
 
@@ -2498,6 +2989,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2508,7 +3000,7 @@ Begin Form
                     Top =7680
                     Width =840
                     Height =255
-                    TabIndex =70
+                    TabIndex =71
                     ForeColor =8355711
                     Name ="tbxQ1IS"
                     ControlSource ="IsSampled_Q1"
@@ -2521,6 +3013,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2531,7 +3024,7 @@ Begin Form
                     Top =7680
                     Width =840
                     Height =255
-                    TabIndex =71
+                    TabIndex =72
                     ForeColor =8355711
                     Name ="tbxQ2IS"
                     ControlSource ="IsSampled_Q2"
@@ -2544,6 +3037,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2554,7 +3048,7 @@ Begin Form
                     Top =7680
                     Width =840
                     Height =255
-                    TabIndex =72
+                    TabIndex =73
                     ForeColor =8355711
                     Name ="tbxQ3IS"
                     ControlSource ="IsSampled_Q3"
@@ -2567,6 +3061,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2577,7 +3072,7 @@ Begin Form
                     Top =7980
                     Width =840
                     Height =255
-                    TabIndex =73
+                    TabIndex =74
                     ForeColor =8355711
                     Name ="tbxQ1NE"
                     ControlSource ="NoExotics_Q1"
@@ -2590,6 +3085,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2600,7 +3096,7 @@ Begin Form
                     Top =7980
                     Width =840
                     Height =255
-                    TabIndex =74
+                    TabIndex =75
                     ForeColor =8355711
                     Name ="tbxQ2NE"
                     ControlSource ="NoExotics_Q2"
@@ -2613,6 +3109,7 @@ Begin Form
                     ForeShade =50.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =223
@@ -2623,7 +3120,7 @@ Begin Form
                     Top =7980
                     Width =840
                     Height =255
-                    TabIndex =75
+                    TabIndex =76
                     ForeColor =8355711
                     Name ="tbxQ3NE"
                     ControlSource ="NoExotics_Q3"
@@ -2662,8 +3159,14 @@ Begin Form
                     Top =5161
                     Width =763
                     Height =239
-                    TabIndex =29
+                    TabIndex =34
                     ColumnInfo ="\"\";\"\";\"6\";\"4\""
+                    ConditionalFormat = Begin
+                        0x010000007a000000010000000100000000000000000000000c00000000000000 ,
+                        0x00000000ffffff00000000000000000000000000000000000000000000000000 ,
+                        0x0000000000000000000000000000000000000000000000000000000000000000 ,
+                        0x5b0074006200780051003300490053005d003d00300000000000
+                    End
                     Name ="Dead_Root_Bole_Q3"
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
@@ -2674,9 +3177,15 @@ Begin Form
                     LayoutCachedTop =5161
                     LayoutCachedWidth =4603
                     LayoutCachedHeight =5400
+                    ConditionalFormat14 = Begin
+                        0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
+                        0x74006200780051003300490053005d003d003000000000000000000000000000 ,
+                        0x000000000000000000
+                    End
                 End
                 Begin TextBox
                     Visible = NotDefault
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =215
@@ -2686,7 +3195,7 @@ Begin Form
                     Top =1140
                     Width =2820
                     Height =255
-                    TabIndex =76
+                    TabIndex =77
                     ForeColor =8355711
                     Name ="tbxStart"
                     ControlSource ="Start_Time"
@@ -2706,7 +3215,7 @@ Begin Form
                     Top =3072
                     Width =3300
                     Height =599
-                    TabIndex =65
+                    TabIndex =62
                     BorderColor =2366701
                     Name ="fsub_Message"
                     SourceObject ="Form.fsub_Msg"
@@ -2726,7 +3235,7 @@ Begin Form
                     Left =4020
                     Top =810
                     Width =1620
-                    TabIndex =80
+                    TabIndex =4
                     ColumnInfo ="\"\";\"\";\"\";\"\";\"\";\"\";\"10\";\"100\""
                     Name ="cbxRecorder"
                     ControlSource ="Recorder"
@@ -2763,7 +3272,7 @@ Begin Form
                     Top =1500
                     Width =8340
                     Height =6718
-                    TabIndex =54
+                    TabIndex =59
                     Name ="fsub_Species_Current"
                     SourceObject ="Form.fsub_Species"
                     LinkChildFields ="Transect_ID"
@@ -2815,16 +3324,16 @@ Begin Form
                     SpecialEffect =0
                     BackStyle =1
                     OldBorderStyle =0
-                    OverlapFlags =247
-                    Left =300
+                    OverlapFlags =255
+                    Left =360
                     Top =7380
                     Width =4440
                     Height =900
                     BackColor =14478320
                     Name ="bxHide"
-                    LayoutCachedLeft =300
+                    LayoutCachedLeft =360
                     LayoutCachedTop =7380
-                    LayoutCachedWidth =4740
+                    LayoutCachedWidth =4800
                     LayoutCachedHeight =8280
                 End
                 Begin Label
@@ -2856,6 +3365,7 @@ Begin Form
                     GridlineShade =65.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =93
@@ -2879,6 +3389,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -2902,6 +3413,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -2925,6 +3437,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -2948,6 +3461,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -2971,6 +3485,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -2994,6 +3509,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3017,6 +3533,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3040,6 +3557,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3063,6 +3581,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3109,6 +3628,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3132,6 +3652,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3155,6 +3676,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3178,6 +3700,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =87
@@ -3201,6 +3724,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =93
@@ -3224,6 +3748,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3247,6 +3772,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3270,6 +3796,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3293,6 +3820,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3316,6 +3844,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3339,6 +3868,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3362,6 +3892,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3385,6 +3916,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3408,6 +3940,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3431,6 +3964,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3454,6 +3988,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3477,6 +4012,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3500,6 +4036,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3523,6 +4060,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =87
@@ -3546,6 +4084,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =93
@@ -3569,6 +4108,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3592,6 +4132,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3615,6 +4156,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3638,6 +4180,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3661,6 +4204,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3684,6 +4228,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3707,6 +4252,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3730,6 +4276,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3753,6 +4300,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3776,6 +4324,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3799,6 +4348,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3822,6 +4372,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3845,6 +4396,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =95
@@ -3868,6 +4420,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin TextBox
+                    TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
                     OverlapFlags =87
@@ -3887,6 +4440,25 @@ Begin Form
                     LayoutCachedTop =7140
                     LayoutCachedWidth =16020
                     LayoutCachedHeight =7440
+                    ForeThemeColorIndex =1
+                    ForeShade =95.0
+                End
+                Begin Label
+                    OverlapFlags =85
+                    TextAlign =2
+                    Left =13320
+                    Top =2460
+                    Width =2745
+                    Height =240
+                    FontWeight =500
+                    BackColor =-2147483643
+                    ForeColor =15921906
+                    Name ="lblMicrohabitatCoverIDs"
+                    Caption ="Microhabitat Sfc Cover IDs (Q1 > Q3)"
+                    LayoutCachedLeft =13320
+                    LayoutCachedTop =2460
+                    LayoutCachedWidth =16065
+                    LayoutCachedHeight =2700
                     ForeThemeColorIndex =1
                     ForeShade =95.0
                 End
@@ -4391,14 +4963,14 @@ On Error GoTo Err_Handler
 
     'determine # of records
     Dim rs As DAO.Recordset
-    Dim numRecords As Integer
+    Dim NumRecords As Integer
     
     Set rs = Me.RecordsetClone
     If Not rs.EOF And rs.BOF Then
         rs.MoveLast
     End If
     
-    numRecords = rs.RecordCount
+    NumRecords = rs.RecordCount
     
     'use recordset absolute position to determine
     'if on first/last record or in between
@@ -4415,7 +4987,7 @@ On Error GoTo Err_Handler
         
         'identify the record as 1st or last
         'AbsolutePosition zero based, so + 1
-        If .AbsolutePosition + 1 = numRecords Then
+        If .AbsolutePosition + 1 = NumRecords Then
             Transect.ForeColor = lngRed
             Transect.ControlTipText = "Last Transect"
         ElseIf .AbsolutePosition = 0 Then
@@ -4465,21 +5037,21 @@ On Error GoTo Err_Handler
 
     'determine # of records
     Dim rs As DAO.Recordset
-    Dim numRecords As Integer
+    Dim NumRecords As Integer
     
     Set rs = Me.RecordsetClone
     If Not rs.EOF And rs.BOF Then
         rs.MoveLast
     End If
     
-    numRecords = rs.RecordCount
+    NumRecords = rs.RecordCount
     
     'use recordset absolute position to determine
     'if on first/last record or in between
     With Me.Recordset
     
         'test for zero point (before 1st record)
-        If .AbsolutePosition + 1 = numRecords Then
+        If .AbsolutePosition + 1 = NumRecords Then
             'go to first record if on last
             DoCmd.GoToRecord , , acFirst
         Else
@@ -4489,7 +5061,7 @@ On Error GoTo Err_Handler
         
         'identify the record as 1st or last
         'AbsolutePosition is zero based so +1
-        If .AbsolutePosition + 1 = numRecords Then
+        If .AbsolutePosition + 1 = NumRecords Then
             Transect.ForeColor = lngRed
             Transect.ControlTipText = "Last Transect"
         ElseIf .AbsolutePosition = 0 Then
@@ -5962,6 +6534,13 @@ On Error GoTo Err_Handler
         .Controls("tbxNEQ2") = Me.tbxQ2NE
         .Controls("tbxISQ3") = Me.tbxQ3IS
         .Controls("tbxNEQ3") = Me.tbxQ3NE
+    
+'        .Controls("tbxQ1IS") = Me.tbxQ1IS
+'        .Controls("tbxQ1NE") = Me.tbxQ1NE
+'        .Controls("tbxQ2IS") = Me.tbxQ2IS
+'        .Controls("tbxQ2NE") = Me.tbxQ2NE
+'        .Controls("tbxQ3IS") = Me.tbxQ3IS
+'        .Controls("tbxQ3NE") = Me.tbxQ3NE
     
 '        Dim IsEnabled As Boolean
 '
