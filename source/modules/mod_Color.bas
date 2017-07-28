@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_Color
 ' Level:        Framework module
-' Version:      1.07
+' Version:      1.08
 ' Description:  color functions & procedures
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -16,6 +16,7 @@ Option Explicit
 '               BLC, 6/24/2016 - 1.05 - replaced Exit_Function > Exit_Handler
 '               BLC, 2/22/2017 - 1.06 - added RandomColor()
 '               BLC, 3/8/2017 - 1.07 - imported into invasives
+'               BLC, 7/28/2017 - 1.08 - added lngLtrYellow
 ' =================================
 
 ' ---------------------------------
@@ -50,6 +51,7 @@ Public Const lngWhite As Long = 16777215    '?RGB(255,255,255) #FFFFFF
 Public Const lngBlack As Long = 0           '?RGB(0,0,0) #000000
 Public Const lngYellow As Long = 65535      '?RGB(255,255,0) #FFFF00
 Public Const lngLtYellow As Long = 14745599 '?RGB(255,255,224) #FFFFE0
+Public Const lngLtrYellow As Long = 9436926 '?RGB(254,254,143) #FEFE8F
 Public Const lngBrown As Long = 13107       '?RGB(51,51,0) #333300
 Public Const lngPutty As Long = 3355443     '?RGB(51,51,51) #333333
 Public Const lngPurple As Long = 9974127    '?RGB(111,49,152) #6F3198

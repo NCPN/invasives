@@ -16,7 +16,7 @@ Begin Form
     GridY =24
     Width =16140
     DatasheetFontHeight =9
-    ItemSuffix =140
+    ItemSuffix =141
     Left =1560
     Top =1290
     Right =15030
@@ -133,7 +133,7 @@ Begin Form
         End
         Begin Section
             CanGrow = NotDefault
-            Height =8520
+            Height =9300
             BackColor =26112
             Name ="Detail"
             AlternateBackColor =26112
@@ -3703,7 +3703,7 @@ Begin Form
                     TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =87
+                    OverlapFlags =95
                     BackStyle =0
                     IMESentenceMode =3
                     Left =13440
@@ -4063,7 +4063,7 @@ Begin Form
                     TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =87
+                    OverlapFlags =95
                     BackStyle =0
                     IMESentenceMode =3
                     Left =14400
@@ -4423,7 +4423,7 @@ Begin Form
                     TabStop = NotDefault
                     SpecialEffect =0
                     OldBorderStyle =0
-                    OverlapFlags =87
+                    OverlapFlags =95
                     BackStyle =0
                     IMESentenceMode =3
                     Left =15300
@@ -4444,7 +4444,7 @@ Begin Form
                     ForeShade =95.0
                 End
                 Begin Label
-                    OverlapFlags =85
+                    OverlapFlags =93
                     TextAlign =2
                     Left =13320
                     Top =2460
@@ -4461,6 +4461,23 @@ Begin Form
                     LayoutCachedHeight =2700
                     ForeThemeColorIndex =1
                     ForeShade =95.0
+                End
+                Begin Rectangle
+                    Visible = NotDefault
+                    SpecialEffect =0
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =247
+                    Left =13320
+                    Top =2280
+                    Width =2820
+                    Height =6180
+                    BackColor =26112
+                    Name ="bxHideSfcCoverIDs"
+                    LayoutCachedLeft =13320
+                    LayoutCachedTop =2280
+                    LayoutCachedWidth =16140
+                    LayoutCachedHeight =8460
                 End
             End
         End
@@ -4482,7 +4499,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.08
+' Version:      1.10
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -4509,6 +4526,7 @@ Option Explicit
 '               BLC - 7/25/2017 - 1.08 - added "New Records Created!" message on new quadrat record creation
 '               BLC - 7/26/2017 - 1.09 - iterate through transects for creating new records,
 '                                        fixed start time update
+'               BLC - 7/28/2017 - 1.10 - code cleanup
 ' =================================
 
 '---------------------
@@ -4558,6 +4576,7 @@ Dim strCheck As String
 '                     launching form (frm_Visit_Date)
 '   BLC - 7/13/2017 - set development controls to show/hide based on DEV_MODE setting
 '   BLC - 7/25/2017 - added "New Records Created!" message on new quadrat record creation
+'   BLC - 7/28/2017 - code cleanup, add hide surface cover IDs when DEV_MODE false
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
@@ -4568,6 +4587,7 @@ On Error GoTo Err_Handler
     
     'show/hide dev mode controls
     bxHide.Visible = Not DEV_MODE
+    bxHideSfcCoverIDs.Visible = Not DEV_MODE
     
     'set form recordsource
     Me.RecordSource = "usys_temp_transect"
@@ -4601,9 +4621,6 @@ On Error GoTo Err_Handler
                     .AddQuadrats
                     .AddSurfaceMicrohabitats
         
-'                    MsgBox "New quadrats & surface microhabitat records have been created." & _
-'                        vbCrLf & vbCrLf & "Please re-open the visit to retrieve this new data." _
-'                        , vbOKOnly, "New Records Created!"
                     blnNewRecords = True
                                         
                 End If
@@ -6438,65 +6455,29 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/24/2017 - initial version
+'   BLC - 7/28/2017 - code cleanup
 ' ---------------------------------
 Private Function UpdateMicrohabitat(ctrl As Control) As Boolean
 On Error GoTo Err_Handler
-
-'    Dim rs As DAO.Recordset
-'    Dim strField As String
-'
-'    'skip if NULL
-'    If IsNull(Me.tbxTransectID) Then GoTo Exit_Handler
-    
-    'set the transect ID
-'    SetTempVar "Transect_ID", CStr(Me.tbxTransectID)
-    
-'    Set rs = GetRecords("s_surfacecover_by_transect")
-    
-'    If Not (rs.BOF And rs.EOF) Then
-'        Do Until rs.EOF
-'
-'            'populate the field
-'            Me.Controls(rs("ControlName")) = rs("PercentCover")
-'
-'            'set the tempvar for Quadrat ID (1,2,3)
-'            SetTempVar "Q" & rs("Quadrat") & "_ID", CInt(rs("Quadrat_ID"))
-'
-'            rs.MoveNext
-'        Loop
-'    End If
-'
-'    'populate Q1-3 IDs
-'    tbxQ1 = Nz(TempVars("Q1_ID"), 0)
-'    tbxQ2 = Nz(TempVars("Q2_ID"), 0)
-'    tbxQ3 = Nz(TempVars("Q3_ID"), 0)
-    
-    'Dead_Wood_Q1
-    
-    'retrieve control name & determine colname & quadrat
-'    Dim q As Integer
-'    Dim strQuadratControl As String
-'
-'    q = CInt(Right(ctrl.Name, 1))
-'
-'    strQuadratControl = "tbxQ" & q
        
     Dim strSurfaceCoverID
     
-    'tbxLitter_Duff_CoverID_Q2
+    'set control name
     strSurfaceCoverID = "tbx" & Replace(ctrl.Name, "_Q", "_CoverID_Q")
-    
+        
     Dim sc As New SurfaceCover
     
+    'update the cover
     With sc
     
-        '.QuadratID = Me.Controls(strQuadratControl)
-        '.SurfaceID =
         .SurfaceCoverID = Me.Controls(strSurfaceCoverID)
         .PercentCover = Nz(ctrl.Value, 0)
+
 Debug.Print .SurfaceCoverID
+        
         'update the cover
         .UpdateSurfaceCover
+    
     End With
     
 Exit_Handler:
@@ -6522,6 +6503,7 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
+'   BLC - 7/28/2017 - code cleanup
 ' ---------------------------------
 Private Sub RefreshSubform()
 On Error GoTo Err_Handler
@@ -6534,14 +6516,7 @@ On Error GoTo Err_Handler
         .Controls("tbxNEQ2") = Me.tbxQ2NE
         .Controls("tbxISQ3") = Me.tbxQ3IS
         .Controls("tbxNEQ3") = Me.tbxQ3NE
-    
-'        .Controls("tbxQ1IS") = Me.tbxQ1IS
-'        .Controls("tbxQ1NE") = Me.tbxQ1NE
-'        .Controls("tbxQ2IS") = Me.tbxQ2IS
-'        .Controls("tbxQ2NE") = Me.tbxQ2NE
-'        .Controls("tbxQ3IS") = Me.tbxQ3IS
-'        .Controls("tbxQ3NE") = Me.tbxQ3NE
-    
+        
 '        Dim IsEnabled As Boolean
 '
 '        IsEnabled = IIf((Me.tbxIsSampledSum = 0) Or _

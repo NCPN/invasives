@@ -1238,7 +1238,7 @@ Option Explicit
 ' =================================
 ' Form:         fsub_Species
 ' Level:        Application form
-' Version:      1.09
+' Version:      1.10
 ' Basis:        -
 '
 ' Description:  Species subform object related properties, functions & procedures for UI display
@@ -1256,7 +1256,8 @@ Option Explicit
 '               BLC - 7/18/2017 - 1.06 - revised for species cover updates/deletes
 '               BLC - 7/19/2017 - 1.07 - removed CalcAverageCover(), ParentForm_Current() & other cleanup
 '               BLC - 7/24/2017 - 1.08 - revised btnDelete_Click to properly delete from db & usys_temp_speciescover
-'               BLC - 7/27/2017 - 1.09 - update average cover after setting species cover
+'               BLC - 7/27/2017 - 1.09 - update average cover after setting species cover, revised IsDuplicateSpeciesCover
+'               BLC - 7/28/2017 - 1.10 - code cleanup
 ' =================================
 
 '---------------------
@@ -2051,12 +2052,13 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
+'   BLC - 7/27/2017 - revised to use query vs. DLookup for duplicates
+'                     dupe = same species + is dead for same sampling event on transect
+'                     so event & transect must be included
+'   BLC - 7/28/2017 - code cleanup
 ' ---------------------------------
 Private Function IsDuplicateSpeciesCover(Optional SkipWarning As Boolean = False) As Boolean
 On Error GoTo Err_Handler
-      
-    'default value
-'    Me.tbxDupe = 0
       
     'ensure plant code & is dead flag are set
     If IsNull(Me!Plant_Code) Or IsNull(Me!cbxIsDead) Then
@@ -2081,30 +2083,9 @@ On Error GoTo Err_Handler
         'check if *any* of the Quadrats have this species in SpeciesCover
         Dim i, IsDead As Integer
         Dim strCriteria As String
-'        Dim strControl, strCriteria As String
-        
-'        For i = 1 To QUADRATS_PER_TRANSECT
-            
-'            strControl = "tbxQ" & i
-'            strControl = Me.Parent.Parent.tbxEventID
             IsDead = IIf(Me.cbxIsDead = "Dead", 1, 0)
-            
-'            strCriteria = "[Quadrat_ID] = " & Parent.Form.Controls(strControl) & _
-'                    " AND [PlantCode] = '" & Me.Plant_Code & "'" & _
-'                    " AND [IsDead] = " & IsDead
 
-'            strCriteria = "[Event_ID] = '" & Me.Parent.Parent.tbxEventID & _
-'                    "' AND [PlantCode] = '" & Me.Plant_Code & "'" & _
-'                    "  AND [IsDead] = " & IsDead
-'
-'Debug.Print strCriteria
-'Debug.Print "DLU: " & DLookup("[PlantCode]", "TransectSpeciesCover", strCriteria)
-'Debug.Print "DLU2: " & DLookup("[IsDead]", "TransectSpeciesCover", strCriteria)
-'
-''            If Not IsNull(DLookup("[PlantCode]", "SpeciesCover", strCriteria)) Then
-'            If Not IsNull(DLookup("[PlantCode]", "TransectSpeciesCover", strCriteria)) Then
-
-            'run
+            'determine if duplicates exist
             Dim NumRecords As Integer
             Dim Template As String
             
@@ -2121,28 +2102,22 @@ On Error GoTo Err_Handler
                 
                 'retrieve the first record returned
                 NumRecords = GetRecords(Template, params).Fields(0)
+                
 Debug.Print "Plant - IsDead - NumRecords: " & Me.Plant_Code & " - " & Me.cbxIsDead & " - " & NumRecords
+            
             End With
 
-             If NumRecords > 1 Then
-              
-              IsDupe = True
-              
-              If Not SkipWarning Then
-                MsgBox "Duplicate species dead/alive for this transect."
-                
-                DoCmd.CancelEvent
-                SendKeys "{ESC}"
-              End If
-              
-              'exit if it's a dupe for one quadrat, dupe for transect
-              'Exit For
-              
-              'highlight the problem
- '             Me.tbxDupe = 1
+            If NumRecords > 1 Then
+             
+                IsDupe = True
+                 
+                 If Not SkipWarning Then
+                    MsgBox "Duplicate species dead/alive for this transect."
+                    
+                    DoCmd.CancelEvent
+                    SendKeys "{ESC}"
+                 End If
             End If
-            
- '       Next
     
     End If
   
@@ -2176,101 +2151,99 @@ End Function
 ' Adapted:      -
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
-'   BLC - 7/27/2017 - update average cover after setting species cover
+'   BLC - 7/27/2017 - update average cover after setting species cover,
+'                     do not re-check IsDuplicateSpeciesCover since that is
+'                     checked already
+'   BLC - 7/28/2017 - code cleanup
 ' ---------------------------------
 Private Sub SetSpeciesCover()
 On Error GoTo Err_Handler
 
     'check if plant code is set
     If IsNull(Me.Plant_Code) = True Then GoTo Exit_Handler
-
-    'check if duplicate species cover
-    'If Not IsDuplicateSpeciesCover Then
     
-        Dim i As Integer
-        Dim strControl As String
-        Dim sc As New InvasiveCoverSpecies
-        Dim CoverID As Integer
-        Dim Pct As Double
-        Dim QID As Long
-        Dim SkipQuadrat As Boolean
-                
-        'iterate through quadrats
-        For i = 1 To QUADRATS_PER_TRANSECT
-        
-            SkipQuadrat = False
-
-            strControl = "tbxSpeciesCoverID_Q" & i
-                
-            ' do the update/add
-            With sc
-                            
-                Select Case i
-                    Case 1
-                        If Me.tbxISQ1 = 0 Or Me.tbxNEQ1 = 1 Then
-                            SkipQuadrat = True
-                        Else
-                            Pct = Nz(Me.Q1_hm, 0)
-                            CoverID = Nz(Me.tbxSpeciesCoverID_Q1, 0)
-                            QID = Parent.Form.Controls("tbxQ1")
-                        End If
-                        
-                    Case 2
-                        If Me.tbxISQ2 = 0 Or Me.tbxNEQ2 = 1 Then
-                            SkipQuadrat = True
-                        Else
-                            Pct = Nz(Me.Q2_5m, 0)
-                            CoverID = Nz(Me.tbxSpeciesCoverID_Q2, 0)
-                            QID = Parent.Form.Controls("tbxQ2")
-                        End If
-                    
-                    Case 3
-                        If Me.tbxISQ3 = 0 Or Me.tbxNEQ3 = 1 Then
-                            SkipQuadrat = True
-                        Else
-                            Pct = Nz(Me.Q3_10m, 0)
-                            CoverID = Nz(Me.tbxSpeciesCoverID_Q3, 0)
-                            QID = Parent.Form.Controls("tbxQ3")
-                        End If
-                        
-                End Select
-                
-                .QuadratID = QID
-                .LUcode = Me.Plant_Code
-                .IsDead = Nz(Me.cbxIsDead, 0) 'IIf(Me.cbxIsDead = "Dead", 1, 0)
-                .PctCover = Pct
-                
-                'take action if quadrat shouldn't be skipped
-                If Not SkipQuadrat Then
-                    
-                    'check if update or new
-                    Select Case Me.Controls(strControl)
-                        
-                        Case Is > 0 'Update
-                                        
-                            .SpeciesCoverID = CoverID
-                            .UpdateSpeciesCover
-                            
-                        Case Else   'New
-                
-                            .AddSpeciesCover
-                            
-                            'update the values for species cover ID
-                            Me.Controls(strControl) = .SpeciesCoverID
-
-                    End Select
-                
-                    'update the underlying data << not now, it's in use!
-                    'RefreshTempTable "usys_temp_speciescover"
-                
-                End If
-                
-            End With
+    Dim i As Integer
+    Dim strControl As String
+    Dim sc As New InvasiveCoverSpecies
+    Dim CoverID As Integer
+    Dim Pct As Double
+    Dim QID As Long
+    Dim SkipQuadrat As Boolean
             
-        Next
+    'iterate through quadrats
+    For i = 1 To QUADRATS_PER_TRANSECT
     
-    'End If
-    
+        SkipQuadrat = False
+
+        strControl = "tbxSpeciesCoverID_Q" & i
+            
+        ' do the update/add
+        With sc
+                        
+            Select Case i
+                Case 1
+                    If Me.tbxISQ1 = 0 Or Me.tbxNEQ1 = 1 Then
+                        SkipQuadrat = True
+                    Else
+                        Pct = Nz(Me.Q1_hm, 0)
+                        CoverID = Nz(Me.tbxSpeciesCoverID_Q1, 0)
+                        QID = Parent.Form.Controls("tbxQ1")
+                    End If
+                    
+                Case 2
+                    If Me.tbxISQ2 = 0 Or Me.tbxNEQ2 = 1 Then
+                        SkipQuadrat = True
+                    Else
+                        Pct = Nz(Me.Q2_5m, 0)
+                        CoverID = Nz(Me.tbxSpeciesCoverID_Q2, 0)
+                        QID = Parent.Form.Controls("tbxQ2")
+                    End If
+                
+                Case 3
+                    If Me.tbxISQ3 = 0 Or Me.tbxNEQ3 = 1 Then
+                        SkipQuadrat = True
+                    Else
+                        Pct = Nz(Me.Q3_10m, 0)
+                        CoverID = Nz(Me.tbxSpeciesCoverID_Q3, 0)
+                        QID = Parent.Form.Controls("tbxQ3")
+                    End If
+                    
+            End Select
+            
+            .QuadratID = QID
+            .LUcode = Me.Plant_Code
+            .IsDead = Nz(Me.cbxIsDead, 0) 'IIf(Me.cbxIsDead = "Dead", 1, 0)
+            .PctCover = Pct
+            
+            'take action if quadrat shouldn't be skipped
+            If Not SkipQuadrat Then
+                
+                'check if update or new
+                Select Case Me.Controls(strControl)
+                    
+                    Case Is > 0 'Update
+                                    
+                        .SpeciesCoverID = CoverID
+                        .UpdateSpeciesCover
+                        
+                    Case Else   'New
+            
+                        .AddSpeciesCover
+                        
+                        'update the values for species cover ID
+                        Me.Controls(strControl) = .SpeciesCoverID
+
+                End Select
+            
+                'update the underlying data << not now, it's in use!
+                'RefreshTempTable "usys_temp_speciescover"
+            
+            End If
+            
+        End With
+        
+    Next
+        
     'update average cover
     Me.Requery
 

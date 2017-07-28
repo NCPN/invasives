@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Settings
 ' Level:        Application module
-' Version:      1.08
+' Version:      1.11
 ' Description:  Application-wide related values, functions & subroutines
 '
 ' Source/date:  Bonnie Campbell, April 2015
@@ -27,6 +27,8 @@ Option Explicit
 '                                       adding quadrats for new transects flexible in case
 '                                       # changes from 3 quadrats per transect
 '               BLC, 7/12/2017 - 1.10 - added VCS_SAVE_TABLES for tables to backup (lookups)
+'               BLC, 7/28/2017 - 1.11 - changed DEV_MODE to global variable vs. constant to
+'                                       allow user to set via tglDevMode toggle control in UI
 ' =================================
 
 ' ---------------------------------
@@ -65,6 +67,8 @@ Public gSubReportCount As Integer                  'global counter for subreport
 '               BLC, 6/7/2016  - added ACCESS_ROLES to set user application permissions
 '               BLC, 9/7/2016  - added LINK_NORMAL_TEXT & _BKGD for disabling tile links
 '               BLC, 5/3/2017  - added VCS_FULL_PATH for running VCS functions/subroutines
+'               BLC, 7/28/2017 - changed DEV_MODE to global variable vs. constant to
+'                                allow user to set via tglDevMode toggle control in UI
 ' ---------------------------------
 Public Const VCS_FULL_PATH As String = "Z:\_____LIB\dev\git_projects\libraries\VCS.accdb"   'Version Control System (VCS) db (contains modules for version control)
                                                                 'Tables to save for VCS (e.g. lookups)
@@ -81,7 +85,8 @@ Public Const APP_RELEASE_ID As String = ""                      'String -> relea
 Public Const APP_URL As String = "science.nature.nps.gov/im/units/ncpn/datamanagement.cfm"
                                                                 'String -> website URL for application
                                                                 '          used when db doesn't include full DbAdmin subform & controls, otherwise NULL
-Public Const DEV_MODE As Boolean = True                         'Boolean flag -> enable menus when typically they'd be OFF
+Public DEV_MODE As Boolean                                      'Boolean flag -> enable menus, show controls when typically they'd be OFF
+                                                                '        flag is set via DEV_MODE toggle in UI
 
 Public Const ACCESS_ROLES As String = "admin,power user,data entry,read only"
                                                                 'String -> used in setting user application access level & permissions
