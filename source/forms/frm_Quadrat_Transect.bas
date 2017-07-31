@@ -6,6 +6,7 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
+    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     TabularFamily =124
@@ -17,10 +18,10 @@ Begin Form
     Width =16140
     DatasheetFontHeight =9
     ItemSuffix =141
-    Left =1560
-    Top =1290
-    Right =15030
-    Bottom =10335
+    Left =-3810
+    Top =15105
+    Right =9615
+    Bottom =23895
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x4d9088baa9f7e440
@@ -6473,7 +6474,7 @@ On Error GoTo Err_Handler
         .SurfaceCoverID = Me.Controls(strSurfaceCoverID)
         .PercentCover = Nz(ctrl.Value, 0)
 
-Debug.Print .SurfaceCoverID
+Debug.Print "sfcID: " & .SurfaceCoverID & " PctCover: " & .PercentCover
         
         'update the cover
         .UpdateSurfaceCover

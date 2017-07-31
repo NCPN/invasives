@@ -14,10 +14,10 @@ Begin Form
     Width =7860
     DatasheetFontHeight =9
     ItemSuffix =74
-    Left =870
-    Top =3255
-    Right =8925
-    Bottom =9660
+    Left =3930
+    Top =2730
+    Right =11985
+    Bottom =9135
     DatasheetGridlinesColor =12632256
     AfterInsert ="[Event Procedure]"
     RecSrcDt = Begin
@@ -1238,7 +1238,7 @@ Option Explicit
 ' =================================
 ' Form:         fsub_Species
 ' Level:        Application form
-' Version:      1.10
+' Version:      1.11
 ' Basis:        -
 '
 ' Description:  Species subform object related properties, functions & procedures for UI display
@@ -1258,6 +1258,8 @@ Option Explicit
 '               BLC - 7/24/2017 - 1.08 - revised btnDelete_Click to properly delete from db & usys_temp_speciescover
 '               BLC - 7/27/2017 - 1.09 - update average cover after setting species cover, revised IsDuplicateSpeciesCover
 '               BLC - 7/28/2017 - 1.10 - code cleanup
+'               BLC - 7/31/2017 - 1.11 - code cleanup & fix tab navigation after requery
+'                                        when user updates species cover
 ' =================================
 
 '---------------------
@@ -1638,12 +1640,10 @@ End Sub
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/17/2017 - revised for normalized tables & new form fields
 '   BLC - 7/27/2017 - revised duplicate check
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub Plant_Code_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
-
-    'check if duplicate species cover (skip the warning)
-    'IsDuplicateSpeciesCover True
   
     'check for duplicate species when IsDead is set
     If Not IsNull(cbxIsDead) Then
@@ -1676,27 +1676,17 @@ End Sub
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
 '   BLC - 7/27/2017 - revised duplicate check
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub cbxIsDead_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
-
-    'check if duplicate species cover (skip the warning)
-'    IsDuplicateSpeciesCover True
     
     'ensure there isn't a dupe of Species + IsDead
     If Len(Me.PlantCode) > 0 Then
-'        If IsDuplicateSpeciesCover = False Then
-'
-' '         SetSpeciesCover
-'
-'          'ensure Q1-3 are neither "Not Sampled" nor "No Exotics"
-'
-'        End If
 
         IsDuplicateSpeciesCover
 
     End If
-    
   
 Exit_Handler:
     Exit Sub
@@ -1723,12 +1713,10 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/18/2017 - revise to check for both species & is dead flag
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub Q1_hm_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
-
-    'check if duplicate species cover
-    'IsDuplicateSpeciesCover
 
 Exit_Handler:
     Exit Sub
@@ -1755,12 +1743,11 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/18/2017 - revise to check for both species & is dead flag
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub Q2_5m_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
 
-    'check if duplicate species cover
-    'IsDuplicateSpeciesCover
 
 Exit_Handler:
     Exit Sub
@@ -1787,18 +1774,10 @@ End Sub
 '   NCPN - Unknown - initial version
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 7/18/2017 - revise to check for both species & is dead flag
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub Q3_10m_BeforeUpdate(Cancel As Integer)
 On Error GoTo Err_Handler
-
-    'check if duplicate species cover
-    'IsDuplicateSpeciesCover
-
-'  If IsNull(Me!Plant_Code) Then
-'      MsgBox "You must enter species first."
-'      DoCmd.CancelEvent
-'      SendKeys "{ESC}"
-'  End If
 
 Exit_Handler:
     Exit Sub
@@ -1824,19 +1803,16 @@ End Sub
 ' Revisions:
 '   BLC - 7/18/2017 - initial version
 '   BLC - 7/24/2017 - revised to check for dupe species + IsDead
+'   BLC - 7/31/2017 - code cleanup
 ' ---------------------------------
 Private Sub Plant_Code_AfterUpdate()
 On Error GoTo Err_Handler
 
     'ensure there isn't a dupe of Species + IsDead
     If Len(Me.cbxIsDead) > 0 Then
-'        If IsDuplicateSpeciesCover = False Then
         
-          SetSpeciesCover
+        SetSpeciesCover
         
-          'ensure Q1-3 are neither "Not Sampled" nor "No Exotics"
-               
-'        End If
     End If
   
 Exit_Handler:
@@ -1878,7 +1854,6 @@ Err_Handler:
     End Select
     Resume Exit_Handler
 End Sub
-
 
 ' ---------------------------------
 ' Sub:          Q1_hm_AfterUpdate
@@ -2155,9 +2130,15 @@ End Function
 '                     do not re-check IsDuplicateSpeciesCover since that is
 '                     checked already
 '   BLC - 7/28/2017 - code cleanup
+'   BLC - 7/31/2017 - fix so returns to user's record after requery (refresh instead)
 ' ---------------------------------
 Private Sub SetSpeciesCover()
 On Error GoTo Err_Handler
+
+    'fetch the current record
+    Dim lngRecordNum As Long
+    
+    lngRecordNum = Me.CurrentRecord
 
     'check if plant code is set
     If IsNull(Me.Plant_Code) = True Then GoTo Exit_Handler
@@ -2245,7 +2226,15 @@ On Error GoTo Err_Handler
     Next
         
     'update average cover
-    Me.Requery
+    'Me.Requery
+    Me.Refresh
+    
+    'return to user's selected record (otherwise returns to top of tab order)
+    'DoCmd.GoToRecord acActiveDataObject, Me.Name, acGoTo, lngRecordNum << error 2489 Me.Name not open
+    'Me.SetFocus
+    'DoCmd.GoToRecord , , lngRecordNum << goes to wrong record
+    'DoCmd.GoToRecord acActiveDataObject, , acGoTo, lngRecordNum << error 2449 invalid method in an expression
+    
 
 Exit_Handler:
     Exit Sub

@@ -1216,7 +1216,7 @@ On Error GoTo Err_Handler
                     .Parameters("sid") = params(3)
                     .Parameters("pct") = params(4)
                     
-                Case "u_surfacecover_by_ID"
+                Case "u_surfacecover_by_id"
                     '-- required parameters --
                     .Parameters("sfcid") = params(1)
                     .Parameters("pct") = params(2)
