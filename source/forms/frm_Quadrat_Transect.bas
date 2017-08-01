@@ -6,7 +6,6 @@ Begin Form
     NavigationButtons = NotDefault
     DividingLines = NotDefault
     AllowAdditions = NotDefault
-    FilterOn = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
     TabularFamily =124
@@ -18,10 +17,10 @@ Begin Form
     Width =16140
     DatasheetFontHeight =9
     ItemSuffix =141
-    Left =-3810
-    Top =15105
-    Right =9615
-    Bottom =23895
+    Left =2745
+    Top =1230
+    Right =15030
+    Bottom =10020
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x4d9088baa9f7e440
@@ -665,7 +664,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =3720
@@ -714,7 +713,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =3720
@@ -747,7 +746,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dead wood cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =3720
@@ -780,7 +779,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =3960
@@ -829,7 +828,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =3960
@@ -862,7 +861,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Dung cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =3959
@@ -895,7 +894,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =4200
@@ -944,7 +943,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =4200
@@ -977,7 +976,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Fungus cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =4198
@@ -1010,7 +1009,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =4440
@@ -1059,7 +1058,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =4440
@@ -1092,7 +1091,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Lichen cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =4437
@@ -1125,7 +1124,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =4680
@@ -1174,7 +1173,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =4680
@@ -1207,7 +1206,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Litter/Duff cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =4676
@@ -1240,7 +1239,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =4920
@@ -1289,7 +1288,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =4920
@@ -1322,7 +1321,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =4915
@@ -1355,7 +1354,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =5401
@@ -1404,7 +1403,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =5401
@@ -1437,7 +1436,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Mineral Soil/Sediment cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =5400
@@ -1470,7 +1469,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =5641
@@ -1519,7 +1518,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =5641
@@ -1537,7 +1536,7 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =3840
-                    Top =5641
+                    Top =5640
                     Width =763
                     Height =239
                     TabIndex =40
@@ -1552,12 +1551,12 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Moss cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
-                    LayoutCachedTop =5641
+                    LayoutCachedTop =5640
                     LayoutCachedWidth =4603
-                    LayoutCachedHeight =5880
+                    LayoutCachedHeight =5879
                     ConditionalFormat14 = Begin
                         0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
                         0x74006200780051003300490053005d003d003000000000000000000000000000 ,
@@ -1585,7 +1584,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =5881
@@ -1634,7 +1633,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =5881
@@ -1667,7 +1666,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Cryptogram cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =5881
@@ -1700,7 +1699,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =6121
@@ -1749,7 +1748,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =6121
@@ -1782,7 +1781,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Road cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =6121
@@ -1815,7 +1814,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =6361
@@ -1864,7 +1863,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =6361
@@ -1897,7 +1896,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Rock cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =6361
@@ -1930,7 +1929,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =6601
@@ -1979,7 +1978,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =6601
@@ -2012,7 +2011,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Standing Water/Flooded cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =6601
@@ -2045,7 +2044,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =6841
@@ -2094,7 +2093,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =6841
@@ -2127,7 +2126,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Stream cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =6841
@@ -2160,7 +2159,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =7081
@@ -2209,7 +2208,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =7081
@@ -2242,7 +2241,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Trash/Junk cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
                     LayoutCachedTop =7081
@@ -2275,7 +2274,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 1"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =2280
                     LayoutCachedTop =5161
@@ -2324,7 +2323,7 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Roo/Bole cover percentage quadrat 2"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3070
                     LayoutCachedTop =5161
@@ -3157,7 +3156,7 @@ Begin Form
                     IMESentenceMode =3
                     ListRows =21
                     Left =3840
-                    Top =5161
+                    Top =5160
                     Width =763
                     Height =239
                     TabIndex =34
@@ -3172,12 +3171,12 @@ Begin Form
                     RowSourceType ="Table/Query"
                     RowSource ="tlu_Cover_Code"
                     StatusBarText ="Root/Bole cover percentage quadrat 3"
-                    OnChange ="=UpdateMicrohabitat([Screen].[ActiveControl])"
+                    AfterUpdate ="=UpdateMicrohabitat([Screen].[ActiveControl])"
 
                     LayoutCachedLeft =3840
-                    LayoutCachedTop =5161
+                    LayoutCachedTop =5160
                     LayoutCachedWidth =4603
-                    LayoutCachedHeight =5400
+                    LayoutCachedHeight =5399
                     ConditionalFormat14 = Begin
                         0x01000100000001000000000000000000000000000000ffffff000b0000005b00 ,
                         0x74006200780051003300490053005d003d003000000000000000000000000000 ,
@@ -4500,7 +4499,7 @@ Option Explicit
 ' =================================
 ' Form:         frm_Quadrat_Transect
 ' Level:        Application form
-' Version:      1.10
+' Version:      1.11
 ' Basis:        -
 '
 ' Description:  Quadrat Transect form object related properties, functions & procedures for UI display
@@ -4528,6 +4527,9 @@ Option Explicit
 '               BLC - 7/26/2017 - 1.09 - iterate through transects for creating new records,
 '                                        fixed start time update
 '               BLC - 7/28/2017 - 1.10 - code cleanup
+'               BLC - 8/1/2017  - 1.11 - update form microhabitat surface cover dropdowns
+'                                        to also UpdateMicrohabitat on AfterUpdate vs OnChange event to
+'                                        avoid losing values when tabbing vs. clicking
 ' =================================
 
 '---------------------
@@ -6443,11 +6445,16 @@ Err_Handler:
 End Function
 
 ' ---------------------------------
-' Sub:          UpdateMicrohabitat
+' Function:     UpdateMicrohabitat
 ' Description:  Updates the microhabitat (surface cover) percent cover value
-' Assumptions:  SurfaceCoverID control is named similar to the
-'               Microhabitat control dropdown name (Litter_Duff_Q2)
-'               (e.g. "tbxLitter_Duff_CoverID_Q1")
+' Assumptions:  (1) SurfaceCoverID control is named similar to the
+'                   Microhabitat control dropdown name (Litter_Duff_Q2)
+'                   (e.g. "tbxLitter_Duff_CoverID_Q1")
+'               (2) Microhabitat dropdowns call this function in the
+'                   AfterUpdate event as
+'                     =UpdateMicrohabitat([Screen].[ActiveControl])
+'               (3) AfterUpdate event is used vs. OnChange to avoid users losing
+'                   their changes when tabbing vs. clicking
 ' Parameters:   -
 ' Returns:      -
 ' Throws:       none
@@ -6457,6 +6464,7 @@ End Function
 ' Revisions:
 '   BLC - 7/24/2017 - initial version
 '   BLC - 7/28/2017 - code cleanup
+'   BLC - 8/1/2017  - revised to AfterUpdate() vs OnChange() event, documentation update
 ' ---------------------------------
 Private Function UpdateMicrohabitat(ctrl As Control) As Boolean
 On Error GoTo Err_Handler
