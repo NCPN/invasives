@@ -22,10 +22,10 @@ Begin Form
     Width =14160
     DatasheetFontHeight =10
     ItemSuffix =206
-    Left =2895
-    Top =915
-    Right =17055
-    Bottom =12360
+    Left =5715
+    Top =2190
+    Right =19875
+    Bottom =13125
     DatasheetGridlinesColor =12632256
     Filter ="[Location_ID]='20101021094935-986093163.490295' AND [Event_ID]='20170701144612-1"
         "28249883.651733'"
@@ -33,9 +33,7 @@ Begin Form
         0xc0d562cf56f6e440
     End
     RecordSource ="qfrm_Data_Entry"
-    Caption =" Data Entry Form - Filter by sampling event - Filter by sampling event - Filter "
-        "by sampling event - Filter by sampling event - Filter by sampling event - Filter"
-        " by sampling event - Filter by sampling event"
+    Caption =" Data Entry Form"
     OnCurrent ="[Event Procedure]"
     BeforeInsert ="[Event Procedure]"
     BeforeUpdate ="[Event Procedure]"
@@ -873,15 +871,15 @@ End Sub
 Private Sub Form_BeforeInsert(Cancel As Integer)
 On Error GoTo Err_Handler
 
-        Dim Db As DAO.Database
+        Dim db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim strSQL As String
         
     
     ' Set master version number on event record
-    Set Db = CurrentDb
+    Set db = CurrentDb
     strSQL = "SELECT [version_key_number] FROM [tbl_master_version] ORDER BY [version_key_number] DESC"
-    Set Versions = Db.OpenRecordset(strSQL)
+    Set Versions = db.OpenRecordset(strSQL)
     Versions.MoveFirst
     Me![version_key_number] = Versions![version_key_number]
     Versions.Close
@@ -920,7 +918,7 @@ End Sub
 Private Sub tbxStartDate_AfterUpdate()
 On Error GoTo Err_Handler
         
-        Dim Db As DAO.Database
+        Dim db As DAO.Database
         Dim Events As DAO.Recordset
         Dim strSQL As String
         
@@ -929,8 +927,8 @@ On Error GoTo Err_Handler
     ' Check for duplicate date
     strSQL = "SELECT Event_ID FROM tbl_Events WHERE [Location_ID] = '" & Me!cboLocation_ID & "' AND [Start_Date] = #" & Me!Start_Date & "#"
 
-    Set Db = CurrentDb
-    Set Events = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set Events = db.OpenRecordset(strSQL)
     
     If Not Events.EOF Then
       MsgBox " Duplicate visit date - update cancelled."

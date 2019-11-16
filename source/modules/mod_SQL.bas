@@ -212,7 +212,7 @@ End Function
 Public Sub GetSQLTemplates(Optional strVersion As String = "")
 On Error GoTo Err_Handler
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rst As DAO.Recordset
     Dim strSQL As String, strSQLWhere As String, key As String, Value As String
     
@@ -226,8 +226,8 @@ On Error GoTo Err_Handler
     'sql
     strSQL = "SELECT * FROM tsys_Db_Templates" & strSQLWhere
     
-    Set Db = CurrentDb
-    Set rst = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rst = db.OpenRecordset(strSQL)
     
     'handle no records
     If rst.EOF Then
@@ -609,14 +609,14 @@ End Function
 Function Coalsce(strSQL As String, strDelim, ParamArray NameList() As Variant)
 On Error GoTo Err_Handler
 
-Dim Db As Database
+Dim db As Database
 Dim rs As DAO.Recordset
 Dim strList As String
 
-    Set Db = CurrentDb
+    Set db = CurrentDb
 
     If strSQL <> "" Then
-        Set rs = Db.OpenRecordset(strSQL)
+        Set rs = db.OpenRecordset(strSQL)
 
         Do While Not rs.EOF
             strList = strList & strDelim & rs.Fields(0)

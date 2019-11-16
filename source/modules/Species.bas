@@ -382,10 +382,10 @@ Public Sub Init(LUcode As String)
 On Error GoTo Err_Handler
     
     Dim strSQL As String
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     
-    Set Db = CurrentDb
+    Set db = CurrentDb
     
     'species must have:
 '    strSQL = "SELECT DISTINCT TOP 1 Master_Family, Master_PLANT_Code, Master_Species, " _
@@ -396,7 +396,7 @@ On Error GoTo Err_Handler
 '            & "FROM tlu_NCPN_plants WHERE LU_Code = '" & LUcode & "';"
     strSQL = GetTemplate("s_plant_species_by_LUcode", "lucode:" & LUcode)
 
-    Set rs = Db.OpenRecordset(strSQL)
+    Set rs = db.OpenRecordset(strSQL)
     If Not (rs.EOF And rs.BOF) Then
         With rs
             Me.MasterFamily = Nz(.Fields("Master_Family"), "")

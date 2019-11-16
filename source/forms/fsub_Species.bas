@@ -17,7 +17,7 @@ Begin Form
     Left =3930
     Top =2730
     Right =11985
-    Bottom =9135
+    Bottom =6960
     DatasheetGridlinesColor =12632256
     AfterInsert ="[Event Procedure]"
     RecSrcDt = Begin
@@ -1260,6 +1260,8 @@ Option Explicit
 '               BLC - 7/28/2017 - 1.10 - code cleanup
 '               BLC - 7/31/2017 - 1.11 - code cleanup & fix tab navigation after requery
 '                                        when user updates species cover
+'               HMT - 9/4/2018  - 1.12 - added logic to delete extra empty records from usys_temp_speciescover
+'                                        table when SpeciesCover table has no records.
 ' =================================
 
 '---------------------
@@ -1353,9 +1355,15 @@ End Property
 '   BLC - 3/8/2017 - added documentation, error handling
 '   BLC - 4/21/2017 - added setting HasRecordsQ1-3 properties
 '   BLC - 7/17/2017 - set controls enabled by default
+'   HMT - 9/4/2018  - added logic to delete extra empty records from usys_temp_speciescover
+'                     table when SpeciesCover table has no records.
 ' ---------------------------------
 Private Sub Form_Open(Cancel As Integer)
 On Error GoTo Err_Handler
+    
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
+    Dim strSQL As String
     
     'set fields enabled by default
     Me.Plant_Code.Enabled = True
@@ -1371,8 +1379,26 @@ On Error GoTo Err_Handler
     Me.HasRecordsQ3 = False
 
     'determine if Q1-3 have records
-    If Me.Form.Recordset.RecordCount > 0 And Not IsNull(Me.Plant_Code) Then Me.HasRecords = True
-    
+    If Me.Form.Recordset.RecordCount > 0 And Not IsNull(Me.Plant_Code) Then
+        Me.HasRecords = True
+    Else 'check for no records in SpeciesCover table
+        Set db = CurrentDb
+        Set rs = db.OpenRecordset("SpeciesCover")
+        If (rs.BOF And rs.EOF) Then
+            'delete extra empty records from usys_temp_speciescover table
+            Set rs = db.OpenRecordset("usys_temp_speciescover")
+            If Not (rs.BOF And rs.EOF) Then
+                strSQL = GetTemplate("d_usys_temp_speciescover_all")
+                DoCmd.SetWarnings False
+                DoCmd.RunSQL strSQL
+                DoCmd.SetWarnings True
+            End If
+        End If
+        rs.Close
+        Set rs = Nothing
+        Set db = Nothing
+    End If
+            
     'hide dev mode so it doesn't flash w/ @ transect
     If Not DEV_MODE Then Me.tbxDevMode.Visible = False
     

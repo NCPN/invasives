@@ -45,19 +45,19 @@ Option Explicit
 Public Sub ChangeMSysConnection(ByVal strTable As String, ByVal strConn As String)
 On Error GoTo Err_Handler
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim tdf As DAO.TableDef
 
-    Set Db = CurrentDb()
-    Set tdf = Db.TableDefs(strTable)
+    Set db = CurrentDb()
+    Set tdf = db.TableDefs(strTable)
 
     'Change the connect value
     tdf.connect = strConn '"ODBC;DATABASE=pubs;UID=sa;PWD=;DSN=Publishers"
     
 Exit_Sub:
     Set tdf = Nothing
-    Db.Close
-    Set Db = Nothing
+    db.Close
+    Set db = Nothing
     
     Exit Sub
     
@@ -89,11 +89,11 @@ End Sub
 Public Sub ChangeMSysDb(ByVal strTable As String, ByVal strDbPath As String)
 On Error GoTo Err_Handler
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim tdf As DAO.TableDef
 
-    Set Db = CurrentDb()
-    Set tdf = Db.TableDefs(strTable)
+    Set db = CurrentDb()
+    Set tdf = db.TableDefs(strTable)
 
     'Change the database value
     tdf.connect = ";DATABASE=" & strDbPath
@@ -102,8 +102,8 @@ On Error GoTo Err_Handler
     
 Exit_Sub:
     Set tdf = Nothing
-    Db.Close
-    Set Db = Nothing
+    db.Close
+    Set db = Nothing
     
     Exit Sub
     
@@ -385,13 +385,13 @@ Sub SearchDB(SearchText As String, _
              Optional ObjName As String = "*")
 On Error GoTo Err_Handler
 
-    Dim Db As Database, obj As AccessObject, ctl As Control, prop As Property
+    Dim db As Database, obj As AccessObject, ctl As Control, prop As Property
     Dim frm As Form, rpt As Report, mdl As Module
     Dim oLoaded As Boolean, Found As Boolean, instances As Long
     Dim sline As Long, scol As Long, eline As Long, ecol As Long
     Dim ary() As Variant, oType As Variant
 
-    Set Db = CurrentDb
+    Set db = CurrentDb
     Application.Echo False
 
     'set array
@@ -579,7 +579,7 @@ Public Function GetAppObj(Optional AppPath As String = VCS_FULL_PATH) As Access.
 On Error GoTo Err_Handler
     
     Dim appAccess As Access.Application
-    Dim Db As Database
+    Dim db As Database
  
     'Create instance of Access Application object.
     Set appAccess = CreateObject("Access.Application")

@@ -20,12 +20,12 @@ Begin Form
     Width =4440
     DatasheetFontHeight =9
     ItemSuffix =15
-    Left =7515
-    Top =3435
-    Right =12210
-    Bottom =7080
+    Left =8430
+    Top =2235
+    Right =13125
+    Bottom =5880
     DatasheetGridlinesColor =12632256
-    Filter ="[Location_ID]='20101021094935-910964310.16922'"
+    Filter ="[Location_ID]='20101022101536-705547511.577606'"
     RecSrcDt = Begin
         0x5bd611c7ad13e340
     End
@@ -497,6 +497,7 @@ End Sub
 '   BLC - 7/26/2017 - capture cancelling of OpenForm when
 '                     new quadrat records are created in frm_Quadrat_Transect
 '                     & form is closed
+'   HMT - 8/25/2018  - modified to handle cases where there are no records in Quadrat or SpeciesCover tables
 ' ---------------------------------
 Private Sub btnEdit_Click()
     On Error GoTo Err_Handler
@@ -504,15 +505,44 @@ Private Sub btnEdit_Click()
 OpenForm:
     Dim strCriteriaLoc As String
     Dim strCriteriaEvent As String
+    Dim strNav As String
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
 
     strCriteriaLoc = GetCriteriaString("[Location_ID]=", "tbl_Locations", "Location_ID", Me.Name, "Location_ID")
     strCriteriaEvent = GetCriteriaString("[Event_ID]=", "tbl_Events", "Event_ID", Me.Name, "Event_ID")
+    strNav = "Queries - Application"
     
-    're-generate the temp table sources
-    RefreshTempTable "usys_temp_transect"
-    RefreshTempTable "usys_temp_speciescover"
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset("Quadrat")
+    
+    ' Check whether there are Quadrat records and re-generate transect temp table accordingly
+    If Not (rs.BOF And rs.EOF) Then
+        RefreshTempTable "usys_temp_transect"
+    Else
+        DoCmd.SetWarnings False
+        If TableExists("usys_temp_transect") Then
+            DoCmd.DeleteObject acTable, "usys_temp_transect"
+        End If
+        DoCmd.OpenQuery "Create_usys_temp_transect_no_quadrats"
+        SetNavGroup strNav, "usys_temp_transect", "table"
+        DoCmd.SetWarnings True
+    End If
 
-    DoCmd.SetWarnings True
+    Set rs = db.OpenRecordset("SpeciesCover")
+    
+    ' Check whether there are SpeciesCover records and re-generate speciescover temp table accordingly
+    If Not (rs.BOF And rs.EOF) Then
+        RefreshTempTable "usys_temp_speciescover"
+    Else
+        DoCmd.SetWarnings False
+        If TableExists("usys_temp_speciescover") Then
+            DoCmd.DeleteObject acTable, "usys_temp_speciescover"
+        End If
+        DoCmd.OpenQuery "Create_usys_temp_speciescover_no_species"
+        SetNavGroup strNav, "usys_temp_speciescover", "table"
+        DoCmd.SetWarnings True
+    End If
     
     ' Filter by location and event
     DoCmd.OpenForm "frm_Data_Entry", , , strCriteriaLoc & " AND " & strCriteriaEvent, , , strCriteriaEvent
@@ -520,6 +550,9 @@ OpenForm:
     DoCmd.SelectObject acForm, "frm_Data_Entry"
 
 Exit_Handler:
+    rs.Close
+    Set rs = Nothing
+    Set db = Nothing
     Exit Sub
 Err_Handler:
     Select Case Err.Number

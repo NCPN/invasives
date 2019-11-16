@@ -17,10 +17,9 @@ Begin Form
     Width =16140
     DatasheetFontHeight =9
     ItemSuffix =141
-    Left =2745
-    Top =1230
-    Right =15030
-    Bottom =10020
+    Top =285
+    Right =11445
+    Bottom =7110
     DatasheetGridlinesColor =12632256
     RecSrcDt = Begin
         0x4d9088baa9f7e440
@@ -6320,6 +6319,8 @@ End Sub
 ' Adapted:      -
 ' Revisions:
 '   BLC - 4/24/2016 - initial version
+'   HMT - 6/16/2018 - added code to set form microhabitats to null when quadrat is not sampled
+'   HMT - 8/28/2018 - added error handling for runtime error 2424 - see comments below
 ' ---------------------------------
 Private Sub PopulateMicrohabitats()
 On Error GoTo Err_Handler
@@ -6333,6 +6334,23 @@ On Error GoTo Err_Handler
     'set the transect ID
     SetTempVar "Transect_ID", CStr(Me.tbxTransectID)
     
+    'get all microhabitats (surfaces) for transect using cross join of Quadrat and Surface
+    'ensures form microhabitats get set to null when one or more quadrats are not sampled
+    Set rs = GetRecords("s_quadrat_surface_by_transect")
+    
+    If Not (rs.BOF And rs.EOF) Then
+        Do Until rs.EOF
+                
+            'set the field to null initially
+            Me.Controls(rs("ControlName")) = Null
+            
+            rs.MoveNext
+        Loop
+    End If
+    
+    rs.Close
+    Set rs = Nothing
+         
     Set rs = GetRecords("s_surfacecover_by_transect")
     
     If Not (rs.BOF And rs.EOF) Then
@@ -6357,6 +6375,11 @@ Exit_Handler:
     Exit Sub
 Err_Handler:
     Select Case Err.Number
+      Case 2424 'The expression you entered has a field, control or property name that Microsoft Office
+                'Access can't find.
+                'This error occurs initially when there are no records in the Quadrat table.
+                'Several potential solutions were tried to prevent it, but none were successful.
+        Resume Exit_Handler
       Case Else
         MsgBox "Error #" & Err.Number & ": " & Err.Description, vbCritical, _
             "Error encountered (#" & Err.Number & " - PopulateMicrohabitats[frm_Quadrat_Transect form])"

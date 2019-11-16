@@ -235,7 +235,7 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
     On Error GoTo Err_Handler
 
     Dim dbGet As DAO.Database
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rst As DAO.Recordset
     Dim tdf As DAO.TableDef
     Dim intNumTables As Integer
@@ -248,8 +248,8 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
     ' Opens the target database and the current system table containing the list
     '   of tables for refreshing links
     Set dbGet = DBEngine.OpenDatabase(varFileName)
-    Set Db = CurrentDb
-    Set rst = Db.OpenRecordset(strSQL, dbOpenSnapshot)
+    Set db = CurrentDb
+    Set rst = db.OpenRecordset(strSQL, dbOpenSnapshot)
 
     ' Counts the number of tables in the system table associated with this db
     rst.MoveLast    ' Need to do this to make the record count accurate
@@ -284,7 +284,7 @@ Public Function fxnRefreshLinks(strSQL As String, varFileName As Variant) As Boo
         intI = intI + 1
         varReturn = SysCmd(acSysCmdUpdateMeter, intI)
         strLinkTableName = rst![Link_table]
-        Set tdf = Db.TableDefs(strLinkTableName)
+        Set tdf = db.TableDefs(strLinkTableName)
         tdf.connect = ";DATABASE=" & varFileName
         tdf.RefreshLink
         rst.MoveNext
@@ -300,7 +300,7 @@ Exit_Procedure:
     rst.Close
     Set tdf = Nothing
     Set rst = Nothing
-    Set Db = Nothing
+    Set db = Nothing
     Exit Function
 
 Err_Handler:

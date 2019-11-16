@@ -4,7 +4,7 @@ Option Explicit
 ' =================================
 ' MODULE:       mod_App_Data
 ' Level:        Application module
-' Version:      1.35
+' Version:      1.36
 ' Description:  data functions & procedures specific to this application
 '
 ' Source/date:  Bonnie Campbell, 2/9/2015
@@ -57,6 +57,7 @@ Option Explicit
 '               BLC, 7/18/2017  - 1.33 - add species cover templates
 '               BLC, 7/24/2017  - 1.34 - added get surface ID from col name template
 '               BLC, 7/26/2017  - 1.35 - added u_surfacecover_by_ID template
+'               HMT, 6/16/2018  - 1.36 - added s_quadrat_surface_by_transect template
 ' =================================
 
 '' ---------------------------------
@@ -339,7 +340,7 @@ Public Function GetParkState(ParkCode As String) As String
 
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim State As String, strSQL As String
    
@@ -352,8 +353,8 @@ On Error GoTo Err_Handler
     strSQL = "SELECT TOP 1 ParkState FROM tlu_Parks WHERE ParkCode LIKE '" & ParkCode & "';"
             
     'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -437,7 +438,7 @@ Public Function IsUsedTargetArea(TgtAreaID As Integer) As Boolean
 
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -448,8 +449,8 @@ On Error GoTo Err_Handler
     strSQL = "SELECT TOP 1 Target_Area_ID FROM tbl_Target_Species WHERE Target_Area_ID = " & TgtAreaID & ";"
             
     'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -486,7 +487,7 @@ Public Sub PopulateTree(TreeType As String)
 
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -497,8 +498,8 @@ On Error GoTo Err_Handler
     End Select
                    
     'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL)
     
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -541,7 +542,7 @@ Public Sub PopulateCombobox(cbx As ComboBox, BoxType As String)
 
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     
@@ -554,8 +555,8 @@ On Error GoTo Err_Handler
     End Select
  
      'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL)
  
     'assume only 1 record returned
     If rs.RecordCount > 0 Then
@@ -598,7 +599,7 @@ End Sub
 Public Function GetProtocolVersion(Optional blnAllVersions As Boolean = False) As Variant
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String, strWhere As String
     Dim Count As Integer
@@ -617,8 +618,8 @@ On Error GoTo Err_Handler
     strSQL = GetTemplate("s_protocol_info", "strWHERE" & PARAM_SEPARATOR & strWhere)
     
     'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL)
         
     If rs.BOF And rs.EOF Then GoTo Exit_Handler
         
@@ -668,7 +669,7 @@ End Function
 Public Function GetSOPMetadata(area As String) As Variant
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
         
@@ -686,8 +687,8 @@ On Error GoTo Err_Handler
     strSQL = GetTemplate("s_sop_metadata", "area" & PARAM_SEPARATOR & LCase(area))
     
     'fetch data
-    Set Db = CurrentDb
-    Set rs = Db.OpenRecordset(strSQL, dbOpenDynaset)
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset(strSQL, dbOpenDynaset)
         
     'return value
     Set GetSOPMetadata = rs
@@ -722,7 +723,7 @@ End Function
 Public Function GetParkID(ParkCode As String) As Long
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim strSQL As String
     Dim ID As Long
@@ -929,18 +930,19 @@ End Sub
 '   BLC - 7/24/2017 - added get surface ID from col name template
 '   BLC - 7/26/2017 - added get route transects template
 '   BLC - 7/27/2017 - added "s_speciescover_dupes" template, optional params parameter
-' ---------------------------------
+'   HMT - 6/16/2018 - added s_quadrat_surface_by_transect template
+' ---------------------------------------------------------------------
 Public Function GetRecords(Template As String, _
                             Optional params As Variant) As DAO.Recordset
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim qdf As DAO.QueryDef
     Dim rs As DAO.Recordset
     
-    Set Db = CurrentDb
+    Set db = CurrentDb
     
-    With Db
+    With db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
@@ -978,6 +980,10 @@ On Error GoTo Err_Handler
                     '-- required parameters --
                     .Parameters("pkcode") = TempVars("ParkCode")
                                 
+                Case "s_quadrat_surface_by_transect"
+                    '-- required parameters --
+                    .Parameters("tid") = TempVars("Transect_ID")
+                 
                 Case "s_route_transects"
                     '-- required parameters --
                     .Parameters("eid") = TempVars("EventID")
@@ -1079,7 +1085,7 @@ End Function
 Public Function SetRecord(Template As String, params As Variant) As Long
 On Error GoTo Err_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim qdf As DAO.QueryDef
     Dim SkipRecordAction As Boolean
     Dim ID As Long
@@ -1093,9 +1099,9 @@ On Error GoTo Err_Handler
     'default ID (if not set as param)
     ID = 0
     
-    Set Db = CurrentDb
+    Set db = CurrentDb
     
-    With Db
+    With db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
@@ -1275,7 +1281,7 @@ On Error GoTo Err_Handler
             
             If ID = 0 Then
                 'retrieve identity
-                ID = Db.OpenRecordset("SELECT @@IDENTITY;")(0)
+                ID = db.OpenRecordset("SELECT @@IDENTITY;")(0)
             End If
             
             'set record action
@@ -1301,7 +1307,7 @@ On Error GoTo Err_Handler
 Exit_Handler:
     'cleanup
     Set qdf = Nothing
-    Set Db = Nothing
+    Set db = Nothing
 
     Exit Function
 Err_Handler:
@@ -1655,12 +1661,12 @@ On Error GoTo Err_Handler
     Dim Field As String
     Dim strFields As String
     Dim strSQL As String
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim qdf As DAO.QueryDef
     
-    Set Db = CurrentDb
+    Set db = CurrentDb
     
-    With Db
+    With db
         Set qdf = .QueryDefs("usys_temp_qdf")
         
         With qdf
@@ -1700,7 +1706,7 @@ On Error GoTo Err_Handler
             'cleanup
             Set rs = Nothing
             Set qdf = Nothing
-            Set Db = Nothing
+            Set db = Nothing
 
         End With
     End With

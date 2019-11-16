@@ -200,14 +200,14 @@ Private Sub ButtonClose_Click()
 On Error GoTo Err_ButtonClose_Click
 
     Dim stDocName As String
-    Dim Db As Database
+    Dim db As Database
     Dim Events As DAO.Recordset
     Dim strSQL As String
   If Not IsNull(Me!fsub_Revisit.Form!Event_ID) Then
     strSQL = "Select * FROM tbl_events WHERE event_ID = '" & Me!fsub_Revisit.Form!Event_ID & "'"
-    Set Db = CurrentDb
+    Set db = CurrentDb
   ' Get the added events record
-    Set Events = Db.OpenRecordset(strSQL)
+    Set Events = db.OpenRecordset(strSQL)
     If Not Events.EOF Then
       Events.Delete
 '      Delete cancelled events record

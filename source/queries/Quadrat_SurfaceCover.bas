@@ -59,10 +59,4 @@ Begin
         dbBoolean "ColumnHidden" ="0"
         dbLong "AggregateType" ="-1"
     End
-    Begin
-        dbText "Name" ="QSfcCoverID"
-        dbInteger "ColumnWidth" ="1815"
-        dbBoolean "ColumnHidden" ="0"
-        dbLong "AggregateType" ="-1"
-    End
 End

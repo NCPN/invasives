@@ -1,6 +1,0 @@
-﻿project_ID	project_name	project_linkfile	project_include_flag	project_comments
-1	Peregrine Falcon Monitoring		True	
-2	Springs and Seeps Inventory		True	
-3	Threatened and Endangered Plant Monitoring		False	
-7	Integrated Upland Monitoring		True	
-34	Invasive Exotic Plant Monitoring		True	

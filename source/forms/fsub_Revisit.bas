@@ -263,16 +263,16 @@ Option Compare Database
 
 Private Sub Form_BeforeInsert(Cancel As Integer)
 
-        Dim Db As DAO.Database
+        Dim db As DAO.Database
         Dim Versions As DAO.Recordset
         Dim strSQL As String
         
     On Error GoTo Err_Handler
     
     ' Set master version number on event record
-    Set Db = CurrentDb
+    Set db = CurrentDb
     strSQL = "SELECT [version_key_number] FROM [tbl_master_version] ORDER BY [version_key_number] DESC"
-    Set Versions = Db.OpenRecordset(strSQL)
+    Set Versions = db.OpenRecordset(strSQL)
     Versions.MoveFirst
     Me![version_key_number] = Versions![version_key_number]
     Versions.Close

@@ -122,18 +122,18 @@ On Error GoTo Err_Handler
     'check for blank table name or no fields
     If Not IsArray(aryFields) Or Len(tblName) = 0 Then GoTo Exit_Handler
     
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim tdf As DAO.TableDef
     Dim fld As DAO.Field
     Dim item As Variant, fldDef As Variant
     Dim i As Integer
 
-    Set Db = CurrentDb()
+    Set db = CurrentDb()
     
     'delete it if it already exists
     If TableExists(tblName) Then RemoveTempTable (tblName)
     
-    Set tdf = Db.CreateTableDef(tblName)
+    Set tdf = db.CreateTableDef(tblName)
     
     'prepare array
     For Each item In aryFields
@@ -164,10 +164,10 @@ On Error GoTo Err_Handler
     Next
     
     'add table
-    Db.TableDefs.Append tdf
+    db.TableDefs.Append tdf
     
     'update window
-    Db.TableDefs.Refresh
+    db.TableDefs.Refresh
     RefreshDatabaseWindow
     
     'cleanup
@@ -348,7 +348,7 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
 
     On Error GoTo Err_Handler
 
-    Dim Db As DAO.Database
+    Dim db As DAO.Database
     Dim tdf As DAO.TableDef
     Dim strTempFile As String
     Dim strSQL As String, strMsg As String
@@ -392,12 +392,12 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
     
         'Check to see whether the table already exists in the temp.accdb file.  If so, delete it
         strError = "Dropping the table in the temp database"
-        Set Db = DBEngine.OpenDatabase(strTempFile)
+        Set db = DBEngine.OpenDatabase(strTempFile)
         'If TableExists(tbl, db) = True Then
         If TableExists(tbl) = True Then
-            Db.Execute "Drop Table [" & tbl & "]", dbFailOnError
+            db.Execute "Drop Table [" & tbl & "]", dbFailOnError
         End If
-        Set Db = Nothing
+        Set db = Nothing
     End If
     
     'Define the SQL to insert the records from TableQueryOrSQL into the temp table
@@ -462,15 +462,15 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
     'Primary key field defined? --> Alter table structure
     If IsNull(PK_Field) = False Then
         If InCurrentDb = True Then
-            Set Db = CurrentDb
+            Set db = CurrentDb
         Else
-            Set Db = DBEngine.OpenDatabase(strTempFile)
+            Set db = DBEngine.OpenDatabase(strTempFile)
         End If
         strSQL = "ALTER TABLE [" & tbl & "] " _
                & "ALTER COLUMN [" & PK_Field & "] Long " _
                & "CONSTRAINT PrimaryKey PRIMARY KEY;"
-        Db.Execute strSQL, dbFailOnError
-        Set Db = Nothing
+        db.Execute strSQL, dbFailOnError
+        Set db = Nothing
     End If
     
     'External db? --> Link temp table to current project
@@ -488,7 +488,7 @@ Public Function UpdateTempTable(tbl As String, TableQueryOrSQL As String, _
     UpdateTempTable = True
     
 Exit_Handler:
-    If Not Db Is Nothing Then Set Db = Nothing
+    If Not db Is Nothing Then Set db = Nothing
     DoCmd.Hourglass False
     Screen.MousePointer = intMousePointer
     Exit Function
